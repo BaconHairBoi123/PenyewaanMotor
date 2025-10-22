@@ -35,6 +35,7 @@
     </form>
     
     <p>Belum punya akun? <a href="{{ url('/register') }}">Daftar di sini</a></p>
+    <p>forgot password? <a href="{{ url('/forgot-password') }}">forgot password</a></p>
     <p>
         <small>Login untuk Admin: <a href="{{ url('/admin/login') }}">Masuk sebagai Admin</a></small>
     </p>
