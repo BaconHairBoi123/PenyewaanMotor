@@ -1,0 +1,19 @@
+.page-footer {     
+    justify-content: center;
+    width: auto; 
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 0 20px;
+}
+
+.page-footer p {
+    color: #000;
+    font-size: 15px;
+}
+
+.page-footer p a {
+    /* style link Login Here */
+    font-weight: bold;
+    text-decoration: none;
+}
+  

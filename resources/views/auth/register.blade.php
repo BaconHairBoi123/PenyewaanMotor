@@ -2,73 +2,89 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <title>Daftar Akun Baru</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrasi Akun Baru</title>
+
+    {{-- Kita masih menggunakan style login.css untuk konsistensi --}}
+    @vite('resources/css/login.css') 
+    @vite('resources/css/register.css')
+    
+    {{-- CATATAN: Pastikan Anda menjalankan 'npm run dev' atau 'npm run build' --}}
 </head>
 <body>
 
-    <h2>Registrasi Akun Penyewa Motor</h2>
-
-    @if ($errors->any())
-        <div style="color: red;">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
-
-    <form method="POST" action="{{ url('/register') }}">
-        @csrf
+    <h1 class="main-header">SIGN UP</h1>
+    
+    <div class="login-container">
         
-        <div>
-            <label for="name">Nama Lengkap:</label>
-            <input id="name" type="text" name="name" value="{{ old('name') }}" required>
-        </div>
-        <br>
+        {{-- BLADE: Pesan Error (Menggunakan class yang sama dengan login) --}}
+        @if ($errors->any())
+            <div class="error-message">
+                {{-- Anda mungkin ingin menyesuaikan pesan error ini --}}
+                <div><strong>Error:</strong> {{ $errors->first() ?? 'Silakan periksa kembali data yang diisi.' }}</div>
+            </div>
+        @endif
 
-        <div>
-            <label for="username">Username:</label>
-            <input id="username" type="text" name="username" value="{{ old('username') }}" required>
-        </div>
-        <br>
+        {{-- BLADE: Form Register --}}
+        <form method="POST" action="{{ url('/register') }}">
+            @csrf
+
+            {{-- 1. Input Name --}}
+            <div class="input-group">
+                <input id="name" type="text" name="name" placeholder="Name..." value="{{ old('name') }}" required autofocus>
+            </div>
+
+            {{-- 2. Input Username --}}
+            <div class="input-group">
+                <input id="username" type="text" name="username" placeholder="Username..." value="{{ old('username') }}" required>
+            </div>
+            
+            {{-- 3. Input Email --}}
+            <div class="input-group">
+                <input id="email" type="email" name="email" placeholder="Email..." value="{{ old('email') }}" required>
+            </div>
+
+            {{-- 4. Input Password --}}
+            <div class="input-group">
+                <input id="password" type="password" name="password" placeholder="Password..." required>
+            </div>
+            
+            {{-- 5. Input Confirm Password --}}
+            <div class="input-group">
+                <input id="password_confirmation" type="password" name="password_confirmation" placeholder="Confirm Password..." required>
+            </div>
+
+            {{-- 6. Input Phone Number --}}
+            <div class="input-group">
+                <input id="phone" type="text" name="phone" placeholder="Phone Number..." value="{{ old('phone') }}" required>
+            </div>
+
+            {{-- 7. Input Address (Menggunakan text untuk kesederhanaan) --}}
+            <div class="input-group">
+                <input id="address" type="text" name="address" placeholder="Address..." value="{{ old('address') }}" required>
+            </div>
+
+            {{-- Tombol Sign Up --}}
+            <div>
+                <button type="submit" class="login-button">
+                    Sign Up <span class="arrow">→</span>
+                </button>
+            </div>
+        </form>
+    </div>
+    
+    {{--- Tautan Footer Bawah ---}}
+    <div class="page-footer">
         
-        <div>
-            <label for="email">Email:</label>
-            <input id="email" type="email" name="email" value="{{ old('email') }}" required>
-        </div>
-        <br>
-
-        <div>
-            <label for="password">Password:</label>
-            <input id="password" type="password" name="password" required>
-        </div>
-        <br>
+        {{-- BLADE: Tautan Login (sesuai desain) --}}
+        <p>Already have an account? <a href="{{ url('/login') }}" style="color: #FFB51D;">Login Here</a></p>
         
-        <div>
-            <label for="password_confirmation">Konfirmasi Password:</label>
-            <input id="password_confirmation" type="password" name="password_confirmation" required>
-        </div>
-        <br>
-
-        <div>
-            <label for="no_tlpn">Nomor Telepon:</label>
-            <input id="no_tlpn" type="text" name="no_tlpn" value="{{ old('no_tlpn') }}">
-        </div>
-        <br>
-
-        <div>
-            <label for="alamat">Alamat:</label>
-            <textarea id="alamat" name="alamat">{{ old('alamat') }}</textarea>
-        </div>
-        <br>
-
-        <div>
-            <button type="submit">DAFTAR SEKARANG</button>
-        </div>
-    </form>
-
-    <p>Sudah punya akun? <a href="{{ url('/login') }}">Login di sini</a></p>
+        {{-- Placeholder Logo RIDE NUSA (diletakkan di bawah sendiri sesuai desain) --}}
+    </div>
+    
+    <div class="logo-placeholder">
+        <img src="{{ asset('img/logo/logo_ridenusa_white_BTG.png') }}" alt="Ride Nusa">
+    </div>
 
 </body>
 </html>
