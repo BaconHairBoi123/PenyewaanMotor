@@ -3,45 +3,76 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request; // Harus di-import
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\ValidationException;
 
 class LoginUserController extends Controller
 {
-    // Anda bisa tambahkan method untuk menampilkan form login di sini
+    /**
+     * Tampilkan formulir login.
+     */
     public function showLoginForm()
     {
-        return view('auth.login'); // Asumsi view login user ada di resources/views/auth/login.blade.php
+        // Pastikan view login Anda bernama 'auth.login'
+        return view('auth.login');
     }
 
+    /**
+     * Handle proses login.
+     */
     public function login(Request $request)
     {
-        $credentials = $request->validate([
-            'username' => 'required|string', // Sesuaikan validasi dengan kolom di DB Anda
+        // 1. Validasi Input
+        $request->validate([
+            // Input field yang digunakan untuk email atau username (misalnya: name="credential")
+            'credential' => 'required|string', 
             'password' => 'required|string',
         ]);
 
-        // Menggunakan guard 'web' (default, yang kita set ke provider 'users')
-        if (Auth::guard('web')->attempt($credentials)) {
-            $request->session()->regenerate();
-
-            // Redirect ke dashboard user
-            return redirect()->intended('/user/dashboard');
+        // 2. Tentukan field otentikasi (email atau username)
+        // Kita berasumsi input field di form Anda bernama 'credential'
+        $credential = $request->input('credential');
+        
+        // Cek apakah input terlihat seperti format email
+        if (filter_var($credential, FILTER_VALIDATE_EMAIL)) {
+            $field = 'email';
+        } else {
+            $field = 'username';
         }
 
-        return back()->withErrors([
-            'username' => 'Username atau Password salah.',
-        ])->onlyInput('username'); // Menggunakan onlyInput agar field username tetap terisi
+        // 3. Persiapkan kredensial untuk percobaan Auth
+        $attemptCredentials = [
+            $field => $credential, // Menggunakan field yang dipilih
+            'password' => $request->password,
+        ];
+
+        // 4. Coba login
+        if (Auth::attempt($attemptCredentials, $request->boolean('remember'))) {
+            
+            // Login Berhasil
+            $request->session()->regenerate();
+
+            // Ganti '/user/dashboard' dengan rute dashboard Anda
+            return redirect()->intended('/user/dashboard')->with('success', 'Login Berhasil!');
+        }
+
+        // 5. Login Gagal
+        throw ValidationException::withMessages([
+            'credential' => [trans('auth.failed')],
+        ]);
     }
 
+    /**
+     * Proses logout user.
+     */
     public function logout(Request $request)
     {
-        Auth::guard('web')->logout();
+        Auth::logout();
 
         $request->session()->invalidate();
-
         $request->session()->regenerateToken();
 
-        return redirect('/'); // Redirect ke halaman utama atau halaman login
+        return redirect('/login');
     }
 }

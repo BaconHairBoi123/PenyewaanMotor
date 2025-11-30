@@ -1,36 +1,49 @@
 <?php
 
-namespace App\Models; // <-- Hanya satu kali
+namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory; // Jika Anda menggunakan factory
-use Illuminate\Notifications\Notifiable; // Jika Anda menggunakan notifikasi
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable; // Tambahkan ini jika Anda ingin menggunakan Factory/Notifiable
+    use HasFactory, Notifiable;
 
-    protected $table = 'user'; // Menunjuk ke tabel 'user'
+    /**
+     * Tentukan nama tabel jika Eloquent tidak mengikuti konvensi jamak.
+     * Hapus baris ini jika Anda tidak menentukannya. 
+     * Jika ada, pastikan nilainya adalah 'users'.
+     */
+    protected $table = 'users';
 
-    protected $primaryKey = 'id_user'; // Primary key Anda
-
+    /**
+     * Atribut yang dapat diisi secara massal (mass assignable).
+     * HARUS mencakup semua kolom yang diisi dari form Register.
+     */
     protected $fillable = [
         'name',
         'username',
         'email',
         'password',
-        'alamat',
-        'no_tlpn',
-        'verifikasi',
+        // Kolom sesuai skema tabel Anda
+        'address', 
+        'phone_number',
     ];
 
+    /**
+     * Atribut yang harus disembunyikan untuk array.
+     */
     protected $hidden = [
         'password',
         'remember_token',
     ];
 
+    /**
+     * Atribut yang harus dikonversi ke tipe data asli.
+     */
     protected $casts = [
         'email_verified_at' => 'datetime',
-        'password' => 'hashed', 
+        'password' => 'hashed',
     ];
 }

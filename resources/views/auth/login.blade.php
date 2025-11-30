@@ -28,17 +28,14 @@
         <form method="POST" action="{{ url('/login') }}">
             @csrf
 
-            {{-- Input Username/Email --}}
             <div class="input-group">
-                <label for="username">Username:</label>
-                <input id="username" type="text" name="username" placeholder="Email..." value="{{ old('username') }}" required autofocus>
-            </div>
+        <!-- Input ini akan menerima Email ATAU Username -->
+        <input id="credential" type="text" name="credential" placeholder="Email / Username..." required autofocus>
+    </div>
 
-            {{-- Input Password --}}
-            <div class="input-group">
-                <label for="password">Password:</label>
-                <input id="password" type="password" name="password" placeholder="password...." required>
-            </div>
+    <div class="input-group">
+        <input id="password" type="password" name="password" placeholder="Password..." required>
+    </div>
 
             {{-- Tombol Login --}}
             <div>

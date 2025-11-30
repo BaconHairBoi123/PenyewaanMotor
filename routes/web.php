@@ -1,31 +1,63 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Auth\LoginUserController;
-use App\Http\Controllers\Auth\LoginAdminController;
-use App\Http\Controllers\Auth\RegisterUserController;
-use App\Http\Controllers\Auth\PasswordController; // PENTING: Controller yang sudah kita buat
 
+/*
+|--------------------------------------------------------------------------
+| PUBLIC ROUTES
+|--------------------------------------------------------------------------
+*/
+
+use App\Http\Controllers\Auth\LoginUserController;
+use App\Http\Controllers\Auth\RegisterUserController;
+use App\Http\Controllers\Auth\PasswordController;
+
+// Home
 Route::get('/', function () {
     return view('welcome');
 });
 
-/*
-|--------------------------------------------------------------------------
-| RUTE AUTENTIKASI PUBLIK (User & Admin)
-|--------------------------------------------------------------------------
-*/
-
-// Rute Register User
-Route::get('/register', [RegisterUserController::class, 'showRegistrationForm'])->name('register');
-Route::post('/register', [RegisterUserController::class, 'register']);
-
-// Rute Login & Logout User (Web Guard)
+// User Auth
 Route::get('/login', [LoginUserController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [LoginUserController::class, 'login']);
 Route::post('/logout', [LoginUserController::class, 'logout'])->name('logout');
 
-// Rute Login & Logout Admin (Admin Guard)
+Route::get('/register', [RegisterUserController::class, 'showRegistrationForm'])->name('register');
+Route::post('/register', [RegisterUserController::class, 'register']);
+
+// Password Reset
+Route::middleware('guest')->group(function () {
+    Route::get('forgot-password', [PasswordController::class, 'showLinkRequestForm'])->name('password.request');
+    Route::post('forgot-password', [PasswordController::class, 'sendResetLinkEmail'])->name('password.email');
+    Route::get('reset-password/{token}', [PasswordController::class, 'showResetForm'])->name('password.reset');
+    Route::post('reset-password', [PasswordController::class, 'reset'])->name('password.update');
+});
+
+
+/*
+|--------------------------------------------------------------------------
+| USER DASHBOARD
+|--------------------------------------------------------------------------
+*/
+
+Route::middleware('auth:web')
+    ->prefix('user')
+    ->name('user.')
+    ->group(function () {
+        Route::get('/dashboard', function () {
+            return view('user.dashboard');
+        })->name('dashboard');
+    });
+
+
+/*
+|--------------------------------------------------------------------------
+| ADMIN AUTH (LOGIN / LOGOUT)
+|--------------------------------------------------------------------------
+*/
+
+use App\Http\Controllers\Auth\LoginAdminController;
+
 Route::get('/admin/login', [LoginAdminController::class, 'showLoginForm'])->name('admin.login');
 Route::post('/admin/login', [LoginAdminController::class, 'login']);
 Route::post('/admin/logout', [LoginAdminController::class, 'logout'])->name('admin.logout');
@@ -33,51 +65,108 @@ Route::post('/admin/logout', [LoginAdminController::class, 'logout'])->name('adm
 
 /*
 |--------------------------------------------------------------------------
-| RUTE DASHBOARD (Dilindungi Middleware)
+| ADMIN PANEL (Protected)
 |--------------------------------------------------------------------------
 */
 
-// Dashboard USER (Hanya bisa diakses jika login sebagai user)
-Route::middleware('auth:web')->prefix('user')->group(function () {
-    Route::get('/dashboard', function () {
-        return view('user.dashboard');
-    })->name('user.dashboard');
+use App\Http\Controllers\Admin\ReturnController;
+use App\Http\Controllers\Admin\PaymentController;
+use App\Http\Controllers\Admin\AdminDashboardController;
+use App\Http\Controllers\Admin\MotorcycleController;
+use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\AdminAccountController;
+use App\Http\Controllers\Admin\AccountController;
+use App\Http\Controllers\Admin\TransaksiController;
+use App\Http\Controllers\Admin\ServiceController;
+
+Route::middleware('auth:admin')->prefix('admin')->name('admin.')->group(function () {
+
+    Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
+
+    // Motorcycle (utama)
+    Route::resource('motorcycles', MotorcycleController::class);
+
+    // Motorcycle Management (dipakai sidebar kamu)
+    Route::resource('motorcycles_Management', MotorcycleController::class);
+
+    // Users
+    Route::resource('users', UserController::class);
+
+    // Admin Accounts
+    Route::resource('admins', AdminAccountController::class);
+
+    // Personal Account
+    Route::get('/account', [AccountController::class, 'index'])->name('account');
+    Route::post('/account', [AccountController::class, 'update'])->name('account.update');
+
+    // Transaksi
+    Route::get('/transaksi', [TransaksiController::class, 'index'])->name('transaksi.index');
+    
+});
+//admin user verification
+Route::prefix('admin')->middleware('auth:admin')->group(function () {
+
+    Route::get('/user-verification', [App\Http\Controllers\Admin\UserVerificationController::class, 'index'])
+        ->name('admin.user.verification');
+
+    Route::post('/user-verification/{id}/approve', [App\Http\Controllers\Admin\UserVerificationController::class, 'approve'])
+        ->name('admin.user.verification.approve');
+
+    Route::post('/user-verification/{id}/reject', [App\Http\Controllers\Admin\UserVerificationController::class, 'reject'])
+        ->name('admin.user.verification.reject');
+});
+//admin payment routes
+
+Route::get('/admin/payments', [PaymentController::class, 'index'])
+    ->name('admin.payments.index');
+
+Route::post('/admin/payments/{id}/success', [PaymentController::class, 'success'])
+    ->name('admin.payments.success');
+
+Route::post('/admin/payments/{id}/failed', [PaymentController::class, 'failed'])
+    ->name('admin.payments.failed');
+
+//admin return routes
+
+Route::get('/admin/returns', [ReturnController::class, 'index'])
+    ->name('admin.returns.index');
+
+Route::post('/admin/returns/store', [ReturnController::class, 'store'])
+    ->name('admin.returns.store');
+
+//admin service routes
+
+Route::get('/admin/services', [ServiceController::class, 'index'])
+    ->name('admin.services.index');
+
+Route::post('/admin/services/store', [ServiceController::class, 'store'])
+    ->name('admin.services.store');
+
+Route::prefix('admin')->middleware('auth:admin')->group(function () {
+    Route::get('/service-types', [App\Http\Controllers\Admin\ServiceTypeController::class, 'index'])
+        ->name('admin.service.types');
+
+    Route::post('/service-types/store', [App\Http\Controllers\Admin\ServiceTypeController::class, 'store'])
+        ->name('service.types.store');
+
+    Route::delete('/service-types/{id}', [App\Http\Controllers\Admin\ServiceTypeController::class, 'destroy'])
+        ->name('service.types.delete');
 });
 
-// Dashboard ADMIN (Hanya bisa diakses jika login sebagai admin)
-Route::middleware('auth:admin')->prefix('admin')->group(function () {
-    Route::get('/dashboard', function () {
-        return view('admin.dashboard');
-    })->name('admin.dashboard');
-});
+Route::get('/admin/delivery-pickup-today', [App\Http\Controllers\Admin\DeliveryController::class, 'index'])
+    ->middleware('auth:admin')
+    ->name('admin.delivery.today');
 
+//admin
+Route::prefix('admin')->middleware(['auth:admin'])->group(function () {
 
-/*
-|--------------------------------------------------------------------------
-| RUTE PASSWORD RESET (Forgot Password)
-|--------------------------------------------------------------------------
-| Semua rute ini harus berada di bawah middleware 'guest' 
-| agar hanya bisa diakses oleh pengguna yang BELUM login.
-*/
-Route::middleware('guest')->group(function () {
-    
-    // 1. Tampilkan formulir lupa password (Input Email)
-    Route::get('forgot-password', [
-        PasswordController::class, 'showLinkRequestForm'
-    ])->name('password.request');
+    Route::get('/accessories', [App\Http\Controllers\Admin\AccessoryController::class, 'index'])
+        ->name('admin.accessories');
 
-    // 2. Proses permintaan link reset (Mengirim Email)
-    Route::post('forgot-password', [
-        PasswordController::class, 'sendResetLinkEmail'
-    ])->name('password.email');
-    
-    // 3. Tampilkan formulir reset password (Input Password Baru)
-    Route::get('reset-password/{token}', [
-        PasswordController::class, 'showResetForm'
-    ])->name('password.reset');
+    Route::post('/accessories/store', [App\Http\Controllers\Admin\AccessoryController::class, 'store'])
+        ->name('admin.accessories.store');
 
-    // 4. Proses reset password (Update Password ke DB)
-    Route::post('reset-password', [
-        PasswordController::class, 'reset'
-    ])->name('password.update');
+    Route::delete('/accessories/{id}', [App\Http\Controllers\Admin\AccessoryController::class, 'delete'])
+        ->name('admin.accessories.delete');
+
 });
