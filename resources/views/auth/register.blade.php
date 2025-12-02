@@ -54,12 +54,12 @@
                 <input id="password_confirmation" type="password" name="password_confirmation" placeholder="Confirm Password..." required>
             </div>
 
-            {{-- 6. Input Phone Number --}}
+            {{-- 6. Input Phone Number (name="phone") --}}
             <div class="input-group">
                 <input id="phone" type="text" name="phone" placeholder="Phone Number..." value="{{ old('phone') }}" required>
             </div>
 
-            {{-- 7. Input Address (Menggunakan text untuk kesederhanaan) --}}
+            {{-- 7. Input Address (name="address") --}}
             <div class="input-group">
                 <input id="address" type="text" name="address" placeholder="Address..." value="{{ old('address') }}" required>
             </div>

@@ -3,8 +3,9 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use App\Models\Admin; // Import Model Admin Anda
-use Illuminate\Support\Facades\Hash; // Import Hash untuk mengenkripsi password
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Carbon\Carbon;
 
 class AdminSeeder extends Seeder
 {
@@ -13,12 +14,32 @@ class AdminSeeder extends Seeder
      */
     public function run(): void
     {
-        // Masukkan data Admin
-        Admin::create([
-            'name' => 'admin',
-            'username' => 'adminutama', // Username yang akan digunakan untuk login
-            'email' => 'admin@rental.com',
-            'password' => Hash::make('adminutama'), // Ganti 'password123' dengan password kuat lainnya
+        // Periksa apakah tabel 'admins' ada sebelum mencoba menyisipkan data
+        if (!\Illuminate\Support\Facades\Schema::hasTable('admins')) {
+            $this->command->error("Tabel 'admins' tidak ditemukan. Pastikan Anda sudah membuat migrasi untuk tabel admin.");
+            return;
+        }
+
+        // Hapus akun admin lama (jika ada) untuk menghindari duplikasi
+        // Ini juga memastikan password yang rusak dihapus.
+        DB::table('admins')->where('username', 'admin')->delete();
+
+        // Menyisipkan akun admin baru dengan password yang sudah di-hash (Bcrypt)
+        DB::table('admins')->insert([
+            'name' => 'admin1',
+            'username' => 'admin',
+            'email' => 'admin@ridenusa.com', // Ganti dengan email yang valid
+            
+            // Password yang akan di-hash adalah 'admin123'
+            'password' => Hash::make('admin123'), 
+            
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
+            
+            // Jika Anda memiliki kolom lain di tabel 'admins' (seperti 'role', 'phone_number', dll.), 
+            // pastikan untuk menambahkannya di sini.
         ]);
+
+        $this->command->info('Admin user \'admin\' berhasil dibuat dengan password: admin123');
     }
 }
