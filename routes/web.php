@@ -48,6 +48,85 @@ Route::middleware('auth:web')
             return view('user.dashboard');
         })->name('dashboard');
     });
+Route::middleware('auth:web')
+    ->prefix('user')
+    ->name('user.')
+    ->group(function () {
+
+        Route::get('/dashboard', function () {
+            return view('user.dashboard');
+        })->name('dashboard');
+
+        Route::get('/bookings', function () {
+            return view('user.bookings.index');
+        })->name('bookings');
+
+        Route::get('/notifications', function () {
+            return view('user.notifications.index');
+        })->name('notifications');
+
+        Route::get('/profile/edit', function () {
+            return view('user.profile.edit');
+        })->name('profile.edit');
+
+    });
+
+Route::get('/contact', function () {
+    return view('contact.index');
+})->name('contact.index');
+
+
+Route::get('/user/dashboard', function () {
+    return view('user.dashboard');
+})->name('home')
+  ->middleware('auth');
+
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/user/dashboard', function () {
+        return view('user.dashboard');
+    })->name('user.dashboard');
+});
+
+Route::get('/services', function () {
+    return view('services');
+})->name('services');
+route::get('/drivers', function () {
+    return view('drivers');
+})->name('drivers');
+route::get('/testimonials', function () {
+    return view('testimonials');
+})->name('testimonials');
+route::get('/pricing', function () {
+    return view('pricing');
+})->name('pricing');
+route::get('/faq', function () {
+    return view('faq');
+})->name('faq');
+
+
+
+Route::get('/cars', function () {
+    return view('cars');
+})->name('cars');
+
+
+Route::get('/products', function () {
+    return view('user.products');
+})->name('products');
+Route::get('/product-details', function () {
+    return view('user.product-details');
+})->name('product-details');
+Route::get('/cart', function () {
+    return view('user.cart');
+})->name('cart');
+Route::get('/checkout', function () {
+    return view('user.checkout');
+})->name('checkout');
+
+Route::get('/wishlist', function () {
+    return view('user.wishlist');
+})->name('wishlist');
 
 
 /*

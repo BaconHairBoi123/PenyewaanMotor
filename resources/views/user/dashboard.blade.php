@@ -1,31 +1,72 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <title>Dashboard User</title>
-</head>
-<body>
+<x-user-layout title="Dashboard Pengguna">
 
-    <h1>Selamat Datang di Dashboard Penyewa!</h1>
+    <section class="user-dashboard-area pt-100 pb-100">
+        <div class="container">
+            <div class="row">
+                
+                {{-- Kolom Kiri: Menu Navigasi Dashboard --}}
+                <div class="col-lg-3">
+                    @include('user.components.dashboard-nav')
+                </div>
 
-    @if (session('success'))
-        <div style="color: green;">
-            {{ session('success') }}
+                {{-- Kolom Kanan: Konten Utama Dashboard --}}
+                <div class="col-lg-9">
+                    <div class="dashboard-main-content">
+                        
+                        {{-- Cek apakah user sudah login --}}
+                        @auth
+                            <h2 class="mb-4">
+                                Selamat Datang Kembali, {{ Auth::user()->name }}!
+                            </h2>
+                        @endauth
+                        
+                        <div class="row mb-5">
+                            {{-- Card Statistik 1 --}}
+                            <div class="col-md-6 col-lg-4 mb-3">
+                                <div class="card bg-info text-white">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Pemesanan Aktif</h5>
+                                        <p class="card-text fs-2 fw-bold">3</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            {{-- Card Statistik 2 --}}
+                            <div class="col-md-6 col-lg-4 mb-3">
+                                <div class="card bg-success text-white">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Pemesanan Selesai</h5>
+                                        <p class="card-text fs-2 fw-bold">12</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            {{-- Card Statistik 3 --}}
+                            <div class="col-md-6 col-lg-4 mb-3">
+                                <div class="card bg-warning text-dark">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Notifikasi Baru</h5>
+                                        <p class="card-text fs-2 fw-bold">2</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {{-- Riwayat Pemesanan --}}
+                        <div class="card shadow-sm">
+                            <div class="card-header">
+                                <h4>Riwayat Pemesanan Terbaru</h4>
+                            </div>
+                            <div class="card-body">
+                                <p>Tabel atau daftar pemesanan terbaru Anda akan muncul di sini.</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
         </div>
-    @endif
-    
-    <p>Anda login sebagai: <strong>{{ Auth::guard('web')->user()->name }}</strong></p>
-    <p>Peran Anda: User/Penyewa</p>
+    </section>
 
-    <form method="POST" action="{{ url('/logout') }}">
-        @csrf
-        <button type="submit" style="background-color: red; color: white;">LOGOUT</button>
-    </form>
-
-    <hr>
-    
-    <h2>Informasi Penyewaan</h2>
-    <p>Di sini akan ditampilkan daftar motor yang tersedia, riwayat sewa, dan informasi akun.</p>
-
-</body>
-</html>
+</x-user-layout>
