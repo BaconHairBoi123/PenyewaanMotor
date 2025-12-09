@@ -1,29 +1,27 @@
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Penyewa Motor</title>
 
     @vite('resources/css/login.css')
-
-
-
+  
+ 
+    
 </head>
-
 <body>
 
     <h1 class="main-header">LOGIN HERE</h1>
-
+    
     <div class="login-container">
-
+        
         {{-- BLADE: Pesan Error --}}
         @if ($errors->any())
-        <div class="error-message">
-            {{-- Mengambil error pertama dari 'username' atau error lain --}}
-            <div><strong>Error:</strong> {{ $errors->first('username') ?? 'Kredensial tidak valid.' }}</div>
-        </div>
+            <div class="error-message">
+                {{-- Mengambil error pertama dari 'username' atau error lain --}}
+                <div><strong>Error:</strong> {{ $errors->first('username') ?? 'Kredensial tidak valid.' }}</div>
+            </div>
         @endif
 
         {{-- BLADE: Form Login --}}
@@ -31,14 +29,13 @@
             @csrf
 
             <div class="input-group">
-                <!-- Input ini akan menerima Email ATAU Username -->
-                <input id="credential" type="text" name="credential" placeholder="Email / Username..." required
-                    autofocus>
-            </div>
+        <!-- Input ini akan menerima Email ATAU Username -->
+        <input id="credential" type="text" name="credential" placeholder="Email / Username..." required autofocus>
+    </div>
 
-            <div class="input-group">
-                <input id="password" type="password" name="password" placeholder="Password..." required>
-            </div>
+    <div class="input-group">
+        <input id="password" type="password" name="password" placeholder="Password..." required>
+    </div>
 
             {{-- Tombol Login --}}
             <div>
@@ -48,19 +45,19 @@
             </div>
         </form>
     </div>
-
+    
     {{--- Tautan Footer Bawah ---}}
     <div class="page-footer">
         {{-- BLADE: Tautan Daftar --}}
         <a href="{{ url('/register') }}">Create an Account</a>
-
+        
         {{-- Placeholder Logo RIDE NUSA --}}
         <div class="logo-placeholder">
             <img src="{{ asset('img/logo/logo_ridenusa_white_BTG.png') }}" alt="Ride Nusa">
         </div>
 
         {{-- BLADE: Tautan Lupa Password --}}
-        <a href="{{ url('/forgot-password') }}">Forgot Password</a>
+        <a href="{{ url('/forgot-password') }}">Forget password</a>
     </div>
 
     {{-- Tautan Login Admin --}}
@@ -69,5 +66,4 @@
     </p>
 
 </body>
-
 </html>
