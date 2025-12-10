@@ -39,7 +39,14 @@ Route::middleware('guest')->group(function () {
 | USER DASHBOARD
 |--------------------------------------------------------------------------
 */
+// Pastikan Anda sudah membuat controller
 
+// Halaman Utama (Home)
+Route::get('/', function () {
+    return view('user.home');  // Mengarah ke home.blade.php
+})->name('home');
+
+// Rute untuk Menu Lain (Misalnya, Dashboard)
 Route::middleware('auth:web')
     ->prefix('user')
     ->name('user.')
@@ -47,87 +54,75 @@ Route::middleware('auth:web')
         Route::get('/dashboard', function () {
             return view('user.dashboard');
         })->name('dashboard');
-    });
-Route::middleware('auth:web')
-    ->prefix('user')
-    ->name('user.')
-    ->group(function () {
-
-        Route::get('/dashboard', function () {
-            return view('user.dashboard');
-        })->name('dashboard');
-
-        Route::get('/bookings', function () {
-            return view('user.bookings.index');
-        })->name('bookings');
-
-        Route::get('/notifications', function () {
-            return view('user.notifications.index');
-        })->name('notifications');
-
-        Route::get('/profile/edit', function () {
-            return view('user.profile.edit');
-        })->name('profile.edit');
-
+        
+        // Anda dapat menambahkan rute lainnya untuk menu lainnya
+        Route::get('/profile', function () {
+            return view('user.profile');  // Contoh menu Profile
+        })->name('profile');
+        
     });
 
-Route::get('/contact', function () {
-    return view('contact.index');
-})->name('contact.index');
+// Rute untuk Home
+Route::get('/', function () {
+    return view('user.home');
+})->name('home');
+
+// Rute untuk About Us
+Route::get('/about', function () {
+    return view('user.about');
+})->name('user.about');
 
 
-Route::get('/user/dashboard', function () {
-    return view('user.dashboard');
-})->name('home')
-  ->middleware('auth');
-
-
-Route::middleware(['auth'])->group(function () {
-    Route::get('/user/dashboard', function () {
-        return view('user.dashboard');
-    })->name('user.dashboard');
-});
-
+// Rute untuk Services
 Route::get('/services', function () {
-    return view('services');
-})->name('services');
-route::get('/drivers', function () {
-    return view('drivers');
-})->name('drivers');
-route::get('/testimonials', function () {
-    return view('testimonials');
-})->name('testimonials');
-route::get('/pricing', function () {
-    return view('pricing');
-})->name('pricing');
-route::get('/faq', function () {
-    return view('faq');
-})->name('faq');
+    return view('user.services');
+})->name('user.services');
 
-
-
+// Rute untuk Cars
 Route::get('/cars', function () {
-    return view('cars');
-})->name('cars');
+    return view('user.cars');
+})->name('user.cars');
+
+// Rute untuk Contact
+Route::get('/contact', function () {
+    return view('user.contact');
+})->name('user.contact');
 
 
-Route::get('/products', function () {
-    return view('user.products');
-})->name('products');
-Route::get('/product-details', function () {
-    return view('user.product-details');
-})->name('product-details');
-Route::get('/cart', function () {
-    return view('user.cart');
-})->name('cart');
-Route::get('/checkout', function () {
-    return view('user.checkout');
-})->name('checkout');
+use App\Http\Controllers\PageController;
+Route::get('/home', [PageController::class, 'home']);
+Route::get('/about', [PageController::class, 'about']);
 
-Route::get('/wishlist', function () {
-    return view('user.wishlist');
-})->name('wishlist');
+Route::get('/services', [PageController::class, 'services']);
 
+Route::get('/faq', [PageController::class, 'faq']);
+
+Route::get('/error-page', [PageController::class, 'errorPage']);
+
+
+Route::get('/cars', [PageController::class, 'cars']);
+Route::get('/car-list-v1', [PageController::class, 'carListV1']);
+Route::get('/listing-single', [PageController::class, 'listingSingle']);
+
+// Shop
+Route::get('/products', [PageController::class, 'products']);
+Route::get('/product-details', [PageController::class, 'productDetails']);
+Route::get('/cart', [PageController::class, 'cart']);
+Route::get('/checkout', [PageController::class, 'checkout']);
+Route::get('/wishlist', [PageController::class, 'wishlist']);
+Route::get('/sign-up', [PageController::class, 'signUp']);
+Route::get('/login', [PageController::class, 'login']);
+
+// Blog
+Route::get('/blog', [PageController::class, 'blog']);
+Route::get('/blog-standard', [PageController::class, 'blogStandard']);
+Route::get('/blog-left-sidebar', [PageController::class, 'blogLeftSidebar']);
+Route::get('/blog-right-sidebar', [PageController::class, 'blogRightSidebar']);
+Route::get('/blog-details', [PageController::class, 'blogDetails']);
+
+// Umum
+Route::get('/contact', [PageController::class, 'contact']);
+// (Ditambah Route /about dan lainnya yang sudah ada)
 
 /*
 |--------------------------------------------------------------------------
