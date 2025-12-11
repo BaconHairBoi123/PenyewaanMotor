@@ -27,7 +27,7 @@
                     <div class="sidebar-info-contents">
                         <div class="content-inner">
                             <div class="logo">
-                                <a href="index.html"><img src="assets/images/resources/logo_ridenusa_head.png" alt="" style="width: 200px;"/></a>
+                                <a href="{{ url('/') }}"><img src="{{ asset('assets/images/resources/logo_ridenusa_head.png') }}" alt="" style="width: 200px;"/></a>
                             </div>
                             <div class="content-box">
                                 <h4>About Us</h4>
@@ -154,7 +154,8 @@
                     <div class="main-menu__wrapper-inner">
                         <div class="main-menu__left">
                             <div class="main-menu__logo">
-                                <a href="{{ url('/home') }}"><img src="assets/images/resources/logo_ridenusa_head.png" alt="" style="width: 90px;"></a>
+                                <a href="{{ url('/user/home
+                                ') }}"><img src="{{ asset('assets/images/resources/logo_ridenusa_head.png') }}" alt="" style="width: 90px;"></a>
                             </div>
                         </div>
                         <div class="main-menu__middle-box">
@@ -203,7 +204,29 @@
         </ul>
     </li>
     <li>
-<a href="{{ url('/contact') }}">Contact</a>    </li>
+<a href="{{ url('/contact') }}">Contact</a>   
+ </li>
+ <li class="dropdown">
+    <a href="#">Shop</a>
+    <ul class="shadow-box">
+        {{-- 🚨 LOGOUT JIKA USER SUDAH LOGIN 🚨 --}}
+        @auth
+            <li>
+                <form method="POST" action="{{ route('logout') }}"> 
+                    @csrf
+                    <button type="submit" class="dropdown-item" style="border: none; background: none; width: 100%; text-align: left;">
+                        Logout
+                    </button>
+                </form>
+            </li>
+        @else
+            {{-- Tautan Login dan Register jika User BELUM Login --}}
+            <li><a href="{{ url('/sign-up') }}">Sign Up</a></li>
+            <li><a href="{{ url('/login') }}">Login</a></li>
+        @endauth
+
+    </ul>
+</li>
 </ul>
 
                             </div>
@@ -257,7 +280,7 @@
             <span class="mobile-nav__close mobile-nav__toggler"><i class="fa fa-times"></i></span>
 
             <div class="logo-box">
-                <a href="index.html" aria-label="logo image"><img src="assets/images/resources/logo_ridenusa_head.png" width="140"
+                <a href="{{ url('/') }}" aria-label="logo image"><img src="{{ asset('assets/images/resources/logo_ridenusa_head.png') }}" width="140"
                         alt="" /></a>
             </div>
             <!-- /.logo-box -->

@@ -1,6 +1,6 @@
 <!-- resources/views/user/layouts/footer.blade.php -->
 <footer class="site-footer">
-    <div class="site-footer__bg" style="background-image: url(assets/images/backgrounds/honda\ forza250.jpg);">
+    <div class="site-footer__bg" style="background-image: url('{{ asset('assets/images/backgrounds/honda forza250.jpg') }}');">
     </div>
     <div class="site-footer__top">
         <div class="container">
@@ -9,7 +9,7 @@
                     <div class="col-xl-4 col-lg-6 col-md-6">
                         <div class="footer-widget__about">
                             <div class="footer-widget__about-logo">
-                                <a href="index.html"><img style="width: 200px;" src="assets/images/shapes/logo_ridenusa_white_BTG.png" alt=""></a>
+                                <a href="index.html"><img style="width: 200px;" src="{{ asset('assets/images/shapes/logo_ridenusa_white_BTG.png') }}" alt=""></a>
                             </div>
                             <p class="footer-widget__about-text">Car Is Where Early Adopters And Innovation Seekers Find Lively Imaginative Tech.</p>
                         </div>

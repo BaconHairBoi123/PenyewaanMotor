@@ -48,4 +48,24 @@ class PageController extends Controller
     public function blogLeftSidebar() { return view('user.blog-left-sidebar'); }
     public function blogRightSidebar() { return view('user.blog-right-sidebar'); }
     public function blogDetails() { return view('user.blog-details'); }
+
+    
+    /*
+    |--------------------------------------------------------------------------
+    | USER DASHBOARD (PROTECTED ROUTES) 🚨 KODE BARU 🚨
+    |--------------------------------------------------------------------------
+    | Ditambahkan untuk menangani Route yang ada di kelompok 'auth:web' di web.php
+    */
+    
+    // public function home()
+    // {
+    //     // View untuk /user/home
+    //     return view('user.home'); 
+    // }
+    
+    public function profile()
+    {
+        // View untuk /user/profile
+        return view('user.profile');
+    }
 }

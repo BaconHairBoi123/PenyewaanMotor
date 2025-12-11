@@ -4,10 +4,10 @@
    
         <!--Page Header Start -->
         <section class="page-header">
-            <div class="page-header__bg" style="background-image: url(assets/images/backgrounds/cobacoba1.jpeg);">
+            <div class="page-header__bg" style="background-image: url({{ asset('assets/images/backgrounds/cobacoba1.jpeg') }});">
             </div>
             <div class="page-header__shape-1"
-                style="background-image: url(assets/images/shapes/lambang_motor_gerak.png);"></div>
+                style="background-image: url({{ asset('assets/images/shapes/lambang_motor_gerak.png') }});"></div>
             <div class="container">
                 <div class="page-header__inner">
                     <h3>About Us</h3>
@@ -31,22 +31,22 @@
                         <div class="about-one__left wow slideInLeft" data-wow-delay="100ms" data-wow-duration="2500ms">
                             <div class="about-one__img-box">
                                 <div class="about-one__img">
-                                    <img src="assets/images/resources/about-one-img-1.jpg" alt="">
+                                    <img src="{{ asset('assets/images/resources/about-one-img-1.jpg') }}" alt="">
                                 </div>
                                 <div class="about-one__shape-2 float-bob-y">
-                                    <img src="assets/images/shapes/about-one-shape-2.png" alt="">
+                                    <img src="{{ asset('assets/images/shapes/about-one-shape-2.png') }}" alt="">
                                 </div>
                                 <div class="about-one__shape-1">
-                                    <img src="assets/images/shapes/about-one-shape-1.png" alt="">
+                                    <img src="{{ asset('assets/images/shapes/about-one-shape-1.png') }}" alt="">
                                 </div>
                                 <div class="about-one__shape-4 float-bob-x">
-                                    <img src="assets/images/shapes/about-one-shape-4.jpg " alt="">
+                                    <img src="{{ asset('assets/images/shapes/about-one-shape-4.jpg') }}" alt="">
                                 </div>
                                 <div class="about-one__shape-3 float-bob-x">
-                                    <img src="assets/images/shapes/about-one-shape-3.png" alt="">
+                                    <img src="{{ asset('assets/images/shapes/about-one-shape-3.png') }}" alt="">
                                 </div>
                                 <div class="about-one__img-2">
-                                    <img src="assets/images/resources/about-one-img-2.png" alt="">
+                                    <img src="{{ asset('assets/images/resources/about-one-img-2.png') }}" alt="">
                                 </div>
                                 <div class="about-one__experience">
                                     <div class="about-one__experience-count">
@@ -63,7 +63,7 @@
                             <div class="section-title text-left sec-title-animation animation-style1">
                                 <div class="section-title__tagline-box">
                                     <div class="section-title__tagline-shape">
-                                        <img  src="assets/images/shapes/logo_BGT.png" alt="">
+                                        <img src="{{ asset('assets/images/shapes/logo_BGT.png') }}" alt="">
                                     </div>
                                     <span class="section-title__tagline">About Ride Nusa</span>
                                 </div>
@@ -127,7 +127,7 @@
                 <div class="section-title text-center sec-title-animation animation-style1">
                     <div class="section-title__tagline-box justify-content-center">
                         <div class="section-title__tagline-shape">
-                            <img  src="assets/images/shapes/logo_BGT.png" alt="">
+                            <img src="{{ asset('assets/images/shapes/logo_BGT.png') }}" alt="">
                         </div>
                         <span class="section-title__tagline">What We’re Offering</span>
                     </div>
@@ -213,7 +213,7 @@
                 <div class="section-title text-center sec-title-animation animation-style1">
                     <div class="section-title__tagline-box justify-content-center">
                         <div class="section-title__tagline-shape">
-                            <img  src="assets/images/shapes/logo_BGT.png" alt="">
+                            <img src="{{ asset('assets/images/shapes/logo_BGT.png') }}" alt="">
                         </div>
                         <span class="section-title__tagline">Checkout our new Motorcyle</span>
                     </div>
@@ -237,7 +237,7 @@
                                     <div class="item">
                                         <div class="listing-one__single">
                                             <div class="listing-one__img">
-                                                <img src="assets/images/backgrounds/turbo.jpg" alt="">
+                                                <img src="{{ asset('assets/images/backgrounds/turbo.jpg') }}" alt="">
                                                 <div class="listing-one__brand-name">
                                                     <p>YAMAHA</p>
                                                 </div>
@@ -315,7 +315,7 @@
                                     <div class="item">
                                         <div class="listing-one__single">
                                             <div class="listing-one__img">
-                                                <img src="assets/images/backgrounds/pcx.jpg" alt="">
+                                                <img src="{{ asset('assets/images/backgrounds/pcx.jpg') }}" alt="">
                                                 <div class="listing-one__brand-name">
                                                     <p>HONDA</p>
                                                 </div>
@@ -392,7 +392,7 @@
                                     <div class="item">
                                         <div class="listing-one__single">
                                             <div class="listing-one__img">
-                                                <img src="assets/images/backgrounds/SPORTERS.jpg" alt="">
+                                                <img src="{{ asset('assets/images/backgrounds/SPORTERS.jpg') }}" alt="">
                                                 <div class="listing-one__brand-name">
                                                     <p>Harley Davidson</p>
                                                 </div>
@@ -469,7 +469,7 @@
                                     <div class="item">
                                         <div class="listing-one__single">
                                             <div class="listing-one__img">
-                                                <img src="assets/images/backgrounds/vespa.jpeg" alt="">
+                                                <img src="{{ asset('assets/images/backgrounds/vespa.jpeg') }}" alt="">
                                                 <div class="listing-one__brand-name">
                                                     <p>vespa piagio</p>
                                                 </div>
@@ -546,7 +546,7 @@
                                     <div class="item">
                                         <div class="listing-one__single">
                                             <div class="listing-one__img">
-                                                <img src="assets/images/backgrounds/exmek.jpg" alt="">
+                                                <img src="{{ asset('assets/images/backgrounds/exmek.jpg') }}" alt="">
                                                 <div class="listing-one__brand-name">
                                                     <p>YAMAHA</p>
                                                 </div>
@@ -623,7 +623,7 @@
                                     <div class="item">
                                         <div class="listing-one__single">
                                             <div class="listing-one__img">
-                                                <img src="assets/images/backgrounds/itali.jpg" alt="">
+                                                <img src="{{ asset('assets/images/backgrounds/itali.jpg') }}" alt="">
                                                 <div class="listing-one__brand-name">
                                                     <p>ducati</p>
                                                 </div>
@@ -700,7 +700,7 @@
                                     <div class="item">
                                         <div class="listing-one__single">
                                             <div class="listing-one__img">
-                                                <img src="assets/images/backgrounds/crf.jpg" alt="">
+                                                <img src="{{ asset('assets/images/backgrounds/crf.jpg') }}" alt="">
                                                 <div class="listing-one__brand-name">
                                                     <p>Honda</p>
                                                 </div>
@@ -785,7 +785,7 @@
                                     <div class="item">
                                         <div class="listing-one__single">
                                             <div class="listing-one__img">
-                                                <img src="assets/images/listing/listing-1-1.jpg" alt="">
+                                                <img src="{{ asset('assets/images/listing/listing-1-1.jpg') }}" alt="">
                                                 <div class="listing-one__brand-name">
                                                     <p>Acura</p>
                                                 </div>
@@ -863,7 +863,7 @@
                                     <div class="item">
                                         <div class="listing-one__single">
                                             <div class="listing-one__img">
-                                                <img src="assets/images/listing/listing-1-2.jpg" alt="">
+                                                <img src="{{ asset('assets/images/listing/listing-1-2.jpg') }}" alt="">
                                                 <div class="listing-one__brand-name">
                                                     <p>Kia Soul</p>
                                                 </div>
@@ -941,7 +941,7 @@
                                     <div class="item">
                                         <div class="listing-one__single">
                                             <div class="listing-one__img">
-                                                <img src="assets/images/listing/listing-1-3.jpg" alt="">
+                                                <img src="{{ asset('assets/images/listing/listing-1-3.jpg') }}" alt="">
                                                 <div class="listing-one__brand-name">
                                                     <p>Audi</p>
                                                 </div>
@@ -1019,7 +1019,7 @@
                                     <div class="item">
                                         <div class="listing-one__single">
                                             <div class="listing-one__img">
-                                                <img src="assets/images/listing/listing-1-4.jpg" alt="">
+                                                <img src="{{ asset('assets/images/listing/listing-1-4.jpg') }}" alt="">
                                                 <div class="listing-one__brand-name">
                                                     <p>Audi</p>
                                                 </div>
@@ -1097,7 +1097,7 @@
                                     <div class="item">
                                         <div class="listing-one__single">
                                             <div class="listing-one__img">
-                                                <img src="assets/images/listing/listing-1-5.jpg" alt="">
+                                                <img src="{{ asset('assets/images/listing/listing-1-5.jpg') }}" alt="">
                                                 <div class="listing-one__brand-name">
                                                     <p>Acura</p>
                                                 </div>
@@ -1175,7 +1175,7 @@
                                     <div class="item">
                                         <div class="listing-one__single">
                                             <div class="listing-one__img">
-                                                <img src="assets/images/listing/listing-1-6.jpg" alt="">
+                                                <img src="{{ asset('assets/images/listing/listing-1-6.jpg') }}" alt="">
                                                 <div class="listing-one__brand-name">
                                                     <p>Toyota</p>
                                                 </div>
@@ -1253,7 +1253,7 @@
                                     <div class="item">
                                         <div class="listing-one__single">
                                             <div class="listing-one__img">
-                                                <img src="assets/images/listing/listing-1-2.jpg" alt="">
+                                                <img src="{{ asset('assets/images/listing/listing-1-2.jpg') }}" alt="">
                                                 <div class="listing-one__brand-name">
                                                     <p>Honda</p>
                                                 </div>
@@ -1339,7 +1339,7 @@
                                     <div class="item">
                                         <div class="listing-one__single">
                                             <div class="listing-one__img">
-                                                <img src="assets/images/listing/listing-1-1.jpg" alt="">
+                                                <img src="{{ asset('assets/images/listing/listing-1-1.jpg') }}" alt="">
                                                 <div class="listing-one__brand-name">
                                                     <p>Acura</p>
                                                 </div>
@@ -1417,7 +1417,7 @@
                                     <div class="item">
                                         <div class="listing-one__single">
                                             <div class="listing-one__img">
-                                                <img src="assets/images/listing/listing-1-2.jpg" alt="">
+                                                <img src="{{ asset('assets/images/listing/listing-1-2.jpg') }}" alt="">
                                                 <div class="listing-one__brand-name">
                                                     <p>Kia Soul</p>
                                                 </div>
@@ -1495,7 +1495,7 @@
                                     <div class="item">
                                         <div class="listing-one__single">
                                             <div class="listing-one__img">
-                                                <img src="assets/images/listing/listing-1-3.jpg" alt="">
+                                                <img src="{{ asset('assets/images/listing/listing-1-3.jpg') }}" alt="">
                                                 <div class="listing-one__brand-name">
                                                     <p>Audi</p>
                                                 </div>
@@ -1573,7 +1573,7 @@
                                     <div class="item">
                                         <div class="listing-one__single">
                                             <div class="listing-one__img">
-                                                <img src="assets/images/listing/listing-1-4.jpg" alt="">
+                                                <img src="{{ asset('assets/images/listing/listing-1-4.jpg') }}" alt="">
                                                 <div class="listing-one__brand-name">
                                                     <p>Audi</p>
                                                 </div>
@@ -1651,7 +1651,7 @@
                                     <div class="item">
                                         <div class="listing-one__single">
                                             <div class="listing-one__img">
-                                                <img src="assets/images/listing/listing-1-5.jpg" alt="">
+                                                <img src="{{ asset('assets/images/listing/listing-1-5.jpg') }}" alt="">
                                                 <div class="listing-one__brand-name">
                                                     <p>Acura</p>
                                                 </div>
@@ -1729,7 +1729,7 @@
                                     <div class="item">
                                         <div class="listing-one__single">
                                             <div class="listing-one__img">
-                                                <img src="assets/images/listing/listing-1-6.jpg" alt="">
+                                                <img src="{{ asset('assets/images/listing/listing-1-6.jpg') }}" alt="">
                                                 <div class="listing-one__brand-name">
                                                     <p>Toyota</p>
                                                 </div>
@@ -1807,7 +1807,7 @@
                                     <div class="item">
                                         <div class="listing-one__single">
                                             <div class="listing-one__img">
-                                                <img src="assets/images/listing/listing-1-2.jpg" alt="">
+                                                <img src="{{ asset('assets/images/listing/listing-1-2.jpg') }}" alt="">
                                                 <div class="listing-one__brand-name">
                                                     <p>Honda</p>
                                                 </div>
@@ -1893,7 +1893,7 @@
                                     <div class="item">
                                         <div class="listing-one__single">
                                             <div class="listing-one__img">
-                                                <img src="assets/images/listing/listing-1-1.jpg" alt="">
+                                                <img src="{{ asset('assets/images/listing/listing-1-1.jpg') }}" alt="">
                                                 <div class="listing-one__brand-name">
                                                     <p>Acura</p>
                                                 </div>
@@ -1971,7 +1971,7 @@
                                     <div class="item">
                                         <div class="listing-one__single">
                                             <div class="listing-one__img">
-                                                <img src="assets/images/listing/listing-1-2.jpg" alt="">
+                                                <img src="{{ asset('assets/images/listing/listing-1-2.jpg') }}" alt="">
                                                 <div class="listing-one__brand-name">
                                                     <p>Kia Soul</p>
                                                 </div>
@@ -2049,7 +2049,7 @@
                                     <div class="item">
                                         <div class="listing-one__single">
                                             <div class="listing-one__img">
-                                                <img src="assets/images/listing/listing-1-3.jpg" alt="">
+                                                <img src="{{ asset('assets/images/listing/listing-1-3.jpg') }}" alt="">
                                                 <div class="listing-one__brand-name">
                                                     <p>Audi</p>
                                                 </div>
@@ -2127,7 +2127,7 @@
                                     <div class="item">
                                         <div class="listing-one__single">
                                             <div class="listing-one__img">
-                                                <img src="assets/images/listing/listing-1-4.jpg" alt="">
+                                                <img src="{{ asset('assets/images/listing/listing-1-4.jpg') }}" alt="">
                                                 <div class="listing-one__brand-name">
                                                     <p>Audi</p>
                                                 </div>
@@ -2205,7 +2205,7 @@
                                     <div class="item">
                                         <div class="listing-one__single">
                                             <div class="listing-one__img">
-                                                <img src="assets/images/listing/listing-1-5.jpg" alt="">
+                                                <img src="{{ asset('assets/images/listing/listing-1-5.jpg') }}" alt="">
                                                 <div class="listing-one__brand-name">
                                                     <p>Acura</p>
                                                 </div>
@@ -2283,7 +2283,7 @@
                                     <div class="item">
                                         <div class="listing-one__single">
                                             <div class="listing-one__img">
-                                                <img src="assets/images/listing/listing-1-6.jpg" alt="">
+                                                <img src="{{ asset('assets/images/listing/listing-1-6.jpg') }}" alt="">
                                                 <div class="listing-one__brand-name">
                                                     <p>Toyota</p>
                                                 </div>
@@ -2361,7 +2361,7 @@
                                     <div class="item">
                                         <div class="listing-one__single">
                                             <div class="listing-one__img">
-                                                <img src="assets/images/listing/listing-1-2.jpg" alt="">
+                                                <img src="{{ asset('assets/images/listing/listing-1-2.jpg') }}" alt="">
                                                 <div class="listing-one__brand-name">
                                                     <p>Honda</p>
                                                 </div>
@@ -2447,7 +2447,7 @@
                                     <div class="item">
                                         <div class="listing-one__single">
                                             <div class="listing-one__img">
-                                                <img src="assets/images/listing/listing-1-1.jpg" alt="">
+                                                <img src="{{ asset('assets/images/listing/listing-1-1.jpg') }}" alt="">
                                                 <div class="listing-one__brand-name">
                                                     <p>Acura</p>
                                                 </div>
@@ -2525,7 +2525,7 @@
                                     <div class="item">
                                         <div class="listing-one__single">
                                             <div class="listing-one__img">
-                                                <img src="assets/images/listing/listing-1-2.jpg" alt="">
+                                                <img src="{{ asset('assets/images/listing/listing-1-2.jpg') }}" alt="">
                                                 <div class="listing-one__brand-name">
                                                     <p>Kia Soul</p>
                                                 </div>
@@ -2603,7 +2603,7 @@
                                     <div class="item">
                                         <div class="listing-one__single">
                                             <div class="listing-one__img">
-                                                <img src="assets/images/listing/listing-1-3.jpg" alt="">
+                                                <img src="{{ asset('assets/images/listing/listing-1-3.jpg') }}" alt="">
                                                 <div class="listing-one__brand-name">
                                                     <p>Audi</p>
                                                 </div>
@@ -2681,7 +2681,7 @@
                                     <div class="item">
                                         <div class="listing-one__single">
                                             <div class="listing-one__img">
-                                                <img src="assets/images/listing/listing-1-4.jpg" alt="">
+                                                <img src="{{ asset('assets/images/listing/listing-1-4.jpg') }}" alt="">
                                                 <div class="listing-one__brand-name">
                                                     <p>Audi</p>
                                                 </div>
@@ -2759,7 +2759,7 @@
                                     <div class="item">
                                         <div class="listing-one__single">
                                             <div class="listing-one__img">
-                                                <img src="assets/images/listing/listing-1-5.jpg" alt="">
+                                                <img src="{{ asset('assets/images/listing/listing-1-5.jpg') }}" alt="">
                                                 <div class="listing-one__brand-name">
                                                     <p>Acura</p>
                                                 </div>
@@ -3766,7 +3766,7 @@
 
         <!--Lets Talk Start -->
         <section class="lets-talk">
-            <div class="lets-talk__bg" style="background-image: url(assets/images/backgrounds/lets-talk-bg.jpg);"></div>
+            <div class="lets-talk__bg" style="background-image: url('{{ asset('assets/images/backgrounds/lets-talk-bg.jpg') }}');"></div>
             <div class="container">
                 <div class="lets-talk__inner">
                     <div class="lets-talk__title">

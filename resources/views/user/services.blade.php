@@ -5,10 +5,10 @@
 
         <!--Page Header Start -->
         <section class="page-header">
-            <div class="page-header__bg" style="background-image: url(assets/images/backgrounds/page-header-bg.jpg);">
+            <div class="page-header__bg" style="background-image: url('{{ asset('assets/images/backgrounds/page-header-bg.jpg') }}');">
             </div>
             <div class="page-header__shape-1"
-                style="background-image: url(assets/images/shapes/page-header-shape-1.png);"></div>
+                style="background-image: url('{{ asset('assets/images/shapes/page-header-shape-1.png') }}');"></div>
             <div class="container">
                 <div class="page-header__inner">
                     <h3>Services</h3>
@@ -133,7 +133,7 @@
                         data-wow-duration="1500ms">
                         <div class="process-one__single">
                             <div class="process-one__single-bg"
-                                style="background-image: url(assets/images/backgrounds/process-one-single-bg-1.jpg);">
+                                style="background-image: url('{{ asset('assets/images/backgrounds/process-one-single-bg-1.jpg') }}');">
                             </div>
                             <div class="process-one__icon-box">
                                 <div class="process-one__icon-shape"></div>
@@ -153,7 +153,7 @@
                         data-wow-duration="1500ms">
                         <div class="process-one__single">
                             <div class="process-one__single-bg"
-                                style="background-image: url(assets/images/backgrounds/process-one-single-bg-2.jpg);">
+                                style="background-image: url('{{ asset('assets/images/backgrounds/process-one-single-bg-2.jpg') }}');">
                             </div>
                             <div class="process-one__icon-box">
                                 <div class="process-one__icon-shape"></div>
@@ -173,7 +173,7 @@
                         data-wow-duration="1500ms">
                         <div class="process-one__single">
                             <div class="process-one__single-bg"
-                                style="background-image: url(assets/images/backgrounds/process-one-single-bg-3.jpg);">
+                                style="background-image: url('{{ asset('assets/images/backgrounds/process-one-single-bg-3.jpg') }}');">
                             </div>
                             <div class="process-one__icon-box">
                                 <div class="process-one__icon-shape"></div>
@@ -193,7 +193,7 @@
                         data-wow-duration="1500ms">
                         <div class="process-one__single">
                             <div class="process-one__single-bg"
-                                style="background-image: url(assets/images/backgrounds/process-one-single-bg-4.jpg);">
+                                style="background-image: url('{{ asset('assets/images/backgrounds/process-one-single-bg-4.jpg') }}');">
                             </div>
                             <div class="process-one__icon-box">
                                 <div class="process-one__icon-shape"></div>
@@ -305,7 +305,7 @@
 
         <!--Lets Talk Start -->
         <section class="lets-talk">
-            <div class="lets-talk__bg" style="background-image: url(assets/images/backgrounds/lets-talk-bg.jpg);"></div>
+            <div class="lets-talk__bg" style="background-image: url('{{ asset('assets/images/backgrounds/lets-talk-bg.jpg') }}');"></div>
             <div class="container">
                 <div class="lets-talk__inner">
                     <div class="lets-talk__title">
@@ -488,7 +488,7 @@
 
         <!--Site Footer Start-->
         <footer class="site-footer">
-            <div class="site-footer__bg" style="background-image: url(assets/images/backgrounds/site-footer-bg.jpg);">
+            <div class="site-footer__bg" style="background-image: url('{{ asset('assets/images/backgrounds/site-footer-bg.jpg') }}');">
             </div>
             <div class="site-footer__top">
                 <div class="container">

@@ -1,10 +1,10 @@
 
         <!--Page Header Start -->
         <section class="page-header">
-            <div class="page-header__bg" style="background-image: url(assets/images/backgrounds/page-header-bg.jpg);">
+            <div class="page-header__bg" style="background-image: url({{ asset('assets/images/backgrounds/page-header-bg.jpg') }});">
             </div>
             <div class="page-header__shape-1"
-                style="background-image: url(assets/images/shapes/page-header-shape-1.png);"></div>
+                style="background-image: url({{ asset('assets/images/shapes/page-header-shape-1.png') }});"></div>
             <div class="container">
                 <div class="page-header__inner">
                     <h3>Cars</h3>
@@ -107,7 +107,7 @@
                     <div class="col-xl-4 col-lg-4 col-md-6">
                         <div class="listing-one__single">
                             <div class="listing-one__img">
-                                <img src="assets/images/listing/listing-1-2.jpg" alt="">
+                                <img src="{{ asset('assets/images/listing/listing-1-2.jpg') }}" alt="">
                                 <div class="listing-one__brand-name">
                                     <p>Kia Soul</p>
                                 </div>
@@ -184,8 +184,8 @@
                     <!-- Listing One Single Start -->
                     <div class="col-xl-4 col-lg-4 col-md-6">
                         <div class="listing-one__single">
-                            <div class="listing-one__img">
-                                <img src="assets/images/listing/listing-1-3.jpg" alt="">
+                                <div class="listing-one__img">
+                                <img src="{{ asset('assets/images/listing/listing-1-3.jpg') }}" alt="">
                                 <div class="listing-one__brand-name">
                                     <p>Audi</p>
                                 </div>
@@ -262,8 +262,8 @@
                     <!-- Listing One Single Start -->
                     <div class="col-xl-4 col-lg-4 col-md-6">
                         <div class="listing-one__single">
-                            <div class="listing-one__img">
-                                <img src="assets/images/listing/listing-1-4.jpg" alt="">
+                                <div class="listing-one__img">
+                                <img src="{{ asset('assets/images/listing/listing-1-4.jpg') }}" alt="">
                                 <div class="listing-one__brand-name">
                                     <p>Audi</p>
                                 </div>
@@ -340,8 +340,8 @@
                     <!-- Listing One Single Start -->
                     <div class="col-xl-4 col-lg-4 col-md-6">
                         <div class="listing-one__single">
-                            <div class="listing-one__img">
-                                <img src="assets/images/listing/listing-1-5.jpg" alt="">
+                                <div class="listing-one__img">
+                                <img src="{{ asset('assets/images/listing/listing-1-5.jpg') }}" alt="">
                                 <div class="listing-one__brand-name">
                                     <p>Acura</p>
                                 </div>
@@ -418,8 +418,8 @@
                     <!-- Listing One Single Start -->
                     <div class="col-xl-4 col-lg-4 col-md-6">
                         <div class="listing-one__single">
-                            <div class="listing-one__img">
-                                <img src="assets/images/listing/listing-1-6.jpg" alt="">
+                                <div class="listing-one__img">
+                                <img src="{{ asset('assets/images/listing/listing-1-6.jpg') }}" alt="">
                                 <div class="listing-one__brand-name">
                                     <p>Toyota</p>
                                 </div>
@@ -497,7 +497,7 @@
                     <div class="col-xl-4 col-lg-4 col-md-6">
                         <div class="listing-one__single">
                             <div class="listing-one__img">
-                                <img src="assets/images/listing/listing-1-1.jpg" alt="">
+                                <img src="{{ asset('assets/images/listing/listing-1-1.jpg') }}" alt="">
                                 <div class="listing-one__brand-name">
                                     <p>Acura</p>
                                 </div>
@@ -575,7 +575,7 @@
                     <div class="col-xl-4 col-lg-4 col-md-6">
                         <div class="listing-one__single">
                             <div class="listing-one__img">
-                                <img src="assets/images/listing/listing-1-2.jpg" alt="">
+                                <img src="{{ asset('assets/images/listing/listing-1-2.jpg') }}" alt="">
                                 <div class="listing-one__brand-name">
                                     <p>Kia Soul</p>
                                 </div>
@@ -653,7 +653,7 @@
                     <div class="col-xl-4 col-lg-4 col-md-6">
                         <div class="listing-one__single">
                             <div class="listing-one__img">
-                                <img src="assets/images/listing/listing-1-3.jpg" alt="">
+                                <img src="{{ asset('assets/images/listing/listing-1-3.jpg') }}" alt="">
                                 <div class="listing-one__brand-name">
                                     <p>Audi</p>
                                 </div>
@@ -752,8 +752,8 @@
                 <!--Gallery One Single Start-->
                 <div class="item">
                     <div class="gallery-one__single">
-                        <div class="gallery-one__img">
-                            <img src="assets/images/gallery/gallery-1-1.jpg" alt="">
+                            <div class="gallery-one__img">
+                            <img src="{{ asset('assets/images/gallery/gallery-1-1.jpg') }}" alt="">
                             <a href="cars.html"><span class="fab fa-instagram"></span></a>
                         </div>
                     </div>
@@ -762,8 +762,8 @@
                 <!--Gallery One Single Start-->
                 <div class="item">
                     <div class="gallery-one__single">
-                        <div class="gallery-one__img">
-                            <img src="assets/images/gallery/gallery-1-2.jpg" alt="">
+                            <div class="gallery-one__img">
+                            <img src="{{ asset('assets/images/gallery/gallery-1-2.jpg') }}" alt="">
                             <a href="cars.html"><span class="fab fa-instagram"></span></a>
                         </div>
                     </div>
@@ -772,8 +772,8 @@
                 <!--Gallery One Single Start-->
                 <div class="item">
                     <div class="gallery-one__single">
-                        <div class="gallery-one__img">
-                            <img src="assets/images/gallery/gallery-1-3.jpg" alt="">
+                            <div class="gallery-one__img">
+                            <img src="{{ asset('assets/images/gallery/gallery-1-3.jpg') }}" alt="">
                             <a href="cart.html"><span class="fab fa-instagram"></span></a>
                         </div>
                     </div>
@@ -782,8 +782,8 @@
                 <!--Gallery One Single Start-->
                 <div class="item">
                     <div class="gallery-one__single">
-                        <div class="gallery-one__img">
-                            <img src="assets/images/gallery/gallery-1-4.jpg" alt="">
+                            <div class="gallery-one__img">
+                            <img src="{{ asset('assets/images/gallery/gallery-1-4.jpg') }}" alt="">
                             <a href="cart.html"><span class="fab fa-instagram"></span></a>
                         </div>
                     </div>
@@ -792,8 +792,8 @@
                 <!--Gallery One Single Start-->
                 <div class="item">
                     <div class="gallery-one__single">
-                        <div class="gallery-one__img">
-                            <img src="assets/images/gallery/gallery-1-5.jpg" alt="">
+                            <div class="gallery-one__img">
+                            <img src="{{ asset('assets/images/gallery/gallery-1-5.jpg') }}" alt="">
                             <a href="cart.html"><span class="fab fa-instagram"></span></a>
                         </div>
                     </div>
@@ -802,8 +802,8 @@
                 <!--Gallery One Single Start-->
                 <div class="item">
                     <div class="gallery-one__single">
-                        <div class="gallery-one__img">
-                            <img src="assets/images/gallery/gallery-1-6.jpg" alt="">
+                            <div class="gallery-one__img">
+                            <img src="{{ asset('assets/images/gallery/gallery-1-6.jpg') }}" alt="">
                             <a href="cart.html"><span class="fab fa-instagram"></span></a>
                         </div>
                     </div>
@@ -815,7 +815,7 @@
 
         <!--Site Footer Start-->
         <footer class="site-footer">
-            <div class="site-footer__bg" style="background-image: url(assets/images/backgrounds/site-footer-bg.jpg);">
+            <div class="site-footer__bg" style="background-image: url({{ asset('assets/images/backgrounds/site-footer-bg.jpg') }});">
             </div>
             <div class="site-footer__top">
                 <div class="container">
@@ -824,8 +824,8 @@
                             <div class="col-xl-4 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay="100ms">
                                 <div class="footer-widget__about">
                                     <div class="footer-widget__about-logo">
-                                        <a href="index.html"><img src="assets/images/resources/footer-logo.png"
-                                                alt=""></a>
+                                    <a href="index.html"><img src="{{ asset('assets/images/resources/footer-logo.png') }}"
+                                        alt=""></a>
                                     </div>
                                     <p class="footer-widget__about-text">Car Is Where Early Adopters And Innovation
                                         Seekers Find Lively

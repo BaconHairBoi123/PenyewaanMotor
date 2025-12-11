@@ -4,10 +4,10 @@
 
         <!--Page Header Start -->
         <section class="page-header">
-            <div class="page-header__bg" style="background-image: url(assets/images/backgrounds/page-header-bg.jpg);">
+            <div class="page-header__bg" style="background-image: url('{{ asset('assets/images/backgrounds/page-header-bg.jpg') }}');">
             </div>
             <div class="page-header__shape-1"
-                style="background-image: url(assets/images/shapes/page-header-shape-1.png);"></div>
+                style="background-image: url('{{ asset('assets/images/shapes/page-header-shape-1.png') }}');"></div>
             <div class="container">
                 <div class="page-header__inner">
                     <h3>

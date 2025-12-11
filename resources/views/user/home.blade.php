@@ -9,7 +9,7 @@
 
                 <div class="item">
                     <div class="main-slider__bg"
-                        style="background-image: url(assets/images/backgrounds/1680x550_booking-one-bg.jpg);">
+                        style="background-image: url('{{ asset('assets/images/backgrounds/1680x550_booking-one-bg.jpg') }}');">
                     </div><!-- /.slider-one__bg -->
                     <div class="container">
                         <div class="main-slider__content">
@@ -39,7 +39,7 @@
 
                 <div class="item">
                     <div class="main-slider__bg"
-                        style="background-image: url(assets/images/backgrounds/xsr155.jpeg);">
+                        style="background-image: url({{ asset('assets/images/backgrounds/xsr155.jpeg') }});">
                     </div><!-- /.slider-one__bg -->
                     <div class="container">
                         <div class="main-slider__content">
@@ -69,7 +69,7 @@
 
                 <div class="item">
                     <div class="main-slider__bg"
-                        style="background-image: url(assets/images/backgrounds/nmaxturbo.jpeg);">
+                        style="background-image: url('{{ asset('assets/images/backgrounds/nmaxturbo.jpeg') }}');">
                     </div><!-- /.slider-one__bg -->
                     <div class="container">
                         <div class="main-slider__content">
@@ -304,7 +304,7 @@
                         data-wow-duration="1500ms">
                         <div class="process-one__single">
                             <div class="process-one__single-bg"
-                                style="background-image: url(assets/images/backgrounds/300x268_process-single-bg1.jpg);">
+                                style="background-image: url('{{ asset('assets/images/backgrounds/300x268_process-single-bg1.jpg') }}');">
                             </div>
                             <div class="process-one__icon-box">
                                 <div class="process-one__icon-shape"></div>
@@ -323,7 +323,7 @@
                         data-wow-duration="1500ms">
                         <div class="process-one__single">
                             <div class="process-one__single-bg"
-                                style="background-image: url(assets/images/backgrounds/300X268process-one-single-bg2.jpg);">
+                                style="background-image: url('{{ asset('assets/images/backgrounds/300X268process-one-single-bg2.jpg') }}');">
                             </div>
                             <div class="process-one__icon-box">
                                 <div class="process-one__icon-shape"></div>
@@ -342,7 +342,7 @@
                         data-wow-duration="1500ms">
                         <div class="process-one__single">
                             <div class="process-one__single-bg"
-                                style="background-image: url(assets/images/backgrounds/300x268_process-single-bg3yangbaruu.jpeg);">
+                                style="background-image: url('{{ asset('assets/images/backgrounds/300x268_process-single-bg3yangbaruu.jpeg') }}');">
                             </div>
                             <div class="process-one__icon-box">
                                 <div class="process-one__icon-shape"></div>
@@ -361,7 +361,7 @@
                         data-wow-duration="1500ms">
                         <div class="process-one__single">
                             <div class="process-one__single-bg"
-                                style="background-image: url(assets/images/backgrounds/300x268_process-single-bg4yangbaru.jpg);">
+                                style="background-image: url('{{ asset('assets/images/backgrounds/300x268_process-single-bg4yangbaru.jpg') }}');">
                             </div>
                             <div class="process-one__icon-box">
                                 <div class="process-one__icon-shape"></div>
@@ -384,7 +384,7 @@
         <section class="booking-one">
             <div class="booking-one__wrap">
                 <div class="booking-one__bg"
-                    style="background-image: url(assets/images/backgrounds/636.jpeg);"></div>
+                    style="background-image: url('{{ asset('assets/images/backgrounds/636.jpeg') }}');"></div>
                 <div class="container">
                     <div class="row">
                         <div class="col-xl-6 col-lg-5">
@@ -404,7 +404,7 @@
                                 <div class="booking-one__content">
                                     <div class="booking-one__title-box">
                                         <div class="booking-one__title-shape"
-                                            style="background-image: url(assets/images/shapes/book-one-title-shape-1.png);">
+                                            style="background-image: url('{{ asset('assets/images/shapes/book-one-title-shape-1.png') }}');">
                                         </div>
                                         <h3 class="booking-one__title">Book a motorbike</h3>
                                     </div>
@@ -4042,7 +4042,7 @@
                 <div class="call-one__inner wow fadeInUp" data-wow-delay="300ms" data-wow-duration="1500ms">
                     <div class="call-one__inner-content">
                         <div class="call-one__bg"
-                            style="background-image: url(assets/images/backgrounds/call-one-bg.jpg);">
+                            style="background-image: url('{{ asset('assets/images/backgrounds/call-one-bg.jpg') }}');">
                         </div>
                         <div class="call-one__left">
                             <p class="call-one__sub-title">Available 24/7</p>
@@ -4070,7 +4070,7 @@
         <!-- Popular Car One Start -->
         <section class="popular-car-one">
             <div class="popular-car-one__bg jarallax" data-jarallax data-speed="0.2" data-imgPosition="50% 0%"
-                style="background-image: url(assets/images/backgrounds/popular-car-one-bg.jpg);"></div>
+                style="background-image: url('{{ asset('assets/images/backgrounds/popular-car-one-bg.jpg') }}');"></div>
             <div class="container">
                 <div class="section-title text-center sec-title-animation animation-style1">
                     <div class="section-title__tagline-box justify-content-center">
@@ -4463,7 +4463,7 @@
 
         <!--Lets Talk Start -->
         <section class="lets-talk">
-            <div class="lets-talk__bg" style="background-image: url(assets/images/backgrounds/lets-talk-bg.jpg);"></div>
+            <div class="lets-talk__bg" style="background-image: url('{{ asset('assets/images/backgrounds/lets-talk-bg.jpg') }}');"></div>
             <div class="container">
                 <div class="lets-talk__inner">
                     <div class="lets-talk__title">
@@ -4490,7 +4490,7 @@
         <!--Download App One Start -->
         <section class="download-app-one">
             <div class="download-app-one__bg jarallax" data-jarallax data-speed="0.2" data-imgPosition="50% 0%"
-                style="background-image: url(assets/images/backgrounds/download-app-one-bg.jpg);"></div>
+                style="background-image: url('{{ asset('assets/images/backgrounds/download-app-one-bg.jpg') }}');"></div>
             <div class="container">
                 <div class="download-app-one__inner">
                     <div class="row">
