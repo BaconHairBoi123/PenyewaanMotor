@@ -1,5 +1,6 @@
-   <!-- resources/views/user/layouts/head.blade.php -->
+
 <head>
+    @vite('resources/css/app.css')
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -70,13 +71,11 @@
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/responsive.css') }}" />
 
-    @stack('styles')
+ 
 
 </head>
-
-
-
     <body>
+        
         <div class="page-wrapper">
             <header class="main-header">
                 <div class="container d-flex justify-content-between align-items-center py-3">
@@ -90,99 +89,232 @@
                 </div>
             </header>
         </div>
-    </body>
-</html>
-                        <div class="main-menu__right">
-                            <div class="main-menu__call">
-                                <div class="main-menu__call-icon">
-                                    <i class="icon-call-3"></i>
-                                </div>
-                                <div class="main-menu__call-content">
-                                    <p class="main-menu__call-sub-title">Call Anytime</p>
-                                    <h5 class="main-menu__call-number"><a href="tel:23645689622">+236 (456) 896 22</a>
-                                    </h5>
-                                </div>
+
+          <!-- Main Slider Start -->
+        <section class="main-slider">
+            <div class="main-slider__carousel owl-carousel owl-theme">
+
+                <div class="item">
+                    <div class="main-slider__bg"
+                        style="background-image: url('{{ asset('assets/images/backgrounds/1680x550_booking-one-bg.jpg') }}');">
+                    </div><!-- /.slider-one__bg -->
+                    <div class="container">
+                        <div class="main-slider__content">
+                            <div class="main-slider__sub-title-box">
+                                <p class="main-slider__sub-title">Your Best</p>
                             </div>
-                            <div class="main-menu__nav-sidebar-icon">
-                                <a class="navSidebar-button" href="#">
-                                    <span class="icon-dots-menu-one"></span>
-                                    <span class="icon-dots-menu-two"></span>
-                                    <span class="icon-dots-menu-three"></span>
-                                </a>
+                            <h2 class="main-slider__title">Motorcyle <span>Rental</span></h2>
+                            <p class="main-slider__sub-title-two">Experience</p>
+                            <div class="main-slider__btn-and-video-box">
+                                <div class="main-slider__btn-box">
+                                    <a href="about.html" class="thm-btn">Read More<span
+                                            class="fas fa-arrow-right"></span></a>
+                                </div>
+                                <div class="main-slider__video-link">
+                                    <a href="https://www.youtube.com/watch?v=Get7rqXYrbQ" class="video-popup">
+                                        <div class="main-slider__video-icon">
+                                            <span class="icon-play-2"></span>
+                                            <i class="ripple"></i>
+                                        </div>
+                                    </a>
+                                    <h4 class="main-slider__video-title">Watch Video</h4>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </nav>
-        </header>
 
-        <div class="stricky-header stricked-menu main-menu">
-            <div class="sticky-header__content"></div><!-- /.sticky-header__content -->
-        </div><!-- /.stricky-header -->
+                <div class="item">
+                    <div class="main-slider__bg"
+                        style="background-image: url({{ asset('assets/images/backgrounds/xsr155.jpeg') }});">
+                    </div><!-- /.slider-one__bg -->
+                    <div class="container">
+                        <div class="main-slider__content">
+                            <div class="main-slider__sub-title-box">
+                                <p class="main-slider__sub-title">Your Best</p>
+                            </div>
+                            <h2 class="main-slider__title">Motorcyle<span>Booking</span></h2>
+                            <p class="main-slider__sub-title-two">Experience</p>
+                            <div class="main-slider__btn-and-video-box">
+                                <div class="main-slider__btn-box">
+                                    <a href="about.html" class="thm-btn">Read More<span
+                                            class="fas fa-arrow-right"></span></a>
+                                </div>
+                                <div class="main-slider__video-link">
+                                    <a href="https://www.youtube.com/watch?v=Get7rqXYrbQ" class="video-popup">
+                                        <div class="main-slider__video-icon">
+                                            <span class="icon-play-2"></span>
+                                            <i class="ripple"></i>
+                                        </div>
+                                    </a>
+                                    <h4 class="main-slider__video-title">Watch Video</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <div class="main-slider__bg"
+                        style="background-image: url('{{ asset('assets/images/backgrounds/nmaxturbo.jpeg') }}');">
+                    </div><!-- /.slider-one__bg -->
+                    <div class="container">
+                        <div class="main-slider__content">
+                            <div class="main-slider__sub-title-box">
+                                <p class="main-slider__sub-title">Your Best</p>
+                            </div>
+                            <h2 class="main-slider__title">Motorcyle<span>Choosing</span></h2>
+                            <p class="main-slider__sub-title-two">Experience</p>
+                            <div class="main-slider__btn-and-video-box">
+                                <div class="main-slider__btn-box">
+                                    <a href="about.html" class="thm-btn">Read More<span
+                                            class="fas fa-arrow-right"></span></a>
+                                </div>
+                                <div class="main-slider__video-link">
+                                    <a href="https://www.youtube.com/watch?v=Get7rqXYrbQ" class="video-popup">
+                                        <div class="main-slider__video-icon">
+                                            <span class="icon-play-2"></span>
+                                            <i class="ripple"></i>
+                                        </div>
+                                    </a>
+                                    <h4 class="main-slider__video-title">Watch Video</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
 
-    <!--Mobile Nav-->
-        
-    <div class="mobile-nav__wrapper">
-        <div class="mobile-nav__overlay mobile-nav__toggler"></div>
-        <!-- /.mobile-nav__overlay -->
-        <div class="mobile-nav__content">
-            <span class="mobile-nav__close mobile-nav__toggler"><i class="fa fa-times"></i></span>
-
-            <div class="logo-box">
-                <a href="{{ url('/') }}" aria-label="logo image"><img src="{{ asset('assets/images/resources/logo_ridenusa_head.png') }}" width="140"
-                        alt="" /></a>
             </div>
-            <!-- /.logo-box -->
-            <div class="mobile-nav__container"></div>
-            <!-- /.mobile-nav__container -->
-
-            <ul class="mobile-nav__contact list-unstyled">
-                <li>
-                    <i class="fa fa-envelope"></i>
-                    <a href="mailto:needhelp@packageName__.com">needhelp@gorent.com</a>
-                </li>
-                <li>
-                    <i class="fas fa-phone"></i>
-                    <a href="tel:666-888-0000">666 888 0000</a>
-                </li>
-            </ul><!-- /.mobile-nav__contact -->
-            <div class="mobile-nav__top">
-                <div class="mobile-nav__social">
-                    <a href="#" class="fab fa-twitter"></a>
-                    <a href="#" class="fab fa-facebook-square"></a>
-                    <a href="#" class="fab fa-pinterest-p"></a>
-                    <a href="#" class="fab fa-instagram"></a>
-                </div><!-- /.mobile-nav__social -->
-            </div><!-- /.mobile-nav__top -->
+        </section>
+        <!--Main Slider Start -->
 
 
 
+
+
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 p-6">
+
+            @foreach ($motorcycles as $m)
+            {{-- Menggunakan rounded-3xl dan shadow-xl agar lebih tebal seperti di foto --}}
+            <div class="bg-white p-4 rounded-3xl shadow-xl border border-gray-100">
+
+                {{-- IMAGE --}}
+                <div class="rounded-2xl overflow-hidden relative">
+                    {{-- Sesuaikan tinggi gambar --}}
+                    <img src="{{ asset('storage/motorcycles/' . $m->image_path) }}" 
+                        class="w-full h-44 object-cover">
+
+                    {{-- BRAND BADGE --}}
+                    <span class="absolute top-3 left-3 bg-yellow-400 text-black px-3 py-1 rounded-md text-xs font-bold">
+                        {{ strtoupper($m->brand) }}
+                    </span>
+                </div>
+
+                {{-- TITLE --}}
+                {{-- Menggunakan data $m->type dan menambahkan tahun 2025 (asumsi) --}}
+                <h2 class="text-xl font-bold mt-2">{{ $m->type }} 2025</h2>
+
+                <hr class="my-3 border-gray-200">
+
+                {{-- DETAILS ROW - Penataan agar berpasangan dalam satu baris --}}
+                <div class="flex flex-wrap gap-y-2 text-sm text-gray-700">
+
+                    {{-- Transmission & Kilometer (Baris 1) --}}
+                    <div class="flex w-1/2">
+                        {{-- Ikon Transmission --}}
+                        <span class="mr-2 text-gray-500">⚙</span>
+                        <span class="font-semibold text-gray-800">{{ ucfirst($m->transmission) }}</span>
+                    </div>
+
+                    <div class="flex w-1/2">
+                        {{-- Ikon Kilometer --}}
+                        <span class="mr-2 text-gray-500">🛣</span>
+                        {{-- Menggunakan data kilometer dari lastService atau 0 --}}
+                        <span class="font-semibold text-gray-800">{{ $m->lastService->kilometer ?? 0 }} km</span>
+                    </div>
+
+                    {{-- Category & Age (Baris 2) --}}
+                    <div class="flex w-1/2">
+                        {{-- Ikon Category --}}
+                        <span class="mr-2 text-gray-500">🏍</span>
+                        {{-- Menggunakan data $m->category --}}
+                        <span class="font-semibold text-gray-800">{{ $m->category }}</span>
+                    </div>
+                    
+                    <div class="flex w-1/2">
+                        {{-- Ikon Age --}}
+                        <span class="mr-2 text-gray-500">👤</span>
+                        {{-- Menggunakan data $m->age (asumsi field ini ada) --}}
+                        <span class="font-semibold text-gray-800">{{ $m->age ?? 17 }} age</span>
+                    </div>
+                    
+                    {{-- Fuel (Baris 3) --}}
+                    <div class="flex w-full">
+                        {{-- Ikon Fuel --}}
+                        <span class="mr-2 text-gray-500">⛽</span>
+                        {{-- Menggunakan data $m->fuel_configuration --}}
+                        <span class="font-semibold text-gray-800">{{ $m->fuel_configuration }}</span>
+                    </div>
+
+                </div>
+
+                {{-- PRICE --}}
+                <div class="py-2 mt-4 text-sm">
+                    <span class="text-gray-600">Starting From</span>
+                    
+                    {{-- Menggunakan data $m->price dan memformatnya, serta memisahkan / Day --}}
+                    <span class="text-xl text-yellow-500 font-extrabold ml-1">
+                        {{ number_format($m->price, 0, ',', '.') }}
+                    </span>
+                    <span class="text-sm text-gray-600 font-semibold">
+                        / Day
+                    </span>
+                </div>
+
+                {{-- BUTTON --}}
+                <a href="{{ route('login') }}">
+                    <button class="bg-yellow-400 hover:bg-yellow-500 w-full py-3 mt-4 rounded-lg font-bold text-sm">
+                        Details Now →
+                    </button>
+                </a>
+
+            </div>
+            @endforeach
+            
         </div>
-        <!-- /.mobile-nav__content -->
-    </div>
-    <!-- /.mobile-nav__wrapper -->
 
-    <div class="search-popup">
-        <div class="search-popup__overlay search-toggler"></div>
-        <!-- /.search-popup__overlay -->
-        <div class="search-popup__content">
-            <form action="#">
-                <label for="search" class="sr-only">search here</label><!-- /.sr-only -->
-                <input type="text" id="search" placeholder="Search Here..." />
-                <button type="submit" aria-label="search submit" class="thm-btn">
-                    <i class="fas fa-search"></i>
-                </button>
-            </form>
-        </div>
-        <!-- /.search-popup__content -->
-    </div>
-    <!-- /.search-popup -->
 
-    <a href="#" data-target="html" class="scroll-to-target scroll-to-top">
-        <span class="scroll-to-top__wrapper"><span class="scroll-to-top__inner"></span></span>
-        <span class="scroll-to-top__text"> Go Back Top</span>
-    </a>
 
+        <!-- Script yang dibutuhkan -->
+    <script src="{{ asset('assets/js/jquery-3.6.0.min.js') }}"></script>
+    <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('assets/js/jarallax.min.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery.ajaxchimp.min.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery.appear.min.js') }}"></script>
+    <script src="{{ asset('assets/js/swiper.min.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery.circle-progress.min.js') }}"></script>
+    <script src="{{ asset('assets/js/knob.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery.magnific-popup.min.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery.validate.min.js') }}"></script>
+    <script src="{{ asset('assets/js/wNumb.min.js') }}"></script>
+    <script src="{{ asset('assets/js/wow.js') }}"></script>
+    <script src="{{ asset('assets/js/owl.carousel.min.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery-ui.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery.nice-select.min.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery-sidebar-content.js') }}"></script>
+    <script src="{{ asset('assets/js/gsap/gsap.js') }}"></script>
+    <script src="{{ asset('assets/js/gsap/ScrollTrigger.js') }}"></script>
+    <script src="{{ asset('assets/js/gsap/SplitText.js') }}"></script>
+    <script src="{{ asset('assets/js/marquee.min.js') }}"></script>
+    <script src="{{ asset('assets/js/odometer.min.js') }}"></script>
+    <script src="{{ asset('assets/js/timePicker.js') }}"></script>
+    <script src="{{ asset('assets/js/typed-2.0.11.js') }}"></script>
+    <script src="{{ asset('assets/js/aos.js') }}"></script>
+
+    <!-- Template JS -->
+    <script src="{{ asset('assets/js/script.js') }}"></script>
+         
     </body>
 </html>

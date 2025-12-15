@@ -198,22 +198,22 @@
                         <div class="about-one__left wow slideInLeft" data-wow-delay="100ms" data-wow-duration="2500ms">
                             <div class="about-one__img-box">
                                 <div class="about-one__img">
-                                    <img src="assets/images/resources/about-one-img-1.jpg" alt="">
+                                    <img src="{{ asset('assets/images/resources/about-one-img-1.jpg') }}" alt="">
                                 </div>
                                 <div class="about-one__shape-2 float-bob-y">
-                                    <img src="assets/images/shapes/about-one-shape-2.png" alt="">
+                                    <img src="{{ asset('assets/images/shapes/about-one-shape-2.png') }}" alt="">
                                 </div>
                                 <div class="about-one__shape-1">
-                                    <img src="assets/images/shapes/about-one-shape-1.png" alt="">
+                                    <img src="{{ asset('assets/images/shapes/about-one-shape-1.png') }}" alt="">
                                 </div>
                                 <div class="about-one__shape-4 float-bob-x">
-                                    <img src="assets/images/shapes/about-one-shape-4.jpg " alt="">
+                                    <img src="{{ asset('assets/images/shapes/about-one-shape-4.jpg') }}" alt="">
                                 </div>
                                 <div class="about-one__shape-3 float-bob-x">
-                                    <img src="assets/images/shapes/about-one-shape-3.png" alt="">
+                                    <img src="{{ asset('assets/images/shapes/about-one-shape-3.png') }}" alt="">
                                 </div>
                                 <div class="about-one__img-2">
-                                    <img src="assets/images/resources/about-one-img-2.png" alt="">
+                                    <img src="{{ asset('assets/images/resources/about-one-img-2.png') }}" alt="">
                                 </div>
                                 <div class="about-one__experience">
                                     <div class="about-one__experience-count">
@@ -230,7 +230,7 @@
                             <div class="section-title text-left sec-title-animation animation-style1">
                                 <div class="section-title__tagline-box">
                                     <div class="section-title__tagline-shape">
-                                     <img  src="assets/images/shapes/logo_BGT.png" alt="">
+                                     <img src="{{ asset('assets/images/shapes/logo_BGT.png') }}" alt="">
                                     </div>
                                     <span class="section-title__tagline">About Ride Nusa</span>
                                 </div>
@@ -292,7 +292,7 @@
                 <div class="section-title text-center sec-title-animation animation-style2">
                     <div class="section-title__tagline-box justify-content-center">
                         <div class="section-title__tagline-shape">
-                            <img  src="assets/images/shapes/logo_BGT.png" alt="">
+                            <img src="{{ asset('assets/images/shapes/logo_BGT.png') }}" alt="">
                         </div>
                         <span class="section-title__tagline">Steps</span>
                     </div>
@@ -391,10 +391,10 @@
                             <div class="booking-one__left">
                                 <div class="booking-one__img wow slideInLeft" data-wow-delay="100ms"
                                     data-wow-duration="2500ms">
-                                    <img src="assets/images/resources/booking-one-img-1.png" alt="">
+                                    <img src="{{ asset('assets/images/resources/booking-one-img-1.png') }}" alt="">
                                 </div>
                                 <div class="booking-one__shape-1 float-bob-x">
-                                    <img src="assets/images/shapes/booking-one-shape-1.png" alt="">
+                                    <img src="{{ asset('assets/images/shapes/booking-one-shape-1.png') }}" alt="">
                                 </div>
                             </div>
                         </div>
@@ -494,7 +494,7 @@
                 <div class="section-title text-center sec-title-animation animation-style2">
                     <div class="section-title__tagline-box justify-content-center">
                         <div class="section-title__tagline-shape">
-                            <img  src="assets/images/shapes/logo_BGT.png" alt="">
+                            <img src="{{ asset('assets/images/shapes/logo_BGT.png') }}" alt="">
                         </div>
                         <span class="section-title__tagline">Why Choose Us</span>
                     </div>
@@ -580,7 +580,7 @@
                             <div class="section-title text-left sec-title-animation animation-style1">
                                 <div class="section-title__tagline-box">
                                     <div class="section-title__tagline-shape">
-                                        <img  src="assets/images/shapes/logo_BGT.png" alt="">
+                                        <img src="{{ asset('assets/images/shapes/logo_BGT.png') }}" alt="">
                                     </div>
                                     <span class="section-title__tagline">fun facts</span>
                                 </div>
@@ -663,16 +663,16 @@
                         <div class="counter-one__right">
                             <div class="counter-one__img-box">
                                 <div class="counter-one__img reveal">
-                                    <img src="assets/images/resources/counter-one-img-1.jpg" alt="">
+                                    <img src="{{ asset('assets/images/resources/counter-one-img-1.jpg') }}" alt="">
                                 </div>
                                 <div class="counter-one__img-two reveal">
-                                    <img src="assets/images/resources/counter-one-img-2.jpg" alt="">
+                                    <img src="{{ asset('assets/images/resources/counter-one-img-2.jpg') }}" alt="">
                                 </div>
                                 <div class="counter-one__dot-1">
-                                    <img src="assets/images/shapes/counter-one-dot-1.png" alt="">
+                                    <img src="{{ asset('assets/images/shapes/counter-one-dot-1.png') }}" alt="">
                                 </div>
                                 <div class="counter-one__dot-2 float-bob-y">
-                                    <img src="assets/images/shapes/counter-one-dot-2.png" alt="">
+                                    <img src="{{ asset('assets/images/shapes/counter-one-dot-2.png') }}" alt="">
                                 </div>
                             </div>
                         </div>
@@ -688,7 +688,7 @@
                 <div class="section-title text-center sec-title-animation animation-style1">
                     <div class="section-title__tagline-box justify-content-center">
                         <div class="section-title__tagline-shape">
-                            <img  src="assets/images/shapes/logo_BGT.png" alt="">
+                            <img src="{{ asset('assets/images/shapes/logo_BGT.png') }}" alt="">
                         </div>
                         <span class="section-title__tagline">Checkout our new cars</span>
                     </div>

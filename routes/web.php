@@ -187,3 +187,10 @@ Route::middleware('auth:admin')->prefix('admin')->name('admin.')->group(function
     Route::post('/accessories/store', [App\Http\Controllers\Admin\AccessoryController::class, 'store'])->name('accessories.store');
     Route::delete('/accessories/{id}', [App\Http\Controllers\Admin\AccessoryController::class, 'delete'])->name('accessories.delete');
 });
+
+
+
+
+
+// Motorcycle List for Public (example route)
+Route::get('/', [PageController::class, 'welcome'])->name('home');

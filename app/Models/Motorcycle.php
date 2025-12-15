@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Motorcycle extends Model
 {
-    protected $table = 'motorcycles'; // nama tabel di database
+    protected $table = 'motorcycles';
 
     protected $fillable = [
         'category',
@@ -20,5 +20,23 @@ class Motorcycle extends Model
         'last_service_date',
         'price',
         'license_plate',
+        'transmission', // tambahkan jika sudah migrasi
     ];
+
+    /**
+     * Relasi: satu motor punya banyak riwayat service.
+     */
+    public function services()
+    {
+        return $this->hasMany(MotorcycleService::class, 'motorcycle_id');
+    }
+
+    /**
+     * Relasi: ambil riwayat service terakhir (kilometer terbaru).
+     */
+    public function lastService()
+    {
+        return $this->hasOne(MotorcycleService::class, 'motorcycle_id')->latest();
+    }
 }
+

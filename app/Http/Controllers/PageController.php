@@ -68,4 +68,10 @@ class PageController extends Controller
         // View untuk /user/profile
         return view('user.profile');
     }
+    public function welcome()
+{
+    $motorcycles = \App\Models\Motorcycle::with('lastService')->get();
+    return view('welcome', compact('motorcycles'));
+}
+
 }
