@@ -9,7 +9,7 @@
 
                 <div class="item">
                     <div class="main-slider__bg"
-                        style="background-image: url('{{ asset('assets/images/backgrounds/1680x550_booking-one-bg.jpg') }}');">
+                        style="background-image: url('/assets/images/backgrounds/1680x550_booking-one-bg.jpg');">
                     </div><!-- /.slider-one__bg -->
                     <div class="container">
                         <div class="main-slider__content">
@@ -39,7 +39,7 @@
 
                 <div class="item">
                     <div class="main-slider__bg"
-                        style="background-image: url({{ asset('assets/images/backgrounds/xsr155.jpeg') }});">
+                        style="background-image: url(/assets/images/backgrounds/xsr155.jpeg);">
                     </div><!-- /.slider-one__bg -->
                     <div class="container">
                         <div class="main-slider__content">
@@ -69,7 +69,7 @@
 
                 <div class="item">
                     <div class="main-slider__bg"
-                        style="background-image: url('{{ asset('assets/images/backgrounds/nmaxturbo.jpeg') }}');">
+                        style="background-image: url('/assets/images/backgrounds/nmaxturbo.jpeg');">
                     </div><!-- /.slider-one__bg -->
                     <div class="container">
                         <div class="main-slider__content">
@@ -111,7 +111,7 @@
                 <div class="section-title text-center sec-title-animation animation-style1">
                     <div class="section-title__tagline-box justify-content-center">
                         <div class="section-title__tagline-shape">
-                            <img  src="assets/images/shapes/logo_BGT.png" alt="">
+                            <img  src="/assets/images/shapes/logo_BGT.png" alt="">
                         </div>
                         <span class="section-title__tagline">What We’re Offering</span>
                     </div>
@@ -198,22 +198,22 @@
                         <div class="about-one__left wow slideInLeft" data-wow-delay="100ms" data-wow-duration="2500ms">
                             <div class="about-one__img-box">
                                 <div class="about-one__img">
-                                    <img src="{{ asset('assets/images/resources/about-one-img-1.jpg') }}" alt="">
+                                    <img src="/assets/images/resources/about-one-img-1.jpg" alt="">
                                 </div>
                                 <div class="about-one__shape-2 float-bob-y">
-                                    <img src="{{ asset('assets/images/shapes/about-one-shape-2.png') }}" alt="">
+                                    <img src="/assets/images/shapes/about-one-shape-2.png" alt="">
                                 </div>
                                 <div class="about-one__shape-1">
-                                    <img src="{{ asset('assets/images/shapes/about-one-shape-1.png') }}" alt="">
+                                    <img src="/assets/images/shapes/about-one-shape-1.png" alt="">
                                 </div>
                                 <div class="about-one__shape-4 float-bob-x">
-                                    <img src="{{ asset('assets/images/shapes/about-one-shape-4.jpg') }}" alt="">
+                                    <img src="/assets/images/shapes/about-one-shape-4.jpg" alt="">
                                 </div>
                                 <div class="about-one__shape-3 float-bob-x">
-                                    <img src="{{ asset('assets/images/shapes/about-one-shape-3.png') }}" alt="">
+                                    <img src="/assets/images/shapes/about-one-shape-3.png" alt="">
                                 </div>
                                 <div class="about-one__img-2">
-                                    <img src="{{ asset('assets/images/resources/about-one-img-2.png') }}" alt="">
+                                    <img src="/assets/images/resources/about-one-img-2.png" alt="">
                                 </div>
                                 <div class="about-one__experience">
                                     <div class="about-one__experience-count">
@@ -230,7 +230,7 @@
                             <div class="section-title text-left sec-title-animation animation-style1">
                                 <div class="section-title__tagline-box">
                                     <div class="section-title__tagline-shape">
-                                     <img src="{{ asset('assets/images/shapes/logo_BGT.png') }}" alt="">
+                                     <img src="/assets/images/shapes/logo_BGT.png" alt="">
                                     </div>
                                     <span class="section-title__tagline">About Ride Nusa</span>
                                 </div>
@@ -292,7 +292,7 @@
                 <div class="section-title text-center sec-title-animation animation-style2">
                     <div class="section-title__tagline-box justify-content-center">
                         <div class="section-title__tagline-shape">
-                            <img src="{{ asset('assets/images/shapes/logo_BGT.png') }}" alt="">
+                            <img src="/assets/images/shapes/logo_BGT.png" alt="">
                         </div>
                         <span class="section-title__tagline">Steps</span>
                     </div>
@@ -304,7 +304,7 @@
                         data-wow-duration="1500ms">
                         <div class="process-one__single">
                             <div class="process-one__single-bg"
-                                style="background-image: url('{{ asset('assets/images/backgrounds/300x268_process-single-bg1.jpg') }}');">
+                                style="background-image: url('/assets/images/backgrounds/300x268_process-single-bg1.jpg');">
                             </div>
                             <div class="process-one__icon-box">
                                 <div class="process-one__icon-shape"></div>
@@ -323,7 +323,7 @@
                         data-wow-duration="1500ms">
                         <div class="process-one__single">
                             <div class="process-one__single-bg"
-                                style="background-image: url('{{ asset('assets/images/backgrounds/300X268process-one-single-bg2.jpg') }}');">
+                                style="background-image: url('/assets/images/backgrounds/300X268process-one-single-bg2.jpg');">
                             </div>
                             <div class="process-one__icon-box">
                                 <div class="process-one__icon-shape"></div>
@@ -342,7 +342,7 @@
                         data-wow-duration="1500ms">
                         <div class="process-one__single">
                             <div class="process-one__single-bg"
-                                style="background-image: url('{{ asset('assets/images/backgrounds/300x268_process-single-bg3yangbaruu.jpeg') }}');">
+                                style="background-image: url('/assets/images/backgrounds/300x268_process-single-bg3yangbaruu.jpeg');">
                             </div>
                             <div class="process-one__icon-box">
                                 <div class="process-one__icon-shape"></div>
@@ -361,7 +361,7 @@
                         data-wow-duration="1500ms">
                         <div class="process-one__single">
                             <div class="process-one__single-bg"
-                                style="background-image: url('{{ asset('assets/images/backgrounds/300x268_process-single-bg4yangbaru.jpg') }}');">
+                                style="background-image: url('/assets/images/backgrounds/300x268_process-single-bg4yangbaru.jpg');">
                             </div>
                             <div class="process-one__icon-box">
                                 <div class="process-one__icon-shape"></div>
@@ -384,17 +384,17 @@
         <section class="booking-one">
             <div class="booking-one__wrap">
                 <div class="booking-one__bg"
-                    style="background-image: url('{{ asset('assets/images/backgrounds/636.jpeg') }}');"></div>
+                    style="background-image: url('/assets/images/backgrounds/636.jpeg');"></div>
                 <div class="container">
                     <div class="row">
                         <div class="col-xl-6 col-lg-5">
                             <div class="booking-one__left">
                                 <div class="booking-one__img wow slideInLeft" data-wow-delay="100ms"
                                     data-wow-duration="2500ms">
-                                    <img src="{{ asset('assets/images/resources/booking-one-img-1.png') }}" alt="">
+                                    <img src="/assets/images/resources/booking-one-img-1.png" alt="">
                                 </div>
                                 <div class="booking-one__shape-1 float-bob-x">
-                                    <img src="{{ asset('assets/images/shapes/booking-one-shape-1.png') }}" alt="">
+                                    <img src="/assets/images/shapes/booking-one-shape-1.png" alt="">
                                 </div>
                             </div>
                         </div>
@@ -404,7 +404,7 @@
                                 <div class="booking-one__content">
                                     <div class="booking-one__title-box">
                                         <div class="booking-one__title-shape"
-                                            style="background-image: url('{{ asset('assets/images/shapes/book-one-title-shape-1.png') }}');">
+                                            style="background-image: url('/assets/images/shapes/book-one-title-shape-1.png');">
                                         </div>
                                         <h3 class="booking-one__title">Book a motorbike</h3>
                                     </div>
@@ -494,7 +494,7 @@
                 <div class="section-title text-center sec-title-animation animation-style2">
                     <div class="section-title__tagline-box justify-content-center">
                         <div class="section-title__tagline-shape">
-                            <img src="{{ asset('assets/images/shapes/logo_BGT.png') }}" alt="">
+                            <img src="/assets/images/shapes/logo_BGT.png" alt="">
                         </div>
                         <span class="section-title__tagline">Why Choose Us</span>
                     </div>
@@ -580,7 +580,7 @@
                             <div class="section-title text-left sec-title-animation animation-style1">
                                 <div class="section-title__tagline-box">
                                     <div class="section-title__tagline-shape">
-                                        <img src="{{ asset('assets/images/shapes/logo_BGT.png') }}" alt="">
+                                        <img src="/assets/images/shapes/logo_BGT.png" alt="">
                                     </div>
                                     <span class="section-title__tagline">fun facts</span>
                                 </div>
@@ -663,16 +663,16 @@
                         <div class="counter-one__right">
                             <div class="counter-one__img-box">
                                 <div class="counter-one__img reveal">
-                                    <img src="{{ asset('assets/images/resources/counter-one-img-1.jpg') }}" alt="">
+                                    <img src="/assets/images/resources/counter-one-img-1.jpg" alt="">
                                 </div>
                                 <div class="counter-one__img-two reveal">
-                                    <img src="{{ asset('assets/images/resources/counter-one-img-2.jpg') }}" alt="">
+                                    <img src="/assets/images/resources/counter-one-img-2.jpg" alt="">
                                 </div>
                                 <div class="counter-one__dot-1">
-                                    <img src="{{ asset('assets/images/shapes/counter-one-dot-1.png') }}" alt="">
+                                    <img src="/assets/images/shapes/counter-one-dot-1.png" alt="">
                                 </div>
                                 <div class="counter-one__dot-2 float-bob-y">
-                                    <img src="{{ asset('assets/images/shapes/counter-one-dot-2.png') }}" alt="">
+                                    <img src="/assets/images/shapes/counter-one-dot-2.png" alt="">
                                 </div>
                             </div>
                         </div>
@@ -681,3368 +681,91 @@
             </div>
         </section>
         <!-- Counter One End -->
-
         <!-- Listing One Start -->
         <section class="listing-one">
             <div class="container">
                 <div class="section-title text-center sec-title-animation animation-style1">
                     <div class="section-title__tagline-box justify-content-center">
                         <div class="section-title__tagline-shape">
-                            <img src="{{ asset('assets/images/shapes/logo_BGT.png') }}" alt="">
+                            <img src="/assets/images/shapes/logo_BGT.png" alt="">
                         </div>
-                        <span class="section-title__tagline">Checkout our new cars</span>
+                        <span class="section-title__tagline">Checkout our new Motorcycle</span>
                     </div>
-                    <h2 class="section-title__title title-animation">Explore Most Popular Cars</h2>
+                    <h2 class="section-title__title title-animation">Explore Most Popular Motorcycle</h2>
                 </div>
-                <div class="listing-one__tab-box listing-one-tabs-box">
-                    <ul class="listing-one-tab-buttons listing-one-tab-btns clearfix list-unstyled">
-                        <li data-tab="#nmax-turbo" class="p-tab-btn active-btn"><span>nmax-turbo</span></li>
-                        <li data-tab="#honda" class="p-tab-btn"><span>Honda</span></li>
-                        <li data-tab="#audi" class="p-tab-btn"><span>Audi</span></li>
-                        <li data-tab="#mazda" class="p-tab-btn"><span>Mazda</span></li>
-                        <li data-tab="#toyota" class="p-tab-btn"><span>Toyota</span></li>
-                        <li data-tab="#acura" class="p-tab-btn"><span>Acura</span></li>
-                    </ul>
-                    <div class="p-tabs-content">
-                        <!--tab-->
-                        <div class="p-tab active-tab" id="tesla">
-                            <div class="listing-one__inner">
-                                <div class="listing-one__carousel owl-carousel owl-theme">
-                                    <!-- Listing One Single Start -->
-                                    <div class="item">
-                                        <div class="listing-one__single">
-                                            <div class="listing-one__img">
-                                                <img src="assets/images/listing/listing-1-1.jpg" alt="">
-                                                <div class="listing-one__brand-name">
-                                                    <p>Acura</p>
-                                                </div>
-                                            </div>
-                                            <div class="listing-one__content">
-                                                <h3 class="listing-one__title"><a href="listing-single.html">Acura
-                                                        Sport Version</a></h3>
-                                                <div class="listing-one__meta-box-info">
-                                                    <ul class="list-unstyled listing-one__meta">
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-manual"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Manual</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-mileage"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>25 KM</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-fuel-type"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Diesel</p>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                    <ul class="list-unstyled listing-one__meta listing-one__meta--two">
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-test-drive"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Basic</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-avatar"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Age 25</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-in-person"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>5 Persons</p>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <div class="listing-one__car-rent-box">
-                                                    <p class="listing-one__car-rent">Starting From
-                                                        <span>$100/</span> Day</p>
-                                                </div>
-                                                <div class="listing-one__btn-box">
-                                                    <a href="listing-single.html" class="thm-btn">Details Now<span
-                                                            class="fas fa-arrow-right"></span></a>
-                                                </div>
-                                            </div>
-                                        </div>
+                <div class="listing-one__inner">
+                     <div class="listing-one__carousel owl-carousel owl-theme">
+                        @forelse($motorcycles as $motor)
+                        <!-- Listing One Single Start -->
+                        <div class="item">
+                            <div class="listing-one__single">
+                                <div class="listing-one__img">
+                                    <img src="{{ $motor->image_path ? '/storage/' . $motor->image_path : '/assets/images/listing/listing-1-1.jpg' }}" alt="{{ $motor->type }}" style="height: 250px; object-fit: cover;">
+                                    <div class="listing-one__brand-name">
+                                        <p>{{ $motor->brand }}</p>
                                     </div>
-                                    <!-- Listing One Single End -->
-                                    <!-- Listing One Single Start -->
-                                    <div class="item">
-                                        <div class="listing-one__single">
-                                            <div class="listing-one__img">
-                                                <img src="assets/images/listing/listing-1-2.jpg" alt="">
-                                                <div class="listing-one__brand-name">
-                                                    <p>Kia Soul</p>
+                                </div>
+                                <div class="listing-one__content">
+                                    <h3 class="listing-one__title"><a href="{{ route('cars.single', ['id' => $motor->id]) }}">{{ $motor->type }}</a></h3>
+                                    <div class="listing-one__meta-box-info">
+                                        <ul class="list-unstyled listing-one__meta">
+                                            <li>
+                                                <div class="icon">
+                                                    <span class="icon-manual"></span>
                                                 </div>
-                                            </div>
-                                            <div class="listing-one__content">
-                                                <h3 class="listing-one__title"><a href="listing-single.html">Kia Soul
-                                                        2025</a></h3>
-                                                <div class="listing-one__meta-box-info">
-                                                    <ul class="list-unstyled listing-one__meta">
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-manual"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Manual</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-mileage"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>25 KM</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-fuel-type"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Diesel</p>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                    <ul class="list-unstyled listing-one__meta listing-one__meta--two">
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-test-drive"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Basic</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-avatar"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Age 25</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-in-person"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>5 Persons</p>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
+                                                <div class="text">
+                                                    <p>{{ $motor->transmission ?? 'Automatic' }}</p>
                                                 </div>
-                                                <div class="listing-one__car-rent-box">
-                                                    <p class="listing-one__car-rent">Starting From
-                                                        <span>$100/</span> Day</p>
+                                            </li>
+                                            <li>
+                                                <div class="icon">
+                                                    <span class="icon-mileage"></span>
                                                 </div>
-                                                <div class="listing-one__btn-box">
-                                                    <a href="listing-single.html" class="thm-btn">Details Now<span
-                                                            class="fas fa-arrow-right"></span></a>
+                                                <div class="text">
+                                                    <p>{{ $motor->cc ?? '150' }} cc</p>
                                                 </div>
-                                            </div>
-                                        </div>
+                                            </li>
+                                            <li>
+                                                <div class="icon">
+                                                    <span class="icon-fuel-type"></span>
+                                                </div>
+                                                <div class="text">
+                                                    <p>{{ $motor->fuel_configuration ?? 'Petrol' }}</p>
+                                                </div>
+                                            </li>
+                                        </ul>
                                     </div>
-                                    <!-- Listing One Single End -->
-                                    <!-- Listing One Single Start -->
-                                    <div class="item">
-                                        <div class="listing-one__single">
-                                            <div class="listing-one__img">
-                                                <img src="assets/images/listing/listing-1-3.jpg" alt="">
-                                                <div class="listing-one__brand-name">
-                                                    <p>Audi</p>
-                                                </div>
-                                            </div>
-                                            <div class="listing-one__content">
-                                                <h3 class="listing-one__title"><a href="listing-single.html">Audi A3
-                                                        2025 New</a></h3>
-                                                <div class="listing-one__meta-box-info">
-                                                    <ul class="list-unstyled listing-one__meta">
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-manual"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Manual</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-mileage"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>25 KM</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-fuel-type"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Diesel</p>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                    <ul class="list-unstyled listing-one__meta listing-one__meta--two">
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-test-drive"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Basic</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-avatar"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Age 25</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-in-person"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>5 Persons</p>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <div class="listing-one__car-rent-box">
-                                                    <p class="listing-one__car-rent">Starting From
-                                                        <span>$100/</span> Day</p>
-                                                </div>
-                                                <div class="listing-one__btn-box">
-                                                    <a href="listing-single.html" class="thm-btn">Details Now<span
-                                                            class="fas fa-arrow-right"></span></a>
-                                                </div>
-                                            </div>
-                                        </div>
+                                    <div class="listing-one__car-rent-box">
+                                        <p class="listing-one__car-rent">Starting From
+                                            <span>Rp {{ number_format($motor->price ?? 0, 0, ',', '.') }}/</span> Day</p>
                                     </div>
-                                    <!-- Listing One Single End -->
-                                    <!-- Listing One Single Start -->
-                                    <div class="item">
-                                        <div class="listing-one__single">
-                                            <div class="listing-one__img">
-                                                <img src="assets/images/listing/listing-1-4.jpg" alt="">
-                                                <div class="listing-one__brand-name">
-                                                    <p>Audi</p>
-                                                </div>
-                                            </div>
-                                            <div class="listing-one__content">
-                                                <h3 class="listing-one__title"><a href="listing-single.html">Ferrari
-                                                        458 MM Speciale</a></h3>
-                                                <div class="listing-one__meta-box-info">
-                                                    <ul class="list-unstyled listing-one__meta">
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-manual"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Manual</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-mileage"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>25 KM</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-fuel-type"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Diesel</p>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                    <ul class="list-unstyled listing-one__meta listing-one__meta--two">
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-test-drive"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Basic</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-avatar"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Age 25</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-in-person"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>5 Persons</p>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <div class="listing-one__car-rent-box">
-                                                    <p class="listing-one__car-rent">Starting From
-                                                        <span>$100/</span> Day</p>
-                                                </div>
-                                                <div class="listing-one__btn-box">
-                                                    <a href="listing-single.html" class="thm-btn">Details Now<span
-                                                            class="fas fa-arrow-right"></span></a>
-                                                </div>
-                                            </div>
-                                        </div>
+                                    <div class="listing-one__btn-box">
+                                        <a href="{{ route('cars.single', ['id' => $motor->id]) }}" class="thm-btn">Details Now<span
+                                                class="fas fa-arrow-right"></span></a>
                                     </div>
-                                    <!-- Listing One Single End -->
-                                    <!-- Listing One Single Start -->
-                                    <div class="item">
-                                        <div class="listing-one__single">
-                                            <div class="listing-one__img">
-                                                <img src="assets/images/listing/listing-1-5.jpg" alt="">
-                                                <div class="listing-one__brand-name">
-                                                    <p>Acura</p>
-                                                </div>
-                                            </div>
-                                            <div class="listing-one__content">
-                                                <h3 class="listing-one__title"><a href="listing-single.html">Audi Sport
-                                                        Version</a></h3>
-                                                <div class="listing-one__meta-box-info">
-                                                    <ul class="list-unstyled listing-one__meta">
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-manual"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Manual</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-mileage"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>25 KM</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-fuel-type"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Diesel</p>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                    <ul class="list-unstyled listing-one__meta listing-one__meta--two">
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-test-drive"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Basic</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-avatar"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Age 25</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-in-person"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>5 Persons</p>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <div class="listing-one__car-rent-box">
-                                                    <p class="listing-one__car-rent">Starting From
-                                                        <span>$100/</span> Day</p>
-                                                </div>
-                                                <div class="listing-one__btn-box">
-                                                    <a href="listing-single.html" class="thm-btn">Details Now<span
-                                                            class="fas fa-arrow-right"></span></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Listing One Single End -->
-                                    <!-- Listing One Single Start -->
-                                    <div class="item">
-                                        <div class="listing-one__single">
-                                            <div class="listing-one__img">
-                                                <img src="assets/images/listing/listing-1-6.jpg" alt="">
-                                                <div class="listing-one__brand-name">
-                                                    <p>Toyota</p>
-                                                </div>
-                                            </div>
-                                            <div class="listing-one__content">
-                                                <h3 class="listing-one__title"><a href="listing-single.html">Toyota
-                                                        Tacoma 4WD</a></h3>
-                                                <div class="listing-one__meta-box-info">
-                                                    <ul class="list-unstyled listing-one__meta">
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-manual"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Manual</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-mileage"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>25 KM</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-fuel-type"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Diesel</p>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                    <ul class="list-unstyled listing-one__meta listing-one__meta--two">
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-test-drive"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Basic</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-avatar"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Age 25</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-in-person"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>5 Persons</p>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <div class="listing-one__car-rent-box">
-                                                    <p class="listing-one__car-rent">Starting From
-                                                        <span>$100/</span> Day</p>
-                                                </div>
-                                                <div class="listing-one__btn-box">
-                                                    <a href="listing-single.html" class="thm-btn">Details Now<span
-                                                            class="fas fa-arrow-right"></span></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Listing One Single End -->
-                                    <!-- Listing One Single Start -->
-                                    <div class="item">
-                                        <div class="listing-one__single">
-                                            <div class="listing-one__img">
-                                                <img src="assets/images/listing/listing-1-2.jpg" alt="">
-                                                <div class="listing-one__brand-name">
-                                                    <p>Honda</p>
-                                                </div>
-                                            </div>
-                                            <div class="listing-one__content">
-                                                <h3 class="listing-one__title"><a href="listing-single.html">Kia Soul
-                                                        2025</a></h3>
-                                                <div class="listing-one__meta-box-info">
-                                                    <ul class="list-unstyled listing-one__meta">
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-manual"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Manual</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-mileage"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>25 KM</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-fuel-type"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Diesel</p>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                    <ul class="list-unstyled listing-one__meta listing-one__meta--two">
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-test-drive"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Basic</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-avatar"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Age 25</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-in-person"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>5 Persons</p>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <div class="listing-one__car-rent-box">
-                                                    <p class="listing-one__car-rent">Starting From
-                                                        <span>$100/</span> Day</p>
-                                                </div>
-                                                <div class="listing-one__btn-box">
-                                                    <a href="listing-single.html" class="thm-btn">Details Now<span
-                                                            class="fas fa-arrow-right"></span></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Listing One Single End -->
                                 </div>
                             </div>
                         </div>
-                        <!--Tab-->
-                        <!--tab-->
-                        <div class="p-tab" id="honda">
-                            <div class="listing-one__inner">
-                                <div class="listing-one__carousel owl-carousel owl-theme">
-                                    <!-- Listing One Single Start -->
-                                    <div class="item">
-                                        <div class="listing-one__single">
-                                            <div class="listing-one__img">
-                                                <img src="assets/images/listing/listing-1-1.jpg" alt="">
-                                                <div class="listing-one__brand-name">
-                                                    <p>Acura</p>
-                                                </div>
-                                            </div>
-                                            <div class="listing-one__content">
-                                                <h3 class="listing-one__title"><a href="listing-single.html">Acura
-                                                        Sport Version</a></h3>
-                                                <div class="listing-one__meta-box-info">
-                                                    <ul class="list-unstyled listing-one__meta">
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-manual"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Manual</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-mileage"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>25 KM</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-fuel-type"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Diesel</p>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                    <ul class="list-unstyled listing-one__meta listing-one__meta--two">
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-test-drive"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Basic</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-avatar"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Age 25</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-in-person"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>5 Persons</p>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <div class="listing-one__car-rent-box">
-                                                    <p class="listing-one__car-rent">Starting From
-                                                        <span>$100/</span> Day</p>
-                                                </div>
-                                                <div class="listing-one__btn-box">
-                                                    <a href="listing-single.html" class="thm-btn">Details Now<span
-                                                            class="fas fa-arrow-right"></span></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Listing One Single End -->
-                                    <!-- Listing One Single Start -->
-                                    <div class="item">
-                                        <div class="listing-one__single">
-                                            <div class="listing-one__img">
-                                                <img src="assets/images/listing/listing-1-2.jpg" alt="">
-                                                <div class="listing-one__brand-name">
-                                                    <p>Kia Soul</p>
-                                                </div>
-                                            </div>
-                                            <div class="listing-one__content">
-                                                <h3 class="listing-one__title"><a href="listing-single.html">Kia Soul
-                                                        2025</a></h3>
-                                                <div class="listing-one__meta-box-info">
-                                                    <ul class="list-unstyled listing-one__meta">
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-manual"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Manual</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-mileage"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>25 KM</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-fuel-type"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Diesel</p>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                    <ul class="list-unstyled listing-one__meta listing-one__meta--two">
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-test-drive"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Basic</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-avatar"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Age 25</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-in-person"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>5 Persons</p>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <div class="listing-one__car-rent-box">
-                                                    <p class="listing-one__car-rent">Starting From
-                                                        <span>$100/</span> Day</p>
-                                                </div>
-                                                <div class="listing-one__btn-box">
-                                                    <a href="listing-single.html" class="thm-btn">Details Now<span
-                                                            class="fas fa-arrow-right"></span></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Listing One Single End -->
-                                    <!-- Listing One Single Start -->
-                                    <div class="item">
-                                        <div class="listing-one__single">
-                                            <div class="listing-one__img">
-                                                <img src="assets/images/listing/listing-1-3.jpg" alt="">
-                                                <div class="listing-one__brand-name">
-                                                    <p>Audi</p>
-                                                </div>
-                                            </div>
-                                            <div class="listing-one__content">
-                                                <h3 class="listing-one__title"><a href="listing-single.html">Audi A3
-                                                        2025 New</a></h3>
-                                                <div class="listing-one__meta-box-info">
-                                                    <ul class="list-unstyled listing-one__meta">
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-manual"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Manual</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-mileage"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>25 KM</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-fuel-type"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Diesel</p>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                    <ul class="list-unstyled listing-one__meta listing-one__meta--two">
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-test-drive"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Basic</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-avatar"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Age 25</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-in-person"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>5 Persons</p>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <div class="listing-one__car-rent-box">
-                                                    <p class="listing-one__car-rent">Starting From
-                                                        <span>$100/</span> Day</p>
-                                                </div>
-                                                <div class="listing-one__btn-box">
-                                                    <a href="listing-single.html" class="thm-btn">Details Now<span
-                                                            class="fas fa-arrow-right"></span></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Listing One Single End -->
-                                    <!-- Listing One Single Start -->
-                                    <div class="item">
-                                        <div class="listing-one__single">
-                                            <div class="listing-one__img">
-                                                <img src="assets/images/listing/listing-1-4.jpg" alt="">
-                                                <div class="listing-one__brand-name">
-                                                    <p>Audi</p>
-                                                </div>
-                                            </div>
-                                            <div class="listing-one__content">
-                                                <h3 class="listing-one__title"><a href="listing-single.html">Ferrari
-                                                        458 MM Speciale</a></h3>
-                                                <div class="listing-one__meta-box-info">
-                                                    <ul class="list-unstyled listing-one__meta">
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-manual"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Manual</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-mileage"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>25 KM</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-fuel-type"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Diesel</p>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                    <ul class="list-unstyled listing-one__meta listing-one__meta--two">
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-test-drive"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Basic</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-avatar"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Age 25</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-in-person"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>5 Persons</p>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <div class="listing-one__car-rent-box">
-                                                    <p class="listing-one__car-rent">Starting From
-                                                        <span>$100/</span> Day</p>
-                                                </div>
-                                                <div class="listing-one__btn-box">
-                                                    <a href="listing-single.html" class="thm-btn">Details Now<span
-                                                            class="fas fa-arrow-right"></span></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Listing One Single End -->
-                                    <!-- Listing One Single Start -->
-                                    <div class="item">
-                                        <div class="listing-one__single">
-                                            <div class="listing-one__img">
-                                                <img src="assets/images/listing/listing-1-5.jpg" alt="">
-                                                <div class="listing-one__brand-name">
-                                                    <p>Acura</p>
-                                                </div>
-                                            </div>
-                                            <div class="listing-one__content">
-                                                <h3 class="listing-one__title"><a href="listing-single.html">Audi Sport
-                                                        Version</a></h3>
-                                                <div class="listing-one__meta-box-info">
-                                                    <ul class="list-unstyled listing-one__meta">
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-manual"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Manual</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-mileage"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>25 KM</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-fuel-type"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Diesel</p>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                    <ul class="list-unstyled listing-one__meta listing-one__meta--two">
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-test-drive"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Basic</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-avatar"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Age 25</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-in-person"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>5 Persons</p>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <div class="listing-one__car-rent-box">
-                                                    <p class="listing-one__car-rent">Starting From
-                                                        <span>$100/</span> Day</p>
-                                                </div>
-                                                <div class="listing-one__btn-box">
-                                                    <a href="listing-single.html" class="thm-btn">Details Now<span
-                                                            class="fas fa-arrow-right"></span></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Listing One Single End -->
-                                    <!-- Listing One Single Start -->
-                                    <div class="item">
-                                        <div class="listing-one__single">
-                                            <div class="listing-one__img">
-                                                <img src="assets/images/listing/listing-1-6.jpg" alt="">
-                                                <div class="listing-one__brand-name">
-                                                    <p>Toyota</p>
-                                                </div>
-                                            </div>
-                                            <div class="listing-one__content">
-                                                <h3 class="listing-one__title"><a href="listing-single.html">Toyota
-                                                        Tacoma 4WD</a></h3>
-                                                <div class="listing-one__meta-box-info">
-                                                    <ul class="list-unstyled listing-one__meta">
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-manual"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Manual</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-mileage"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>25 KM</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-fuel-type"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Diesel</p>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                    <ul class="list-unstyled listing-one__meta listing-one__meta--two">
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-test-drive"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Basic</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-avatar"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Age 25</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-in-person"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>5 Persons</p>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <div class="listing-one__car-rent-box">
-                                                    <p class="listing-one__car-rent">Starting From
-                                                        <span>$100/</span> Day</p>
-                                                </div>
-                                                <div class="listing-one__btn-box">
-                                                    <a href="listing-single.html" class="thm-btn">Details Now<span
-                                                            class="fas fa-arrow-right"></span></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Listing One Single End -->
-                                    <!-- Listing One Single Start -->
-                                    <div class="item">
-                                        <div class="listing-one__single">
-                                            <div class="listing-one__img">
-                                                <img src="assets/images/listing/listing-1-2.jpg" alt="">
-                                                <div class="listing-one__brand-name">
-                                                    <p>Honda</p>
-                                                </div>
-                                            </div>
-                                            <div class="listing-one__content">
-                                                <h3 class="listing-one__title"><a href="listing-single.html">Kia Soul
-                                                        2025</a></h3>
-                                                <div class="listing-one__meta-box-info">
-                                                    <ul class="list-unstyled listing-one__meta">
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-manual"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Manual</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-mileage"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>25 KM</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-fuel-type"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Diesel</p>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                    <ul class="list-unstyled listing-one__meta listing-one__meta--two">
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-test-drive"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Basic</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-avatar"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Age 25</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-in-person"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>5 Persons</p>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <div class="listing-one__car-rent-box">
-                                                    <p class="listing-one__car-rent">Starting From
-                                                        <span>$100/</span> Day</p>
-                                                </div>
-                                                <div class="listing-one__btn-box">
-                                                    <a href="listing-single.html" class="thm-btn">Details Now<span
-                                                            class="fas fa-arrow-right"></span></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Listing One Single End -->
-                                </div>
-                            </div>
+                        <!-- Listing One Single End -->
+                        @empty
+                        <div class="item">
+                            <p class="text-center">No motorcycles available at the moment.</p>
                         </div>
-                        <!--tab-->
-                        <!--tab-->
-                        <div class="p-tab" id="audi">
-                            <div class="listing-one__inner">
-                                <div class="listing-one__carousel owl-carousel owl-theme">
-                                    <!-- Listing One Single Start -->
-                                    <div class="item">
-                                        <div class="listing-one__single">
-                                            <div class="listing-one__img">
-                                                <img src="assets/images/listing/listing-1-1.jpg" alt="">
-                                                <div class="listing-one__brand-name">
-                                                    <p>Acura</p>
-                                                </div>
-                                            </div>
-                                            <div class="listing-one__content">
-                                                <h3 class="listing-one__title"><a href="listing-single.html">Acura
-                                                        Sport Version</a></h3>
-                                                <div class="listing-one__meta-box-info">
-                                                    <ul class="list-unstyled listing-one__meta">
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-manual"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Manual</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-mileage"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>25 KM</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-fuel-type"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Diesel</p>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                    <ul class="list-unstyled listing-one__meta listing-one__meta--two">
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-test-drive"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Basic</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-avatar"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Age 25</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-in-person"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>5 Persons</p>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <div class="listing-one__car-rent-box">
-                                                    <p class="listing-one__car-rent">Starting From
-                                                        <span>$100/</span> Day</p>
-                                                </div>
-                                                <div class="listing-one__btn-box">
-                                                    <a href="listing-single.html" class="thm-btn">Details Now<span
-                                                            class="fas fa-arrow-right"></span></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Listing One Single End -->
-                                    <!-- Listing One Single Start -->
-                                    <div class="item">
-                                        <div class="listing-one__single">
-                                            <div class="listing-one__img">
-                                                <img src="assets/images/listing/listing-1-2.jpg" alt="">
-                                                <div class="listing-one__brand-name">
-                                                    <p>Kia Soul</p>
-                                                </div>
-                                            </div>
-                                            <div class="listing-one__content">
-                                                <h3 class="listing-one__title"><a href="listing-single.html">Kia Soul
-                                                        2025</a></h3>
-                                                <div class="listing-one__meta-box-info">
-                                                    <ul class="list-unstyled listing-one__meta">
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-manual"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Manual</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-mileage"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>25 KM</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-fuel-type"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Diesel</p>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                    <ul class="list-unstyled listing-one__meta listing-one__meta--two">
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-test-drive"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Basic</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-avatar"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Age 25</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-in-person"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>5 Persons</p>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <div class="listing-one__car-rent-box">
-                                                    <p class="listing-one__car-rent">Starting From
-                                                        <span>$100/</span> Day</p>
-                                                </div>
-                                                <div class="listing-one__btn-box">
-                                                    <a href="listing-single.html" class="thm-btn">Details Now<span
-                                                            class="fas fa-arrow-right"></span></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Listing One Single End -->
-                                    <!-- Listing One Single Start -->
-                                    <div class="item">
-                                        <div class="listing-one__single">
-                                            <div class="listing-one__img">
-                                                <img src="assets/images/listing/listing-1-3.jpg" alt="">
-                                                <div class="listing-one__brand-name">
-                                                    <p>Audi</p>
-                                                </div>
-                                            </div>
-                                            <div class="listing-one__content">
-                                                <h3 class="listing-one__title"><a href="listing-single.html">Audi A3
-                                                        2025 New</a></h3>
-                                                <div class="listing-one__meta-box-info">
-                                                    <ul class="list-unstyled listing-one__meta">
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-manual"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Manual</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-mileage"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>25 KM</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-fuel-type"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Diesel</p>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                    <ul class="list-unstyled listing-one__meta listing-one__meta--two">
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-test-drive"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Basic</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-avatar"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Age 25</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-in-person"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>5 Persons</p>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <div class="listing-one__car-rent-box">
-                                                    <p class="listing-one__car-rent">Starting From
-                                                        <span>$100/</span> Day</p>
-                                                </div>
-                                                <div class="listing-one__btn-box">
-                                                    <a href="listing-single.html" class="thm-btn">Details Now<span
-                                                            class="fas fa-arrow-right"></span></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Listing One Single End -->
-                                    <!-- Listing One Single Start -->
-                                    <div class="item">
-                                        <div class="listing-one__single">
-                                            <div class="listing-one__img">
-                                                <img src="assets/images/listing/listing-1-4.jpg" alt="">
-                                                <div class="listing-one__brand-name">
-                                                    <p>Audi</p>
-                                                </div>
-                                            </div>
-                                            <div class="listing-one__content">
-                                                <h3 class="listing-one__title"><a href="listing-single.html">Ferrari
-                                                        458 MM Speciale</a></h3>
-                                                <div class="listing-one__meta-box-info">
-                                                    <ul class="list-unstyled listing-one__meta">
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-manual"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Manual</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-mileage"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>25 KM</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-fuel-type"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Diesel</p>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                    <ul class="list-unstyled listing-one__meta listing-one__meta--two">
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-test-drive"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Basic</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-avatar"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Age 25</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-in-person"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>5 Persons</p>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <div class="listing-one__car-rent-box">
-                                                    <p class="listing-one__car-rent">Starting From
-                                                        <span>$100/</span> Day</p>
-                                                </div>
-                                                <div class="listing-one__btn-box">
-                                                    <a href="listing-single.html" class="thm-btn">Details Now<span
-                                                            class="fas fa-arrow-right"></span></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Listing One Single End -->
-                                    <!-- Listing One Single Start -->
-                                    <div class="item">
-                                        <div class="listing-one__single">
-                                            <div class="listing-one__img">
-                                                <img src="assets/images/listing/listing-1-5.jpg" alt="">
-                                                <div class="listing-one__brand-name">
-                                                    <p>Acura</p>
-                                                </div>
-                                            </div>
-                                            <div class="listing-one__content">
-                                                <h3 class="listing-one__title"><a href="listing-single.html">Audi Sport
-                                                        Version</a></h3>
-                                                <div class="listing-one__meta-box-info">
-                                                    <ul class="list-unstyled listing-one__meta">
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-manual"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Manual</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-mileage"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>25 KM</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-fuel-type"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Diesel</p>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                    <ul class="list-unstyled listing-one__meta listing-one__meta--two">
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-test-drive"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Basic</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-avatar"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Age 25</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-in-person"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>5 Persons</p>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <div class="listing-one__car-rent-box">
-                                                    <p class="listing-one__car-rent">Starting From
-                                                        <span>$100/</span> Day</p>
-                                                </div>
-                                                <div class="listing-one__btn-box">
-                                                    <a href="listing-single.html" class="thm-btn">Details Now<span
-                                                            class="fas fa-arrow-right"></span></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Listing One Single End -->
-                                    <!-- Listing One Single Start -->
-                                    <div class="item">
-                                        <div class="listing-one__single">
-                                            <div class="listing-one__img">
-                                                <img src="assets/images/listing/listing-1-6.jpg" alt="">
-                                                <div class="listing-one__brand-name">
-                                                    <p>Toyota</p>
-                                                </div>
-                                            </div>
-                                            <div class="listing-one__content">
-                                                <h3 class="listing-one__title"><a href="listing-single.html">Toyota
-                                                        Tacoma 4WD</a></h3>
-                                                <div class="listing-one__meta-box-info">
-                                                    <ul class="list-unstyled listing-one__meta">
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-manual"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Manual</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-mileage"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>25 KM</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-fuel-type"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Diesel</p>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                    <ul class="list-unstyled listing-one__meta listing-one__meta--two">
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-test-drive"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Basic</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-avatar"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Age 25</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-in-person"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>5 Persons</p>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <div class="listing-one__car-rent-box">
-                                                    <p class="listing-one__car-rent">Starting From
-                                                        <span>$100/</span> Day</p>
-                                                </div>
-                                                <div class="listing-one__btn-box">
-                                                    <a href="listing-single.html" class="thm-btn">Details Now<span
-                                                            class="fas fa-arrow-right"></span></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Listing One Single End -->
-                                    <!-- Listing One Single Start -->
-                                    <div class="item">
-                                        <div class="listing-one__single">
-                                            <div class="listing-one__img">
-                                                <img src="assets/images/listing/listing-1-2.jpg" alt="">
-                                                <div class="listing-one__brand-name">
-                                                    <p>Honda</p>
-                                                </div>
-                                            </div>
-                                            <div class="listing-one__content">
-                                                <h3 class="listing-one__title"><a href="listing-single.html">Kia Soul
-                                                        2025</a></h3>
-                                                <div class="listing-one__meta-box-info">
-                                                    <ul class="list-unstyled listing-one__meta">
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-manual"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Manual</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-mileage"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>25 KM</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-fuel-type"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Diesel</p>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                    <ul class="list-unstyled listing-one__meta listing-one__meta--two">
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-test-drive"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Basic</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-avatar"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Age 25</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-in-person"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>5 Persons</p>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <div class="listing-one__car-rent-box">
-                                                    <p class="listing-one__car-rent">Starting From
-                                                        <span>$100/</span> Day</p>
-                                                </div>
-                                                <div class="listing-one__btn-box">
-                                                    <a href="listing-single.html" class="thm-btn">Details Now<span
-                                                            class="fas fa-arrow-right"></span></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Listing One Single End -->
-                                </div>
-                            </div>
-                        </div>
-                        <!--tab-->
-                        <!--tab-->
-                        <div class="p-tab" id="mazda">
-                            <div class="listing-one__inner">
-                                <div class="listing-one__carousel owl-carousel owl-theme">
-                                    <!-- Listing One Single Start -->
-                                    <div class="item">
-                                        <div class="listing-one__single">
-                                            <div class="listing-one__img">
-                                                <img src="assets/images/listing/listing-1-1.jpg" alt="">
-                                                <div class="listing-one__brand-name">
-                                                    <p>Acura</p>
-                                                </div>
-                                            </div>
-                                            <div class="listing-one__content">
-                                                <h3 class="listing-one__title"><a href="listing-single.html">Acura
-                                                        Sport Version</a></h3>
-                                                <div class="listing-one__meta-box-info">
-                                                    <ul class="list-unstyled listing-one__meta">
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-manual"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Manual</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-mileage"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>25 KM</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-fuel-type"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Diesel</p>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                    <ul class="list-unstyled listing-one__meta listing-one__meta--two">
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-test-drive"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Basic</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-avatar"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Age 25</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-in-person"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>5 Persons</p>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <div class="listing-one__car-rent-box">
-                                                    <p class="listing-one__car-rent">Starting From
-                                                        <span>$100/</span> Day</p>
-                                                </div>
-                                                <div class="listing-one__btn-box">
-                                                    <a href="listing-single.html" class="thm-btn">Details Now<span
-                                                            class="fas fa-arrow-right"></span></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Listing One Single End -->
-                                    <!-- Listing One Single Start -->
-                                    <div class="item">
-                                        <div class="listing-one__single">
-                                            <div class="listing-one__img">
-                                                <img src="assets/images/listing/listing-1-2.jpg" alt="">
-                                                <div class="listing-one__brand-name">
-                                                    <p>Kia Soul</p>
-                                                </div>
-                                            </div>
-                                            <div class="listing-one__content">
-                                                <h3 class="listing-one__title"><a href="listing-single.html">Kia Soul
-                                                        2025</a></h3>
-                                                <div class="listing-one__meta-box-info">
-                                                    <ul class="list-unstyled listing-one__meta">
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-manual"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Manual</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-mileage"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>25 KM</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-fuel-type"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Diesel</p>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                    <ul class="list-unstyled listing-one__meta listing-one__meta--two">
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-test-drive"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Basic</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-avatar"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Age 25</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-in-person"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>5 Persons</p>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <div class="listing-one__car-rent-box">
-                                                    <p class="listing-one__car-rent">Starting From
-                                                        <span>$100/</span> Day</p>
-                                                </div>
-                                                <div class="listing-one__btn-box">
-                                                    <a href="listing-single.html" class="thm-btn">Details Now<span
-                                                            class="fas fa-arrow-right"></span></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Listing One Single End -->
-                                    <!-- Listing One Single Start -->
-                                    <div class="item">
-                                        <div class="listing-one__single">
-                                            <div class="listing-one__img">
-                                                <img src="assets/images/listing/listing-1-3.jpg" alt="">
-                                                <div class="listing-one__brand-name">
-                                                    <p>Audi</p>
-                                                </div>
-                                            </div>
-                                            <div class="listing-one__content">
-                                                <h3 class="listing-one__title"><a href="listing-single.html">Audi A3
-                                                        2025 New</a></h3>
-                                                <div class="listing-one__meta-box-info">
-                                                    <ul class="list-unstyled listing-one__meta">
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-manual"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Manual</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-mileage"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>25 KM</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-fuel-type"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Diesel</p>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                    <ul class="list-unstyled listing-one__meta listing-one__meta--two">
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-test-drive"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Basic</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-avatar"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Age 25</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-in-person"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>5 Persons</p>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <div class="listing-one__car-rent-box">
-                                                    <p class="listing-one__car-rent">Starting From
-                                                        <span>$100/</span> Day</p>
-                                                </div>
-                                                <div class="listing-one__btn-box">
-                                                    <a href="listing-single.html" class="thm-btn">Details Now<span
-                                                            class="fas fa-arrow-right"></span></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Listing One Single End -->
-                                    <!-- Listing One Single Start -->
-                                    <div class="item">
-                                        <div class="listing-one__single">
-                                            <div class="listing-one__img">
-                                                <img src="assets/images/listing/listing-1-4.jpg" alt="">
-                                                <div class="listing-one__brand-name">
-                                                    <p>Audi</p>
-                                                </div>
-                                            </div>
-                                            <div class="listing-one__content">
-                                                <h3 class="listing-one__title"><a href="listing-single.html">Ferrari
-                                                        458 MM Speciale</a></h3>
-                                                <div class="listing-one__meta-box-info">
-                                                    <ul class="list-unstyled listing-one__meta">
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-manual"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Manual</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-mileage"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>25 KM</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-fuel-type"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Diesel</p>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                    <ul class="list-unstyled listing-one__meta listing-one__meta--two">
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-test-drive"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Basic</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-avatar"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Age 25</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-in-person"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>5 Persons</p>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <div class="listing-one__car-rent-box">
-                                                    <p class="listing-one__car-rent">Starting From
-                                                        <span>$100/</span> Day</p>
-                                                </div>
-                                                <div class="listing-one__btn-box">
-                                                    <a href="listing-single.html" class="thm-btn">Details Now<span
-                                                            class="fas fa-arrow-right"></span></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Listing One Single End -->
-                                    <!-- Listing One Single Start -->
-                                    <div class="item">
-                                        <div class="listing-one__single">
-                                            <div class="listing-one__img">
-                                                <img src="assets/images/listing/listing-1-5.jpg" alt="">
-                                                <div class="listing-one__brand-name">
-                                                    <p>Acura</p>
-                                                </div>
-                                            </div>
-                                            <div class="listing-one__content">
-                                                <h3 class="listing-one__title"><a href="listing-single.html">Audi Sport
-                                                        Version</a></h3>
-                                                <div class="listing-one__meta-box-info">
-                                                    <ul class="list-unstyled listing-one__meta">
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-manual"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Manual</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-mileage"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>25 KM</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-fuel-type"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Diesel</p>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                    <ul class="list-unstyled listing-one__meta listing-one__meta--two">
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-test-drive"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Basic</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-avatar"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Age 25</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-in-person"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>5 Persons</p>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <div class="listing-one__car-rent-box">
-                                                    <p class="listing-one__car-rent">Starting From
-                                                        <span>$100/</span> Day</p>
-                                                </div>
-                                                <div class="listing-one__btn-box">
-                                                    <a href="listing-single.html" class="thm-btn">Details Now<span
-                                                            class="fas fa-arrow-right"></span></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Listing One Single End -->
-                                    <!-- Listing One Single Start -->
-                                    <div class="item">
-                                        <div class="listing-one__single">
-                                            <div class="listing-one__img">
-                                                <img src="assets/images/listing/listing-1-6.jpg" alt="">
-                                                <div class="listing-one__brand-name">
-                                                    <p>Toyota</p>
-                                                </div>
-                                            </div>
-                                            <div class="listing-one__content">
-                                                <h3 class="listing-one__title"><a href="listing-single.html">Toyota
-                                                        Tacoma 4WD</a></h3>
-                                                <div class="listing-one__meta-box-info">
-                                                    <ul class="list-unstyled listing-one__meta">
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-manual"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Manual</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-mileage"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>25 KM</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-fuel-type"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Diesel</p>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                    <ul class="list-unstyled listing-one__meta listing-one__meta--two">
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-test-drive"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Basic</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-avatar"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Age 25</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-in-person"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>5 Persons</p>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <div class="listing-one__car-rent-box">
-                                                    <p class="listing-one__car-rent">Starting From
-                                                        <span>$100/</span> Day</p>
-                                                </div>
-                                                <div class="listing-one__btn-box">
-                                                    <a href="listing-single.html" class="thm-btn">Details Now<span
-                                                            class="fas fa-arrow-right"></span></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Listing One Single End -->
-                                    <!-- Listing One Single Start -->
-                                    <div class="item">
-                                        <div class="listing-one__single">
-                                            <div class="listing-one__img">
-                                                <img src="assets/images/listing/listing-1-2.jpg" alt="">
-                                                <div class="listing-one__brand-name">
-                                                    <p>Honda</p>
-                                                </div>
-                                            </div>
-                                            <div class="listing-one__content">
-                                                <h3 class="listing-one__title"><a href="listing-single.html">Kia Soul
-                                                        2025</a></h3>
-                                                <div class="listing-one__meta-box-info">
-                                                    <ul class="list-unstyled listing-one__meta">
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-manual"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Manual</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-mileage"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>25 KM</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-fuel-type"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Diesel</p>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                    <ul class="list-unstyled listing-one__meta listing-one__meta--two">
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-test-drive"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Basic</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-avatar"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Age 25</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-in-person"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>5 Persons</p>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <div class="listing-one__car-rent-box">
-                                                    <p class="listing-one__car-rent">Starting From
-                                                        <span>$100/</span> Day</p>
-                                                </div>
-                                                <div class="listing-one__btn-box">
-                                                    <a href="listing-single.html" class="thm-btn">Details Now<span
-                                                            class="fas fa-arrow-right"></span></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Listing One Single End -->
-                                </div>
-                            </div>
-                        </div>
-                        <!--tab-->
-                        <!--tab-->
-                        <div class="p-tab" id="toyota">
-                            <div class="listing-one__inner">
-                                <div class="listing-one__carousel owl-carousel owl-theme">
-                                    <!-- Listing One Single Start -->
-                                    <div class="item">
-                                        <div class="listing-one__single">
-                                            <div class="listing-one__img">
-                                                <img src="assets/images/listing/listing-1-1.jpg" alt="">
-                                                <div class="listing-one__brand-name">
-                                                    <p>Acura</p>
-                                                </div>
-                                            </div>
-                                            <div class="listing-one__content">
-                                                <h3 class="listing-one__title"><a href="listing-single.html">Acura
-                                                        Sport Version</a></h3>
-                                                <div class="listing-one__meta-box-info">
-                                                    <ul class="list-unstyled listing-one__meta">
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-manual"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Manual</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-mileage"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>25 KM</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-fuel-type"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Diesel</p>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                    <ul class="list-unstyled listing-one__meta listing-one__meta--two">
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-test-drive"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Basic</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-avatar"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Age 25</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-in-person"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>5 Persons</p>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <div class="listing-one__car-rent-box">
-                                                    <p class="listing-one__car-rent">Starting From
-                                                        <span>$100/</span> Day</p>
-                                                </div>
-                                                <div class="listing-one__btn-box">
-                                                    <a href="listing-single.html" class="thm-btn">Details Now<span
-                                                            class="fas fa-arrow-right"></span></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Listing One Single End -->
-                                    <!-- Listing One Single Start -->
-                                    <div class="item">
-                                        <div class="listing-one__single">
-                                            <div class="listing-one__img">
-                                                <img src="assets/images/listing/listing-1-2.jpg" alt="">
-                                                <div class="listing-one__brand-name">
-                                                    <p>Kia Soul</p>
-                                                </div>
-                                            </div>
-                                            <div class="listing-one__content">
-                                                <h3 class="listing-one__title"><a href="listing-single.html">Kia Soul
-                                                        2025</a></h3>
-                                                <div class="listing-one__meta-box-info">
-                                                    <ul class="list-unstyled listing-one__meta">
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-manual"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Manual</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-mileage"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>25 KM</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-fuel-type"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Diesel</p>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                    <ul class="list-unstyled listing-one__meta listing-one__meta--two">
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-test-drive"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Basic</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-avatar"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Age 25</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-in-person"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>5 Persons</p>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <div class="listing-one__car-rent-box">
-                                                    <p class="listing-one__car-rent">Starting From
-                                                        <span>$100/</span> Day</p>
-                                                </div>
-                                                <div class="listing-one__btn-box">
-                                                    <a href="listing-single.html" class="thm-btn">Details Now<span
-                                                            class="fas fa-arrow-right"></span></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Listing One Single End -->
-                                    <!-- Listing One Single Start -->
-                                    <div class="item">
-                                        <div class="listing-one__single">
-                                            <div class="listing-one__img">
-                                                <img src="assets/images/listing/listing-1-3.jpg" alt="">
-                                                <div class="listing-one__brand-name">
-                                                    <p>Audi</p>
-                                                </div>
-                                            </div>
-                                            <div class="listing-one__content">
-                                                <h3 class="listing-one__title"><a href="listing-single.html">Audi A3
-                                                        2025 New</a></h3>
-                                                <div class="listing-one__meta-box-info">
-                                                    <ul class="list-unstyled listing-one__meta">
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-manual"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Manual</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-mileage"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>25 KM</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-fuel-type"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Diesel</p>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                    <ul class="list-unstyled listing-one__meta listing-one__meta--two">
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-test-drive"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Basic</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-avatar"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Age 25</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-in-person"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>5 Persons</p>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <div class="listing-one__car-rent-box">
-                                                    <p class="listing-one__car-rent">Starting From
-                                                        <span>$100/</span> Day</p>
-                                                </div>
-                                                <div class="listing-one__btn-box">
-                                                    <a href="listing-single.html" class="thm-btn">Details Now<span
-                                                            class="fas fa-arrow-right"></span></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Listing One Single End -->
-                                    <!-- Listing One Single Start -->
-                                    <div class="item">
-                                        <div class="listing-one__single">
-                                            <div class="listing-one__img">
-                                                <img src="assets/images/listing/listing-1-4.jpg" alt="">
-                                                <div class="listing-one__brand-name">
-                                                    <p>Audi</p>
-                                                </div>
-                                            </div>
-                                            <div class="listing-one__content">
-                                                <h3 class="listing-one__title"><a href="listing-single.html">Ferrari
-                                                        458 MM Speciale</a></h3>
-                                                <div class="listing-one__meta-box-info">
-                                                    <ul class="list-unstyled listing-one__meta">
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-manual"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Manual</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-mileage"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>25 KM</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-fuel-type"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Diesel</p>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                    <ul class="list-unstyled listing-one__meta listing-one__meta--two">
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-test-drive"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Basic</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-avatar"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Age 25</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-in-person"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>5 Persons</p>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <div class="listing-one__car-rent-box">
-                                                    <p class="listing-one__car-rent">Starting From
-                                                        <span>$100/</span> Day</p>
-                                                </div>
-                                                <div class="listing-one__btn-box">
-                                                    <a href="listing-single.html" class="thm-btn">Details Now<span
-                                                            class="fas fa-arrow-right"></span></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Listing One Single End -->
-                                    <!-- Listing One Single Start -->
-                                    <div class="item">
-                                        <div class="listing-one__single">
-                                            <div class="listing-one__img">
-                                                <img src="assets/images/listing/listing-1-5.jpg" alt="">
-                                                <div class="listing-one__brand-name">
-                                                    <p>Acura</p>
-                                                </div>
-                                            </div>
-                                            <div class="listing-one__content">
-                                                <h3 class="listing-one__title"><a href="listing-single.html">Audi Sport
-                                                        Version</a></h3>
-                                                <div class="listing-one__meta-box-info">
-                                                    <ul class="list-unstyled listing-one__meta">
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-manual"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Manual</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-mileage"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>25 KM</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-fuel-type"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Diesel</p>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                    <ul class="list-unstyled listing-one__meta listing-one__meta--two">
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-test-drive"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Basic</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-avatar"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Age 25</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-in-person"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>5 Persons</p>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <div class="listing-one__car-rent-box">
-                                                    <p class="listing-one__car-rent">Starting From
-                                                        <span>$100/</span> Day</p>
-                                                </div>
-                                                <div class="listing-one__btn-box">
-                                                    <a href="listing-single.html" class="thm-btn">Details Now<span
-                                                            class="fas fa-arrow-right"></span></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Listing One Single End -->
-                                    <!-- Listing One Single Start -->
-                                    <div class="item">
-                                        <div class="listing-one__single">
-                                            <div class="listing-one__img">
-                                                <img src="assets/images/listing/listing-1-6.jpg" alt="">
-                                                <div class="listing-one__brand-name">
-                                                    <p>Toyota</p>
-                                                </div>
-                                            </div>
-                                            <div class="listing-one__content">
-                                                <h3 class="listing-one__title"><a href="listing-single.html">Toyota
-                                                        Tacoma 4WD</a></h3>
-                                                <div class="listing-one__meta-box-info">
-                                                    <ul class="list-unstyled listing-one__meta">
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-manual"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Manual</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-mileage"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>25 KM</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-fuel-type"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Diesel</p>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                    <ul class="list-unstyled listing-one__meta listing-one__meta--two">
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-test-drive"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Basic</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-avatar"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Age 25</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-in-person"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>5 Persons</p>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <div class="listing-one__car-rent-box">
-                                                    <p class="listing-one__car-rent">Starting From
-                                                        <span>$100/</span> Day</p>
-                                                </div>
-                                                <div class="listing-one__btn-box">
-                                                    <a href="listing-single.html" class="thm-btn">Details Now<span
-                                                            class="fas fa-arrow-right"></span></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Listing One Single End -->
-                                    <!-- Listing One Single Start -->
-                                    <div class="item">
-                                        <div class="listing-one__single">
-                                            <div class="listing-one__img">
-                                                <img src="assets/images/listing/listing-1-2.jpg" alt="">
-                                                <div class="listing-one__brand-name">
-                                                    <p>Honda</p>
-                                                </div>
-                                            </div>
-                                            <div class="listing-one__content">
-                                                <h3 class="listing-one__title"><a href="listing-single.html">Kia Soul
-                                                        2025</a></h3>
-                                                <div class="listing-one__meta-box-info">
-                                                    <ul class="list-unstyled listing-one__meta">
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-manual"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Manual</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-mileage"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>25 KM</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-fuel-type"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Diesel</p>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                    <ul class="list-unstyled listing-one__meta listing-one__meta--two">
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-test-drive"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Basic</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-avatar"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Age 25</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-in-person"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>5 Persons</p>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <div class="listing-one__car-rent-box">
-                                                    <p class="listing-one__car-rent">Starting From
-                                                        <span>$100/</span> Day</p>
-                                                </div>
-                                                <div class="listing-one__btn-box">
-                                                    <a href="listing-single.html" class="thm-btn">Details Now<span
-                                                            class="fas fa-arrow-right"></span></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Listing One Single End -->
-                                </div>
-                            </div>
-                        </div>
-                        <!--tab-->
-                        <!--tab-->
-                        <div class="p-tab" id="acura">
-                            <div class="listing-one__inner">
-                                <div class="listing-one__carousel owl-carousel owl-theme">
-                                    <!-- Listing One Single Start -->
-                                    <div class="item">
-                                        <div class="listing-one__single">
-                                            <div class="listing-one__img">
-                                                <img src="assets/images/listing/listing-1-1.jpg" alt="">
-                                                <div class="listing-one__brand-name">
-                                                    <p>Acura</p>
-                                                </div>
-                                            </div>
-                                            <div class="listing-one__content">
-                                                <h3 class="listing-one__title"><a href="listing-single.html">Acura
-                                                        Sport Version</a></h3>
-                                                <div class="listing-one__meta-box-info">
-                                                    <ul class="list-unstyled listing-one__meta">
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-manual"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Manual</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-mileage"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>25 KM</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-fuel-type"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Diesel</p>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                    <ul class="list-unstyled listing-one__meta listing-one__meta--two">
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-test-drive"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Basic</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-avatar"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Age 25</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-in-person"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>5 Persons</p>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <div class="listing-one__car-rent-box">
-                                                    <p class="listing-one__car-rent">Starting From
-                                                        <span>$100/</span> Day</p>
-                                                </div>
-                                                <div class="listing-one__btn-box">
-                                                    <a href="listing-single.html" class="thm-btn">Details Now<span
-                                                            class="fas fa-arrow-right"></span></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Listing One Single End -->
-                                    <!-- Listing One Single Start -->
-                                    <div class="item">
-                                        <div class="listing-one__single">
-                                            <div class="listing-one__img">
-                                                <img src="assets/images/listing/listing-1-2.jpg" alt="">
-                                                <div class="listing-one__brand-name">
-                                                    <p>Kia Soul</p>
-                                                </div>
-                                            </div>
-                                            <div class="listing-one__content">
-                                                <h3 class="listing-one__title"><a href="listing-single.html">Kia Soul
-                                                        2025</a></h3>
-                                                <div class="listing-one__meta-box-info">
-                                                    <ul class="list-unstyled listing-one__meta">
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-manual"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Manual</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-mileage"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>25 KM</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-fuel-type"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Diesel</p>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                    <ul class="list-unstyled listing-one__meta listing-one__meta--two">
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-test-drive"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Basic</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-avatar"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Age 25</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-in-person"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>5 Persons</p>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <div class="listing-one__car-rent-box">
-                                                    <p class="listing-one__car-rent">Starting From
-                                                        <span>$100/</span> Day</p>
-                                                </div>
-                                                <div class="listing-one__btn-box">
-                                                    <a href="listing-single.html" class="thm-btn">Details Now<span
-                                                            class="fas fa-arrow-right"></span></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Listing One Single End -->
-                                    <!-- Listing One Single Start -->
-                                    <div class="item">
-                                        <div class="listing-one__single">
-                                            <div class="listing-one__img">
-                                                <img src="assets/images/listing/listing-1-3.jpg" alt="">
-                                                <div class="listing-one__brand-name">
-                                                    <p>Audi</p>
-                                                </div>
-                                            </div>
-                                            <div class="listing-one__content">
-                                                <h3 class="listing-one__title"><a href="listing-single.html">Audi A3
-                                                        2025 New</a></h3>
-                                                <div class="listing-one__meta-box-info">
-                                                    <ul class="list-unstyled listing-one__meta">
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-manual"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Manual</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-mileage"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>25 KM</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-fuel-type"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Diesel</p>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                    <ul class="list-unstyled listing-one__meta listing-one__meta--two">
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-test-drive"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Basic</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-avatar"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Age 25</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-in-person"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>5 Persons</p>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <div class="listing-one__car-rent-box">
-                                                    <p class="listing-one__car-rent">Starting From
-                                                        <span>$100/</span> Day</p>
-                                                </div>
-                                                <div class="listing-one__btn-box">
-                                                    <a href="listing-single.html" class="thm-btn">Details Now<span
-                                                            class="fas fa-arrow-right"></span></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Listing One Single End -->
-                                    <!-- Listing One Single Start -->
-                                    <div class="item">
-                                        <div class="listing-one__single">
-                                            <div class="listing-one__img">
-                                                <img src="assets/images/listing/listing-1-4.jpg" alt="">
-                                                <div class="listing-one__brand-name">
-                                                    <p>Audi</p>
-                                                </div>
-                                            </div>
-                                            <div class="listing-one__content">
-                                                <h3 class="listing-one__title"><a href="listing-single.html">Ferrari
-                                                        458 MM Speciale</a></h3>
-                                                <div class="listing-one__meta-box-info">
-                                                    <ul class="list-unstyled listing-one__meta">
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-manual"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Manual</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-mileage"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>25 KM</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-fuel-type"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Diesel</p>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                    <ul class="list-unstyled listing-one__meta listing-one__meta--two">
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-test-drive"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Basic</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-avatar"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Age 25</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-in-person"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>5 Persons</p>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <div class="listing-one__car-rent-box">
-                                                    <p class="listing-one__car-rent">Starting From
-                                                        <span>$100/</span> Day</p>
-                                                </div>
-                                                <div class="listing-one__btn-box">
-                                                    <a href="listing-single.html" class="thm-btn">Details Now<span
-                                                            class="fas fa-arrow-right"></span></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Listing One Single End -->
-                                    <!-- Listing One Single Start -->
-                                    <div class="item">
-                                        <div class="listing-one__single">
-                                            <div class="listing-one__img">
-                                                <img src="assets/images/listing/listing-1-5.jpg" alt="">
-                                                <div class="listing-one__brand-name">
-                                                    <p>Acura</p>
-                                                </div>
-                                            </div>
-                                            <div class="listing-one__content">
-                                                <h3 class="listing-one__title"><a href="listing-single.html">Audi Sport
-                                                        Version</a></h3>
-                                                <div class="listing-one__meta-box-info">
-                                                    <ul class="list-unstyled listing-one__meta">
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-manual"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Manual</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-mileage"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>25 KM</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-fuel-type"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Diesel</p>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                    <ul class="list-unstyled listing-one__meta listing-one__meta--two">
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-test-drive"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Basic</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-avatar"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Age 25</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-in-person"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>5 Persons</p>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <div class="listing-one__car-rent-box">
-                                                    <p class="listing-one__car-rent">Starting From
-                                                        <span>$100/</span> Day</p>
-                                                </div>
-                                                <div class="listing-one__btn-box">
-                                                    <a href="listing-single.html" class="thm-btn">Details Now<span
-                                                            class="fas fa-arrow-right"></span></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Listing One Single End -->
-                                    <!-- Listing One Single Start -->
-                                    <div class="item">
-                                        <div class="listing-one__single">
-                                            <div class="listing-one__img">
-                                                <img src="assets/images/listing/listing-1-6.jpg" alt="">
-                                                <div class="listing-one__brand-name">
-                                                    <p>Toyota</p>
-                                                </div>
-                                            </div>
-                                            <div class="listing-one__content">
-                                                <h3 class="listing-one__title"><a href="listing-single.html">Toyota
-                                                        Tacoma 4WD</a></h3>
-                                                <div class="listing-one__meta-box-info">
-                                                    <ul class="list-unstyled listing-one__meta">
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-manual"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Manual</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-mileage"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>25 KM</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-fuel-type"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Diesel</p>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                    <ul class="list-unstyled listing-one__meta listing-one__meta--two">
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-test-drive"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Basic</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-avatar"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Age 25</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-in-person"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>5 Persons</p>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <div class="listing-one__car-rent-box">
-                                                    <p class="listing-one__car-rent">Starting From
-                                                        <span>$100/</span> Day</p>
-                                                </div>
-                                                <div class="listing-one__btn-box">
-                                                    <a href="listing-single.html" class="thm-btn">Details Now<span
-                                                            class="fas fa-arrow-right"></span></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Listing One Single End -->
-                                    <!-- Listing One Single Start -->
-                                    <div class="item">
-                                        <div class="listing-one__single">
-                                            <div class="listing-one__img">
-                                                <img src="assets/images/listing/listing-1-2.jpg" alt="">
-                                                <div class="listing-one__brand-name">
-                                                    <p>Honda</p>
-                                                </div>
-                                            </div>
-                                            <div class="listing-one__content">
-                                                <h3 class="listing-one__title"><a href="listing-single.html">Kia Soul
-                                                        2025</a></h3>
-                                                <div class="listing-one__meta-box-info">
-                                                    <ul class="list-unstyled listing-one__meta">
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-manual"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Manual</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-mileage"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>25 KM</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-fuel-type"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Diesel</p>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                    <ul class="list-unstyled listing-one__meta listing-one__meta--two">
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-test-drive"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Basic</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-avatar"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>Age 25</p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="icon">
-                                                                <span class="icon-in-person"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p>5 Persons</p>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <div class="listing-one__car-rent-box">
-                                                    <p class="listing-one__car-rent">Starting From
-                                                        <span>$100/</span> Day</p>
-                                                </div>
-                                                <div class="listing-one__btn-box">
-                                                    <a href="listing-single.html" class="thm-btn">Details Now<span
-                                                            class="fas fa-arrow-right"></span></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Listing One Single End -->
-                                </div>
-                            </div>
-                        </div>
-                        <!--tab-->
+                        @endforelse
                     </div>
                 </div>
             </div>
         </section>
         <!-- Listing One End -->
 
-       
-        
+
         <!--Call One Start -->
         <section class="call-one">
             <div class="container">
                 <div class="call-one__inner wow fadeInUp" data-wow-delay="300ms" data-wow-duration="1500ms">
                     <div class="call-one__inner-content">
                         <div class="call-one__bg"
-                            style="background-image: url('{{ asset('assets/images/backgrounds/call-one-bg.jpg') }}');">
+                            style="background-image: url('/assets/images/backgrounds/call-one-bg.jpg');">
                         </div>
                         <div class="call-one__left">
                             <p class="call-one__sub-title">Available 24/7</p>
@@ -4067,111 +790,13 @@
         </section>
         <!--Call One End -->
 
-        <!-- Popular Car One Start -->
-        <section class="popular-car-one">
-            <div class="popular-car-one__bg jarallax" data-jarallax data-speed="0.2" data-imgPosition="50% 0%"
-                style="background-image: url('{{ asset('assets/images/backgrounds/popular-car-one-bg.jpg') }}');"></div>
-            <div class="container">
-                <div class="section-title text-center sec-title-animation animation-style1">
-                    <div class="section-title__tagline-box justify-content-center">
-                        <div class="section-title__tagline-shape">
-                            <img src="assets/images/shapes/section-title-tagline-shape-2.png" alt="">
-                        </div>
-                        <span class="section-title__tagline">Popular Car</span>
-                    </div>
-                    <h2 class="section-title__title title-animation">Most Popular Cartypes</h2>
-                </div>
-                <div class="popular-car-one__carousel owl-carousel owl-theme">
-                    <!-- Popular Car One Single Start -->
-                    <div class="item">
-                        <div class="popular-car-one__single">
-                            <div class="popular-car-one__icon">
-                                <span class="icon-sports-car"></span>
-                            </div>
-                            <div class="popular-car-one__single-inner">
-                                <h4 class="popular-car-one__title"><a href="car-list-v-1.html">Sports Coupe</a></h4>
-                            </div>
-                            <p class="popular-car-one__count">3 Cars</p>
-                        </div>
-                    </div>
-                    <!-- Popular Car One Single End -->
-                    <!-- Popular Car One Single Start -->
-                    <div class="item">
-                        <div class="popular-car-one__single">
-                            <div class="popular-car-one__icon">
-                                <span class="icon-car-2"></span>
-                            </div>
-                            <div class="popular-car-one__single-inner">
-                                <h4 class="popular-car-one__title"><a href="car-list-v-2.html">Crossover</a></h4>
-                            </div>
-                            <p class="popular-car-one__count">5 Cars</p>
-                        </div>
-                    </div>
-                    <!-- Popular Car One Single End -->
-                    <!-- Popular Car One Single Start -->
-                    <div class="item">
-                        <div class="popular-car-one__single">
-                            <div class="popular-car-one__icon">
-                                <span class="icon-car-1"></span>
-                            </div>
-                            <div class="popular-car-one__single-inner">
-                                <h4 class="popular-car-one__title"><a href="car-list-v-3.html">Pickup</a></h4>
-                            </div>
-                            <p class="popular-car-one__count">8 Cars</p>
-                        </div>
-                    </div>
-                    <!-- Popular Car One Single End -->
-                    <!-- Popular Car One Single Start -->
-                    <div class="item">
-                        <div class="popular-car-one__single">
-                            <div class="popular-car-one__icon">
-                                <span class="icon-cuv"></span>
-                            </div>
-                            <div class="popular-car-one__single-inner">
-                                <h4 class="popular-car-one__title"><a href="cars.html">Family MPV</a></h4>
-                            </div>
-                            <p class="popular-car-one__count">6 Cars</p>
-                        </div>
-                    </div>
-                    <!-- Popular Car One Single End -->
-                    <!-- Popular Car One Single Start -->
-                    <div class="item">
-                        <div class="popular-car-one__single">
-                            <div class="popular-car-one__icon">
-                                <span class="icon-taxi"></span>
-                            </div>
-                            <div class="popular-car-one__single-inner">
-                                <h4 class="popular-car-one__title"><a href="listing-single.html">Pickup</a></h4>
-                            </div>
-                            <p class="popular-car-one__count">7 Cars</p>
-                        </div>
-                    </div>
-                    <!-- Popular Car One Single End -->
-                    <!-- Popular Car One Single Start -->
-                    <div class="item">
-                        <div class="popular-car-one__single">
-                            <div class="popular-car-one__icon">
-                                <span class="icon-sedan"></span>
-                            </div>
-                            <div class="popular-car-one__single-inner">
-                                <h4 class="popular-car-one__title"><a href="listing-single.html">Sedan</a></h4>
-                            </div>
-                            <p class="popular-car-one__count">9 Cars</p>
-                        </div>
-                    </div>
-                    <!-- Popular Car One Single End -->
-                </div>
-            </div>
-        </section>
-        <!-- Popular Car One End -->
-
         <!-- Testimonial One Start -->
         <section class="testimonial-one">
             <div class="container">
                 <div class="section-title text-left sec-title-animation animation-style2">
                     <div class="section-title__tagline-box">
                         <div class="section-title__tagline-shape">
-                            <img  src="assets/images/shapes/logo_BGT.png" alt="">
+                            <img  src="/assets/images/shapes/logo_BGT.png" alt="">
                         </div>
                         <span class="section-title__tagline">Our Testimonial</span>
                     </div>
@@ -4183,7 +808,7 @@
                         <div class="testimonial-one__single">
                             <div class="testimonial-one__client-info">
                                 <div class="testimonial-one__img">
-                                    <img src="assets/images/testimonial/testimonial-1-1.jpg" alt="">
+                                    <img src="/assets/images/testimonial/testimonial-1-1.jpg" alt="">
                                 </div>
                                 <div class="testimonial-one__content">
                                     <h4 class="testimonial-one__client-name"><a href="testimonials.html">Adam Smith</a>
@@ -4211,7 +836,7 @@
                         <div class="testimonial-one__single">
                             <div class="testimonial-one__client-info">
                                 <div class="testimonial-one__img">
-                                    <img src="assets/images/testimonial/testimonial-1-2.jpg" alt="">
+                                    <img src="/assets/images/testimonial/testimonial-1-2.jpg" alt="">
                                 </div>
                                 <div class="testimonial-one__content">
                                     <h4 class="testimonial-one__client-name"><a href="testimonials.html">Adam Milne</a>
@@ -4239,7 +864,7 @@
                         <div class="testimonial-one__single">
                             <div class="testimonial-one__client-info">
                                 <div class="testimonial-one__img">
-                                    <img src="assets/images/testimonial/testimonial-1-3.jpg" alt="">
+                                    <img src="/assets/images/testimonial/testimonial-1-3.jpg" alt="">
                                 </div>
                                 <div class="testimonial-one__content">
                                     <h4 class="testimonial-one__client-name"><a href="testimonials.html">Marco
@@ -4268,7 +893,7 @@
                         <div class="testimonial-one__single">
                             <div class="testimonial-one__client-info">
                                 <div class="testimonial-one__img">
-                                    <img src="assets/images/testimonial/testimonial-1-4.jpg" alt="">
+                                    <img src="/assets/images/testimonial/testimonial-1-4.jpg" alt="">
                                 </div>
                                 <div class="testimonial-one__content">
                                     <h4 class="testimonial-one__client-name"><a href="testimonials.html">Look Ronci</a>
@@ -4296,7 +921,7 @@
                         <div class="testimonial-one__single">
                             <div class="testimonial-one__client-info">
                                 <div class="testimonial-one__img">
-                                    <img src="assets/images/testimonial/testimonial-1-5.jpg" alt="">
+                                    <img src="/assets/images/testimonial/testimonial-1-5.jpg" alt="">
                                 </div>
                                 <div class="testimonial-one__content">
                                     <h4 class="testimonial-one__client-name"><a href="testimonials.html">Harry Broke</a>
@@ -4324,7 +949,7 @@
                         <div class="testimonial-one__single">
                             <div class="testimonial-one__client-info">
                                 <div class="testimonial-one__img">
-                                    <img src="assets/images/testimonial/testimonial-1-6.jpg" alt="">
+                                    <img src="/assets/images/testimonial/testimonial-1-6.jpg" alt="">
                                 </div>
                                 <div class="testimonial-one__content">
                                     <h4 class="testimonial-one__client-name"><a href="testimonials.html">Jessica
@@ -4364,7 +989,7 @@
                             <div class="section-title text-left sec-title-animation animation-style2">
                                 <div class="section-title__tagline-box">
                                     <div class="section-title__tagline-shape">
-                                        <img  src="assets/images/shapes/logo_BGT.png" alt="">
+                                        <img  src="/assets/images/shapes/logo_BGT.png" alt="">
                                     </div>
                                     <span class="section-title__tagline">Our Faqs</span>
                                 </div>
@@ -4372,7 +997,7 @@
                             </div>
                             <div class="faq-one__img-box">
                                 <div class="faq-one__img reveal">
-                                    <img src="assets/images/resources/faq-one-img-1.jpg" alt="">
+                                    <img src="/assets/images/resources/faq-one-img-1.jpg" alt="">
                                 </div>
                                 <div class="faq-one__experience-box">
                                     <div class="faq-one__experience-year">
@@ -4463,7 +1088,7 @@
 
         <!--Lets Talk Start -->
         <section class="lets-talk">
-            <div class="lets-talk__bg" style="background-image: url('{{ asset('assets/images/backgrounds/lets-talk-bg.jpg') }}');"></div>
+            <div class="lets-talk__bg" style="background-image: url('/assets/images/backgrounds/lets-talk-bg.jpg');"></div>
             <div class="container">
                 <div class="lets-talk__inner">
                     <div class="lets-talk__title">
@@ -4485,51 +1110,6 @@
         </section>
         <!--Lets Talk End -->
 
-
-       
-        <!--Download App One Start -->
-        <section class="download-app-one">
-            <div class="download-app-one__bg jarallax" data-jarallax data-speed="0.2" data-imgPosition="50% 0%"
-                style="background-image: url('{{ asset('assets/images/backgrounds/download-app-one-bg.jpg') }}');"></div>
-            <div class="container">
-                <div class="download-app-one__inner">
-                    <div class="row">
-                        <div class="col-xl-7 col-lg-7">
-                            <div class="download-app-one__content sec-title-animation animation-style2">
-                                <p class="download-app-one__sub-title">Download Our App</p>
-                                <h2 class="download-app-one__title title-animation">Gorent User Friendly <br> App
-                                    Available</h2>
-                                <p class="download-app-one__text">Get our mobile app for easy and convenient usage</p>
-                                <div class="download-app-one__google-and-app-store">
-                                    <a href="contact.html"><img src="assets/images/icon/download-app-img1.png"
-                                            alt=""></a>
-                                    <a href="contact.html"><img src="assets/images/icon/download-app-img2.png"
-                                            alt=""></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-5 col-lg-5">
-                            <div class="download-app-one__right">
-                                <div class="download-app-one__img">
-                                    <div class="download-app-one__img1 reveal">
-                                        <img src="assets/images/resources/download-app-img-1.png" alt="">
-                                    </div>
-                                </div>
-                                <div class="download-app-one-car__img float-bob-x">
-                                    <img src="assets/images/resources/download-app-car-img-1.png" alt="">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!--Download App One End -->
-
-       
-
-       
-
         <!--Gallery One Start -->
         <section class="gallery-one">
             <div class="gallery-one__carousel owl-theme owl-carousel">
@@ -4537,7 +1117,7 @@
                 <div class="item">
                     <div class="gallery-one__single">
                         <div class="gallery-one__img">
-                            <img src="assets/images/gallery/gallery-1-1.jpg" alt="">
+                            <img src="/assets/images/gallery/gallery-1-1.jpg" alt="">
                             <a href="cars.html"><span class="fab fa-instagram"></span></a>
                         </div>
                     </div>
@@ -4547,7 +1127,7 @@
                 <div class="item">
                     <div class="gallery-one__single">
                         <div class="gallery-one__img">
-                            <img src="assets/images/gallery/gallery-1-2.jpg" alt="">
+                            <img src="/assets/images/gallery/gallery-1-2.jpg" alt="">
                             <a href="cars.html"><span class="fab fa-instagram"></span></a>
                         </div>
                     </div>
@@ -4557,7 +1137,7 @@
                 <div class="item">
                     <div class="gallery-one__single">
                         <div class="gallery-one__img">
-                            <img src="assets/images/gallery/gallery-1-3.jpg" alt="">
+                            <img src="/assets/images/gallery/gallery-1-3.jpg" alt="">
                             <a href="cart.html"><span class="fab fa-instagram"></span></a>
                         </div>
                     </div>
@@ -4567,7 +1147,7 @@
                 <div class="item">
                     <div class="gallery-one__single">
                         <div class="gallery-one__img">
-                            <img src="assets/images/gallery/gallery-1-4.jpg" alt="">
+                            <img src="/assets/images/gallery/gallery-1-4.jpg" alt="">
                             <a href="cart.html"><span class="fab fa-instagram"></span></a>
                         </div>
                     </div>
@@ -4577,7 +1157,7 @@
                 <div class="item">
                     <div class="gallery-one__single">
                         <div class="gallery-one__img">
-                            <img src="assets/images/gallery/gallery-1-5.jpg" alt="">
+                            <img src="/assets/images/gallery/gallery-1-5.jpg" alt="">
                             <a href="cart.html"><span class="fab fa-instagram"></span></a>
                         </div>
                     </div>
@@ -4587,7 +1167,7 @@
                 <div class="item">
                     <div class="gallery-one__single">
                         <div class="gallery-one__img">
-                            <img src="assets/images/gallery/gallery-1-6.jpg" alt="">
+                            <img src="/assets/images/gallery/gallery-1-6.jpg" alt="">
                             <a href="cart.html"><span class="fab fa-instagram"></span></a>
                         </div>
                     </div>

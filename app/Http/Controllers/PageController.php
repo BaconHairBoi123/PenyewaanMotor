@@ -7,7 +7,10 @@ use Illuminate\Http\Request;
 class PageController extends Controller
 {
     // --- Bagian Halaman Umum ---
-    public function home() { return view('user.home'); }
+    public function home() { 
+        $motorcycles = \App\Models\Motorcycle::latest()->take(6)->get();
+        return view('user.home', compact('motorcycles')); 
+    }
     
     // Halaman About Us
     public function about() { return view('user.about'); }

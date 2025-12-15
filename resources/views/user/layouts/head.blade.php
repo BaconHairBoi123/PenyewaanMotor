@@ -5,10 +5,10 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title', 'Ride Nusa')</title>
 
-    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('assets/images/favicons/apple-touch-icon.png') }}" />
-    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets/images/favicons/favicon-32x32.png') }}" />
-    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/images/favicons/favicon-16x16.png') }}" />
-    <link rel="manifest" href="{{ asset('assets/images/favicons/site.webmanifest') }}" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/favicons/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicons/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicons/favicon-16x16.png" />
+    <link rel="manifest" href="/assets/images/favicons/site.webmanifest" />
 
  <!-- fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -26,10 +26,13 @@
     <link rel="stylesheet" href="{{ asset('assets/css/animate.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/custom-animate.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/swiper.min.css') }}" />
-    <link rel="stylesheet" href="{{ asset('assets/css/font-awesome-all.css') }}" />
+    <!-- Replaced broken local fonts with CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    <!-- <link rel="stylesheet" href="{{ asset('assets/css/font-awesome-all.css') }}" /> -->
     <link rel="stylesheet" href="{{ asset('assets/css/jarallax.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/jquery.magnific-popup.css') }}" />
-    <link rel="stylesheet" href="{{ asset('assets/css/flaticon.css') }}" />
+    <!-- Flaticon fonts missing, commenting out to prevent timeout -->
+    <!-- <link rel="stylesheet" href="{{ asset('assets/css/flaticon.css') }}" /> -->
     <link rel="stylesheet" href="{{ asset('assets/css/owl.carousel.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/owl.theme.default.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/nice-select.css') }}" />
