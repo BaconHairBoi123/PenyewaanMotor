@@ -175,10 +175,16 @@ Route::middleware('auth:admin')->prefix('admin')->name('admin.')->group(function
     Route::post('/services/store', [ServiceController::class, 'store'])->name('services.store');
     
     // Service Types
-    Route::get('/service-types', [App\Http\Controllers\Admin\ServiceTypeController::class, 'index'])->name('service.types');
-    Route::post('/service-types/store', [App\Http\Controllers\Admin\ServiceTypeController::class, 'store'])->name('service.types.store');
-    Route::delete('/service-types/{id}', [App\Http\Controllers\Admin\ServiceTypeController::class, 'destroy'])->name('service.types.delete');
-    
+// Service Types
+    Route::get('/service-types', [App\Http\Controllers\Admin\ServiceTypeController::class, 'index'])
+        ->name('service.types.index');
+
+    Route::post('/service-types', [App\Http\Controllers\Admin\ServiceTypeController::class, 'store'])
+        ->name('service.types.store');
+
+    Route::delete('/service-types/{id}', [App\Http\Controllers\Admin\ServiceTypeController::class, 'destroy'])
+        ->name('service.types.destroy');
+
     // Delivery Pickup Today
     Route::get('/delivery-pickup-today', [App\Http\Controllers\Admin\DeliveryController::class, 'index'])->name('delivery.today');
     

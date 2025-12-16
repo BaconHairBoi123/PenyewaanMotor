@@ -275,11 +275,14 @@
                 </div>
 
                 {{-- BUTTON --}}
-                <a href="{{ route('login') }}">
-                    <button class="bg-yellow-400 hover:bg-yellow-500 w-full py-3 mt-4 rounded-lg font-bold text-sm">
-                        Details Now →
-                    </button>
-                </a>
+                
+
+                    <a href="{{ route('login') }}">
+                        <button class="bg-yellow-400 hover:bg-yellow-500 w-full py-3 mt-4 rounded-lg font-bold text-sm">
+                            Details Now →
+                        </button>
+                    </a>
+                
 
             </div>
             @endforeach

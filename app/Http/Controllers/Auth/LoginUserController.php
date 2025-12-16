@@ -54,7 +54,7 @@ class LoginUserController extends Controller
             $request->session()->regenerate();
 
             // Ganti '/user/dashboard' dengan rute dashboard Anda
-            return redirect()->intended('/user/home')->with('success', 'Login Berhasil!');
+            return redirect()->intended('/home')->with('success', 'Login Berhasil!');
         }
 
         // 5. Login Gagal

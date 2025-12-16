@@ -28,14 +28,21 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
         $request->validate([
-            'name'  => 'required|string|max:255',
-            'email' => 'required|email',
-            'phone_number' => 'nullable|string',
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'phone_number' => 'nullable|string|max:20',
+            'verification_status' => 'required|in:verified,unverified',
         ]);
 
-        $user->update($request->only('name', 'email', 'phone_number'));
+        $user->update([
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone_number' => $request->phone_number,
+            'verification_status' => $request->verification_status,
+        ]);
 
-        return redirect()->route('admin.users.index')
+        return redirect()
+            ->route('admin.users.index')
             ->with('success', 'User updated successfully.');
     }
 
