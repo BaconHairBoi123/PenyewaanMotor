@@ -1,31 +1,30 @@
-@extends('user.layouts.app') 
+@extends('user.layouts.app')
 
 @section('content')
-
-
-        <!--Page Header Start -->
-        <section class="page-header">
-            <div class="page-header__bg" style="background-image: url('{{ asset('assets/images/backgrounds/page-header-bg.jpg') }}');">
-            </div>
-            <div class="page-header__shape-1"
-                style="background-image: url('{{ asset('assets/images/shapes/page-header-shape-1.png') }}');"></div>
-            <div class="container">
-                <div class="page-header__inner">
-                    <h3>Car List V-1</h3>
-                    <div class="thm-breadcrumb__inner">
-                        <ul class="thm-breadcrumb list-unstyled">
-                            <li><a href="index.html">Home</a></li>
-                            <li><span class="icon-arrow-left"></span></li>
-                            <li>Car List V-1</li>
-                        </ul>
-                    </div>
+    <!--Page Header Start -->
+    <section class="page-header">
+        <div class="page-header__bg"
+            style="background-image: url('{{ asset('assets/images/backgrounds/page-header-bg.jpg') }}');">
+        </div>
+        <div class="page-header__shape-1"
+            style="background-image: url('{{ asset('assets/images/shapes/page-header-shape-1.png') }}');"></div>
+        <div class="container">
+            <div class="page-header__inner">
+                <h3>Car List V-1</h3>
+                <div class="thm-breadcrumb__inner">
+                    <ul class="thm-breadcrumb list-unstyled">
+                        <li><a href="index.html">Home</a></li>
+                        <li><span class="icon-arrow-left"></span></li>
+                        <li>Car List V-1</li>
+                    </ul>
                 </div>
             </div>
-        </section>
-        <!--Page Header End -->
+        </div>
+    </section>
+    <!--Page Header End -->
 
-        <!--Car Listing page One Start -->
-        <section class="car-listing-page-one">
+    <!--Car Listing page One Start -->
+    {{-- <section class="car-listing-page-one">
             <div class="container">
                 <div class="row">
                     <div class="col-xl-9">
@@ -1264,180 +1263,398 @@
                     </div>
                 </div>
             </div>
-        </section>
-        <!--Car Listing page One End -->
+        </section> --}}
+    <!--Car Listing page One End -->
+    <!--Car Listing page baru Start -->
 
-        <!--Gallery One Start -->
-        <section class="gallery-one">
-            <div class="gallery-one__carousel owl-theme owl-carousel">
-                <!--Gallery One Single Start-->
-                <div class="item">
-                    <div class="gallery-one__single">
-                        <div class="gallery-one__img">
-                            <img src="assets/images/gallery/gallery-1-1.jpg" alt="">
-                            <a href="cars.html"><span class="fab fa-instagram"></span></a>
-                        </div>
-                    </div>
-                </div>
-                <!--Gallery One Single End-->
-                <!--Gallery One Single Start-->
-                <div class="item">
-                    <div class="gallery-one__single">
-                        <div class="gallery-one__img">
-                            <img src="assets/images/gallery/gallery-1-2.jpg" alt="">
-                            <a href="cars.html"><span class="fab fa-instagram"></span></a>
-                        </div>
-                    </div>
-                </div>
-                <!--Gallery One Single End-->
-                <!--Gallery One Single Start-->
-                <div class="item">
-                    <div class="gallery-one__single">
-                        <div class="gallery-one__img">
-                            <img src="assets/images/gallery/gallery-1-3.jpg" alt="">
-                            <a href="cart.html"><span class="fab fa-instagram"></span></a>
-                        </div>
-                    </div>
-                </div>
-                <!--Gallery One Single End-->
-                <!--Gallery One Single Start-->
-                <div class="item">
-                    <div class="gallery-one__single">
-                        <div class="gallery-one__img">
-                            <img src="assets/images/gallery/gallery-1-4.jpg" alt="">
-                            <a href="cart.html"><span class="fab fa-instagram"></span></a>
-                        </div>
-                    </div>
-                </div>
-                <!--Gallery One Single End-->
-                <!--Gallery One Single Start-->
-                <div class="item">
-                    <div class="gallery-one__single">
-                        <div class="gallery-one__img">
-                            <img src="assets/images/gallery/gallery-1-5.jpg" alt="">
-                            <a href="cart.html"><span class="fab fa-instagram"></span></a>
-                        </div>
-                    </div>
-                </div>
-                <!--Gallery One Single End-->
-                <!--Gallery One Single Start-->
-                <div class="item">
-                    <div class="gallery-one__single">
-                        <div class="gallery-one__img">
-                            <img src="assets/images/gallery/gallery-1-6.jpg" alt="">
-                            <a href="cart.html"><span class="fab fa-instagram"></span></a>
-                        </div>
-                    </div>
-                </div>
-                <!--Gallery One Single End-->
-            </div>
-        </section>
-        <!--Gallery One End -->
 
-        <!--Site Footer Start-->
-        <footer class="site-footer">
-            <div class="site-footer__bg" style="background-image: url('{{ asset('assets/images/backgrounds/site-footer-bg.jpg') }}');">
-            </div>
-            <div class="site-footer__top">
-                <div class="container">
-                    <div class="site-footer__top-inner">
+    <section class="car-listing-page-one">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-9">
+                    <div class="car-listing-page-one__left">
                         <div class="row">
-                            <div class="col-xl-4 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay="100ms">
-                                <div class="footer-widget__about">
-                                    <div class="footer-widget__about-logo">
-                                        <a href="index.html"><img src="assets/images/resources/footer-logo.png"
-                                                alt=""></a>
-                                    </div>
-                                    <p class="footer-widget__about-text">Car Is Where Early Adopters And Innovation
-                                        Seekers Find Lively
-                                        Imaginative Tech.</p>
-                                    <form class="footer-widget__form">
-                                        <div class="footer-widget__input">
-                                            <input type="email" placeholder="Your Email">
+                            @forelse ($motorcycles as $m)
+                                <div class="col-xl-4 col-lg-4 col-md-6">
+                                    <div class="listing-one__single">
+                                        <div class="listing-one__img">
+                                            @if ($m->image_path && file_exists(public_path('storage/motorcycles/' . $m->image_path)))
+                                                <img src="{{ asset('storage/motorcycles/' . $m->image_path) }}"
+                                                    alt="{{ $m->category }}">
+                                            @else
+                                                <img src="{{ asset('assets/images/resources/RIDEnotrasparan.png') }}"
+                                                    alt="No Image Available">
+                                            @endif
+
+                                            <div class="listing-one__brand-name">
+                                                <p>{{ strtoupper($m->brand) }}</p>
+                                            </div>
                                         </div>
-                                        <button type="submit" class="footer-widget__btn"><i
-                                                class="icon-right-arrow"></i></button>
-                                    </form>
+                                        <div class="listing-one__content">
+                                            <h3 class="listing-one__title">
+                                                <a href="#">{{ $m->category }}</a>
+                                            </h3>
+                                            <div class="listing-one__meta-box-info">
+                                                <ul class="list-unstyled listing-one__meta">
+                                                    <li>
+                                                        <div class="icon"><span class="icon-manual"></span>
+                                                        </div>
+                                                        <div class="text">
+                                                            <p>{{ ucfirst($m->transmission) }}</p>
+                                                        </div>
+                                                    </li>
+                                                    <li>
+                                                        <div class="icon"><span class="icon-mileage"></span>
+                                                        </div>
+                                                        <div class="text">
+                                                            <p>{{ $m->lastService->kilometer ?? 0 }} KM</p>
+                                                        </div>
+                                                    </li>
+                                                    <li>
+                                                        <div class="icon"><span class="icon-test-drive"></span>
+                                                        </div>
+                                                        <div class="text">
+                                                            {{-- Mengubah 'big_matic' menjadi 'Big Matic' agar lebih rapi --}}
+                                                            <p>{{ str_replace('_', '', ucfirst($m->type)) }}
+                                                            </p>
+                                                        </div>
+                                                    </li>
+                                                    <li>
+                                                        <div class="icon"><span class="icon-fuel-type"></span>
+                                                        </div>
+                                                        <div class="text">
+                                                            <p>{{ $m->fuel_configuration }}</p>
+                                                        </div>
+                                                    </li>
+                                                    <li>
+                                                        <div class="icon"><span class="icon-mileage"></span>
+                                                        </div>
+                                                        <div class="text">
+                                                            {{-- Karena di tabel tidak ada kolom kilometer, kita tampilkan CC saja atau tgl service --}}
+                                                            <p>{{ $m->cc }} CC</p>
+                                                        </div>
+                                                    </li>
+                                                   
+                                                </ul>
+                                            </div>
+                                            <div class="listing-one__car-rent-box">
+                                                <p class="listing-one__car-rent">Price
+                                                    <span>Rp {{ number_format($m->price, 0, ',', '.') }}</span>
+                                                </p>
+                                            </div>
+                                            <div class="listing-one__btn-box">
+                                                <a href="#" class="thm-btn">Details Now
+                                                    <span class="fas fa-arrow-right"></span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-xl-2 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay="200ms">
-                                <div class="footer-widget__links">
-                                    <h4 class="footer-widget__title">Quick links</h4>
-                                    <ul class="footer-widget__links-list list-unstyled">
-                                        <li><a href="about.html">About Us</a></li>
-                                        <li><a href="services.html">Our Services</a></li>
-                                        <li><a href="drivers.html">Our Drivers</a></li>
-                                        <li><a href="blog.html">Our Blog</a></li>
-                                        <li><a href="contact.html">Contact Us</a></li>
+                            @empty
+                                <div class="col-12 text-center">
+                                    <p>No vehicles found.</p>
+                                </div>
+                            @endforelse
+                        </div>
+
+                        <div class="car-listing__pagination">
+                            {{ $motorcycles->links() }}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-3">
+                    <div class="car-listing-page-one__right">
+                        <div class="car-listing__sidebar">
+
+                            <form action="{{ route('motorcycles.index') }}" method="GET">
+
+                                <div class="car-listing__search car-listing__sidebar-single">
+                                    <h3 class="car-listing__sidebar-title">Search Category</h3>
+                                    <div class="search-form">
+                                        <input type="text" name="category" placeholder="Type category..."
+                                            value="{{ request('category') }}">
+                                        <button type="submit"><i class="fa fa-search"></i></button>
+
+                                    </div>
+                                </div>
+
+                                <div class="car-listing__price-ranger car-listing__sidebar-single">
+                                    <h3 class="car-listing__sidebar-title">Filter Price</h3>
+                                    <div class="price-ranger">
+                                        <div id="slider-range"></div>
+                                        <div class="ranger-min-max-block">
+                                            <input type="text" name="min_price" id="min_price" readonly class="min"
+                                                value="{{ request('min_price', '0') }}">
+                                            <span>-</span>
+                                            <input type="text" name="max_price" id="max_price" readonly class="max"
+                                                value="{{ request('max_price', '20000000') }}">
+                                        </div>
+                                        <button type="submit" class="thm-btn w-100 mt-2" style="padding: 5px;">Filter
+                                            Price</button>
+                                    </div>
+                                </div>
+
+
+                                <div class="car-listing__category car-listing__sidebar-single">
+                                    <h3 class="car-listing__sidebar-title">Brand</h3>
+                                    <ul class="list-unstyled">
+                                        @foreach (['Honda', 'Yamaha', 'Suzuki', 'Kawasaki'] as $brand)
+                                            <li>
+                                                <div class="checked-box">
+                                                    <input type="checkbox" name="brand[]" id="br-{{ $brand }}"
+                                                        value="{{ $brand }}"
+                                                        {{ is_array(request('brand')) && in_array($brand, request('brand')) ? 'checked' : '' }}
+                                                        onchange="this.form.submit()">
+                                                    <label
+                                                        for="br-{{ $brand }}"><span></span>{{ $brand }}</label>
+                                                </div>
+                                            </li>
+                                        @endforeach
                                     </ul>
                                 </div>
-                            </div>
-                            <div class="col-xl-3 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay="400ms">
-                                <div class="footer-widget__services">
-                                    <h4 class="footer-widget__title">Services</h4>
-                                    <ul class="footer-widget__links-list list-unstyled">
-                                        <li><a href="car-list-v-1.html">Your Reliable Ride</a></li>
-                                        <li><a href="car-list-v-2.html">Express Shuttle</a></li>
-                                        <li><a href="car-list-v-3.html">Travel in Style</a></li>
-                                        <li><a href="cars.html">Rental List</a></li>
-                                        <li><a href="listing-single.html">Dash Transport</a></li>
+
+                                <div class="car-listing__category car-listing__sidebar-single">
+                                    <h3 class="car-listing__sidebar-title">Type</h3>
+                                    <ul class="list-unstyled">
+                                        @foreach (['Matic', 'Manual', 'Sport', 'Trail'] as $type)
+                                            <li>
+                                                <div class="checked-box">
+                                                    <input type="checkbox" name="type[]" id="ty-{{ $type }}"
+                                                        value="{{ $type }}"
+                                                        {{ is_array(request('type')) && in_array($type, request('type')) ? 'checked' : '' }}
+                                                        onchange="this.form.submit()">
+                                                    <label
+                                                        for="ty-{{ $type }}"><span></span>{{ $type }}</label>
+                                                </div>
+                                            </li>
+                                        @endforeach
                                     </ul>
                                 </div>
-                            </div>
-                            <div class="col-xl-3 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay="300ms">
-                                <div class="footer-widget__contact">
-                                    <h3 class="footer-widget__title">Contact Us</h3>
-                                    <ul class="footer-widget__contact-list list-unstyled">
-                                        <li>
-                                            <div class="icon">
-                                                <span class="icon-pin"></span>
-                                            </div>
-                                            <p>4140 Parker Rd. Allentown, New
-                                                <br> Mexico 31134</p>
-                                        </li>
-                                        <li>
-                                            <div class="icon">
-                                                <span class="icon-call"></span>
-                                            </div>
-                                            <p><a href="tel:2195550114">(219) 555-0114</a></p>
-                                        </li>
-                                        <li>
-                                            <div class="icon">
-                                                <span class="icon-envelope"></span>
-                                            </div>
-                                            <p><a href="mailto:gorent@gmail.com">gorent@gmail.com</a></p>
-                                        </li>
+
+                                <div class="car-listing__category car-listing__sidebar-single">
+                                    <h3 class="car-listing__sidebar-title">Transmission</h3>
+                                    <ul class="list-unstyled">
+                                        @foreach (['Automatic', 'Manual'] as $trans)
+                                            <li>
+                                                <div class="checked-box">
+                                                    <input type="checkbox" name="transmission[]"
+                                                        id="tr-{{ $trans }}" value="{{ $trans }}"
+                                                        {{ is_array(request('transmission')) && in_array($trans, request('transmission')) ? 'checked' : '' }}
+                                                        onchange="this.form.submit()">
+                                                    <label
+                                                        for="tr-{{ $trans }}"><span></span>{{ $trans }}</label>
+                                                </div>
+                                            </li>
+                                        @endforeach
                                     </ul>
                                 </div>
-                            </div>
+
+                                <div class="car-listing__category car-listing__sidebar-single">
+                                    <h3 class="car-listing__sidebar-title">Fuel Configuration</h3>
+                                    <ul class="list-unstyled">
+                                        @foreach (['Gasoline', 'Electric', 'Hybrid'] as $fuel)
+                                            <li>
+                                                <div class="checked-box">
+                                                    <input type="checkbox" name="fuel[]" id="fu-{{ $fuel }}"
+                                                        value="{{ $fuel }}"
+                                                        {{ is_array(request('fuel')) && in_array($fuel, request('fuel')) ? 'checked' : '' }}
+                                                        onchange="this.form.submit()">
+                                                    <label
+                                                        for="fu-{{ $fuel }}"><span></span>{{ $fuel }}</label>
+                                                </div>
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+
+                                <a href="{{ route('motorcycles.index') }}"
+                                    class="btn btn-secondary btn-sm w-100 mt-3">Reset All
+                                    Filters</a>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="site-footer__bottom">
-                <div class="container">
+        </div>
+    </section>
+
+
+
+
+
+    <!--Gallery One Start -->
+    <section class="gallery-one">
+        <div class="gallery-one__carousel owl-theme owl-carousel">
+            <!--Gallery One Single Start-->
+            <div class="item">
+                <div class="gallery-one__single">
+                    <div class="gallery-one__img">
+                        <img src="assets/images/gallery/gallery-1-1.jpg" alt="">
+                        <a href="cars.html"><span class="fab fa-instagram"></span></a>
+                    </div>
+                </div>
+            </div>
+            <!--Gallery One Single End-->
+            <!--Gallery One Single Start-->
+            <div class="item">
+                <div class="gallery-one__single">
+                    <div class="gallery-one__img">
+                        <img src="assets/images/gallery/gallery-1-2.jpg" alt="">
+                        <a href="cars.html"><span class="fab fa-instagram"></span></a>
+                    </div>
+                </div>
+            </div>
+            <!--Gallery One Single End-->
+            <!--Gallery One Single Start-->
+            <div class="item">
+                <div class="gallery-one__single">
+                    <div class="gallery-one__img">
+                        <img src="assets/images/gallery/gallery-1-3.jpg" alt="">
+                        <a href="cart.html"><span class="fab fa-instagram"></span></a>
+                    </div>
+                </div>
+            </div>
+            <!--Gallery One Single End-->
+            <!--Gallery One Single Start-->
+            <div class="item">
+                <div class="gallery-one__single">
+                    <div class="gallery-one__img">
+                        <img src="assets/images/gallery/gallery-1-4.jpg" alt="">
+                        <a href="cart.html"><span class="fab fa-instagram"></span></a>
+                    </div>
+                </div>
+            </div>
+            <!--Gallery One Single End-->
+            <!--Gallery One Single Start-->
+            <div class="item">
+                <div class="gallery-one__single">
+                    <div class="gallery-one__img">
+                        <img src="assets/images/gallery/gallery-1-5.jpg" alt="">
+                        <a href="cart.html"><span class="fab fa-instagram"></span></a>
+                    </div>
+                </div>
+            </div>
+            <!--Gallery One Single End-->
+            <!--Gallery One Single Start-->
+            <div class="item">
+                <div class="gallery-one__single">
+                    <div class="gallery-one__img">
+                        <img src="assets/images/gallery/gallery-1-6.jpg" alt="">
+                        <a href="cart.html"><span class="fab fa-instagram"></span></a>
+                    </div>
+                </div>
+            </div>
+            <!--Gallery One Single End-->
+        </div>
+    </section>
+    <!--Gallery One End -->
+
+    <!--Site Footer Start-->
+    <footer class="site-footer">
+        <div class="site-footer__bg" style="background-image: url(assets/images/backgrounds/site-footer-bg.jpg);">
+        </div>
+        <div class="site-footer__top">
+            <div class="container">
+                <div class="site-footer__top-inner">
                     <div class="row">
-                        <div class="col-xl-12">
-                            <div class="site-footer__bottom-inner">
-                                <div class="site-footer__copyright">
-                                    <p class="site-footer__copyright-text">© 2025 Gorent By <a
-                                            href="https://themeforest.net/user/dreamlayout">Dreamlayout.</a> All
-                                        Rights
-                                        Reserved.</p>
+                        <div class="col-xl-4 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay="100ms">
+                            <div class="footer-widget__about">
+                                <div class="footer-widget__about-logo">
+                                    <a href="index.html"><img src="assets/images/resources/footer-logo.png"
+                                            alt=""></a>
                                 </div>
-                                <div class="site-footer__bottom-menu-box">
-                                    <ul class="list-unstyled site-footer__bottom-menu">
-                                        <li><a href="about.html">Terms of Service</a></li>
-                                        <li><a href="about.html">Privacy policy</a></li>
-                                    </ul>
-                                </div>
+                                <p class="footer-widget__about-text">Car Is Where Early Adopters And Innovation
+                                    Seekers Find Lively
+                                    Imaginative Tech.</p>
+                                <form class="footer-widget__form">
+                                    <div class="footer-widget__input">
+                                        <input type="email" placeholder="Your Email">
+                                    </div>
+                                    <button type="submit" class="footer-widget__btn"><i
+                                            class="icon-right-arrow"></i></button>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="col-xl-2 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay="200ms">
+                            <div class="footer-widget__links">
+                                <h4 class="footer-widget__title">Quick links</h4>
+                                <ul class="footer-widget__links-list list-unstyled">
+                                    <li><a href="about.html">About Us</a></li>
+                                    <li><a href="services.html">Our Services</a></li>
+                                    <li><a href="drivers.html">Our Drivers</a></li>
+                                    <li><a href="blog.html">Our Blog</a></li>
+                                    <li><a href="contact.html">Contact Us</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay="400ms">
+                            <div class="footer-widget__services">
+                                <h4 class="footer-widget__title">Services</h4>
+                                <ul class="footer-widget__links-list list-unstyled">
+                                    <li><a href="car-list-v-1.html">Your Reliable Ride</a></li>
+                                    <li><a href="car-list-v-2.html">Express Shuttle</a></li>
+                                    <li><a href="car-list-v-3.html">Travel in Style</a></li>
+                                    <li><a href="cars.html">Rental List</a></li>
+                                    <li><a href="listing-single.html">Dash Transport</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay="300ms">
+                            <div class="footer-widget__contact">
+                                <h3 class="footer-widget__title">Contact Us</h3>
+                                <ul class="footer-widget__contact-list list-unstyled">
+                                    <li>
+                                        <div class="icon">
+                                            <span class="icon-pin"></span>
+                                        </div>
+                                        <p>4140 Parker Rd. Allentown, New
+                                            <br> Mexico 31134
+                                        </p>
+                                    </li>
+                                    <li>
+                                        <div class="icon">
+                                            <span class="icon-call"></span>
+                                        </div>
+                                        <p><a href="tel:2195550114">(219) 555-0114</a></p>
+                                    </li>
+                                    <li>
+                                        <div class="icon">
+                                            <span class="icon-envelope"></span>
+                                        </div>
+                                        <p><a href="mailto:gorent@gmail.com">gorent@gmail.com</a></p>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </footer>
-        <!--Site Footer End-->
+        </div>
+        <div class="site-footer__bottom">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="site-footer__bottom-inner">
+                            <div class="site-footer__copyright">
+                                <p class="site-footer__copyright-text">© 2025 Gorent By <a
+                                        href="https://themeforest.net/user/dreamlayout">Dreamlayout.</a> All
+                                    Rights
+                                    Reserved.</p>
+                            </div>
+                            <div class="site-footer__bottom-menu-box">
+                                <ul class="list-unstyled site-footer__bottom-menu">
+                                    <li><a href="about.html">Terms of Service</a></li>
+                                    <li><a href="about.html">Privacy policy</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!--Site Footer End-->
 
 
 

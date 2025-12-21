@@ -1,27 +1,33 @@
 @extends('user.layouts.app')
 
 @section('content')
-    <!--Page Header Start -->
+    <!-- Page Header Start -->
     <section class="page-header">
         <div class="page-header__bg"
             style="background-image: url('{{ asset('assets/images/backgrounds/page-header-bg.jpg') }}');">
         </div>
+
         <div class="page-header__shape-1"
-            style="background-image: url('{{ asset('assets/images/shapes/page-header-shape-1.png') }}');"></div>
+            style="background-image: url('{{ asset('assets/images/shapes/page-header-shape-1.png') }}');">
+        </div>
+
         <div class="container">
             <div class="page-header__inner">
-                <h3>Car List V-1</h3>
+                <h3>Motorcycle List V-1</h3>
+
                 <div class="thm-breadcrumb__inner">
                     <ul class="thm-breadcrumb list-unstyled">
-                        <li><a href="index.html">Home</a></li>
+                        <li><a href="{{ route('home') }}">Home</a></li>
                         <li><span class="icon-arrow-left"></span></li>
-                        <li>Car List V-1</li>
+                        <li>Motorcycle List V-1</li>
                     </ul>
                 </div>
+
             </div>
         </div>
     </section>
-    <!--Page Header End -->
+    <!-- Page Header End -->
+
 
     <!--Car Listing page One Start -->
     {{-- <section class="car-listing-page-one">
@@ -1332,19 +1338,19 @@
                 <div class="col-xl-3">
                     <div class="car-listing-page-one__right">
                         <div class="car-listing__sidebar">
-                            
+
                             <form action="{{ route('cars.index') }}" method="GET">
-                                
+
                                 <div class="car-listing__search car-listing__sidebar-single">
                                     <h3 class="car-listing__sidebar-title">Search Category</h3>
                                     <div class="search-form">
                                         <input type="text" name="category" placeholder="Type category..."
                                             value="{{ request('category') }}">
                                         <button type="submit"><i class="fa fa-search"></i></button>
-                                        
+
                                     </div>
                                 </div>
-                                
+
                                 <div class="car-listing__price-ranger car-listing__sidebar-single">
                                     <h3 class="car-listing__sidebar-title">Filter Price</h3>
                                     <div class="price-ranger">
@@ -1360,7 +1366,7 @@
                                             Price</button>
                                     </div>
                                 </div>
-                                
+
 
                                 <div class="car-listing__category car-listing__sidebar-single">
                                     <h3 class="car-listing__sidebar-title">Brand</h3>

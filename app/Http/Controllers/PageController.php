@@ -53,57 +53,56 @@ class PageController extends Controller
     }
 
 
-    // --- Bagian CARS ---
 
-    public function cars(Request $request) // Tambahkan Request $request di sini
+    public function motorcycles(Request $request)
     {
-        // 1. Gunakan query() alih-alih all() agar bisa ditambah filter
+        // Gunakan query agar bisa difilter
         $query = Motorcycle::query();
 
-        // 2. Logic Filter Search Category (Teks)
+        // Filter Category (teks)
         if ($request->filled('category')) {
             $query->where('category', 'like', '%' . $request->category . '%');
         }
 
-        // 3. Logic Filter Price (Range)
+        // Filter Price (range)
         if ($request->filled('min_price') && $request->filled('max_price')) {
             $min = (int) preg_replace('/[^0-9]/', '', $request->min_price);
             $max = (int) preg_replace('/[^0-9]/', '', $request->max_price);
             $query->whereBetween('price', [$min, $max]);
         }
 
-        // 4. Logic Filter Brand
+        // Filter Brand
         if ($request->filled('brand')) {
             $query->whereIn('brand', $request->brand);
         }
 
-        // 5. Logic Filter Type
+        // Filter Type
         if ($request->filled('type')) {
             $query->whereIn('type', $request->type);
         }
 
-        // 6. Logic Filter Transmission
+        // Filter Transmission
         if ($request->filled('transmission')) {
             $query->whereIn('transmission', $request->transmission);
         }
 
-        // 7. Logic Filter Fuel Configuration
+        // Filter Fuel
         if ($request->filled('fuel')) {
             $query->whereIn('fuel_configuration', $request->fuel);
         }
 
-        // 8. Ambil hasil akhirnya (bisa pakai get() atau paginate())
-        // Angka 9 adalah jumlah motor per halaman
+        // Pagination
         $motorcycles = $query->paginate(9)->withQueryString();
 
-        // 9. Kirim ke view
-        return view('user.cars', compact('motorcycles'));
+        return view('user.motorcycles', compact('motorcycles'));
     }
-    public function carListV1()
+
+    public function motorcycleListV1()
     {
-        return view('user.car-list-v1');
+        return view('user.motorcycle-list-v1');
     }
-    public function listingSingle()
+
+    public function motorcycleSingle()
     {
         return view('user.listing-single');
     }
@@ -183,6 +182,11 @@ class PageController extends Controller
     }
     public function welcome()
     {
+        // Ubah 'home' menjadi 'user.home' agar sesuai dengan route yang baru
+        if (\Illuminate\Support\Facades\Auth::check()) {
+            return redirect()->route('user.home');
+        }
+
         $motorcycles = \App\Models\Motorcycle::with('lastService')->get();
         return view('welcome', compact('motorcycles'));
     }

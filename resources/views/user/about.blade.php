@@ -250,7 +250,7 @@
                                             </div>
                                             <div class="listing-one__content">
                                                 <h3 class="listing-one__title"><a
-                                                        href="{{ route('cars.single', ['id' => $m->id]) }}">{{ $m->category }}</a>
+                                                        href="{{ route('motorcycles.single', ['id' => $m->id]) }}">{{ $m->category }}</a>
                                                 </h3>
                                                 <div class="listing-one__meta-box-info">
                                                     <ul class="list-unstyled listing-one__meta ">
@@ -296,7 +296,7 @@
                                                     </p>
                                                 </div>
                                                 <div class="listing-one__btn-box"><a
-                                                        href="{{ route('cars.single', ['id' => $m->id]) }}"
+                                                        href="{{ route('motorcycles.single', ['id' => $m->id]) }}"
                                                         class="thm-btn">Details Now</a></div>
                                             </div>
                                         </div>
@@ -329,7 +329,7 @@
                                                 </div>
                                                 <div class="listing-one__content">
                                                     <h3 class="listing-one__title"><a
-                                                            href="{{ route('cars.single', ['id' => $m->id]) }}">{{ $m->category }}</a>
+                                                            href="{{ route('motorcycles.single', ['id' => $m->id]) }}">{{ $m->category }}</a>
                                                     </h3>
                                                     <div class="listing-one__meta-box-info menu">
                                                         <ul class="list-unstyled listing-one__meta ">
@@ -377,7 +377,7 @@
                                                             Day</p>
                                                     </div>
                                                     <div class="listing-one__btn-box"><a
-                                                            href="{{ route('cars.single', ['id' => $m->id]) }}"
+                                                            href="{{ route('motorcycles.single', ['id' => $m->id]) }}"
                                                             class="thm-btn">Details Now</a></div>
                                                 </div>
                                             </div>

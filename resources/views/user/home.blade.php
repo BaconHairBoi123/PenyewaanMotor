@@ -613,8 +613,9 @@
                                 </div>
 
                                 <div class="listing-one__content">
+
                                     <h3 class="listing-one__title">
-                                        <a href="{{ route('cars.single', ['id' => $m->id]) }}">{{ $m->category }}</a>
+                                        <a href="{{ route('motorcycles.single', ['id' => $m->id]) }}">{{ $m->category }}</a>
                                     </h3>
 
                                     <div class="listing-one__meta-box-info">
@@ -667,9 +668,10 @@
 
                                     <div class="listing-one__btn-box">
                                         {{-- Perbaikan variabel: dari $mo ke $m --}}
-                                        <a href="{{ route('cars.single', ['id' => $m->id]) }}" class="thm-btn">
+                                        <a href="{{ route('motorcycles.single', ['id' => $m->id]) }}" class="thm-btn">
                                             Details Now <span class="fas fa-arrow-right"></span>
                                         </a>
+
                                     </div>
                                 </div>
                             </div>
