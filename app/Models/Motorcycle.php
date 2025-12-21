@@ -20,7 +20,7 @@ class Motorcycle extends Model
         'last_service_date',
         'price',
         'license_plate',
-        'transmission', // tambahkan jika sudah migrasi
+        'transmission', 
     ];
 
     /**
@@ -38,5 +38,7 @@ class Motorcycle extends Model
     {
         return $this->hasOne(MotorcycleService::class, 'motorcycle_id')->latest();
     }
+ 
 }
+
 

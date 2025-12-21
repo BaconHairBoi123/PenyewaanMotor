@@ -1,5 +1,5 @@
 <div>
-    <label class="block">Category</label>
+    <label class="block">Name</label>
     <input type="text" name="category"
            value="{{ old('category', $motorcycle->category ?? '') }}"
            class="w-full p-2 border rounded" required>

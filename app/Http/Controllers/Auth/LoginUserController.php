@@ -48,14 +48,14 @@ class LoginUserController extends Controller
         ];
 
         // 4. Coba login
-        if (Auth::attempt($attemptCredentials, $request->boolean('remember'))) {
-            
-            // Login Berhasil
+       if (Auth::attempt($attemptCredentials, $request->boolean('remember'))) {
+
             $request->session()->regenerate();
 
-            // Ganti '/user/dashboard' dengan rute dashboard Anda
-            return redirect()->intended('/home')->with('success', 'Login Berhasil!');
+            return redirect()->intended(route('user.home'))
+                ->with('success', 'Login Berhasil!');
         }
+
 
         // 5. Login Gagal
         throw ValidationException::withMessages([

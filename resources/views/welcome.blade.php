@@ -1,4 +1,3 @@
-
 <head>
     @vite('resources/css/app.css')
     <meta charset="UTF-8" />
@@ -11,7 +10,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicons/favicon-16x16.png" />
     <link rel="manifest" href="/assets/images/favicons/site.webmanifest" />
 
- <!-- fonts -->
+    <!-- fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -28,10 +27,10 @@
     <link rel="stylesheet" href="/assets/css/custom-animate.css" />
     <link rel="stylesheet" href="/assets/css/swiper.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
-    <!-- <link rel="stylesheet" href="/assets/css/font-awesome-all.css" /> -->
+    <link rel="stylesheet" href="/assets/css/font-awesome-all.css" />
     <link rel="stylesheet" href="/assets/css/jarallax.css" />
     <link rel="stylesheet" href="/assets/css/jquery.magnific-popup.css" />
-    <!-- <link rel="stylesheet" href="/assets/css/flaticon.css" /> -->
+    <link rel="stylesheet" href="/assets/css/flaticon.css" />
     <link rel="stylesheet" href="/assets/css/owl.carousel.min.css" />
     <link rel="stylesheet" href="/assets/css/owl.theme.default.min.css" />
     <link rel="stylesheet" href="/assets/css/nice-select.css" />
@@ -72,226 +71,363 @@
     <link rel="stylesheet" href="/assets/css/style.css" />
     <link rel="stylesheet" href="/assets/css/responsive.css" />
 
- 
+
 
 </head>
-    <body>
-        
-        <div class="page-wrapper">
-            <header class="main-header">
-                <div class="container d-flex justify-content-between align-items-center py-3">
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                        <img src="/assets/images/resources/logo_ridenusa_head.png" alt="Ride Nusa" style="height:40px;">
-                    </a>
-                    <div>
-                        <a href="{{ route('login') }}"  class="inline-block px-5 py-1.5 dark:text-[#EDEDEC] text-[#1b1b18] border border-transparent hover:border-[#19140035] dark:hover:border-[#3E3E3A] rounded-sm text-sm leading-normal">Login</a>
-                        <a href="{{ route('register') }}"  class="inline-block px-5 py-1.5 dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal">Register</a>
-                    </div>
-                </div>
-            </header>
-        </div>
 
-          <!-- Main Slider Start -->
-        <section class="main-slider">
-            <div class="main-slider__carousel owl-carousel owl-theme">
+<body>
 
-                <div class="item">
-                    <div class="main-slider__bg"
-                        style="background-image: url('/assets/images/backgrounds/1680x550_booking-one-bg.jpg');">
-                    </div><!-- /.slider-one__bg -->
-                    <div class="container">
-                        <div class="main-slider__content">
-                            <div class="main-slider__sub-title-box">
-                                <p class="main-slider__sub-title">Your Best</p>
-                            </div>
-                            <h2 class="main-slider__title">Motorcyle <span>Rental</span></h2>
-                            <p class="main-slider__sub-title-two">Experience</p>
-                            <div class="main-slider__btn-and-video-box">
-                                <div class="main-slider__btn-box">
-                                    <a href="about.html" class="thm-btn">Read More<span
-                                            class="fas fa-arrow-right"></span></a>
-                                </div>
-                                <div class="main-slider__video-link">
-                                    <a href="https://www.youtube.com/watch?v=Get7rqXYrbQ" class="video-popup">
-                                        <div class="main-slider__video-icon">
-                                            <span class="icon-play-2"></span>
-                                            <i class="ripple"></i>
-                                        </div>
-                                    </a>
-                                    <h4 class="main-slider__video-title">Watch Video</h4>
-                                </div>
+    <nav class="main-menu">
+        <div class="main-menu__wrapper">
+            <div class="main-menu__wrapper-inner">
+                <header class="main-header">
+                    <div class="container d-flex justify-content-between align-items-center py-3">
+                        <div class="main-menu__left">
+
+                            <a class="navbar-brand" href="{{ url('/') }}">
+                                <img src="/assets/images/resources/logo_ridenusa_head.png" alt="Ride Nusa"
+                                    style="height:40px;">
+                            </a>
+                        </div>
+                        <div class="main-menu__middle-box">
+                            <div class="main-menu__main-menu-box">
+                                <a href="#" class="mobile-nav__toggler"><i class="fa fa-bars"></i></a>
+                                <ul class="main-menu__list">
+
+                                    <li>
+
+                                        <a href="{{ route('login') }}">Login</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('register') }}">Register</a>
+
+                                    </li>
+                                </ul>
                             </div>
                         </div>
                     </div>
-                </div>
-
-                <div class="item">
-                    <div class="main-slider__bg"
-                        style="background-image: url(/assets/images/backgrounds/xsr155.jpeg);">
-                    </div><!-- /.slider-one__bg -->
-                    <div class="container">
-                        <div class="main-slider__content">
-                            <div class="main-slider__sub-title-box">
-                                <p class="main-slider__sub-title">Your Best</p>
-                            </div>
-                            <h2 class="main-slider__title">Motorcyle<span>Booking</span></h2>
-                            <p class="main-slider__sub-title-two">Experience</p>
-                            <div class="main-slider__btn-and-video-box">
-                                <div class="main-slider__btn-box">
-                                    <a href="about.html" class="thm-btn">Read More<span
-                                            class="fas fa-arrow-right"></span></a>
-                                </div>
-                                <div class="main-slider__video-link">
-                                    <a href="https://www.youtube.com/watch?v=Get7rqXYrbQ" class="video-popup">
-                                        <div class="main-slider__video-icon">
-                                            <span class="icon-play-2"></span>
-                                            <i class="ripple"></i>
-                                        </div>
-                                    </a>
-                                    <h4 class="main-slider__video-title">Watch Video</h4>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="item">
-                    <div class="main-slider__bg"
-                        style="background-image: url('/assets/images/backgrounds/nmaxturbo.jpeg');">
-                    </div><!-- /.slider-one__bg -->
-                    <div class="container">
-                        <div class="main-slider__content">
-                            <div class="main-slider__sub-title-box">
-                                <p class="main-slider__sub-title">Your Best</p>
-                            </div>
-                            <h2 class="main-slider__title">Motorcyle<span>Choosing</span></h2>
-                            <p class="main-slider__sub-title-two">Experience</p>
-                            <div class="main-slider__btn-and-video-box">
-                                <div class="main-slider__btn-box">
-                                    <a href="about.html" class="thm-btn">Read More<span
-                                            class="fas fa-arrow-right"></span></a>
-                                </div>
-                                <div class="main-slider__video-link">
-                                    <a href="https://www.youtube.com/watch?v=Get7rqXYrbQ" class="video-popup">
-                                        <div class="main-slider__video-icon">
-                                            <span class="icon-play-2"></span>
-                                            <i class="ripple"></i>
-                                        </div>
-                                    </a>
-                                    <h4 class="main-slider__video-title">Watch Video</h4>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
+                </header>
             </div>
-        </section>
-        <!--Main Slider Start -->
-
-
-
-
-
-
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 p-6">
-
-            @foreach ($motorcycles as $m)
-            {{-- Menggunakan rounded-3xl dan shadow-xl agar lebih tebal seperti di foto --}}
-            <div class="bg-white p-4 rounded-3xl shadow-xl border border-gray-100">
-
-                {{-- IMAGE --}}
-                <div class="rounded-2xl overflow-hidden relative">
-                    {{-- Sesuaikan tinggi gambar --}}
-                    <img src="{{ asset('storage/motorcycles/' . $m->image_path) }}" 
-                        class="w-full h-44 object-cover">
-
-                    {{-- BRAND BADGE --}}
-                    <span class="absolute top-3 left-3 bg-yellow-400 text-black px-3 py-1 rounded-md text-xs font-bold">
-                        {{ strtoupper($m->brand) }}
-                    </span>
-                </div>
-
-                {{-- TITLE --}}
-                {{-- Menggunakan data $m->type dan menambahkan tahun 2025 (asumsi) --}}
-                <h2 class="text-xl font-bold mt-2">{{ $m->type }} 2025</h2>
-
-                <hr class="my-3 border-gray-200">
-
-                {{-- DETAILS ROW - Penataan agar berpasangan dalam satu baris --}}
-                <div class="flex flex-wrap gap-y-2 text-sm text-gray-700">
-
-                    {{-- Transmission & Kilometer (Baris 1) --}}
-                    <div class="flex w-1/2">
-                        {{-- Ikon Transmission --}}
-                        <span class="mr-2 text-gray-500">⚙</span>
-                        <span class="font-semibold text-gray-800">{{ ucfirst($m->transmission) }}</span>
-                    </div>
-
-                    <div class="flex w-1/2">
-                        {{-- Ikon Kilometer --}}
-                        <span class="mr-2 text-gray-500">🛣</span>
-                        {{-- Menggunakan data kilometer dari lastService atau 0 --}}
-                        <span class="font-semibold text-gray-800">{{ $m->lastService->kilometer ?? 0 }} km</span>
-                    </div>
-
-                    {{-- Category & Age (Baris 2) --}}
-                    <div class="flex w-1/2">
-                        {{-- Ikon Category --}}
-                        <span class="mr-2 text-gray-500">🏍</span>
-                        {{-- Menggunakan data $m->category --}}
-                        <span class="font-semibold text-gray-800">{{ $m->category }}</span>
-                    </div>
-                    
-                    <div class="flex w-1/2">
-                        {{-- Ikon Age --}}
-                        <span class="mr-2 text-gray-500">👤</span>
-                        {{-- Menggunakan data $m->age (asumsi field ini ada) --}}
-                        <span class="font-semibold text-gray-800">{{ $m->age ?? 17 }} age</span>
-                    </div>
-                    
-                    {{-- Fuel (Baris 3) --}}
-                    <div class="flex w-full">
-                        {{-- Ikon Fuel --}}
-                        <span class="mr-2 text-gray-500">⛽</span>
-                        {{-- Menggunakan data $m->fuel_configuration --}}
-                        <span class="font-semibold text-gray-800">{{ $m->fuel_configuration }}</span>
-                    </div>
-
-                </div>
-
-                {{-- PRICE --}}
-                <div class="py-2 mt-4 text-sm">
-                    <span class="text-gray-600">Starting From</span>
-                    
-                    {{-- Menggunakan data $m->price dan memformatnya, serta memisahkan / Day --}}
-                    <span class="text-xl text-yellow-500 font-extrabold ml-1">
-                        {{ number_format($m->price, 0, ',', '.') }}
-                    </span>
-                    <span class="text-sm text-gray-600 font-semibold">
-                        / Day
-                    </span>
-                </div>
-
-                {{-- BUTTON --}}
-                
-
-                    <a href="{{ route('login') }}">
-                        <button class="bg-yellow-400 hover:bg-yellow-500 w-full py-3 mt-4 rounded-lg font-bold text-sm">
-                            Details Now →
-                        </button>
-                    </a>
-                
-
-            </div>
-            @endforeach
-            
         </div>
+    </nav>
+
+    <!-- Main Slider Start -->
+    <section class="main-slider">
+        <div class="main-slider__carousel owl-carousel owl-theme">
+
+            <div class="item">
+                <div class="main-slider__bg"
+                    style="background-image: url('/assets/images/backgrounds/1680x550_booking-one-bg.jpg');">
+                </div><!-- /.slider-one__bg -->
+                <div class="container">
+                    <div class="main-slider__content">
+                        <div class="main-slider__sub-title-box">
+                            <p class="main-slider__sub-title">Your Best</p>
+                        </div>
+                        <h2 class="main-slider__title">Motorcyle <span>Rental</span></h2>
+                        <p class="main-slider__sub-title-two">Experience</p>
+                        <div class="main-slider__btn-and-video-box">
+                            <div class="main-slider__btn-box">
+                                <a href="about.html" class="thm-btn">Read More<span
+                                        class="fas fa-arrow-right"></span></a>
+                            </div>
+                            <div class="main-slider__video-link">
+                                <a href="https://www.youtube.com/watch?v=Get7rqXYrbQ" class="video-popup">
+                                    <div class="main-slider__video-icon">
+                                        <span class="icon-play-2"></span>
+                                        <i class="ripple"></i>
+                                    </div>
+                                </a>
+                                <h4 class="main-slider__video-title">Watch Video</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item">
+                <div class="main-slider__bg" style="background-image: url(/assets/images/backgrounds/xsr155.jpeg);">
+                </div><!-- /.slider-one__bg -->
+                <div class="container">
+                    <div class="main-slider__content">
+                        <div class="main-slider__sub-title-box">
+                            <p class="main-slider__sub-title">Your Best</p>
+                        </div>
+                        <h2 class="main-slider__title">Motorcyle<span>Booking</span></h2>
+                        <p class="main-slider__sub-title-two">Experience</p>
+                        <div class="main-slider__btn-and-video-box">
+                            <div class="main-slider__btn-box">
+                                <a href="about.html" class="thm-btn">Read More<span
+                                        class="fas fa-arrow-right"></span></a>
+                            </div>
+                            <div class="main-slider__video-link">
+                                <a href="https://www.youtube.com/watch?v=Get7rqXYrbQ" class="video-popup">
+                                    <div class="main-slider__video-icon">
+                                        <span class="icon-play-2"></span>
+                                        <i class="ripple"></i>
+                                    </div>
+                                </a>
+                                <h4 class="main-slider__video-title">Watch Video</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item">
+                <div class="main-slider__bg"
+                    style="background-image: url('/assets/images/backgrounds/nmaxturbo.jpeg');">
+                </div><!-- /.slider-one__bg -->
+                <div class="container">
+                    <div class="main-slider__content">
+                        <div class="main-slider__sub-title-box">
+                            <p class="main-slider__sub-title">Your Best</p>
+                        </div>
+                        <h2 class="main-slider__title">Motorcyle<span>Choosing</span></h2>
+                        <p class="main-slider__sub-title-two">Experience</p>
+                        <div class="main-slider__btn-and-video-box">
+                            <div class="main-slider__btn-box">
+                                <a href="about.html" class="thm-btn">Read More<span
+                                        class="fas fa-arrow-right"></span></a>
+                            </div>
+                            <div class="main-slider__video-link">
+                                <a href="https://www.youtube.com/watch?v=Get7rqXYrbQ" class="video-popup">
+                                    <div class="main-slider__video-icon">
+                                        <span class="icon-play-2"></span>
+                                        <i class="ripple"></i>
+                                    </div>
+                                </a>
+                                <h4 class="main-slider__video-title">Watch Video</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </section>
+
+
+    <!--Main Slider Start -->
+    <section class="listing-one">
+        <div class="container">
+            <div class="section-title text-center sec-title-animation animation-style1">
+                <div class="section-title__tagline-box justify-content-center">
+                    <div class="section-title__tagline-shape">
+                        <img src="{{ asset('assets/images/shapes/logo_BGT.png') }}" alt="">
+                    </div>
+                    <span class="section-title__tagline">Checkout our new Motorcycle</span>
+                </div>
+                <h2 class="section-title__title title-animation">Explore Most Popular Motorcycle</h2>
+            </div>
+
+            <div class="listing-one__tab-box listing-one-tabs-box">
+                <ul class="listing-one-tab-buttons listing-one-tab-btns clearfix list-unstyled">
+                    <li data-tab="#all" class="p-tab-btn active-btn"><span>All Brands</span></li>
+                    @foreach ($motorcycles->pluck('brand')->unique() as $brand)
+                        <li data-tab="#{{ Str::slug($brand) }}" class="p-tab-btn">
+                            <span>{{ $brand }}</span>
+                        </li>
+                    @endforeach
+                </ul>
+
+                <div class="p-tabs-content">
+                    <div class="p-tab active-tab" id="all">
+                        <div class="listing-one__inner">
+                            <div class="row">
+                                @foreach ($motorcycles->shuffle()->take(6) as $m)
+                                    <div class="col-xl-4 col-lg-6 col-md-6 mb-4">
+                                        <div class="listing-one__single">
+                                            <div class="listing-one__img">
+                                                @if ($m->image_path && file_exists(public_path('storage/motorcycles/' . $m->image_path)))
+                                                    <img src="{{ asset('storage/motorcycles/' . $m->image_path) }}"
+                                                        alt="{{ $m->category }}">
+                                                @else
+                                                    <img src="{{ asset('assets/images/resources/RIDEnotrasparan.png') }}"
+                                                        alt="No Image Available">
+                                                @endif
+
+                                                <div class="listing-one__brand-name">
+                                                    <p>{{ strtoupper($m->brand) }}</p>
+                                                </div>
+                                            </div>
+                                            <div class="listing-one__content">
+                                                <h3 class="listing-one__title"><a
+                                                        href="#">{{ $m->category }}</a></h3>
+                                                <div class="listing-one__meta-box-info">
+                                                    <ul class="list-unstyled listing-one__meta">
+                                                        <li>
+                                                            <div class="icon"><span class="icon-manual"></span>
+                                                            </div>
+                                                            <div class="text">
+                                                                <p>{{ ucfirst($m->transmission) }}</p>
+                                                            </div>
+                                                        </li>
+                                                        <li>
+                                                            <div class="icon"><span class="icon-mileage"></span>
+                                                            </div>
+                                                            <div class="text">
+                                                                <p>{{ $m->lastService->kilometer ?? 0 }} KM</p>
+                                                            </div>
+                                                        </li>
+                                                        <li>
+                                                            <div class="icon"><span class="icon-test-drive"></span>
+                                                            </div>
+                                                            <div class="text">
+                                                                {{-- Mengubah 'big_matic' menjadi 'Big Matic' agar lebih rapi --}}
+                                                                <p>{{ str_replace('_', '', ucfirst($m->type)) }}
+                                                                </p>
+                                                            </div>
+                                                        </li>
+                                                        <li>
+                                                            <div class="icon"><span class="icon-fuel-type"></span>
+                                                            </div>
+                                                            <div class="text">
+                                                                <p>{{ $m->fuel_configuration }}</p>
+                                                            </div>
+                                                        </li>
+                                                        <li>
+                                                            <div class="icon"><span class="icon-mileage"></span>
+                                                            </div>
+                                                            <div class="text">
+                                                                {{-- Karena di tabel tidak ada kolom kilometer, kita tampilkan CC saja atau tgl service --}}
+                                                                <p>{{ $m->cc }} CC</p>
+                                                            </div>
+                                                        </li>
+                                                        <li>
+                                                            <div class="icon"><span class="icon-mileage"></span>
+                                                            </div>
+                                                            <div class="text">
+                                                                {{-- Jika ada data service, tampilkan kilometernya. Jika tidak ada, tampilkan 0 --}}
+                                                                <p>{{ $m->lastService->kilometer ?? 0 }} KM</p>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="listing-one__car-rent-box">
+                                                    <p class="listing-one__car-rent">Starting From <span>Rp
+                                                            {{ number_format($m->price, 0, ',', '.') }}/</span>
+                                                        Day</p>
+                                                </div>
+                                                <div class="listing-one__btn-box">
+                                                    <a href="{{ route('login') }}" class="thm-btn">Details
+                                                        Now<span class="fas fa-arrow-right"></span></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+
+                    @foreach ($motorcycles->pluck('brand')->unique() as $brand)
+                        <div class="p-tab" id="{{ Str::slug($brand) }}">
+                            <div class="listing-one__inner">
+                                <div class="row">
+                                    @foreach ($motorcycles->where('brand', $brand) as $m)
+                                        <div class="col-xl-4 col-lg-6 col-md-6 mb-4">
+                                            <div class="listing-one__single">
+                                                <div class="listing-one__img">
+                                                    @if ($m->image_path && file_exists(public_path('storage/motorcycles/' . $m->image_path)))
+                                                        <img src="{{ asset('storage/motorcycles/' . $m->image_path) }}"
+                                                            alt="{{ $m->category }}">
+                                                    @else
+                                                        <img src="{{ asset('assets/images/resources/RIDEnotrasparan.png') }}"
+                                                            alt="No Image Available">
+                                                    @endif
+
+                                                    <div class="listing-one__brand-name">
+                                                        <p>{{ strtoupper($m->brand) }}</p>
+                                                    </div>
+                                                </div>
+                                                <div class="listing-one__content">
+                                                    <h3 class="listing-one__title"><a
+                                                            href="#">{{ $m->category }}</a></h3>
+                                                    <div class="listing-one__meta-box-info">
+                                                        <ul class="list-unstyled listing-one__meta">
+                                                            <li>
+                                                                <div class="icon"><span class="icon-manual"></span>
+                                                                </div>
+                                                                <div class="text">
+                                                                    <p>{{ ucfirst($m->transmission) }}</p>
+                                                                </div>
+                                                            </li>
+                                                            <li>
+                                                                <div class="icon"><span class="icon-mileage"></span>
+                                                                </div>
+                                                                <div class="text">
+                                                                    <p>{{ $m->lastService->kilometer ?? 0 }} KM</p>
+                                                                </div>
+                                                                <li>
+                                                                    <div class="icon"><span
+                                                                            class="icon-test-drive"></span>
+                                                                    </div>
+                                                                    <div class="text">
+                                                                        {{-- Mengubah 'big_matic' menjadi 'Big Matic' agar lebih rapi --}}
+                                                                        <p>{{ str_replace('_', ' ', ucfirst($m->type)) }}
+                                                                        </p>
+                                                                    </div>
+                                                                </li>
+                                                            </li>
+                                                            <li>
+                                                                <div class="icon"><span
+                                                                        class="icon-fuel-type"></span>
+                                                                </div>
+                                                                <div class="text">
+                                                                    <p>{{ $m->fuel_configuration }}</p>
+                                                                </div>
+                                                            </li>
+                                                            <li>
+                                                                <div class="icon"><span class="icon-mileage"></span>
+                                                                </div>
+                                                                <div class="text">
+                                                                    {{-- Karena di tabel tidak ada kolom kilometer, kita tampilkan CC saja atau tgl service --}}
+                                                                    <p>{{ $m->cc }} CC</p>
+                                                                </div>
+                                                            </li>
+                                                            <li>
+                                                                <div class="icon"><span class="icon-mileage"></span>
+                                                                </div>
+                                                                <div class="text">
+                                                                    {{-- Jika ada data service, tampilkan kilometernya. Jika tidak ada, tampilkan 0 --}}
+                                                                    <p>{{ $m->lastService->kilometer ?? 0 }} KM</p>
+                                                                </div>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="listing-one__car-rent-box">
+                                                        <p class="listing-one__car-rent">Starting From <span>Rp
+                                                                {{ number_format($m->price, 0, ',', '.') }}/</span>
+                                                            Day
+                                                        </p>
+                                                    </div>
+                                                    <div class="listing-one__btn-box">
+                                                        <a href="{{ route('login') }}" class="thm-btn">Details
+                                                            Now</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+
+                </div>
+            </div>
+        </div>
+    </section>
 
 
 
-        <!-- Script yang dibutuhkan -->
+
+
+
+
+    <!-- Script yang dibutuhkan -->
     <script src="/assets/js/jquery-3.6.0.min.js"></script>
     <script src="/assets/js/bootstrap.bundle.min.js"></script>
     <script src="/assets/js/jarallax.min.js"></script>
@@ -319,6 +455,7 @@
 
     <!-- Template JS -->
     <script src="/assets/js/script.js"></script>
-         
-    </body>
+
+</body>
+
 </html>

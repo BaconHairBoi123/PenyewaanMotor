@@ -20,6 +20,7 @@
            <thead>
                 <tr class="border-b text-left">
                     <th class="p-3">Image</th>
+                    <th class="p-3">Name</th>
                     <th class="p-3">Brand</th>
                     <th class="p-3">Type</th>
                     <th class="p-3">Plate</th>
@@ -41,6 +42,7 @@
                             <span class="text-gray-400">No Image</span>
                         @endif
                     </td>
+                    <td class="p-3">{{ $motor->category }}</td>
                     <td class="p-3">{{ $motor->brand }}</td>
                     <td class="p-3">
                         @switch($motor->type)

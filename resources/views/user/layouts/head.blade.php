@@ -21,6 +21,8 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
         rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css" rel="stylesheet">
+
     <!-- Core CSS -->
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/animate.min.css') }}" />
@@ -28,11 +30,11 @@
     <link rel="stylesheet" href="{{ asset('assets/css/swiper.min.css') }}" />
     <!-- Replaced broken local fonts with CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
-    <!-- <link rel="stylesheet" href="{{ asset('assets/css/font-awesome-all.css') }}" /> -->
+    <link rel="stylesheet" href="{{ asset('assets/css/font-awesome-all.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/jarallax.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/jquery.magnific-popup.css') }}" />
     <!-- Flaticon fonts missing, commenting out to prevent timeout -->
-    <!-- <link rel="stylesheet" href="{{ asset('assets/css/flaticon.css') }}" /> -->
+    <link rel="stylesheet" href="{{ asset('assets/css/flaticon.css') }}" /> 
     <link rel="stylesheet" href="{{ asset('assets/css/owl.carousel.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/owl.theme.default.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/nice-select.css') }}" />

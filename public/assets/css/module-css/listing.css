@@ -237,7 +237,7 @@
     display: flex;
     align-items: center;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 20px;
     flex: 0 0 33.333333%;
     max-width: 33.333333%;
     width: 100%;
@@ -860,12 +860,12 @@
     border-radius: var(--gorent-bdr-radius);
 }
 
-.car-listing__search form {
+.car-listing__search  {
     position: relative;
 }
 
-.car-listing__search form input[type=search],
-.car-listing__search form input[type=text] {
+.car-listing__search  input[type=search],
+.car-listing__search  input[type=text] {
     width: 100%;
     height: 60px;
     background-color: var(--gorent-white);
@@ -880,12 +880,12 @@
     border-radius: 10px;
 }
 
-.car-listing__search form ::placeholder {
+.car-listing__search  ::placeholder {
     color: inherit;
     opacity: 1;
 }
 
-.car-listing__search form button[type="submit"] {
+.car-listing__search  button[type="submit"] {
     background-color: var(--gorent-base);
     color: var(--gorent-white);
     font-size: 18px;
@@ -905,10 +905,11 @@
     transition: all 500ms ease;
 }
 
-.car-listing__search form button:hover[type="submit"] {
+.car-listing__search  button:hover[type="submit"] {
     background-color: var(--gorent-black);
     color: var(--gorent-white);
 }
+
 
 
 
