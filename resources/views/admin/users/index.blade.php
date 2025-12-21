@@ -15,38 +15,51 @@
                     <th class="py-2">Name</th>
                     <th>Email</th>
                     <th>Phone</th>
+                    <th>Status</th>
                     <th class="text-right">Actions</th>
                 </tr>
             </thead>
 
+
             <tbody>
-                @foreach($users as $user)
-                    <tr class="border-b">
-                        <td class="py-2">{{ $user->name }}</td>
-                        <td>{{ $user->email }}</td>
-                        <td>{{ $user->phone_number ?? '-' }}</td>
+    @foreach($users as $user)
+        <tr class="border-b">
+            <td class="py-2">{{ $user->name }}</td>
+            <td>{{ $user->email }}</td>
+            <td>{{ $user->phone_number ?? '-' }}</td>
 
-                        <td class="text-right">
-                            <a href="{{ route('admin.users.show', $user->id) }}"
-                               class="text-blue-600 hover:underline">View</a>
+            <td>
+                @if ($user->verification_status === 'verified')
+                    <span class="px-2 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-700">
+                        Verified
+                    </span>
+                @else
+                    <span class="px-2 py-1 text-xs font-semibold rounded-full bg-red-100 text-red-700">
+                        Unverified
+                    </span>
+                @endif
+            </td>
 
-                            <a href="{{ route('admin.users.edit', $user->id) }}"
-                               class="text-yellow-600 hover:underline mx-2">Edit</a>
+            <td class="text-right">
+                <a href="{{ route('admin.users.show', $user->id) }}"
+                   class="text-blue-600 hover:underline">View</a>
 
-                            <form action="{{ route('admin.users.destroy', $user->id) }}"
-                                  method="POST" class="inline">
-                                @csrf
-                                @method('DELETE')
-                                <button class="text-red-600 hover:underline"
-                                        onclick="return confirm('Delete this user?')">
-                                    Delete
-                                </button>
-                            </form>
-                        </td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
+                <a href="{{ route('admin.users.edit', $user->id) }}"
+                   class="text-yellow-600 hover:underline mx-2">Edit</a>
+
+                <form action="{{ route('admin.users.destroy', $user->id) }}"
+                      method="POST" class="inline">
+                    @csrf
+                    @method('DELETE')
+                    <button class="text-red-600 hover:underline"
+                            onclick="return confirm('Delete this user?')">
+                        Delete
+                    </button>
+                </form>
+            </td>
+        </tr>
+    @endforeach
+</tbody>
 
         <div class="mt-4">
             {{ $users->links() }}

@@ -57,10 +57,10 @@
 </li>
 
 <li>
-    <a href="{{ route('admin.service.types') }}"
-       class="sidebar-link">
-       Service Types
+    <a href="{{ route('admin.service.types.index') }}">
+    Service Types
     </a>
+
 </li>
 
 <li>
