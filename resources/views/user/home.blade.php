@@ -706,7 +706,7 @@
                                     </div>
                                 </div>
                                 <div class="listing-one__content">
-                                    <h3 class="listing-one__title"><a href="{{ route('cars.single', ['id' => $motor->id]) }}">{{ $motor->type }}</a></h3>
+                                    <h3 class="listing-one__title"><a href="{{ route('motorcycles.single', ['id' => $motor->id]) }}">{{ $motor->type }}</a></h3>
                                     <div class="listing-one__meta-box-info">
                                         <ul class="list-unstyled listing-one__meta">
                                             <li>
@@ -740,7 +740,7 @@
                                             <span>Rp {{ number_format($motor->price ?? 0, 0, ',', '.') }}/</span> Day</p>
                                     </div>
                                     <div class="listing-one__btn-box">
-                                        <a href="{{ route('cars.single', ['id' => $motor->id]) }}" class="thm-btn">Details Now<span
+                                        <a href="{{ route('motorcycles.single', ['id' => $motor->id]) }}" class="thm-btn">Details Now<span
                                                 class="fas fa-arrow-right"></span></a>
                                     </div>
                                 </div>

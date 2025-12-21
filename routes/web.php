@@ -34,14 +34,7 @@ use App\Http\Controllers\Admin\ServiceController;
 */
 
 // Home Halaman Utama (Hanya SATU DEFINISI untuk '/')
-Route::get('/', function () {
-    if (Auth::check()) {
-        // Jika user sudah login, arahkan ke dashboard user
-        return redirect()->route('user.home'); 
-    }
-    // Jika user belum login, tampilkan halaman welcome (public)
-    return view('welcome');
-})->name('home');
+Route::get('/', [PageController::class, 'welcome'])->name('welcome');
 
 // User Auth
 Route::get('/login', [LoginUserController::class, 'showLoginForm'])->name('login');
@@ -81,10 +74,10 @@ Route::get('/faq', [PageController::class, 'faq'])->name('faq');
 Route::get('/contact', [PageController::class, 'contact'])->name('contact');
 Route::get('/error-page', [PageController::class, 'errorPage'])->name('error-page');
 
-// Halaman Cars
-Route::get('/cars', [PageController::class, 'cars'])->name('cars.index');
-Route::get('/car-list-v1', [PageController::class, 'carListV1'])->name('cars.list-v1');
-Route::get('/listing-single', [PageController::class, 'listingSingle'])->name('cars.single');
+// Halaman Motorcycles
+Route::get('/motorcycles', [PageController::class, 'motorcycles'])->name('motorcycles.index');
+Route::get('/motorcycle-list-v1', [PageController::class, 'motorcycleListV1'])->name('motorcycles.list-v1');
+Route::get('/motorcycle-single', [PageController::class, 'motorcycleSingle'])->name('motorcycles.single');
 
 // Halaman Shop
 Route::get('/products', [PageController::class, 'products'])->name('products.index');
@@ -107,16 +100,18 @@ Route::get('/blog-details', [PageController::class, 'blogDetails'])->name('blog.
 |--------------------------------------------------------------------------
 */
 
+// Group tanpa prefix untuk /home dan /profile
+Route::middleware('auth:web')->group(function () {
+    Route::get('/home', [PageController::class, 'home'])->name('home');
+    Route::get('/profile', [PageController::class, 'profile'])->name('profile');
+});
+
+// Group user lainnya (jika ada)
 Route::middleware('auth:web')
     ->prefix('user')
     ->name('user.')
     ->group(function () {
-        
-        // Pastikan PageController memiliki method 'dashboard' dan 'profile'
-        Route::get('/home', [PageController::class, 'home'])->name('home'); 
-        Route::get('/profile', [PageController::class, 'profile'])->name('profile'); 
-        
-        // Tambahkan rute user protected lainnya di sini
+        // Tambahkan rute user protected lainnya di sini (selain home/profile)
     });
 
 
@@ -187,10 +182,3 @@ Route::middleware('auth:admin')->prefix('admin')->name('admin.')->group(function
     Route::post('/accessories/store', [App\Http\Controllers\Admin\AccessoryController::class, 'store'])->name('accessories.store');
     Route::delete('/accessories/{id}', [App\Http\Controllers\Admin\AccessoryController::class, 'delete'])->name('accessories.delete');
 });
-
-
-
-
-
-// Motorcycle List for Public (example route)
-Route::get('/', [PageController::class, 'welcome'])->name('home');

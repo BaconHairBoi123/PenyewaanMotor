@@ -28,11 +28,11 @@ class PageController extends Controller
     public function errorPage() { return view('user.error-page'); }
 
 
-    // --- Bagian CARS ---
+    // --- Bagian MOTORCYCLES ---
     
-    public function cars() { return view('user.cars'); }
-    public function carListV1() { return view('user.car-list-v1'); }
-    public function listingSingle() { return view('user.listing-single'); }
+    public function motorcycles() { return view('user.motorcycles'); }
+    public function motorcycleListV1() { return view('user.motorcycle-list-v1'); }
+    public function motorcycleSingle() { return view('user.listing-single'); } // Keeping view name or renaming? Plan said verify. Let's rename view too.
 
     // --- Bagian SHOP ---
     
@@ -72,9 +72,12 @@ class PageController extends Controller
         return view('user.profile');
     }
     public function welcome()
-{
-    $motorcycles = \App\Models\Motorcycle::with('lastService')->get();
-    return view('welcome', compact('motorcycles'));
-}
+    {
+        if (\Illuminate\Support\Facades\Auth::check()) {
+            return redirect()->route('home');
+        }
+        $motorcycles = \App\Models\Motorcycle::with('lastService')->get();
+        return view('welcome', compact('motorcycles'));
+    }
 
 }

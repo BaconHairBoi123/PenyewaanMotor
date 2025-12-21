@@ -104,51 +104,7 @@
 
     <div class="page-wrapper">
         <header class="main-header">
-            <div class="main-menu__top">
-                <div class="main-menu__top-inner">
-                    <ul class="list-unstyled main-menu__contact-list">
-                        <li>
-                            <div class="icon">
-                                <i class="icon-call-2"></i>
-                            </div>
-                            <div class="text">
-                                <p><a href="tel:9288006780">+92 ( 8800 ) - 6780</a>
-                                </p>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="icon">
-                                <i class="icon-envelope-2"></i>
-                            </div>
-                            <div class="text">
-                                <p><a href="mailto:support@gmail.com">support@gmail.com</a>
-                                </p>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="icon">
-                                <i class="icon-pin-2"></i>
-                            </div>
-                            <div class="text">
-                                <p>55 Main Street, 2nd block, Malborne ,Australia</p>
-                            </div>
-                        </li>
-                    </ul>
-                    <div class="main-menu__top-right">
-                        <div class="main-menu__top-login-reg-box">
-                            <a href="login.html">Login</a>
-                            <p>or</p>
-                            <a href="sign-up.html">Register</a>
-                        </div>
-                        <div class="main-menu__social">
-                            <a href="#"><i class="icon-facebook"></i></a>
-                            <a href="#"><i class="icon-twitter"></i></a>
-                            <a href="#"><i class="icon-instagram"></i></a>
-                            <a href="#"><i class="icon-youtube"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            @include('user.layouts.topbar')
             <nav class="main-menu">
                 <div class="main-menu__wrapper">
                     <div class="main-menu__wrapper-inner">
@@ -174,11 +130,11 @@
         </ul>
     </li>
     <li class="dropdown">
-        <a href="#">Cars</a>
+        <a href="#">Motorcycles</a>
         <ul class="shadow-box">
-           <li><a href="{{ url('/cars') }}">Cars</a></li>
-            <li><a href="{{ url('/car-list-v1') }}">Car Listing V-1</a></li>
-            <li><a href="{{ url('/listing-single') }}">Car Listing Single</a></li>
+           <li><a href="{{ route('motorcycles.index') }}">Motorcycles</a></li>
+            <li><a href="{{ route('motorcycles.list-v1') }}">Motorcycle Listing V-1</a></li>
+            <li><a href="{{ route('motorcycles.single') }}">Motorcycle Listing Single</a></li>
         </ul>
     </li>
     <li class="dropdown">
@@ -191,16 +147,6 @@
             <li><a href="{{ url('/wishlist') }}">Wishlist</a></li>
             <li><a href="{{ url('/sign-up') }}">Sign Up</a></li>
             <li><a href="{{ url('/login') }}">Login</a></li>
-        </ul>
-    </li>
-    <li class="dropdown">
-        <a href="#">Blog</a>
-        <ul class="shadow-box">
-           <li><a href="{{ url('/blog') }}">Blog</a></li>
-            <li><a href="{{ url('/blog-standard') }}">Blog Standard</a></li>
-            <li><a href="{{ url('/blog-left-sidebar') }}">Blog Left Sidebar</a></li>
-            <li><a href="{{ url('/blog-right-sidebar') }}">Blog Right Sidebar</a></li>
-            <li><a href="{{ url('/blog-details') }}">Blog Details</a></li>
         </ul>
     </li>
     <li>

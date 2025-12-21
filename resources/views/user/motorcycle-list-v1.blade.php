@@ -11,12 +11,12 @@
                 style="background-image: url('{{ asset('assets/images/shapes/page-header-shape-1.png') }}');"></div>
             <div class="container">
                 <div class="page-header__inner">
-                    <h3>Car List V-1</h3>
+                    <h3>Motorcycle List V-1</h3>
                     <div class="thm-breadcrumb__inner">
                         <ul class="thm-breadcrumb list-unstyled">
-                            <li><a href="index.html">Home</a></li>
+                            <li><a href="{{ route('home') }}">Home</a></li>
                             <li><span class="icon-arrow-left"></span></li>
-                            <li>Car List V-1</li>
+                            <li>Motorcycle List V-1</li>
                         </ul>
                     </div>
                 </div>

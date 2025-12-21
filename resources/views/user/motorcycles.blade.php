@@ -11,12 +11,12 @@
                 style="background-image: url('{{ asset('assets/images/shapes/page-header-shape-1.png') }}');"></div>
             <div class="container">
                 <div class="page-header__inner">
-                    <h3>Car List V-1</h3>
+                    <h3>Motorcycle List V-1</h3>
                     <div class="thm-breadcrumb__inner">
                         <ul class="thm-breadcrumb list-unstyled">
-                            <li><a href="index.html">Home</a></li>
+                            <li><a href="{{ route('home') }}">Home</a></li>
                             <li><span class="icon-arrow-left"></span></li>
-                            <li>Car List V-1</li>
+                            <li>Motorcycles</li>
                         </ul>
                     </div>
                 </div>
@@ -41,7 +41,7 @@
                                             </div>
                                         </div>
                                         <div class="listing-one__content">
-                                            <h3 class="listing-one__title"><a href="listing-single.html">Acura
+                                            <h3 class="listing-one__title"><a href="{{ route('motorcycles.single') }}">Acura
                                                     Sport Version</a></h3>
                                             <div class="listing-one__meta-box-info">
                                                 <ul class="list-unstyled listing-one__meta">
@@ -102,7 +102,7 @@
                                                     <span>$100/</span> Day</p>
                                             </div>
                                             <div class="listing-one__btn-box">
-                                                <a href="listing-single.html" class="thm-btn">Details Now<span
+                                                <a href="{{ route('motorcycles.single') }}" class="thm-btn">Details Now<span
                                                         class="fas fa-arrow-right"></span></a>
                                             </div>
                                         </div>
