@@ -1,306 +1,135 @@
-@extends('user.layouts.app') 
+@extends('user.layouts.app')
 
 @section('content')
+    <!-- Custom Styles for this Page -->
+    <!-- Custom Styles for this Page -->
+    <link rel="stylesheet" href="{{ asset('assets/css/custom-contact.css') }}">
 
-        <!--Page Header Start -->
-        <section class="page-header">
-            <div class="page-header__bg" style="background-image: url('{{ asset('assets/images/backgrounds/page-header-bg.jpg') }}');">
-            </div>
-            <div class="page-header__shape-1"
-                style="background-image: url('{{ asset('assets/images/shapes/page-header-shape-1.png') }}');"></div>
-            <div class="container">
-                <div class="page-header__inner">
-                    <h3>Contact</h3>
-                    <div class="thm-breadcrumb__inner">
-                        <ul class="thm-breadcrumb list-unstyled">
-                            <li><a href="index.html">Home</a></li>
-                            <li><span class="icon-arrow-left"></span></li>
-                            <li>Contact</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!--Page Header End -->
 
-        <!--Contact Info Start-->
-        <section class="contact-info">
-            <div class="container">
-                <div class="row">
-                    <!--Contact Two Single Start-->
-                    <div class="col-xl-4 col-lg-4 wow fadeInLeft" data-wow-delay="100ms">
-                        <div class="contact-info__single">
-                            <div class="contact-info__icon">
-                                <span class="icon-call"></span>
-                            </div>
-                            <p>Contact Us</p>
-                            <h3><a href="tel:558270575405">+55 827 057 5405</a></h3>
-                        </div>
-                    </div>
-                    <!--Contact Two Single End-->
-                    <!--Contact Two Single Start-->
-                    <div class="col-xl-4 col-lg-4 wow fadeInUp" data-wow-delay="200ms">
-                        <div class="contact-info__single">
-                            <div class="contact-info__icon">
-                                <span class="icon-email"></span>
-                            </div>
-                            <p>Mail Us</p>
-                            <h3><a href="mailto:example@gamil.com">example@gamil.com</a></h3>
-                        </div>
-                    </div>
-                    <!--Contact Two Single End-->
-                    <!--Contact Two Single Start-->
-                    <div class="col-xl-4 col-lg-4 wow fadeInRight" data-wow-delay="300ms">
-                        <div class="contact-info__single">
-                            <div class="contact-info__icon">
-                                <span class="icon-location"></span>
-                            </div>
-                            <p>Our Office Location</p>
-                            <h3>12 Green Road 05 New Yark</h3>
-                        </div>
-                    </div>
-                    <!--Contact Two Single End-->
+    <!--Page Header Start -->
+    <section class="page-header">
+        <div class="page-header__bg"
+            style="background-image: url('{{ asset('assets/images/backgrounds/page-header-bg.jpg') }}');">
+        </div>
+        <div class="page-header__shape-1"
+            style="background-image: url('{{ asset('assets/images/shapes/page-header-shape-1.png') }}');"></div>
+        <div class="container">
+            <div class="page-header__inner">
+                <h3>Get in Touch</h3>
+                <div class="thm-breadcrumb__inner">
+                    <ul class="thm-breadcrumb list-unstyled">
+                        <li><a href="{{ route('welcome') }}">Home</a></li>
+                        <li><span class="icon-arrow-left"></span></li>
+                        <li>Contact</li>
+                    </ul>
                 </div>
             </div>
-        </section>
-        <!--Contact Info End-->
+        </div>
+    </section>
+    <!--Page Header End -->
 
-        <!--Contact Page Start-->
-        <section class="contact-page">
-            <div class="container">
-                <div class="contact-page__inner">
-                    <div class="row">
-                        <div class="col-xl-6">
-                            <div class="contact-page__left">
-                                <iframe
-                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4562.753041141002!2d-118.80123790098536!3d34.152323469614075!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80e82469c2162619%3A0xba03efb7998eef6d!2sCostco+Wholesale!5e0!3m2!1sbn!2sbd!4v1562518641290!5m2!1sbn!2sbd"
-                                    class="google-map__one" allowfullscreen></iframe>
-                            </div>
-                        </div>
-                        <div class="col-xl-6">
-                            <div class="contact-page__right">
-                                <h3 class="contact-page__form-title">Get A Free Quote</h3>
-                                <form id="contact-form" class="contact-form-validated contact-page__form"
-                                    action="assets/mail.php" method="POST">
-                                    <div class="row">
-                                        <div class="col-xl-6 col-lg-6 col-md-6">
-                                            <div class="contact-page__input-box">
-                                                <input type="text" name="name" placeholder="Your name" required="">
-                                            </div>
-                                        </div>
-                                        <div class="col-xl-6 col-lg-6 col-md-6">
-                                            <div class="contact-page__input-box">
-                                                <input type="email" name="email" placeholder="Your Email" required="">
-                                            </div>
-                                        </div>
-                                        <div class="col-xl-6 col-lg-6 col-md-6">
-                                            <div class="contact-page__input-box">
-                                                <input type="text" placeholder="Mobile" name="number">
-                                            </div>
-                                        </div>
-                                        <div class="col-xl-6 col-lg-6 col-md-6">
-                                            <div class="contact-page__input-box">
-                                                <input type="text" placeholder="Company" name="company">
-                                            </div>
-                                        </div>
-                                        <div class="col-xl-12">
-                                            <div class="contact-page__input-box text-message-box">
-                                                <textarea name="message" placeholder="Messege"></textarea>
-                                            </div>
-                                            <div class="contact-page__btn-box">
-                                                <button type="submit" class="thm-btn contact-page__btn"
-                                                    data-loading-text="Please wait...">
-                                                    <span class="thm-btn-text">Send A Message</span>
-                                                    <span class="thm-btn-icon-box"><i
-                                                            class="fas fa-arrow-right"></i></span>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form>
-                                <p class="ajax-response mb-0"></p>
-                            </div>
-                        </div>
+    <!-- Innovative Cards Section -->
+    <section style="background: #f8f9fa;">
+        <div class="container">
+            <div class="innovation-grid">
+                <!-- Card 1: WhatsApp (New Requirement) -->
+                <div class="innovation-card whatsapp-card"
+                    onclick="window.open('https://wa.me/6281234567890', '_blank')">
+                    <div class="card-icon-wrapper">
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
+                    <h4 class="card-title">WhatsApp Us</h4>
+                    <p class="card-info">Fastest response time.</p>
+                    <div class="card-action">
+                        <span style="color: #25D366; font-weight: bold;">Chat Now &rarr;</span>
                     </div>
                 </div>
-            </div>
-        </section>
-        <!--Contact Page End-->
 
-        <!--Gallery One Start -->
-        <section class="gallery-one">
-            <div class="gallery-one__carousel owl-theme owl-carousel">
-                <!--Gallery One Single Start-->
-                <div class="item">
-                    <div class="gallery-one__single">
-                        <div class="gallery-one__img">
-                            <img src="assets/images/gallery/gallery-1-1.jpg" alt="">
-                            <a href="cars.html"><span class="fab fa-instagram"></span></a>
-                        </div>
+                <!-- Card 2: Call -->
+                <div class="innovation-card call-card" onclick="window.location.href='tel:+558270575405'">
+                    <div class="card-icon-wrapper">
+                        <span class="icon-call"></span>
+                    </div>
+                    <h4 class="card-title">Call Us</h4>
+                    <p class="card-info">+55 827 057 5405</p>
+                    <div class="card-action">
+                        <span style="color: var(--ride-orange); font-weight: bold;">Call Now &rarr;</span>
                     </div>
                 </div>
-                <!--Gallery One Single End-->
-                <!--Gallery One Single Start-->
-                <div class="item">
-                    <div class="gallery-one__single">
-                        <div class="gallery-one__img">
-                            <img src="assets/images/gallery/gallery-1-2.jpg" alt="">
-                            <a href="cars.html"><span class="fab fa-instagram"></span></a>
-                        </div>
-                    </div>
-                </div>
-                <!--Gallery One Single End-->
-                <!--Gallery One Single Start-->
-                <div class="item">
-                    <div class="gallery-one__single">
-                        <div class="gallery-one__img">
-                            <img src="assets/images/gallery/gallery-1-3.jpg" alt="">
-                            <a href="cart.html"><span class="fab fa-instagram"></span></a>
-                        </div>
-                    </div>
-                </div>
-                <!--Gallery One Single End-->
-                <!--Gallery One Single Start-->
-                <div class="item">
-                    <div class="gallery-one__single">
-                        <div class="gallery-one__img">
-                            <img src="assets/images/gallery/gallery-1-4.jpg" alt="">
-                            <a href="cart.html"><span class="fab fa-instagram"></span></a>
-                        </div>
-                    </div>
-                </div>
-                <!--Gallery One Single End-->
-                <!--Gallery One Single Start-->
-                <div class="item">
-                    <div class="gallery-one__single">
-                        <div class="gallery-one__img">
-                            <img src="assets/images/gallery/gallery-1-5.jpg" alt="">
-                            <a href="cart.html"><span class="fab fa-instagram"></span></a>
-                        </div>
-                    </div>
-                </div>
-                <!--Gallery One Single End-->
-                <!--Gallery One Single Start-->
-                <div class="item">
-                    <div class="gallery-one__single">
-                        <div class="gallery-one__img">
-                            <img src="assets/images/gallery/gallery-1-6.jpg" alt="">
-                            <a href="cart.html"><span class="fab fa-instagram"></span></a>
-                        </div>
-                    </div>
-                </div>
-                <!--Gallery One Single End-->
-            </div>
-        </section>
-        <!--Gallery One End -->
 
-        <!--Site Footer Start-->
-        <footer class="site-footer">
-            <div class="site-footer__bg" style="background-image: url('{{ asset('assets/images/backgrounds/site-footer-bg.jpg') }}');">
+                <!-- Card 3: Location -->
+                <div class="innovation-card location-card" onclick="window.location.href='#map-section'">
+                    <div class="card-icon-wrapper">
+                        <span class="icon-location"></span>
+                    </div>
+                    <h4 class="card-title">Location</h4>
+                    <p class="card-info">12 Green Road, Bali</p>
+                    <div class="card-action">
+                        <span style="color: var(--ride-green); font-weight: bold;">View Map &rarr;</span>
+                    </div>
+                </div>
             </div>
-            <div class="site-footer__top">
-                <div class="container">
-                    <div class="site-footer__top-inner">
+        </div>
+    </section>
+
+    <!-- Split Section (Image + Form) -->
+    <section class="split-section">
+        <div class="container">
+            <div class="split-container">
+                <!-- Left: Placeholder Image -->
+                <div class="split-image-box">
+                    <!-- Placeholder URL as requested for user to replace -->
+                    <img src="https://placehold.co/800x1000?text=Custom+Contact+Image" alt="Contact Visual">
+                    <div class="image-overlay">
+                        <h5>We're here for you</h5>
+                        <p>Visit our office for a coffee and a chat about your next adventure.</p>
+                    </div>
+                </div>
+
+                <!-- Right: Glass Form -->
+                <div class="glass-form-box">
+                    <div class="glass-header">
+                        <p style="font-weight: 600; text-transform: uppercase;">Send a Message</p>
+                        <h3>Ready to Ride?</h3>
+                        <p style="color: #777; margin-bottom: 30px;">Fill out the form below and our team will get back to
+                            you within hours.</p>
+                    </div>
+
+                    <form id="contact-form" class="custom-glass-form" action="assets/mail.php" method="POST">
                         <div class="row">
-                            <div class="col-xl-4 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay="100ms">
-                                <div class="footer-widget__about">
-                                    <div class="footer-widget__about-logo">
-                                        <a href="index.html"><img src="assets/images/resources/footer-logo.png"
-                                                alt=""></a>
-                                    </div>
-                                    <p class="footer-widget__about-text">Car Is Where Early Adopters And Innovation
-                                        Seekers Find Lively
-                                        Imaginative Tech.</p>
-                                    <form class="footer-widget__form">
-                                        <div class="footer-widget__input">
-                                            <input type="email" placeholder="Your Email">
-                                        </div>
-                                        <button type="submit" class="footer-widget__btn"><i
-                                                class="icon-right-arrow"></i></button>
-                                    </form>
-                                </div>
+                            <div class="col-md-6">
+                                <input type="text" name="name" class="custom-input" placeholder="Your Name" required>
                             </div>
-                            <div class="col-xl-2 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay="200ms">
-                                <div class="footer-widget__links">
-                                    <h4 class="footer-widget__title">Quick links</h4>
-                                    <ul class="footer-widget__links-list list-unstyled">
-                                        <li><a href="about.html">About Us</a></li>
-                                        <li><a href="services.html">Our Services</a></li>
-                                        <li><a href="drivers.html">Our Drivers</a></li>
-                                        <li><a href="blog.html">Our Blog</a></li>
-                                        <li><a href="contact.html">Contact Us</a></li>
-                                    </ul>
-                                </div>
+                            <div class="col-md-6">
+                                <input type="number" name="phone" class="custom-input" placeholder="Phone / WhatsApp"
+                                    required>
                             </div>
-                            <div class="col-xl-3 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay="400ms">
-                                <div class="footer-widget__services">
-                                    <h4 class="footer-widget__title">Services</h4>
-                                    <ul class="footer-widget__links-list list-unstyled">
-                                        <li><a href="car-list-v-1.html">Your Reliable Ride</a></li>
-                                        <li><a href="car-list-v-2.html">Express Shuttle</a></li>
-                                        <li><a href="car-list-v-3.html">Travel in Style</a></li>
-                                        <li><a href="cars.html">Rental List</a></li>
-                                        <li><a href="listing-single.html">Dash Transport</a></li>
-                                    </ul>
-                                </div>
+                            <div class="col-12">
+                                <input type="email" name="email" class="custom-input" placeholder="Email Address"
+                                    required>
                             </div>
-                            <div class="col-xl-3 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay="300ms">
-                                <div class="footer-widget__contact">
-                                    <h3 class="footer-widget__title">Contact Us</h3>
-                                    <ul class="footer-widget__contact-list list-unstyled">
-                                        <li>
-                                            <div class="icon">
-                                                <span class="icon-pin"></span>
-                                            </div>
-                                            <p>4140 Parker Rd. Allentown, New
-                                                <br> Mexico 31134</p>
-                                        </li>
-                                        <li>
-                                            <div class="icon">
-                                                <span class="icon-call"></span>
-                                            </div>
-                                            <p><a href="tel:2195550114">(219) 555-0114</a></p>
-                                        </li>
-                                        <li>
-                                            <div class="icon">
-                                                <span class="icon-envelope"></span>
-                                            </div>
-                                            <p><a href="mailto:gorent@gmail.com">gorent@gmail.com</a></p>
-                                        </li>
-                                    </ul>
-                                </div>
+                            <div class="col-12">
+                                <textarea name="message" class="custom-input" rows="5" placeholder="Tell us what you need..."></textarea>
+                            </div>
+                            <div class="col-12">
+                                <button type="submit" class="send-btn-creative">
+                                    Send Message <i class="fas fa-paper-plane"></i>
+                                </button>
                             </div>
                         </div>
-                    </div>
+                    </form>
+                    <p class="ajax-response mb-0 mt-3"></p>
                 </div>
             </div>
-            <div class="site-footer__bottom">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-xl-12">
-                            <div class="site-footer__bottom-inner">
-                                <div class="site-footer__copyright">
-                                    <p class="site-footer__copyright-text">© 2025 Gorent By <a
-                                            href="https://themeforest.net/user/dreamlayout">Dreamlayout.</a> All
-                                        Rights
-                                        Reserved.</p>
-                                </div>
-                                <div class="site-footer__bottom-menu-box">
-                                    <ul class="list-unstyled site-footer__bottom-menu">
-                                        <li><a href="about.html">Terms of Service</a></li>
-                                        <li><a href="about.html">Privacy policy</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </footer>
-        <!--Site Footer End-->
+        </div>
+    </section>
 
-
-
-
-    </div><!-- /.page-wrapper -->
+    <!-- Map Section -->
+    <section id="map-section" style="height: 400px; width: 100%; margin-bottom: -10px;">
+        <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15777.067307040443!2d115.17078860000001!3d-8.66752715!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd240971e4063c5%3A0x5a1835359dd3058f!2sSeminyak%2C%20Badung%20Regency%2C%20Bali!5e0!3m2!1sen!2sid!4v1700000000000!5m2!1sen!2sid"
+            width="100%" height="100%" style="border:0; filter: grayscale(100%) invert(90%);" allowfullscreen=""
+            loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+    </section>
 @endsection

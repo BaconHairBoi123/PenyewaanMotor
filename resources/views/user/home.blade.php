@@ -777,8 +777,13 @@
                                 </div>
                                 <div class="accrodion-content">
                                     <div class="inner">
-                                        <p>We offer a wide range of motorbikes, from automatic scooters for city rides to premium and larger-engine motorbikes for longer journeys and experienced riders.
-                                        </p>
+                                        <p>We offer a variety of motorbikes to suit different riding need:</p>
+                                        <ul style="list-style-type: disc; margin-left: 20px; color: var(--thm-gray);">
+                                            <li>Small Automatic Scooters – ideal for city rides and beginners</li>
+                                            <li>Large Automatic Scooters – comfortable and powerful for longer trips</li>
+                                            <li>Sport Motorbikes – designed for experienced riders seeking performance and style</li>
+                                        </ul>
+                                    </div><!-- /.inner
                                     </div><!-- /.inner -->
                                 </div>
                             </div>
