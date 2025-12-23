@@ -16,7 +16,7 @@
                             <div class="main-slider__sub-title-box">
                                 <p class="main-slider__sub-title">Your Best</p>
                             </div>
-                            <h2 class="main-slider__title">Motorcyle <span>Rental</span></h2>
+                            <h2 class="main-slider__title">Motorcycle <span>Rental</span></h2>
                             <p class="main-slider__sub-title-two">Experience</p>
                             <div class="main-slider__btn-and-video-box">
                                 <div class="main-slider__btn-box">
@@ -46,7 +46,7 @@
                             <div class="main-slider__sub-title-box">
                                 <p class="main-slider__sub-title">Your Best</p>
                             </div>
-                            <h2 class="main-slider__title">Motorcyle<span>Booking</span></h2>
+                            <h2 class="main-slider__title">Motorcycle<span>Booking</span></h2>
                             <p class="main-slider__sub-title-two">Experience</p>
                             <div class="main-slider__btn-and-video-box">
                                 <div class="main-slider__btn-box">
@@ -76,7 +76,7 @@
                             <div class="main-slider__sub-title-box">
                                 <p class="main-slider__sub-title">Your Best</p>
                             </div>
-                            <h2 class="main-slider__title">Motorcyle<span>Choosing</span></h2>
+                            <h2 class="main-slider__title">Motorcycle<span>Choosing</span></h2>
                             <p class="main-slider__sub-title-two">Experience</p>
                             <div class="main-slider__btn-and-video-box">
                                 <div class="main-slider__btn-box">
@@ -235,7 +235,7 @@
                                     <span class="section-title__tagline">About Ride Nusa</span>
                                 </div>
                                 <h2 class="section-title__title title-animation">Welcome to Ride Nusa
-                                    Motorcyle booking company</h2>
+                                    Motorcycle booking company</h2>
                             </div>
                             <p class="about-one__text-1">Committed to providing our customers with<br> ultimate service.
                             </p>
@@ -296,7 +296,7 @@
                         </div>
                         <span class="section-title__tagline">Steps</span>
                     </div>
-                    <h2 class="section-title__title title-animation">Motorcyle Rental Process</h2>
+                    <h2 class="section-title__title title-animation">Motorcycle Rental Process</h2>
                 </div>
                 <div class="row">
                     <!-- Process One Single Start -->
@@ -313,7 +313,7 @@
                                 </div>
                                 <div class="process-one__count"></div>
                             </div>
-                            <h3 class="process-one__title">Choose A Motorcyle</h3>
+                            <h3 class="process-one__title">Choose A Motorcycle</h3>
                             <p class="process-one__text">choose a motorbike according to your criteria</p>
                         </div>
                     </div>
@@ -585,7 +585,7 @@
                                     <span class="section-title__tagline">fun facts</span>
                                 </div>
                                 <h2 class="section-title__title title-animation">experience freedom on
-                                    our Motorcyle booking service</h2>
+                                    our Motorcycle booking service</h2>
                             </div>
                             <p class="counter-one__text">Dominion fowe there light she does lights begining subdue
                                 without run saying <br> moving winger Open multipy a green form lesser</p>

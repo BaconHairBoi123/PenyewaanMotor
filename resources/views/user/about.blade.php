@@ -66,7 +66,7 @@
                                 <span class="section-title__tagline">About Ride Nusa</span>
                             </div>
                             <h2 class="section-title__title title-animation">Welcome to Ride Nusa
-                                Motorcyle booking company</h2>
+                                Motorcycle booking company</h2>
                         </div>
                         <p class="about-one__text-1">Committed to providing our customers with<br> ultimate service.
                         </p>
@@ -611,7 +611,7 @@
         <div class="container">
             <div class="lets-talk__inner">
                 <div class="lets-talk__title">
-                    <p>Rent Your Motorcyle</p>
+                    <p>Rent Your Motorcycle</p>
                     <h2>Interested in Renting?</h2>
                 </div>
                 <div class="lets-talk__btn-boxes">

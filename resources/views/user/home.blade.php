@@ -17,7 +17,7 @@
                         <div class="main-slider__sub-title-box">
                             <p class="main-slider__sub-title">Your Best</p>
                         </div>
-                        <h2 class="main-slider__title">Motorcyle <span>Rental</span></h2>
+                        <h2 class="main-slider__title">Motorcycle <span>Rental</span></h2>
                         <p class="main-slider__sub-title-two">Experience</p>
                         <div class="main-slider__btn-and-video-box">
                             <div class="main-slider__btn-box">
@@ -45,7 +45,7 @@
                         <div class="main-slider__sub-title-box">
                             <p class="main-slider__sub-title">Your Best</p>
                         </div>
-                        <h2 class="main-slider__title">Motorcyle<span>Booking</span></h2>
+                        <h2 class="main-slider__title">Motorcycle<span>Booking</span></h2>
                         <p class="main-slider__sub-title-two">Experience</p>
                         <div class="main-slider__btn-and-video-box">
                             <div class="main-slider__btn-box">
@@ -73,7 +73,7 @@
                         <div class="main-slider__sub-title-box">
                             <p class="main-slider__sub-title">Your Best</p>
                         </div>
-                        <h2 class="main-slider__title">Motorcyle<span>Choosing</span></h2>
+                        <h2 class="main-slider__title">Motorcycle<span>Choosing</span></h2>
                         <p class="main-slider__sub-title-two">Experience</p>
                         <div class="main-slider__btn-and-video-box">
                             <div class="main-slider__btn-box">
@@ -116,7 +116,7 @@
             <div class="row">
                 <!--Services One Single Start-->
                 <div class="col-xl-3 col-lg-6 col-md-6 wow fadeInLeft" data-wow-delay="100ms" data-wow-duration="1500ms">
-                    <div class="services-one__single">
+                    <div class="services-one__single" style="height: 100%;">
                         <div class="services-one__single-shape-1"></div>
                         <div class="services-one__single-shape-2"></div>
                         <div class="services-one__single-shape-3"></div>
@@ -124,16 +124,15 @@
                         <div class="services-one__icon">
                             <!-- <span class="icon-car"></span> -->
                         </div>
-                        <h3 class="services-one__title"><a href="services.html">motor termewah Ride Nusa</a>
+                        <h3 class="services-one__title"><a href="services.html">Ride Nusa’s Most Luxurious Motorcycles</a>
                         </h3>
-                        <p class="services-one__text">kita memiliki motor yang exclusive yang bisa anda sewa selama anda
-                            liburan atau tinggal di bali</p>
+                        <p class="services-one__text">We offer exclusive motorcycles that you can rent during your holiday or stay in Bali.</p>
                     </div>
                 </div>
                 <!--Services One Single End-->
                 <!--Services One Single Start-->
                 <div class="col-xl-3 col-lg-6 col-md-6 wow fadeInLeft" data-wow-delay="300ms" data-wow-duration="1500ms">
-                    <div class="services-one__single">
+                    <div class="services-one__single" style="height: 100%;">
                         <div class="services-one__single-shape-1"></div>
                         <div class="services-one__single-shape-2"></div>
                         <div class="services-one__single-shape-3"></div>
@@ -141,16 +140,16 @@
                         <div class="services-one__icon">
                             <!-- <span class="icon-taxi"></span> -->
                         </div>
-                        <h3 class="services-one__title"><a href="services.html">Antar unit ke tempat penyewa</a>
+                        <h3 class="services-one__title"><a href="services.html">Free Unit Delivery</a>
                         </h3>
-                        <p class="services-one__text">kita dengan gratis meghantarkan unit ke pengunna atau penyewa</p>
+                        <p class="services-one__text">We provide free delivery of the motorcycle directly to the renter’s location.</p>
                     </div>
                 </div>
                 <!--Services One Single End-->
                 <!--Services One Single Start-->
                 <div class="col-xl-3 col-lg-6 col-md-6 wow fadeInRight" data-wow-delay="500ms"
                     data-wow-duration="1500ms">
-                    <div class="services-one__single">
+                    <div class="services-one__single" style="height: 100%;">
                         <div class="services-one__single-shape-1"></div>
                         <div class="services-one__single-shape-2"></div>
                         <div class="services-one__single-shape-3"></div>
@@ -159,15 +158,14 @@
                             <!-- <span class="icon-sport-car-1"></span> -->
                         </div>
                         <h3 class="services-one__title"><a href="services.html">Riding Class</a></h3>
-                        <p class="services-one__text">kita memberikan kelas untuk wisatawan yang belum lihay menggunakan
-                            motor</p>
+                        <p class="services-one__text">We offer riding classes for travelers who are not yet confident or experienced in riding motorcycles.</p>
                     </div>
                 </div>
                 <!--Services One Single End-->
                 <!--Services One Single Start-->
                 <div class="col-xl-3 col-lg-6 col-md-6 wow fadeInRight" data-wow-delay="700ms"
                     data-wow-duration="1500ms">
-                    <div class="services-one__single">
+                    <div class="services-one__single" style="height: 100%;">
                         <div class="services-one__single-shape-1"></div>
                         <div class="services-one__single-shape-2"></div>
                         <div class="services-one__single-shape-3"></div>
@@ -175,9 +173,8 @@
                         <div class="services-one__icon">
                             <!-- <span class="icon-car-insurance"></span> -->
                         </div>
-                        <h3 class="services-one__title"><a href="services.html">Aksesoris Tambahan</a></h3>
-                        <p class="services-one__text">kita menyediakan aksesoris tambahan untuk kelengkapan berkendara si
-                            pengguna</p>
+                        <h3 class="services-one__title"><a href="services.html">Additional Accessories</a></h3>
+                        <p class="services-one__text">We provide additional riding accessories to ensure a safe and comfortable riding experience.</p>
                     </div>
                 </div>
                 <!--Services One Single End-->
@@ -232,7 +229,7 @@
                                 <span class="section-title__tagline">About Ride Nusa</span>
                             </div>
                             <h2 class="section-title__title title-animation">Welcome to Ride Nusa
-                                Motorcyle booking company</h2>
+                                Motorcycle booking company</h2>
                         </div>
                         <p class="about-one__text-1">Committed to providing our customers with<br> ultimate service.
                         </p>
@@ -293,12 +290,12 @@
                     </div>
                     <span class="section-title__tagline">Steps</span>
                 </div>
-                <h2 class="section-title__title title-animation">Motorcyle Rental Process</h2>
+                <h2 class="section-title__title title-animation">Motorcycle Rental Process</h2>
             </div>
             <div class="row">
                 <!-- Process One Single Start -->
                 <div class="col-xl-3 col-lg-6 col-md-6 wow fadeInLeft" data-wow-delay="100ms" data-wow-duration="1500ms">
-                    <div class="process-one__single">
+                    <div class="process-one__single" style="height: 100%;">
                         <div class="process-one__single-bg"
                             style="background-image: url('/assets/images/backgrounds/300x268_process-single-bg1.jpg');">
                         </div>
@@ -311,14 +308,14 @@
                             </div>
                             <div class="process-one__count"></div>
                         </div>
-                        <h3 class="process-one__title">Choose A Motorcyle</h3>
-                        <p class="process-one__text">choose a motorbike according to your criteria</p>
+                        <h3 class="process-one__title">Choose A Motorcycle</h3>
+                        <p class="process-one__text">Choose a motorbike according to your criteria</p>
                     </div>
                 </div>
                 <!-- Process One Single End -->
                 <!-- Process One Single Start -->
                 <div class="col-xl-3 col-lg-6 col-md-6 wow fadeInLeft" data-wow-delay="300ms" data-wow-duration="1500ms">
-                    <div class="process-one__single">
+                    <div class="process-one__single" style="height: 100%;">
                         <div class="process-one__single-bg"
                             style="background-image: url('/assets/images/backgrounds/300X268process-one-single-bg2.jpg');">
                         </div>
@@ -330,14 +327,14 @@
                             <div class="process-one__count"></div>
                         </div>
                         <h3 class="process-one__title">Come In Contact</h3>
-                        <p class="process-one__text">contact us and we will deliver it</p>
+                        <p class="process-one__text">Contact us and we will deliver it</p>
                     </div>
                 </div>
                 <!-- Process One Single End -->
                 <!-- Process One Single Start -->
                 <div class="col-xl-3 col-lg-6 col-md-6 wow fadeInRight" data-wow-delay="500ms"
                     data-wow-duration="1500ms">
-                    <div class="process-one__single">
+                    <div class="process-one__single" style="height: 100%;">
                         <div class="process-one__single-bg"
                             style="background-image: url('/assets/images/backgrounds/300x268_process-single-bg3yangbaruu.jpeg');">
                         </div>
@@ -359,7 +356,7 @@
                 <!-- Process One Single Start -->
                 <div class="col-xl-3 col-lg-6 col-md-6 wow fadeInRight" data-wow-delay="700ms"
                     data-wow-duration="1500ms">
-                    <div class="process-one__single">
+                    <div class="process-one__single" style="height: 100%;">
                         <div class="process-one__single-bg"
                             style="background-image: url('/assets/images/backgrounds/300x268_process-single-bg4yangbaru.jpg');">
                         </div>
@@ -402,15 +399,13 @@
             <div class="row">
                 <!-- Why Choose One Single Start -->
                 <div class="col-xl-4 col-lg-6 col-md-6 wow fadeInLeft" data-wow-delay="100ms" data-wow-duration="1500ms">
-                    <div class="why-choose-one__single">
+                    <div class="why-choose-one__single" style="height: 100%;">
                         <div class="why-choose-one__icon">
                             <span class="icon-range"></span>
                         </div>
                         <div class="why-choose-one__single-inner">
                             <h3 class="why-choose-one__title">Easy & Fast Booking</h3>
-                            <p class="why-choose-one__text">Car service is essential for maintaining performance and
-                                longevity of vehicle. From oil changes. Dominion fowe there light she does lights
-                                begining subdue.
+                            <p class="why-choose-one__text">Our booking process is simple and efficient, allowing you to reserve your motorbike in just a few steps—quick, hassle-free, and convenient.
                             </p>
                         </div>
                         <div class="why-choose-one__btn-box">
@@ -422,16 +417,14 @@
                 <!-- Why Choose One Single End -->
                 <!-- Why Choose One Single Start -->
                 <div class="col-xl-4 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay="300ms" data-wow-duration="1500ms">
-                    <div class="why-choose-one__single">
+                    <div class="why-choose-one__single" style="height: 100%;">
                         <div class="why-choose-one__icon">
 
                             <i class="ri-map-pin-5-line" style="font-size: 32px; color: black;"></i>
                         </div>
                         <div class="why-choose-one__single-inner">
                             <h3 class="why-choose-one__title">Many Pickup Location</h3>
-                            <p class="why-choose-one__text">Car service is essential for maintaining performance and
-                                longevity of vehicle. From oil changes. Dominion fowe there light she does lights
-                                begining subdue.
+                            <p class="why-choose-one__text">We offer multiple pickup and delivery locations across Bali, giving you flexibility and convenience wherever you stay.
                             </p>
                         </div>
                         <div class="why-choose-one__btn-box">
@@ -444,15 +437,13 @@
                 <!-- Why Choose One Single Start -->
                 <div class="col-xl-4 col-lg-6 col-md-6 wow fadeInRight" data-wow-delay="500ms"
                     data-wow-duration="1500ms">
-                    <div class="why-choose-one__single">
+                    <div class="why-choose-one__single" style="height: 100%;">
                         <div class="why-choose-one__icon">
                             <span class="icon-rating"></span>
                         </div>
                         <div class="why-choose-one__single-inner">
                             <h3 class="why-choose-one__title">Customer Satisfaction</h3>
-                            <p class="why-choose-one__text">motorbike service is essential for maintaining performance and
-                                longevity of vehicle. From oil changes. Dominion fowe there light she does lights
-                                begining subdue.
+                            <p class="why-choose-one__text">Your satisfaction is our priority. We provide well-maintained motorcycles, responsive support, and reliable service to ensure a comfortable and worry-free ride.
                             </p>
                         </div>
                         <div class="why-choose-one__btn-box">
@@ -481,7 +472,7 @@
                                 <span class="section-title__tagline">fun facts</span>
                             </div>
                             <h2 class="section-title__title title-animation">experience freedom on
-                                our Motorcyle booking service</h2>
+                                our Motorcycle booking service</h2>
                         </div>
                         <p class="counter-one__text">Dominion fowe there light she does lights begining subdue
                             without run saying <br> moving winger Open multipy a green form lesser</p>
@@ -755,13 +746,11 @@
                         <div class="accrodion-grp" data-grp-name="faq-one-accrodion">
                             <div class="accrodion wow fadeInLeft" data-wow-delay="0ms" data-wow-duration="1500ms">
                                 <div class="accrodion-title">
-                                    <h4>How old do I need to be to rent a car?</h4>
+                                    <h4>How old do I need to be to rent a motorbike?</h4>
                                 </div>
                                 <div class="accrodion-content">
                                     <div class="inner">
-                                        <p>From personalized solutions to expert execution, we prioritize quality,
-                                            reliability, and customer satisfaction in everything we do. Let us be
-                                            your trusted partner in achieving success.
+                                        <p>You must be at least 18 years old to rent a motorbike. Some premium or high-capacity models may require a higher minimum age and riding experience.
                                         </p>
                                     </div><!-- /.inner -->
                                 </div>
@@ -769,39 +758,37 @@
                             <div class="accrodion active wow fadeInRight" data-wow-delay="100ms"
                                 data-wow-duration="1500ms">
                                 <div class="accrodion-title">
-                                    <h4>What documents do I need to rent a car?</h4>
+                                    <h4>What documents do I need to rent a motorbike?</h4>
                                 </div>
                                 <div class="accrodion-content">
                                     <div class="inner">
-                                        <p>From personalized solutions to expert execution, we prioritize quality,
-                                            reliability, and customer satisfaction in everything we do. Let us be
-                                            your trusted partner in achieving success.
-                                        </p>
+                                        <p>You will need:</p>
+                                        <ul style="list-style-type: disc; margin-left: 20px; color: var(--thm-gray);">
+                                            <li>Valid Passport</li>
+                                            <li>Valid Driving License</li>
+                                            <li>ID for Verification</li>
+                                        </ul>
                                     </div><!-- /.inner -->
                                 </div>
                             </div>
                             <div class="accrodion wow fadeInLeft" data-wow-delay="200ms" data-wow-duration="1500ms">
                                 <div class="accrodion-title">
-                                    <h4>What types of vehicles are available for rent?</h4>
+                                    <h4>What types of motorbikes are available for rent?</h4>
                                 </div>
                                 <div class="accrodion-content">
                                     <div class="inner">
-                                        <p>From personalized solutions to expert execution, we prioritize quality,
-                                            reliability, and customer satisfaction in everything we do. Let us be
-                                            your trusted partner in achieving success.
+                                        <p>We offer a wide range of motorbikes, from automatic scooters for city rides to premium and larger-engine motorbikes for longer journeys and experienced riders.
                                         </p>
                                     </div><!-- /.inner -->
                                 </div>
                             </div>
                             <div class="accrodion wow fadeInRight" data-wow-delay="300ms" data-wow-duration="1500ms">
                                 <div class="accrodion-title">
-                                    <h4>Can I rent a car with a debit card?</h4>
+                                    <h4>Can I rent a motorbike without a license?</h4>
                                 </div>
                                 <div class="accrodion-content">
                                     <div class="inner">
-                                        <p>From personalized solutions to expert execution, we prioritize quality,
-                                            reliability, and customer satisfaction in everything we do. Let us be
-                                            your trusted partner in achieving success.
+                                        <p>For safety and legal reasons, a valid driving license is required. However, we also offer riding classes for beginners who want to improve their riding skills.
                                         </p>
                                     </div><!-- /.inner -->
                                 </div>
@@ -812,9 +799,7 @@
                                 </div>
                                 <div class="accrodion-content">
                                     <div class="inner">
-                                        <p>From personalized solutions to expert execution, we prioritize quality,
-                                            reliability, and customer satisfaction in everything we do. Let us be
-                                            your trusted partner in achieving success.
+                                        <p>Motorbikes are delivered with a certain fuel level and should be returned at the same fuel level. Fuel costs during the rental period are the renter’s responsibility.
                                         </p>
                                     </div><!-- /.inner -->
                                 </div>
@@ -833,7 +818,7 @@
         <div class="container">
             <div class="lets-talk__inner">
                 <div class="lets-talk__title">
-                    <p>Rent Your Car</p>
+                    <p>Rent Your Motorcycle</p>
                     <h2>Interested in Renting?</h2>
                 </div>
                

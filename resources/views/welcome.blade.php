@@ -124,7 +124,7 @@
                         <div class="main-slider__sub-title-box">
                             <p class="main-slider__sub-title">Your Best</p>
                         </div>
-                        <h2 class="main-slider__title">Motorcyle <span>Rental</span></h2>
+                        <h2 class="main-slider__title">Motorcycle <span>Rental</span></h2>
                         <p class="main-slider__sub-title-two">Experience</p>
                         <div class="main-slider__btn-and-video-box">
                             <div class="main-slider__btn-box">
@@ -153,7 +153,7 @@
                         <div class="main-slider__sub-title-box">
                             <p class="main-slider__sub-title">Your Best</p>
                         </div>
-                        <h2 class="main-slider__title">Motorcyle<span>Booking</span></h2>
+                        <h2 class="main-slider__title">Motorcycle<span>Booking</span></h2>
                         <p class="main-slider__sub-title-two">Experience</p>
                         <div class="main-slider__btn-and-video-box">
                             <div class="main-slider__btn-box">
@@ -183,7 +183,7 @@
                         <div class="main-slider__sub-title-box">
                             <p class="main-slider__sub-title">Your Best</p>
                         </div>
-                        <h2 class="main-slider__title">Motorcyle<span>Choosing</span></h2>
+                        <h2 class="main-slider__title">Motorcycle<span>Choosing</span></h2>
                         <p class="main-slider__sub-title-two">Experience</p>
                         <div class="main-slider__btn-and-video-box">
                             <div class="main-slider__btn-box">
