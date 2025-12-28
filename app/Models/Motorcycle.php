@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\MotorcycleService;
+use App\Models\MotorcycleImage;
 
 class Motorcycle extends Model
 {
@@ -20,7 +22,7 @@ class Motorcycle extends Model
         'last_service_date',
         'price',
         'license_plate',
-        'transmission', 
+        'transmission',
     ];
 
     /**
@@ -38,7 +40,9 @@ class Motorcycle extends Model
     {
         return $this->hasOne(MotorcycleService::class, 'motorcycle_id')->latest();
     }
- 
+    public function images()
+    {
+        return $this->hasMany(MotorcycleImage::class, 'motorcycle_id');
+    }
+   
 }
-
-

@@ -1277,34 +1277,45 @@
     }
 
     // ===Price Filter Updated===
-   // ===Price Filter Updated===
-function priceFilter() {
-    if ($(".price-ranger").length) {
-        // Membersihkan titik dari input (jika ada) agar jadi angka murni
-        var minVal = parseInt($(".price-ranger .min").val().replace(/\./g, '')) || 0;
-        var maxVal = parseInt($(".price-ranger .max").val().replace(/\./g, '')) || 20000000;
+    $(document).ready(function () {
+        // PANGGIL FUNGSI SAAT HALAMAN DIBUKA
+        priceFilter();
+    });
 
-        $(".price-ranger #slider-range").slider({
-            range: true,
-            min: 0,
-            max: 20000000, 
-            values: [minVal, maxVal],
-            slide: function (event, ui) {
-                // Update Nilai Input (untuk kirim ke Database)
-                $(".price-ranger .min").val(ui.values[0]);
-                $(".price-ranger .max").val(ui.values[1]);
+    function priceFilter() {
+        if ($(".price-ranger").length) {
+            // Gunakan nilai mentah dari input
+            var minVal = parseInt($(".min").val()) || 0;
+            var maxVal = parseInt($(".max").val()) || 5000000;
 
-                // Update Teks Label (untuk dilihat User agar ada titik ribuan)
-                $("#label-min").text(new Intl.NumberFormat('id-ID').format(ui.values[0]));
-                $("#label-max").text(new Intl.NumberFormat('id-ID').format(ui.values[1]));
-            },
-        });
+            console.log("Min:", minVal, "Max:", maxVal); // Cek di F12 apakah angka muncul benar
 
-        // Set label saat pertama kali halaman dimuat
-        $("#label-min").text(new Intl.NumberFormat('id-ID').format($(".price-ranger #slider-range").slider("values", 0)));
-        $("#label-max").text(new Intl.NumberFormat('id-ID').format($(".price-ranger #slider-range").slider("values", 1)));
+            $("#slider-range").slider({
+                range: true,
+                min: 0,
+                max: 5000000,
+                values: [minVal, maxVal], // Pastikan ini array [angka, angka]
+                slide: function (event, ui) {
+                    $(".min").val(ui.values[0]);
+                    $(".max").val(ui.values[1]);
+
+                    // Update label jika ada elemen ID label-min/max
+                    if ($("#label-min").length) {
+                        $("#label-min").text(
+                            new Intl.NumberFormat("id-ID").format(ui.values[0])
+                        );
+                        $("#label-max").text(
+                            new Intl.NumberFormat("id-ID").format(ui.values[1])
+                        );
+                    }
+                },
+                stop: function (event, ui) {
+                    // Pastikan div .price-ranger berada di dalam tag <form>
+                    $(this).closest("form").submit();
+                },
+            });
+        }
     }
-}
 
     $(".add").on("click", function () {
         if ($(this).prev().val() < 999) {
