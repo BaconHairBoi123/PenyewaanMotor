@@ -24,6 +24,7 @@ use App\Http\Controllers\Admin\AdminAccountController;
 use App\Http\Controllers\Admin\AccountController;
 use App\Http\Controllers\Admin\TransaksiController;
 use App\Http\Controllers\Admin\ServiceController;
+use App\Http\Controllers\Admin\ImageManagementController;
 
 
 /*
@@ -46,7 +47,7 @@ Route::post('/logout', function (Request $request) {
     $request->session()->invalidate();
     $request->session()->regenerateToken();
     return redirect('/');
-})->name('logout'); 
+})->name('logout');
 
 Route::get('/register', [RegisterUserController::class, 'showRegistrationForm'])->name('register');
 Route::post('/register', [RegisterUserController::class, 'register']);
@@ -102,7 +103,7 @@ Route::get('/blog-details', [PageController::class, 'blogDetails'])->name('blog.
 
 // Gunakan group dengan nama 'user.' agar otomatis menjadi user.home dan user.profile
 Route::middleware('auth:web')->name('user.')->group(function () {
-    Route::get('/home', [PageController::class, 'home'])->name('home'); 
+    Route::get('/home', [PageController::class, 'home'])->name('home');
     Route::get('/profile', [PageController::class, 'profile'])->name('profile');
 });
 
@@ -111,7 +112,7 @@ Route::middleware('auth:web')
     ->prefix('user')
     ->name('user.')
     ->group(function () {
-        
+
         // Tambahkan rute user protected lainnya di sini (selain home/profile)
     });
 
@@ -151,7 +152,7 @@ Route::middleware('auth:admin')->prefix('admin')->name('admin.')->group(function
 
     // Transaksi
     Route::get('/transaksi', [TransaksiController::class, 'index'])->name('transaksi.index');
-    
+
     // User Verification
     Route::get('/user-verification', [App\Http\Controllers\Admin\UserVerificationController::class, 'index'])->name('user.verification');
     Route::post('/user-verification/{id}/approve', [App\Http\Controllers\Admin\UserVerificationController::class, 'approve'])->name('user.verification.approve');
@@ -169,9 +170,9 @@ Route::middleware('auth:admin')->prefix('admin')->name('admin.')->group(function
     // Services
     Route::get('/services', [ServiceController::class, 'index'])->name('services.index');
     Route::post('/services/store', [ServiceController::class, 'store'])->name('services.store');
-    
+
     // Service Types
-// Service Types
+    // Service Types
     Route::get('/service-types', [App\Http\Controllers\Admin\ServiceTypeController::class, 'index'])
         ->name('service.types.index');
 
@@ -183,9 +184,24 @@ Route::middleware('auth:admin')->prefix('admin')->name('admin.')->group(function
 
     // Delivery Pickup Today
     Route::get('/delivery-pickup-today', [App\Http\Controllers\Admin\DeliveryController::class, 'index'])->name('delivery.today');
-    
+
     // Accessories
     Route::get('/accessories', [App\Http\Controllers\Admin\AccessoryController::class, 'index'])->name('accessories');
     Route::post('/accessories/store', [App\Http\Controllers\Admin\AccessoryController::class, 'store'])->name('accessories.store');
     Route::delete('/accessories/{id}', [App\Http\Controllers\Admin\AccessoryController::class, 'delete'])->name('accessories.delete');
+
+    // Images Management
+
+    // CUKUP TULIS SEPERTI INI SAJA (Hapus tulisan 'admin/' dan 'admin.')
+    Route::get('/images-management', [ImageManagementController::class, 'index'])
+        ->name('images_management');
+    // Halaman untuk kelola foto motor tertentu
+    Route::get('/images-management/{id}', [ImageManagementController::class, 'manage'])
+        ->name('images_management.manage');
+
+    // Route untuk hapus foto (nantinya)
+    Route::delete('/images-management/delete/{id}', [ImageManagementController::class, 'destroyImage'])
+        ->name('images_management.delete');
+    Route::post('/images-management/{id}/upload', [ImageManagementController::class, 'upload'])
+        ->name('images_management.upload');
 });

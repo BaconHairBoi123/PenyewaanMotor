@@ -1311,15 +1311,6 @@
                                                         </div>
                                                     </li>
                                                     <li>
-                                                        <div class="icon"><span class="icon-test-drive"></span>
-                                                        </div>
-                                                        <div class="text">
-                                                            {{-- Mengubah 'big_matic' menjadi 'Big Matic' agar lebih rapi --}}
-                                                            <p>{{ str_replace('_', '', ucfirst($m->type)) }}
-                                                            </p>
-                                                        </div>
-                                                    </li>
-                                                    <li>
                                                         <div class="icon"><span class="icon-fuel-type"></span>
                                                         </div>
                                                         <div class="text">
@@ -1332,6 +1323,16 @@
                                                         <div class="text">
                                                             {{-- Karena di tabel tidak ada kolom kilometer, kita tampilkan CC saja atau tgl service --}}
                                                             <p>{{ $m->cc }} CC</p>
+                                                        </div>
+                                                    </li>
+                                                    <li>
+                                                        <div class="icon">
+                                                            {{-- <span class="icon-test-drive"></span> --}}
+                                                        </div>
+                                                        <div class="text">
+                                                            {{-- Mengubah 'big_matic' menjadi 'Big Matic' agar lebih rapi --}}
+                                                            <p>{{ str_replace('_', '', ucfirst($m->type)) }}
+                                                            </p>
                                                         </div>
                                                     </li>
                                                    
@@ -1388,7 +1389,7 @@
                                                 value="{{ request('min_price', '0') }}">
                                             <span>-</span>
                                             <input type="text" name="max_price" id="max_price" readonly class="max"
-                                                value="{{ request('max_price', '20000000') }}">
+                                                value="{{ request('max_price', '5000000') }}">
                                         </div>
                                         <button type="submit" class="thm-btn w-100 mt-2" style="padding: 5px;">Filter
                                             Price</button>

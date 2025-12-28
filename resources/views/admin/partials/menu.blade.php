@@ -76,5 +76,10 @@
        Accessories Management
     </a>
 </li>
+<li>
+    <a href="{{ route('admin.images_management') }}" class="sidebar-link">
+        IMG Management
+    </a>
+</li>
 
 </ul>
