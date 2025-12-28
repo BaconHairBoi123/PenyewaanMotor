@@ -1276,7 +1276,7 @@
                         <div class="row">
                             @forelse ($motorcycles as $m)
                                 <div class="col-xl-4 col-lg-4 col-md-6">
-                                    <div class="listing-one__single">
+                                   <div class="listing-one__single">
                                         <div class="listing-one__img">
                                             @if ($m->image_path && file_exists(public_path('storage/motorcycles/' . $m->image_path)))
                                                 <img src="{{ asset('storage/motorcycles/' . $m->image_path) }}"
@@ -1292,7 +1292,7 @@
                                         </div>
                                         <div class="listing-one__content">
                                             <h3 class="listing-one__title">
-                                                <a href="{{ route('motorcycles.show', ['id' => $m->id, 'slug' => \Illuminate\Support\Str::slug($m->brand . '-' . $m->type)]) }}">{{ $m->brand }} {{ $m->type }}</a>
+                                                <a href="#">{{ $m->category }}</a>
                                             </h3>
                                             <div class="listing-one__meta-box-info">
                                                 <ul class="list-unstyled listing-one__meta">
@@ -1344,7 +1344,7 @@
                                                 </p>
                                             </div>
                                             <div class="listing-one__btn-box">
-                                                <a href="{{ route('motorcycles.show', ['id' => $m->id, 'slug' => \Illuminate\Support\Str::slug($m->brand . '-' . $m->type)]) }}" class="thm-btn">Details Now
+                                                <a href="#" class="thm-btn">Details Now
                                                     <span class="fas fa-arrow-right"></span>
                                                 </a>
                                             </div>
