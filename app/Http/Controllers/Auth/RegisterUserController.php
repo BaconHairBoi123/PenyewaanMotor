@@ -50,6 +50,6 @@ class RegisterUserController extends Controller
         // Langsung loginkan user setelah register
         Auth::guard('web')->login($user); 
 
-        return redirect('/user/dashboard')->with('success', 'Pendaftaran berhasil!');
+        return redirect()->route('welcome')->with('success', 'Pendaftaran berhasil!');
     }
 }

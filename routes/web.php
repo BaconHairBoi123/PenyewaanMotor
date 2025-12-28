@@ -76,9 +76,13 @@ Route::get('/contact', [PageController::class, 'contact'])->name('contact');
 Route::get('/error-page', [PageController::class, 'errorPage'])->name('error-page');
 
 // Halaman Motorcycles
+// Halaman Motorcycles
 Route::get('/motorcycles', [PageController::class, 'motorcycles'])->name('motorcycles.index');
-Route::get('/motorcycle-list-v1', [PageController::class, 'motorcycleListV1'])->name('motorcycles.list-v1');
-Route::get('/motorcycle-single', [PageController::class, 'motorcycleSingle'])->name('motorcycles.single');
+Route::get('/motorcycles/{id}-{slug?}', [PageController::class, 'showMotorcycle'])->name('motorcycles.show');
+
+// Booking & Payment
+Route::post('/booking/checkout', [App\Http\Controllers\BookingController::class, 'checkout'])->name('booking.checkout');
+Route::get('/booking/success', [App\Http\Controllers\BookingController::class, 'success'])->name('booking.success'); // Optional success page
 
 // Halaman Shop
 Route::get('/products', [PageController::class, 'products'])->name('products.index');

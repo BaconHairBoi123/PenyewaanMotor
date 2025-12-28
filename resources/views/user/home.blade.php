@@ -606,7 +606,7 @@
                                 <div class="listing-one__content">
 
                                     <h3 class="listing-one__title">
-                                        <a href="{{ route('motorcycles.single', ['id' => $m->id]) }}">{{ $m->category }}</a>
+                                        <a href="{{ route('motorcycles.show', ['id' => $m->id, 'slug' => \Illuminate\Support\Str::slug($m->brand . '-' . $m->type)]) }}">{{ $m->category }}</a>
                                     </h3>
 
                                     <div class="listing-one__meta-box-info">
@@ -625,41 +625,32 @@
                                                 </div>
                                             </li>
 
-                                            {{-- Baris 2: Tipe & Kapasitas Mesin --}}
-                                            <li>
-                                                <div class="icon"><span class="icon-test-drive"></span></div>
-                                                <div class="text">
-                                                    <p>{{ str_replace('_', '', ucfirst($m->type)) }}</p>
-                                                </div>
-                                            </li>
+                                            {{-- Baris 2: KM & CC --}}
                                             <li>
                                                 <div class="icon"><span class="icon-mileage"></span></div>
                                                 <div class="text">
+                                                    <p>{{ $m->lastService->kilometer ?? 0 }} KM</p>
+                                                </div>
+                                            </li>
+                                            {{-- <li>
+                                                <div class="icon"><span class="icon-speedometer"></span></div>
+                                                <div class="text">
                                                     <p>{{ $m->cc }} CC</p>
                                                 </div>
-                                            </li>
-
-                                            {{-- Baris 3: Jarak Tempuh Terakhir --}}
-                                            <li>
-                                                <div class="icon"><span class="icon-mileage"></span>
-                                                </div>
-                                                <div class="text">
-                                                    <p>{{ $m->lastService->kilometer ?? 0 }} KM
-                                                    </p>
-                                                </div>
-                                            </li>
+                                            </li> --}}
                                         </ul>
                                     </div>
 
                                     <div class="listing-one__car-rent-box">
-                                        <p class="listing-one__car-rent">Starting From
-                                            <span>Rp {{ number_format($m->price ?? 0, 0, ',', '.') }}/</span> Day
+                                        <p class="listing-one__car-rent">Price
+                                            {{-- number_format: Desimal=0, PemisahDesimal=',', PemisahRibuan='.' --}}
+                                            <span>Rp {{ number_format($m->price, 0, ',', '.') }}</span>
                                         </p>
                                     </div>
 
                                     <div class="listing-one__btn-box">
                                         {{-- Perbaikan variabel: dari $mo ke $m --}}
-                                        <a href="{{ route('motorcycles.single', ['id' => $m->id]) }}" class="thm-btn">
+                                        <a href="{{ route('motorcycles.show', ['id' => $m->id, 'slug' => \Illuminate\Support\Str::slug($m->brand . '-' . $m->type)]) }}" class="thm-btn">
                                             Details Now <span class="fas fa-arrow-right"></span>
                                         </a>
 

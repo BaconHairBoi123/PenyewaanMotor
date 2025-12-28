@@ -120,27 +120,16 @@
                             <a href="#" class="mobile-nav__toggler"><i class="fa fa-bars"></i></a>
                             <ul class="main-menu__list">
                                 <li>
-                                    <a href="{{ url('/about') }}">About Us</a>
-                                </li>
-                                <li class="dropdown">
-                                    <a href="#">Pages</a>
-                                    <ul class="shadow-box">
-                                        <li><a href="{{ url('/services') }}">Services</a></li>
-                                        <li><a href="{{ url('/faq') }}">FAQs</a></li>
-                                        <li><a href="{{ url('/error-page') }}">404 Error</a></li>
-                                    </ul>
-                                </li>
-                                <li class="dropdown">
-                                    <a href="#">Motorcycles</a>
-                                    <ul class="shadow-box">
-                                        <li><a href="{{ route('motorcycles.index') }}">Motorcycles</a></li>
-                                        <li><a href="{{ route('motorcycles.list-v1') }}">Motorcycle Listing V-1</a></li>
-                                        <li><a href="{{ route('motorcycles.single') }}">Motorcycle Listing Single</a>
-                                        </li>
-                                    </ul>
+                                    <a href="{{ route('welcome') }}">Home</a>
                                 </li>
                                 <li>
-                                    <a href="{{ url('/contact') }}">Contact</a>
+                                    <a href="{{ route('about') }}">About Us</a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('motorcycles.index') }}">Motorcycles</a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('contact') }}">Contact</a>
                                 </li>
                                 <li>
                                     <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>

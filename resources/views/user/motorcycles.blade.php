@@ -1292,7 +1292,7 @@
                                         </div>
                                         <div class="listing-one__content">
                                             <h3 class="listing-one__title">
-                                                <a href="#">{{ $m->category }}</a>
+                                                <a href="{{ route('motorcycles.show', ['id' => $m->id, 'slug' => \Illuminate\Support\Str::slug($m->brand . '-' . $m->type)]) }}">{{ $m->brand }} {{ $m->type }}</a>
                                             </h3>
                                             <div class="listing-one__meta-box-info">
                                                 <ul class="list-unstyled listing-one__meta">
@@ -1344,7 +1344,7 @@
                                                 </p>
                                             </div>
                                             <div class="listing-one__btn-box">
-                                                <a href="#" class="thm-btn">Details Now
+                                                <a href="{{ route('motorcycles.show', ['id' => $m->id, 'slug' => \Illuminate\Support\Str::slug($m->brand . '-' . $m->type)]) }}" class="thm-btn">Details Now
                                                     <span class="fas fa-arrow-right"></span>
                                                 </a>
                                             </div>

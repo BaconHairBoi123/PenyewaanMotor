@@ -102,9 +102,13 @@ class PageController extends Controller
         return view('user.motorcycle-list-v1');
     }
 
-    public function motorcycleSingle()
+    public function showMotorcycle($id)
     {
-        return view('user.listing-single');
+        $motorcycle = \App\Models\Motorcycle::with(['images', 'services'])->findOrFail($id);
+        // Fetch Accessories for the calculator
+        $accessories = \App\Models\AdditionalAccessories::all();
+        
+        return view('user.motorcycle-single', compact('motorcycle', 'accessories'));
     }
 
     // --- Bagian SHOP ---
