@@ -26,14 +26,14 @@ class LoginUserController extends Controller
         // 1. Validasi Input
         $request->validate([
             // Input field yang digunakan untuk email atau username (misalnya: name="credential")
-            'credential' => 'required|string', 
+            'credential' => 'required|string',
             'password' => 'required|string',
         ]);
 
         // 2. Tentukan field otentikasi (email atau username)
         // Kita berasumsi input field di form Anda bernama 'credential'
         $credential = $request->input('credential');
-        
+
         // Cek apakah input terlihat seperti format email
         if (filter_var($credential, FILTER_VALIDATE_EMAIL)) {
             $field = 'email';
@@ -49,17 +49,18 @@ class LoginUserController extends Controller
 
         // 4. Coba login
         if (Auth::attempt($attemptCredentials, $request->boolean('remember'))) {
-            
-            // Login Berhasil
+
             $request->session()->regenerate();
 
-            // Ganti '/user/dashboard' dengan rute dashboard Anda
-            return redirect()->intended('/user/dashboard')->with('success', 'Login Berhasil!');
+            return redirect()->intended(route('user.home'))
+                ->with('success', 'Login Berhasil!');
         }
 
+
         // 5. Login Gagal
+        // Di LoginUserController.php bagian bawah (Login Gagal)
         throw ValidationException::withMessages([
-            'credential' => [trans('auth.failed')],
+            'credential' => ['Email/Username atau password salah.'], // Sesuaikan nama fieldnya
         ]);
     }
 

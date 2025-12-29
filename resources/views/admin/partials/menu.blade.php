@@ -57,10 +57,10 @@
 </li>
 
 <li>
-    <a href="{{ route('admin.service.types') }}"
-       class="sidebar-link">
-       Service Types
+    <a href="{{ route('admin.service.types.index') }}">
+    Service Types
     </a>
+
 </li>
 
 <li>
@@ -74,6 +74,11 @@
     <a href="{{ route('admin.accessories') }}"
        class="sidebar-link">
        Accessories Management
+    </a>
+</li>
+<li>
+    <a href="{{ route('admin.images_management') }}" class="sidebar-link">
+        IMG Management
     </a>
 </li>
 

@@ -29,6 +29,7 @@ class User extends Authenticatable
         // Kolom sesuai skema tabel Anda
         'address', 
         'phone_number',
+        'verification_status',
     ];
 
     /**

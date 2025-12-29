@@ -17,31 +17,66 @@
 
     <div class="bg-white rounded-lg shadow p-6">
         <table class="w-full">
-            <thead>
+           <thead>
                 <tr class="border-b text-left">
                     <th class="p-3">Image</th>
+                    <th class="p-3">Name</th>
                     <th class="p-3">Brand</th>
                     <th class="p-3">Type</th>
                     <th class="p-3">Plate</th>
+                    <th class="p-3">Transmission</th>
                     <th class="p-3">Price</th>
                     <th class="p-3">Status</th>
                     <th class="p-3">Action</th>
                 </tr>
             </thead>
 
+
             <tbody>
                 @foreach($motorcycles as $motor)
                 <tr class="border-b">
                     <td class="p-3">
                         @if($motor->image_path)
-                            <img src="{{ asset('storage/' . $motor->image_path) }}" class="h-16 rounded">
+                            <img src="{{ asset('storage/motorcycles/' . $motor->image_path) }}" class="h-16 rounded">
                         @else
                             <span class="text-gray-400">No Image</span>
                         @endif
                     </td>
+                    <td class="p-3">{{ $motor->category }}</td>
                     <td class="p-3">{{ $motor->brand }}</td>
-                    <td class="p-3">{{ $motor->type }}</td>
+                    <td class="p-3">
+                        @switch($motor->type)
+                            @case('small_matic')
+                                <span class="px-2 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-700">
+                                    Small Automatic
+                                </span>
+                                @break
+
+                            @case('big_matic')
+                                <span class="px-2 py-1 text-xs font-semibold rounded-full bg-purple-100 text-purple-700">
+                                    Big Automatic
+                                </span>
+                                @break
+
+                            @default
+                                <span class="px-2 py-1 text-xs font-semibold rounded-full bg-gray-100 text-gray-700">
+                                    Manual
+                                </span>
+                        @endswitch
+                    </td>
+
                     <td class="p-3">{{ $motor->license_plate }}</td>
+                    <td class="p-3">
+                        @if ($motor->transmission === 'automatic')
+                            <span class="px-2 py-1 text-xs font-semibold rounded-full bg-blue-100 text-blue-700">
+                                Automatic
+                            </span>
+                        @else
+                            <span class="px-2 py-1 text-xs font-semibold rounded-full bg-gray-100 text-gray-700">
+                                Manual
+                            </span>
+                        @endif
+                    </td>
                     <td class="p-3">Rp {{ number_format($motor->price) }}</td>
                     <td class="p-3">{{ $motor->status }}</td>
 

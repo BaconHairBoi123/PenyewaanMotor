@@ -32,6 +32,8 @@ class UserVerificationController extends Controller
                 'verification_date' => now()
             ]);
 
+        // Update User verification_status as well if column exists, or just rely on user_verifications table
+        // Assuming 'verification_status' column exists in users table based on previous code
         DB::table('users')
             ->where('id', function ($query) use ($id) {
                 $query->select('user_id')
@@ -40,15 +42,15 @@ class UserVerificationController extends Controller
             })
             ->update(['verification_status' => 'verified']);
 
-        return back()->with('success', 'User berhasil diverifikasi.');
+        return back()->with('success', 'User verification approved.');
     }
 
     public function reject($id)
     {
         DB::table('user_verifications')
             ->where('id', $id)
-            ->update(['status' => 'unverified']);
+            ->update(['status' => 'rejected']);
 
-        return back()->with('error', 'Verifikasi ditolak.');
+        return back()->with('error', 'User verification rejected.');
     }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Motorcycle;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class MotorcycleController extends Controller
 {
@@ -23,25 +24,29 @@ class MotorcycleController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'category' => 'required|string',
-            'brand' => 'required|string',
-            'type' => 'required|string',
+            'category' => 'required|string|max:100',
+            'brand' => 'required|string|max:100',
+            'type' => 'required|in:small_matic,big_matic,manual',
             'cc' => 'required|integer',
-            'fuel_configuration' => 'nullable|string',
+            'fuel_configuration' => 'nullable|string|max:100',
+            'transmission' => 'required|in:manual,automatic',
             'price' => 'required|numeric',
-            'license_plate' => 'required|unique:motorcycles',
-            'image' => 'nullable|image'
+            'license_plate' => 'required|unique:motorcycles,license_plate',
+            'image' => 'nullable|image|max:2048'
         ]);
 
         $data = $request->except('image');
 
         if ($request->hasFile('image')) {
-            $data['image_path'] = $request->file('image')->store('motorcycles', 'public');
+            // hasil: motorcycles/filename.jpg
+            $data['image_path'] = $request->file('image')
+                ->store('motorcycles', 'public');
         }
 
         Motorcycle::create($data);
 
-        return redirect()->route('admin.motorcycles.index')
+        return redirect()
+            ->route('admin.motorcycles.index')
             ->with('success', 'Motorcycle created successfully.');
     }
 
@@ -53,30 +58,43 @@ class MotorcycleController extends Controller
     public function update(Request $request, Motorcycle $motorcycle)
     {
         $request->validate([
-            'category' => 'required|string',
-            'brand' => 'required|string',
-            'type' => 'required|string',
+            'category' => 'required|string|max:100',
+            'brand' => 'required|string|max:100',
+            'type' => 'required|in:small_matic,big_matic,manual',
             'cc' => 'required|integer',
-            'fuel_configuration' => 'nullable|string',
+            'fuel_configuration' => 'nullable|string|max:100',
+            'transmission' => 'required|in:manual,automatic',
             'price' => 'required|numeric',
             'license_plate' => 'required|unique:motorcycles,license_plate,' . $motorcycle->id,
-            'image' => 'nullable|image'
+            'image' => 'nullable|image|max:2048'
         ]);
 
         $data = $request->except('image');
 
         if ($request->hasFile('image')) {
-            $data['image_path'] = $request->file('image')->store('motorcycles', 'public');
+
+            // hapus gambar lama (opsional tapi rapi)
+            if ($motorcycle->image_path) {
+                Storage::disk('public')->delete($motorcycle->image_path);
+            }
+
+            $data['image_path'] = $request->file('image')
+                ->store('motorcycles', 'public');
         }
 
         $motorcycle->update($data);
 
-        return redirect()->route('admin.motorcycles.index')
+        return redirect()
+            ->route('admin.motorcycles.index')
             ->with('success', 'Motorcycle updated successfully.');
     }
 
     public function destroy(Motorcycle $motorcycle)
     {
+        if ($motorcycle->image_path) {
+            Storage::disk('public')->delete($motorcycle->image_path);
+        }
+
         $motorcycle->delete();
 
         return back()->with('success', 'Motorcycle deleted.');

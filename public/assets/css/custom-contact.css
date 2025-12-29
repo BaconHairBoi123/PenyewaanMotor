@@ -1,0 +1,317 @@
+/* Custom Styles for Contact Page */
+:root {
+    --ride-red: #e73a3e; /* Standard Red */
+    --ride-black: #1a1a1a;
+    --ride-green: #25D366; /* WhatsApp Green */
+    --ride-orange: #fd7e14; /* Standard Orange */
+    --glass-bg: rgba(255, 255, 255, 0.9);
+    --glass-border: rgba(255, 255, 255, 0.2);
+    --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Hero Animation */
+.page-header__bg {
+    animation: heroZoom 20s infinite alternate;
+}
+
+@keyframes heroZoom {
+    from {
+        transform: scale(1);
+    }
+
+    to {
+        transform: scale(1.1);
+    }
+}
+
+/* --- INNOVATIVE CARDS --- */
+.innovation-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: -50px;
+    /* Overlap with header slightly */
+    position: relative;
+    z-index: 10;
+    padding-bottom: 50px;
+}
+
+.innovation-card {
+    background: #fff;
+    border-radius: 20px;
+    padding: 40px 30px;
+    text-align: center;
+    box-shadow: var(--shadow-soft);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    /* Bouncy effect */
+    border-bottom: 5px solid transparent;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.innovation-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--ride-red) 0%, #ff6b6b 100%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: 0;
+}
+
+.innovation-card:hover {
+    transform: translateY(-15px);
+    border-bottom-color: var(--ride-red);
+}
+
+.innovation-card:hover::before {
+    opacity: 0.05;
+}
+
+.card-icon-wrapper {
+    width: 80px;
+    height: 80px;
+    background: rgba(231, 58, 62, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    transition: all 0.4s ease;
+    position: relative;
+    z-index: 1;
+}
+
+.innovation-card:hover .card-icon-wrapper {
+    background: var(--ride-red);
+    box-shadow: 0 0 20px rgba(231, 58, 62, 0.4);
+    transform: scale(1.1) rotate(5deg);
+}
+
+.card-icon-wrapper span,
+.card-icon-wrapper i {
+    font-size: 30px;
+    color: var(--ride-red);
+    transition: color 0.4s ease;
+}
+
+.innovation-card:hover .card-icon-wrapper span,
+.innovation-card:hover .card-icon-wrapper i {
+    color: #fff;
+}
+
+.card-title {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    position: relative;
+    z-index: 1;
+}
+
+.card-info {
+    color: #666;
+    margin-bottom: 0;
+    position: relative;
+    z-index: 1;
+    font-size: 16px;
+}
+
+.card-action {
+    margin-top: 20px;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.3s ease 0.1s;
+    position: relative;
+    z-index: 1;
+}
+
+.innovation-card:hover .card-action {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* WhatsApp Specific */
+.whatsapp-card:hover {
+    border-bottom-color: #25D366;
+}
+
+.whatsapp-card .card-icon-wrapper {
+    background: rgba(37, 211, 102, 0.1);
+}
+
+.whatsapp-card .card-icon-wrapper i {
+    color: #25D366;
+}
+
+.whatsapp-card:hover .card-icon-wrapper {
+    background: #25D366;
+    box-shadow: 0 0 20px rgba(37, 211, 102, 0.4);
+}
+
+
+/* Call Card (Orange) */
+.call-card:hover {
+    border-bottom-color: var(--ride-orange);
+}
+
+.call-card .card-icon-wrapper {
+    background: rgba(253, 126, 20, 0.1);
+}
+
+.call-card .card-icon-wrapper span {
+    color: var(--ride-orange);
+}
+
+.call-card:hover .card-icon-wrapper {
+    background: var(--ride-orange);
+    box-shadow: 0 0 20px rgba(253, 126, 20, 0.4);
+}
+
+/* Location Card (Green) */
+.location-card:hover {
+    border-bottom-color: var(--ride-green);
+}
+.location-card .card-icon-wrapper {
+    background: rgba(37, 211, 102, 0.1);
+}
+.location-card .card-icon-wrapper span {
+    color: var(--ride-green);
+}
+.location-card:hover .card-icon-wrapper {
+    background: var(--ride-green);
+    box-shadow: 0 0 20px rgba(37, 211, 102, 0.4);
+}
+
+/* --- SPLIT LAYOUT & GLASS FORM --- */
+.split-section {
+    padding: 80px 0;
+    background-color: #f9f9f9;
+    /* Optional bg pattern */
+    background-size: cover;
+    background-position: center;
+}
+
+.split-container {
+    display: flex;
+    flex-wrap: wrap;
+    border-radius: 30px;
+    overflow: hidden;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+    background: #fff;
+}
+
+.split-image-box {
+    flex: 1;
+    min-width: 350px;
+    background: #333;
+    position: relative;
+    overflow: hidden;
+    min-height: 500px;
+}
+
+.split-image-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 1s ease;
+}
+
+.split-image-box:hover img {
+    transform: scale(1.05);
+}
+
+.image-overlay {
+    position: absolute;
+    bottom: 30px;
+    left: 30px;
+    right: 30px;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(5px);
+    padding: 20px;
+    border-radius: 15px;
+    color: #fff;
+    transform: translateY(100px);
+    transition: transform 0.5s ease;
+}
+
+.split-image-box:hover .image-overlay {
+    transform: translateY(0);
+}
+
+.glass-form-box {
+    flex: 1;
+    min-width: 350px;
+    padding: 60px;
+    background: #fff;
+    position: relative;
+}
+
+.glass-header h3 {
+    font-size: 32px;
+    font-weight: 800;
+    margin-bottom: 10px;
+    background: -webkit-linear-gradient(45deg, #333, var(--ride-red));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.custom-input {
+    width: 100%;
+    border: none;
+    background: #f4f4f4;
+    padding: 15px 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    transition: all 0.3s;
+    border-left: 3px solid transparent;
+}
+
+.custom-input:focus {
+    background: #fff;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    border-left-color: var(--ride-red);
+    outline: none;
+}
+
+.send-btn-creative {
+    background: var(--ride-black);
+    color: #fff;
+    border: none;
+    padding: 15px 40px;
+    border-radius: 50px;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.3s;
+    cursor: pointer;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.send-btn-creative:hover {
+    background: var(--ride-red);
+    transform: translateX(5px);
+}
+
+/* Responsive Fixes */
+@media (max-width: 991px) {
+    .innovation-grid {
+        margin-top: 0;
+    }
+
+    .split-container {
+        flex-direction: column;
+    }
+
+    .split-image-box {
+        min-height: 300px;
+    }
+
+    .glass-form-box {
+        padding: 40px 20px;
+    }
+}

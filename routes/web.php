@@ -1,26 +1,53 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 
-/*
-|--------------------------------------------------------------------------
-| PUBLIC ROUTES
-|--------------------------------------------------------------------------
-*/
-
+// --- Impor Controller ---
+// 1. AUTH CONTROLLERS
 use App\Http\Controllers\Auth\LoginUserController;
 use App\Http\Controllers\Auth\RegisterUserController;
 use App\Http\Controllers\Auth\PasswordController;
+use App\Http\Controllers\Auth\LoginAdminController;
 
-// Home
-Route::get('/', function () {
-    return view('welcome');
-});
+// 2. APLIKASI UTAMA (PageController menangani semua halaman statis user)
+use App\Http\Controllers\PageController;
+
+// 3. ADMIN CONTROLLERS
+use App\Http\Controllers\Admin\ReturnController;
+use App\Http\Controllers\Admin\PaymentController;
+use App\Http\Controllers\Admin\AdminDashboardController;
+use App\Http\Controllers\Admin\MotorcycleController;
+use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\AdminAccountController;
+use App\Http\Controllers\Admin\AccountController;
+use App\Http\Controllers\Admin\TransaksiController;
+use App\Http\Controllers\Admin\ServiceController;
+use App\Http\Controllers\Admin\ImageManagementController;
+
+
+/*
+|--------------------------------------------------------------------------
+| A. AUTHENTICATION & HOME ROUTING
+|--------------------------------------------------------------------------
+| Menangani login/logout user, dan menentukan halaman utama (/).
+*/
+
+// Home Halaman Utama (Hanya SATU DEFINISI untuk '/')
+Route::get('/', [PageController::class, 'welcome'])->name('welcome');
 
 // User Auth
 Route::get('/login', [LoginUserController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [LoginUserController::class, 'login']);
-Route::post('/logout', [LoginUserController::class, 'logout'])->name('logout');
+
+// Logout (Menggunakan closure Route modern)
+Route::post('/logout', function (Request $request) {
+    Auth::logout();
+    $request->session()->invalidate();
+    $request->session()->regenerateToken();
+    return redirect('/');
+})->name('logout');
 
 Route::get('/register', [RegisterUserController::class, 'showRegistrationForm'])->name('register');
 Route::post('/register', [RegisterUserController::class, 'register']);
@@ -36,48 +63,76 @@ Route::middleware('guest')->group(function () {
 
 /*
 |--------------------------------------------------------------------------
-| USER DASHBOARD
+| B. PUBLIC STATIC PAGES (Ditangani oleh PageController)
+|--------------------------------------------------------------------------
+| Semua menu navbar publik (menggantikan semua fungsi anonymous/closure di bagian bawah)
+*/
+
+// Halaman Umum
+Route::get('/about', [PageController::class, 'about'])->name('about');
+Route::get('/services', [PageController::class, 'services'])->name('services');
+Route::get('/faq', [PageController::class, 'faq'])->name('faq');
+Route::get('/contact', [PageController::class, 'contact'])->name('contact');
+Route::get('/error-page', [PageController::class, 'errorPage'])->name('error-page');
+
+// Halaman Motorcycles
+// Halaman Motorcycles
+Route::get('/motorcycles', [PageController::class, 'motorcycles'])->name('motorcycles.index');
+Route::get('/motorcycles/{id}-{slug?}', [PageController::class, 'showMotorcycle'])->name('motorcycles.show');
+
+// Booking & Payment
+Route::post('/booking/checkout', [App\Http\Controllers\BookingController::class, 'checkout'])->name('booking.checkout');
+Route::get('/booking/success', [App\Http\Controllers\BookingController::class, 'success'])->name('booking.success'); // Optional success page
+
+// Halaman Shop
+Route::get('/products', [PageController::class, 'products'])->name('products.index');
+Route::get('/product-details', [PageController::class, 'productDetails'])->name('products.details');
+Route::get('/cart', [PageController::class, 'cart'])->name('cart');
+Route::get('/checkout', [PageController::class, 'checkout'])->name('checkout');
+Route::get('/wishlist', [PageController::class, 'wishlist'])->name('wishlist');
+
+// Halaman Blog
+Route::get('/blog', [PageController::class, 'blog'])->name('blog.index');
+Route::get('/blog-standard', [PageController::class, 'blogStandard'])->name('blog.standard');
+Route::get('/blog-left-sidebar', [PageController::class, 'blogLeftSidebar'])->name('blog.left-sidebar');
+Route::get('/blog-right-sidebar', [PageController::class, 'blogRightSidebar'])->name('blog.right-sidebar');
+Route::get('/blog-details', [PageController::class, 'blogDetails'])->name('blog.details');
+
+
+/*
+|--------------------------------------------------------------------------
+| C. USER DASHBOARD (Protected)
 |--------------------------------------------------------------------------
 */
 
+// Gunakan group dengan nama 'user.' agar otomatis menjadi user.home dan user.profile
+Route::middleware('auth:web')->name('user.')->group(function () {
+    Route::get('/home', [PageController::class, 'home'])->name('home');
+    Route::get('/profile', [PageController::class, 'profile'])->name('profile');
+});
+
+// Group user lainnya (jika ada)    
 Route::middleware('auth:web')
     ->prefix('user')
     ->name('user.')
     ->group(function () {
-        Route::get('/dashboard', function () {
-            return view('user.dashboard');
-        })->name('dashboard');
+
+        // Tambahkan rute user protected lainnya di sini (selain home/profile)
     });
 
 
 /*
 |--------------------------------------------------------------------------
-| ADMIN AUTH (LOGIN / LOGOUT)
+| D. ADMIN PANEL & AUTH (Protected)
 |--------------------------------------------------------------------------
+| Bagian ini dipertahankan sesuai dengan struktur Resource dan Grouping Anda
 */
 
-use App\Http\Controllers\Auth\LoginAdminController;
-
+// Admin Auth
 Route::get('/admin/login', [LoginAdminController::class, 'showLoginForm'])->name('admin.login');
 Route::post('/admin/login', [LoginAdminController::class, 'login']);
 Route::post('/admin/logout', [LoginAdminController::class, 'logout'])->name('admin.logout');
 
-
-/*
-|--------------------------------------------------------------------------
-| ADMIN PANEL (Protected)
-|--------------------------------------------------------------------------
-*/
-
-use App\Http\Controllers\Admin\ReturnController;
-use App\Http\Controllers\Admin\PaymentController;
-use App\Http\Controllers\Admin\AdminDashboardController;
-use App\Http\Controllers\Admin\MotorcycleController;
-use App\Http\Controllers\Admin\UserController;
-use App\Http\Controllers\Admin\AdminAccountController;
-use App\Http\Controllers\Admin\AccountController;
-use App\Http\Controllers\Admin\TransaksiController;
-use App\Http\Controllers\Admin\ServiceController;
 
 Route::middleware('auth:admin')->prefix('admin')->name('admin.')->group(function () {
 
@@ -101,72 +156,56 @@ Route::middleware('auth:admin')->prefix('admin')->name('admin.')->group(function
 
     // Transaksi
     Route::get('/transaksi', [TransaksiController::class, 'index'])->name('transaksi.index');
-    
-});
-//admin user verification
-Route::prefix('admin')->middleware('auth:admin')->group(function () {
 
-    Route::get('/user-verification', [App\Http\Controllers\Admin\UserVerificationController::class, 'index'])
-        ->name('admin.user.verification');
+    // User Verification
+    Route::get('/user-verification', [App\Http\Controllers\Admin\UserVerificationController::class, 'index'])->name('user.verification');
+    Route::post('/user-verification/{id}/approve', [App\Http\Controllers\Admin\UserVerificationController::class, 'approve'])->name('user.verification.approve');
+    Route::post('/user-verification/{id}/reject', [App\Http\Controllers\Admin\UserVerificationController::class, 'reject'])->name('user.verification.reject');
 
-    Route::post('/user-verification/{id}/approve', [App\Http\Controllers\Admin\UserVerificationController::class, 'approve'])
-        ->name('admin.user.verification.approve');
+    // Payments
+    Route::get('/payments', [PaymentController::class, 'index'])->name('payments.index');
+    Route::post('/payments/{id}/success', [PaymentController::class, 'success'])->name('payments.success');
+    Route::post('/payments/{id}/failed', [PaymentController::class, 'failed'])->name('payments.failed');
 
-    Route::post('/user-verification/{id}/reject', [App\Http\Controllers\Admin\UserVerificationController::class, 'reject'])
-        ->name('admin.user.verification.reject');
-});
-//admin payment routes
+    // Returns
+    Route::get('/returns', [ReturnController::class, 'index'])->name('returns.index');
+    Route::post('/returns/store', [ReturnController::class, 'store'])->name('returns.store');
 
-Route::get('/admin/payments', [PaymentController::class, 'index'])
-    ->name('admin.payments.index');
+    // Services
+    Route::get('/services', [ServiceController::class, 'index'])->name('services.index');
+    Route::post('/services/store', [ServiceController::class, 'store'])->name('services.store');
 
-Route::post('/admin/payments/{id}/success', [PaymentController::class, 'success'])
-    ->name('admin.payments.success');
-
-Route::post('/admin/payments/{id}/failed', [PaymentController::class, 'failed'])
-    ->name('admin.payments.failed');
-
-//admin return routes
-
-Route::get('/admin/returns', [ReturnController::class, 'index'])
-    ->name('admin.returns.index');
-
-Route::post('/admin/returns/store', [ReturnController::class, 'store'])
-    ->name('admin.returns.store');
-
-//admin service routes
-
-Route::get('/admin/services', [ServiceController::class, 'index'])
-    ->name('admin.services.index');
-
-Route::post('/admin/services/store', [ServiceController::class, 'store'])
-    ->name('admin.services.store');
-
-Route::prefix('admin')->middleware('auth:admin')->group(function () {
+    // Service Types
+    // Service Types
     Route::get('/service-types', [App\Http\Controllers\Admin\ServiceTypeController::class, 'index'])
-        ->name('admin.service.types');
+        ->name('service.types.index');
 
-    Route::post('/service-types/store', [App\Http\Controllers\Admin\ServiceTypeController::class, 'store'])
+    Route::post('/service-types', [App\Http\Controllers\Admin\ServiceTypeController::class, 'store'])
         ->name('service.types.store');
 
     Route::delete('/service-types/{id}', [App\Http\Controllers\Admin\ServiceTypeController::class, 'destroy'])
-        ->name('service.types.delete');
-});
+        ->name('service.types.destroy');
 
-Route::get('/admin/delivery-pickup-today', [App\Http\Controllers\Admin\DeliveryController::class, 'index'])
-    ->middleware('auth:admin')
-    ->name('admin.delivery.today');
+    // Delivery Pickup Today
+    Route::get('/delivery-pickup-today', [App\Http\Controllers\Admin\DeliveryController::class, 'index'])->name('delivery.today');
 
-//admin
-Route::prefix('admin')->middleware(['auth:admin'])->group(function () {
+    // Accessories
+    Route::get('/accessories', [App\Http\Controllers\Admin\AccessoryController::class, 'index'])->name('accessories');
+    Route::post('/accessories/store', [App\Http\Controllers\Admin\AccessoryController::class, 'store'])->name('accessories.store');
+    Route::delete('/accessories/{id}', [App\Http\Controllers\Admin\AccessoryController::class, 'delete'])->name('accessories.delete');
 
-    Route::get('/accessories', [App\Http\Controllers\Admin\AccessoryController::class, 'index'])
-        ->name('admin.accessories');
+    // Images Management
 
-    Route::post('/accessories/store', [App\Http\Controllers\Admin\AccessoryController::class, 'store'])
-        ->name('admin.accessories.store');
+    // CUKUP TULIS SEPERTI INI SAJA (Hapus tulisan 'admin/' dan 'admin.')
+    Route::get('/images-management', [ImageManagementController::class, 'index'])
+        ->name('images_management');
+    // Halaman untuk kelola foto motor tertentu
+    Route::get('/images-management/{id}', [ImageManagementController::class, 'manage'])
+        ->name('images_management.manage');
 
-    Route::delete('/accessories/{id}', [App\Http\Controllers\Admin\AccessoryController::class, 'delete'])
-        ->name('admin.accessories.delete');
-
+    // Route untuk hapus foto (nantinya)
+    Route::delete('/images-management/delete/{id}', [ImageManagementController::class, 'destroyImage'])
+        ->name('images_management.delete');
+    Route::post('/images-management/{id}/upload', [ImageManagementController::class, 'upload'])
+        ->name('images_management.upload');
 });
