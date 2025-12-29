@@ -39,7 +39,15 @@
 
             <div class="d-flex justify-content-between align-items-center mt-2">
                 <span class="fw-bold">Total: Rp {{ number_format($payment->total_amount ?? 0, 0, ',', '.') }}</span>
-                {{-- We'd need to fetch snap token from booking or store it in rental/payment to allow repayment here --}}
+                
+                @if($paymentStatus == 'pending' && isset($payment->invoice_number))
+                    @php
+                        $booking = \App\Models\Booking::where('order_id', $payment->invoice_number)->first();
+                    @endphp
+                    @if($booking && $booking->snap_token)
+                         <button onclick="parent.paySnap('{{ $booking->snap_token }}')" class="btn btn-warning btn-sm text-white" style="box-shadow: 0 2px 5px rgba(0,0,0,0.1);">Pay Now</button>
+                    @endif
+                @endif
             </div>
         </li>
         @endforeach

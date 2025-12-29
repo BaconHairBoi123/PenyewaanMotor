@@ -22,10 +22,10 @@ class BookingController extends Controller
     public function __construct()
     {
         // Set your Merchant Server Key
-        Config::$serverKey = env('MIDTRANS_SERVER_KEY');
-        Config::$isProduction = false;
-        Config::$isSanitized = true;
-        Config::$is3ds = true;
+        Config::$serverKey = config('services.midtrans.server_key');
+        Config::$isProduction = config('services.midtrans.is_production');
+        Config::$isSanitized = config('services.midtrans.is_sanitized');
+        Config::$is3ds = config('services.midtrans.is_3ds');
     }
 
     public function checkout(Request $request)
@@ -160,6 +160,8 @@ class BookingController extends Controller
             // Get Snap Token from Midtrans
             $snapToken = Snap::getSnapToken($params);
             
+            \Illuminate\Support\Facades\Log::info('Midtrans Token Generated: ' . $snapToken); // DEBUG
+
             // Update booking with token
             $booking->snap_token = $snapToken;
             $booking->save();

@@ -12,7 +12,7 @@ return new class extends Migration
         // ubah kolom type jadi ENUM
         DB::statement("
             ALTER TABLE motorcycles 
-            MODIFY type ENUM('small_matic', 'big_matic', 'manual') 
+            MODIFY type ENUM('Small_Matic', 'Big_Matic', 'Manual') 
             NOT NULL
         ");
     }

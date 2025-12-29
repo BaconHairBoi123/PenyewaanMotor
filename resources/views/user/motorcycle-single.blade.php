@@ -290,7 +290,7 @@
 <!--Listing Single End-->
 
 <!-- Midtrans Snap Script -->
-<script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key=""></script>
+<script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="{{ config('services.midtrans.client_key') }}"></script>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     const startDateInput = document.getElementById('start_date');
@@ -431,8 +431,15 @@ document.addEventListener('DOMContentLoaded', function() {
             });
             
             const data = await response.json();
-            
+            console.log("Server Response:", data); // DEBUG
+
             if(data.snap_token) {
+                if (typeof window.snap === 'undefined') {
+                    console.error("Midtrans Snap.js is not loaded!");
+                    alert("Payment gateway failed to load. Please refresh and try again.");
+                    return;
+                }
+                
                 window.snap.pay(data.snap_token, {
                     onSuccess: function(result){
                         alert("Payment Success!");
@@ -442,14 +449,10 @@ document.addEventListener('DOMContentLoaded', function() {
                         alert("Waiting for payment!");
                         console.log(result);
                     },
-                error: function(xhr) {
-                    console.log(xhr.responseText); // Debugging
-                    if (xhr.status === 400 && xhr.responseJSON && xhr.responseJSON.error) {
-                        alert(xhr.responseJSON.error);
-                    } else {
-                        alert('Something went wrong! Please try again.');
-                    }
-                },
+                    onError: function(result){
+                        alert("Payment failed!");
+                        console.log(result);
+                    },
                     onClose: function(){
                         alert('You closed the popup without finishing the payment');
                         payButton.disabled = false;
@@ -463,8 +466,8 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             
         } catch (error) {
-            console.error(error);
-            alert("An error occurred. Please try again.");
+            console.error("Catch Error:", error); // DEBUG
+            alert("An error occurred: " + error.message);
             payButton.disabled = false;
             payButton.innerText = 'Rent Now';
         }
