@@ -35,9 +35,34 @@ class PageController extends Controller
     }
 
     // Halaman Services
-    public function services()
+    // Halaman Services
+    public function services(Request $request)
     {
-        return view('user.services');
+        // 1. Static/Company Services (General Offerings)
+        $companyServices = \App\Models\Service::all();
+        
+        // 2. Search for Motorcycle Service History by License Plate
+        $serviceHistory = null;
+        $motorcycle = null;
+        $searchPerformed = false;
+
+        if ($request->filled('license_plate')) {
+            $searchPerformed = true;
+            $plate = $request->input('license_plate');
+            // Remove spaces for loose matching
+            $cleanPlate = str_replace(' ', '', $plate); // e.g., B1234CD
+            
+            $motorcycle = \App\Models\Motorcycle::whereRaw("REPLACE(license_plate, ' ', '') LIKE ?", ['%' . $cleanPlate . '%'])
+                ->first();
+
+            if ($motorcycle) {
+                $serviceHistory = \App\Models\MotorcycleService::where('motorcycle_id', $motorcycle->id)
+                    ->orderBy('service_date', 'desc')
+                    ->get();
+            }
+        }
+
+        return view('user.services', compact('companyServices', 'serviceHistory', 'motorcycle', 'searchPerformed'));
     }
 
     // Halaman FAQs
@@ -97,10 +122,7 @@ class PageController extends Controller
         return view('user.motorcycles', compact('motorcycles'));
     }
 
-    public function motorcycleListV1()
-    {
-        return view('user.motorcycle-list-v1');
-    }
+
 
     public function showMotorcycle($id)
     {
@@ -113,57 +135,16 @@ class PageController extends Controller
 
     // --- Bagian SHOP ---
 
-    public function products()
-    {
-        return view('user.products');
-    }
-    public function productDetails()
-    {
-        return view('user.product-details');
-    }
-    public function cart()
-    {
-        return view('user.cart');
-    }
-    public function checkout()
-    {
-        return view('user.checkout');
-    }
-    public function wishlist()
-    {
-        return view('user.wishlist');
-    }
-    public function signUp()
-    {
-        return view('user.sign-up');
-    }
-    public function login()
-    {
-        return view('user.login');
-    }
 
-    // --- Bagian BLOG ---
 
-    public function blog()
-    {
-        return view('user.blog');
-    }
-    public function blogStandard()
-    {
-        return view('user.blog-standard');
-    }
-    public function blogLeftSidebar()
-    {
-        return view('user.blog-left-sidebar');
-    }
-    public function blogRightSidebar()
-    {
-        return view('user.blog-right-sidebar');
-    }
-    public function blogDetails()
-    {
-        return view('user.blog-details');
-    }
+    // --- Bagian BLOG (Optional: Keep if blog is needed, remove otherwise. User asked for optimization) ---
+    // Keeping for now as they might be used, but commented out if truly unused in routes.
+    // For now, I will remove them to clean up as requested.
+
+    /* 
+    public function blog() { return view('user.blog'); }
+    public function blogDetails() { return view('user.blog-details'); }
+    */
 
 
     /*

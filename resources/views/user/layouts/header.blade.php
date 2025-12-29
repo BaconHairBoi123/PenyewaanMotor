@@ -126,6 +126,12 @@
                                     <a href="{{ route('about') }}">About Us</a>
                                 </li>
                                 <li>
+                                    <a href="{{ route('faq') }}">FAQ</a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('services') }}">Services</a>
+                                </li>
+                                <li>
                                     <a href="{{ route('motorcycles.index') }}">Motorcycles</a>
                                 </li>
                                 <li>
@@ -136,25 +142,13 @@
                                     <form id="logout-form" method="POST" action="{{ route('logout') }}" style="display: none;">
                                         @csrf
                                     </form>
-                                </li>
-                                
-                                
+                                </li>     
                             </ul>
-
                         </div>
-                        
                     </div>
                     <div class="main-menu__right">
-                        <div class="main-menu__call">
-                            <div class="main-menu__call-icon">
-                                <i class="icon-call-3"></i>
-                            </div>
-                            <div class="main-menu__call-content">
-                                <p class="main-menu__call-sub-title">Call Anytime</p>
-                                <h5 class="main-menu__call-number"><a href="tel:23645689622">+236 (456) 896 22</a>
-                                </h5>
-                            </div>
-                        </div>
+                        <div class="main-menu__right"> <a href="#" id="cart-drawer-toggle" style="display: flex; align-items: center;">
+                        <i class="ri-shopping-cart-2-fill" style="font-size: 30px;"></i></a></div>
                         <div class="main-menu__nav-sidebar-icon">
                             <a class="navSidebar-button" href="#">
                                 <span class="icon-dots-menu-one"></span>
@@ -167,6 +161,57 @@
             </div>
         </nav>
     </header>
+
+    <!-- Cart Drawer -->
+    <div id="cart-drawer" style="position: fixed; top: 0; right: -400px; width: 400px; height: 100vh; background: #fff; box-shadow: -2px 0 5px rgba(0,0,0,0.1); z-index: 9999; transition: 0.3s; display: flex; flex-direction: column;">
+        <div class="p-3 border-bottom d-flex justify-content-between align-items-center">
+            <h4 class="m-0">Your Rentals</h4>
+            <button id="close-cart-drawer" class="btn btn-sm btn-light">&times;</button>
+        </div>
+        <div class="p-3 flex-grow-1" style="overflow-y: auto;" id="cart-drawer-content">
+            <div class="text-center mt-5"><div class="spinner-border text-primary" role="status"></div></div>
+        </div>
+    </div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const drawer = document.getElementById('cart-drawer');
+        const toggle = document.getElementById('cart-drawer-toggle');
+        const close = document.getElementById('close-cart-drawer');
+        const content = document.getElementById('cart-drawer-content');
+
+        toggle.addEventListener('click', function(e) {
+            e.preventDefault();
+            drawer.style.right = '0';
+            loadHistory();
+        });
+
+        close.addEventListener('click', function() {
+            drawer.style.right = '-400px';
+        });
+
+        function loadHistory() {
+            fetch("{{ route('booking.history') }}")
+                .then(response => response.json())
+                .then(data => {
+                    content.innerHTML = data.html;
+                })
+                .catch(err => {
+                    content.innerHTML = '<p class="text-danger text-center">Failed to load history.</p>';
+                });
+        }
+        
+        // Expose for global use
+        window.paySnap = function(token) {
+             window.snap.pay(token, {
+                onSuccess: function(result){ alert("Payment success!"); location.reload(); },
+                onPending: function(result){ alert("Waiting for payment!"); console.log(result); },
+                onError: function(result){ alert("Payment failed!"); console.log(result); },
+                onClose: function(){ console.log('customer closed the popup without finishing the payment'); }
+            });
+        }
+    });
+    </script>
 
     <div class="stricky-header stricked-menu main-menu">
         <div class="sticky-header__content"></div><!-- /.sticky-header__content -->

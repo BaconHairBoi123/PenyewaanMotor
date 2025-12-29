@@ -10,7 +10,7 @@ class MidtransCoreApiTest extends \PHPUnit_Framework_TestCase
         Config::$appendNotifUrl = "https://example.com";
         Config::$overrideNotifUrl = "https://example.com";
         Config::$paymentIdempotencyKey = "123456";
-        Config::$serverKey = "dummy";
+        Config::$serverKey = env('MIDTRANS_SERVER_KEY');
         MT_Tests::$stubHttp = true;
         MT_Tests::$stubHttpResponse = '{
             "status_code": 200,
@@ -46,7 +46,7 @@ class MidtransCoreApiTest extends \PHPUnit_Framework_TestCase
 
     public function testRealConnectWithInvalidKey()
     {
-        Config::$serverKey = 'invalid-server-key';
+        Config::$serverKey = config('midtrans.server_key');
         $params = array(
             'transaction_details' => array(
             'order_id' => rand(),

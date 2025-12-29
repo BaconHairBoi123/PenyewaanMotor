@@ -60,7 +60,7 @@
         </div>
 
         {{-- BLADE: Tautan Lupa Password --}}
-        <a href="{{ url('/forgot-password') }}">Forget password</a>
+        <a href="{{ url('/forgot-password') }}">Forgot Password</a>
     </div>
 
     {{-- Tautan Login Admin --}}

@@ -128,7 +128,7 @@
                         <p class="main-slider__sub-title-two">Experience</p>
                         <div class="main-slider__btn-and-video-box">
                             <div class="main-slider__btn-box">
-                                <a href="about.html" class="thm-btn">Read More<span
+                                <a href="{{ route('about') }}" class="thm-btn">Read More<span
                                         class="fas fa-arrow-right"></span></a>
                             </div>
                             <div class="main-slider__video-link">
@@ -157,7 +157,7 @@
                         <p class="main-slider__sub-title-two">Experience</p>
                         <div class="main-slider__btn-and-video-box">
                             <div class="main-slider__btn-box">
-                                <a href="about.html" class="thm-btn">Read More<span
+                                <a href="{{ route('about') }}" class="thm-btn">Read More<span
                                         class="fas fa-arrow-right"></span></a>
                             </div>
                             <div class="main-slider__video-link">
@@ -187,7 +187,7 @@
                         <p class="main-slider__sub-title-two">Experience</p>
                         <div class="main-slider__btn-and-video-box">
                             <div class="main-slider__btn-box">
-                                <a href="about.html" class="thm-btn">Read More<span
+                                <a href="{{ route('about') }}" class="thm-btn">Read More<span
                                         class="fas fa-arrow-right"></span></a>
                             </div>
                             <div class="main-slider__video-link">
@@ -254,7 +254,7 @@
                                             </div>
                                             <div class="listing-one__content">
                                                 <h3 class="listing-one__title"><a
-                                                        href="#">{{ $m->category }}</a></h3>
+                                                        href="{{ Auth::check() ? route('motorcycles.show', $m->id) : route('login') }}">{{ $m->category }}</a></h3>
                                                 <div class="listing-one__meta-box-info">
                                                     <ul class="list-unstyled listing-one__meta">
                                                         <li>
@@ -310,10 +310,10 @@
                                                             {{ number_format($m->price, 0, ',', '.') }}/</span>
                                                         Day</p>
                                                 </div>
-                                                <div class="listing-one__btn-box">
-                                                    <a href="{{ route('login') }}" class="thm-btn">Details
-                                                        Now<span class="fas fa-arrow-right"></span></a>
-                                                </div>
+                                                    <div class="listing-one__btn-box">
+<a href="{{ Auth::check() ? route('motorcycles.show', $m->id) : route('login') }}" class="thm-btn">Details
+                                                            Now</a>
+                                                    </div>
                                             </div>
                                         </div>
                                     </div>
@@ -344,7 +344,7 @@
                                                 </div>
                                                 <div class="listing-one__content">
                                                     <h3 class="listing-one__title"><a
-                                                            href="#">{{ $m->category }}</a></h3>
+                                                            href="{{ Auth::check() ? route('motorcycles.show', $m->id) : route('login') }}">{{ $m->category }}</a></h3>
                                                     <div class="listing-one__meta-box-info">
                                                         <ul class="list-unstyled listing-one__meta">
                                                             <li>
@@ -404,7 +404,7 @@
                                                         </p>
                                                     </div>
                                                     <div class="listing-one__btn-box">
-                                                        <a href="{{ route('login') }}" class="thm-btn">Details
+                                                        <a href="{{ Auth::check() ? route('motorcycles.show', $m->id) : route('login') }}" class="thm-btn">Details
                                                             Now</a>
                                                     </div>
                                                 </div>
