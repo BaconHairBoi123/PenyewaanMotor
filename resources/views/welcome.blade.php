@@ -240,10 +240,12 @@
                                     <div class="col-xl-4 col-lg-6 col-md-6 mb-4">
                                         <div class="listing-one__single">
                                             <div class="listing-one__img">
-                                                @if ($m->image_path && file_exists(public_path('storage/motorcycles/' . $m->image_path)))
-                                                    <img src="{{ asset('storage/motorcycles/' . $m->image_path) }}"
+                                                @if ($m->image_path && \Illuminate\Support\Facades\Storage::disk('public')->exists($m->image_path))
+                                                    {{-- Jika file benar-benar ada di storage/app/public --}}
+                                                    <img src="{{ asset('storage/' . $m->image_path) }}"
                                                         alt="{{ $m->category }}">
                                                 @else
+                                                    {{-- Jika database kosong ATAU file fisik tidak ditemukan --}}
                                                     <img src="{{ asset('assets/images/resources/RIDEnotrasparan.png') }}"
                                                         alt="No Image Available">
                                                 @endif
@@ -254,7 +256,8 @@
                                             </div>
                                             <div class="listing-one__content">
                                                 <h3 class="listing-one__title"><a
-                                                        href="{{ Auth::check() ? route('motorcycles.show', $m->id) : route('login') }}">{{ $m->category }}</a></h3>
+                                                        href="{{ Auth::check() ? route('motorcycles.show', $m->id) : route('login') }}">{{ $m->category }}</a>
+                                                </h3>
                                                 <div class="listing-one__meta-box-info">
                                                     <ul class="list-unstyled listing-one__meta">
                                                         <li>
@@ -310,10 +313,11 @@
                                                             {{ number_format($m->price, 0, ',', '.') }}/</span>
                                                         Day</p>
                                                 </div>
-                                                    <div class="listing-one__btn-box">
-<a href="{{ Auth::check() ? route('motorcycles.show', $m->id) : route('login') }}" class="thm-btn">Details
-                                                            Now</a>
-                                                    </div>
+                                                <div class="listing-one__btn-box">
+                                                    <a href="{{ Auth::check() ? route('motorcycles.show', $m->id) : route('login') }}"
+                                                        class="thm-btn">Details
+                                                        Now</a>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -330,12 +334,14 @@
                                         <div class="col-xl-4 col-lg-6 col-md-6 mb-4">
                                             <div class="listing-one__single">
                                                 <div class="listing-one__img">
-                                                    @if ($m->image_path && file_exists(public_path('storage/motorcycles/' . $m->image_path)))
-                                                        <img src="{{ asset('storage/motorcycles/' . $m->image_path) }}"
-                                                            alt="{{ $m->category }}">
+                                                    @if ($m->image_path && file_exists(public_path('storage/' . $m->image_path)))
+                                                        <img src="{{ asset('storage/' . $m->image_path) }}"
+                                                            alt="{{ $m->category }}"
+                                                            style="width: 100%; height: 250px; object-fit: cover;">
                                                     @else
                                                         <img src="{{ asset('assets/images/resources/RIDEnotrasparan.png') }}"
-                                                            alt="No Image Available">
+                                                            alt="No Image Available"
+                                                            style="width: 100%; height: 250px; object-fit: cover;">
                                                     @endif
 
                                                     <div class="listing-one__brand-name">
@@ -344,7 +350,8 @@
                                                 </div>
                                                 <div class="listing-one__content">
                                                     <h3 class="listing-one__title"><a
-                                                            href="{{ Auth::check() ? route('motorcycles.show', $m->id) : route('login') }}">{{ $m->category }}</a></h3>
+                                                            href="{{ Auth::check() ? route('motorcycles.show', $m->id) : route('login') }}">{{ $m->category }}</a>
+                                                    </h3>
                                                     <div class="listing-one__meta-box-info">
                                                         <ul class="list-unstyled listing-one__meta">
                                                             <li>
@@ -360,16 +367,16 @@
                                                                 <div class="text">
                                                                     <p>{{ $m->lastService->kilometer ?? 0 }} KM</p>
                                                                 </div>
-                                                                <li>
-                                                                    <div class="icon"><span
-                                                                            class="icon-test-drive"></span>
-                                                                    </div>
-                                                                    <div class="text">
-                                                                        {{-- Mengubah 'big_matic' menjadi 'Big Matic' agar lebih rapi --}}
-                                                                        <p>{{ str_replace('_', ' ', ucfirst($m->type)) }}
-                                                                        </p>
-                                                                    </div>
-                                                                </li>
+                                                            <li>
+                                                                <div class="icon"><span
+                                                                        class="icon-test-drive"></span>
+                                                                </div>
+                                                                <div class="text">
+                                                                    {{-- Mengubah 'big_matic' menjadi 'Big Matic' agar lebih rapi --}}
+                                                                    <p>{{ str_replace('_', ' ', ucfirst($m->type)) }}
+                                                                    </p>
+                                                                </div>
+                                                            </li>
                                                             </li>
                                                             <li>
                                                                 <div class="icon"><span
@@ -404,7 +411,8 @@
                                                         </p>
                                                     </div>
                                                     <div class="listing-one__btn-box">
-                                                        <a href="{{ Auth::check() ? route('motorcycles.show', $m->id) : route('login') }}" class="thm-btn">Details
+                                                        <a href="{{ Auth::check() ? route('motorcycles.show', $m->id) : route('login') }}"
+                                                            class="thm-btn">Details
                                                             Now</a>
                                                     </div>
                                                 </div>

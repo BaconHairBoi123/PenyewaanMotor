@@ -1,93 +1,73 @@
-@extends('user.layouts.app') 
+@extends('user.layouts.app')
 
 @section('content')
-    
-    <!-- Service Search Section -->
-    <section class="service-search py-5" style="background-color: #f9f9f9;">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-md-8 text-center">
-                    <h2 class="mb-4">Check Motorcycle Service History</h2>
-                    <form action="{{ route('services') }}" method="GET" class="d-flex justify-content-center">
-                        <input type="text" name="license_plate" class="form-control me-2" placeholder="Enter License Plate (e.g. B 1234 CD)" value="{{ request('license_plate') }}" style="max-width: 400px;">
-                        <button type="submit" class="btn btn-primary">Check History</button>
-                    </form>
-                </div>
-            </div>
-
-            @if(isset($searchPerformed) && $searchPerformed)
-                <div class="row mt-5">
-                    <div class="col-12">
-                        @if($motorcycle)
-                            <div class="card border-0 shadow-sm">
-                                <div class="card-header bg-primary text-white">
-                                    <h4 class="mb-0 text-white">Service History for {{ $motorcycle->brand }} {{ $motorcycle->type }} ({{ $motorcycle->license_plate }})</h4>
-                                </div>
-                                <div class="card-body">
-                                    @if($serviceHistory && $serviceHistory->count() > 0)
-                                        <div class="table-responsive">
-                                            <table class="table table-striped">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Date</th>
-                                                        <th>Kilometer</th>
-                                                        <th>Notes (Stub)</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    @foreach($serviceHistory as $history)
-                                                    <tr>
-                                                        <td>{{ \Carbon\Carbon::parse($history->service_date)->format('d M Y') }}</td>
-                                                        <td>{{ number_format($history->kilometer, 0, ',', '.') }} km</td>
-                                                        <td>-</td> {{-- Add notes column if available later --}}
-                                                    </tr>
-                                                    @endforeach
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    @else
-                                        <div class="alert alert-info">No service records found for this motorcycle.</div>
-                                    @endif
-                                </div>
-                            </div>
-                        @else
-                            <div class="alert alert-danger text-center">
-                                Motorcycle with license plate "<strong>{{ request('license_plate') }}</strong>" not found.
-                            </div>
-                        @endif
-                    </div>
-                </div>
-            @endif
-        </div>
-    </section>
-
-    <!-- Company Services Start (Static/Dynamic Offerings) -->
-    <section class="services-one">
-        <div class="container">
-            <div class="section-title text-center sec-title-animation animation-style1">
-                <div class="section-title__tagline-box justify-content-center">
-                    <span class="section-title__tagline">Our Services</span>
-                </div>
-                <h2 class="section-title__title title-animation">What We Offer</h2>
-            </div>
-            
-            <div class="row">
-                @foreach($companyServices as $service)
-                <!--Services One Single Start-->
-                <div class="col-xl-3 col-lg-6 col-md-6">
-                    <div class="services-one__single">
-                        <div class="services-one__icon">
-                            <span class="{{ $service->icon }}"></span>
-                        </div>
-                        <h3 class="services-one__title"><a href="#">{{ $service->title }}</a></h3>
-                        <p class="services-one__text">{{ $service->description }}</p>
-                    </div>
-                </div>
-                <!--Services One Single End-->
-                @endforeach
+<section class="service-search-section py-5">
+    <div class="container">
+        <div id="search-area" class="row justify-content-center mb-5">
+            <div class="col-md-8">
+                <form id="search-service-form" class="d-flex gap-2">
+                    <input type="text" name="license_plate" id="license_plate" class="form-control"
+                        placeholder="Masukkan Plat Nomor Motor..." style="height: 50px;" autocomplete="off">
+                    <button type="submit" class="thm-btn" style="min-width: 150px;">Cari Data</button>
+                </form>
             </div>
         </div>
-    </section>
-    <!-- Services One End -->
 
+        <div id="service-list-container">
+            @include('partials.service_list')
+        </div>
+    </div>
+</section>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+        // A. PENCARIAN REAL-TIME
+        $('#license_plate').on('keyup input', function() {
+            let plate = $(this).val();
+
+            $.ajax({
+                url: "{{ route('services') }}",
+                type: "GET",
+                data: { license_plate: plate },
+                beforeSend: function() {
+                    $('#service-list-container').css('opacity', '0.5');
+                },
+                success: function(data) {
+                    $('#service-list-container').html(data);
+                    $('#service-list-container').css('opacity', '1');
+                    $('#search-area').show(); // Pastikan search bar muncul saat cari ulang
+                }
+            });
+        });
+
+        // B. TOMBOL TELUSURI (Detail)
+        $(document).on('click', '.btn-telusuri', function(e) {
+            e.preventDefault();
+            let motorId = $(this).data('id');
+
+            $.ajax({
+                url: "/service-detail/" + motorId,
+                type: "GET",
+                success: function(data) {
+                    $('#service-list-container').html(data);
+                    $('#search-area').hide(); // Sembunyikan search bar saat lihat detail (opsional)
+                    window.scrollTo(0, 0);
+                }
+            });
+        });
+
+        // C. TOMBOL KEMBALI
+        $(document).on('click', '#btn-back-to-list', function() {
+            $('#search-area').show();
+            $('#license_plate').trigger('input'); // Trigger ajax pencarian kembali
+        });
+
+        // Mencegah form reload jika tekan Enter
+        $('#search-service-form').on('submit', function(e) {
+            e.preventDefault();
+        });
+    });
+</script>
 @endsection

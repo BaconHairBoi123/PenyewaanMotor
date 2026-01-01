@@ -82,6 +82,7 @@ Route::middleware('auth:web')->group(function () {
     // Halaman Umum
     Route::get('/about', [PageController::class, 'about'])->name('about');
     Route::get('/services', [PageController::class, 'services'])->name('services');
+    Route::get('/service-detail/{id}', [PageController::class, 'serviceDetail'])->name('service.detail');
     Route::get('/faq', [PageController::class, 'faq'])->name('faq');
     Route::get('/contact', [PageController::class, 'contact'])->name('contact');
 
@@ -124,6 +125,9 @@ Route::post('/admin/logout', [LoginAdminController::class, 'logout'])->name('adm
 Route::middleware('auth:admin')->prefix('admin')->name('admin.')->group(function () {
 
     Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
+
+    // Transactions
+    Route::resource('transaksi', TransaksiController::class);
 
     // Motorcycle (utama)
     Route::resource('motorcycles', MotorcycleController::class);

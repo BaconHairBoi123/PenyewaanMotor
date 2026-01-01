@@ -37,12 +37,14 @@
                         <div class="row">
                             @forelse ($motorcycles as $m)
                                 <div class="col-xl-4 col-lg-4 col-md-6">
-                                   <div class="listing-one__single">
+                                    <div class="listing-one__single">
                                         <div class="listing-one__img">
-                                            @if ($m->image_path && file_exists(public_path('storage/motorcycles/' . $m->image_path)))
-                                                <img src="{{ asset('storage/motorcycles/' . $m->image_path) }}"
+                                            @if ($m->image_path && \Illuminate\Support\Facades\Storage::disk('public')->exists($m->image_path))
+                                                {{-- Jika file benar-benar ada di storage/app/public --}}
+                                                <img src="{{ asset('storage/' . $m->image_path) }}"
                                                     alt="{{ $m->category }}">
                                             @else
+                                                {{-- Jika database kosong ATAU file fisik tidak ditemukan --}}
                                                 <img src="{{ asset('assets/images/resources/RIDEnotrasparan.png') }}"
                                                     alt="No Image Available">
                                             @endif
@@ -51,9 +53,10 @@
                                                 <p>{{ strtoupper($m->brand) }}</p>
                                             </div>
                                         </div>
-                                            <div class="listing-one__content">
+                                        <div class="listing-one__content">
                                             <h3 class="listing-one__title">
-                                                <a href="{{ Auth::check() ? route('motorcycles.show', ['id' => $m->id, 'slug' => \Illuminate\Support\Str::slug($m->brand . ' ' . $m->type)]) : route('login') }}">{{ $m->category }}</a>
+                                                <a
+                                                    href="{{ Auth::check() ? route('motorcycles.show', ['id' => $m->id, 'slug' => \Illuminate\Support\Str::slug($m->brand . ' ' . $m->type)]) : route('login') }}">{{ $m->category }}</a>
                                             </h3>
                                             <div class="listing-one__meta-box-info">
                                                 <ul class="list-unstyled listing-one__meta">
@@ -96,7 +99,7 @@
                                                             </p>
                                                         </div>
                                                     </li>
-                                                   
+
                                                 </ul>
                                             </div>
                                             <div class="listing-one__car-rent-box">
@@ -105,7 +108,8 @@
                                                 </p>
                                             </div>
                                             <div class="listing-one__btn-box">
-                                                <a href="{{ Auth::check() ? route('motorcycles.show', ['id' => $m->id, 'slug' => \Illuminate\Support\Str::slug($m->brand . ' ' . $m->type)]) : route('login') }}" class="thm-btn">Details Now
+                                                <a href="{{ Auth::check() ? route('motorcycles.show', ['id' => $m->id, 'slug' => \Illuminate\Support\Str::slug($m->brand . ' ' . $m->type)]) : route('login') }}"
+                                                    class="thm-btn">Details Now
                                                     <span class="fas fa-arrow-right"></span>
                                                 </a>
                                             </div>
@@ -161,7 +165,7 @@
                                 <div class="car-listing__category car-listing__sidebar-single">
                                     <h3 class="car-listing__sidebar-title">Brand</h3>
                                     <ul class="list-unstyled">
-                                        @foreach (['Honda', 'Yamaha', 'Suzuki', 'Kawasaki'] as $brand)
+                                        @foreach ($brands as $brand)
                                             <li>
                                                 <div class="checked-box">
                                                     <input type="checkbox" name="brand[]" id="br-{{ $brand }}"
@@ -169,7 +173,7 @@
                                                         {{ is_array(request('brand')) && in_array($brand, request('brand')) ? 'checked' : '' }}
                                                         onchange="this.form.submit()">
                                                     <label
-                                                        for="br-{{ $brand }}"><span></span>{{ $brand }}</label>
+                                                        for="br-{{ $brand }}"><span></span>{{ strtoupper($brand) }}</label>
                                                 </div>
                                             </li>
                                         @endforeach
@@ -179,7 +183,7 @@
                                 <div class="car-listing__category car-listing__sidebar-single">
                                     <h3 class="car-listing__sidebar-title">Type</h3>
                                     <ul class="list-unstyled">
-                                        @foreach (['Matic', 'Manual', 'Sport', 'Trail'] as $type)
+                                        @foreach ($types as $type)
                                             <li>
                                                 <div class="checked-box">
                                                     <input type="checkbox" name="type[]" id="ty-{{ $type }}"
@@ -187,7 +191,7 @@
                                                         {{ is_array(request('type')) && in_array($type, request('type')) ? 'checked' : '' }}
                                                         onchange="this.form.submit()">
                                                     <label
-                                                        for="ty-{{ $type }}"><span></span>{{ $type }}</label>
+                                                        for="ty-{{ $type }}"><span></span>{{ ucfirst(str_replace('_', ' ', $type)) }}</label>
                                                 </div>
                                             </li>
                                         @endforeach
@@ -197,15 +201,16 @@
                                 <div class="car-listing__category car-listing__sidebar-single">
                                     <h3 class="car-listing__sidebar-title">Transmission</h3>
                                     <ul class="list-unstyled">
-                                        @foreach (['Automatic', 'Manual'] as $trans)
+                                        @foreach ($transmissions as $trans)
                                             <li>
                                                 <div class="checked-box">
                                                     <input type="checkbox" name="transmission[]"
                                                         id="tr-{{ $trans }}" value="{{ $trans }}"
                                                         {{ is_array(request('transmission')) && in_array($trans, request('transmission')) ? 'checked' : '' }}
                                                         onchange="this.form.submit()">
-                                                    <label
-                                                        for="tr-{{ $trans }}"><span></span>{{ $trans }}</label>
+                                                    <label for="tr-{{ $trans }}">
+                                                        <span></span>{{ ucfirst($trans) }}
+                                                    </label>
                                                 </div>
                                             </li>
                                         @endforeach
@@ -215,15 +220,16 @@
                                 <div class="car-listing__category car-listing__sidebar-single">
                                     <h3 class="car-listing__sidebar-title">Fuel Configuration</h3>
                                     <ul class="list-unstyled">
-                                        @foreach (['Gasoline', 'Electric', 'Hybrid'] as $fuel)
+                                        @foreach ($fuels as $fuel)
                                             <li>
                                                 <div class="checked-box">
                                                     <input type="checkbox" name="fuel[]" id="fu-{{ $fuel }}"
                                                         value="{{ $fuel }}"
                                                         {{ is_array(request('fuel')) && in_array($fuel, request('fuel')) ? 'checked' : '' }}
                                                         onchange="this.form.submit()">
-                                                    <label
-                                                        for="fu-{{ $fuel }}"><span></span>{{ $fuel }}</label>
+                                                    <label for="fu-{{ $fuel }}">
+                                                        <span></span>{{ ucfirst($fuel) }}
+                                                    </label>
                                                 </div>
                                             </li>
                                         @endforeach

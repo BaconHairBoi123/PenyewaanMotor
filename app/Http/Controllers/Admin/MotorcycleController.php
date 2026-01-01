@@ -72,14 +72,14 @@ class MotorcycleController extends Controller
         $data = $request->except('image');
 
         if ($request->hasFile('image')) {
-
-            // hapus gambar lama (opsional tapi rapi)
-            if ($motorcycle->image_path) {
+            // Hapus file lama jika ada (untuk fungsi update)
+            if (isset($motorcycle) && $motorcycle->image_path) {
                 Storage::disk('public')->delete($motorcycle->image_path);
             }
 
-            $data['image_path'] = $request->file('image')
-                ->store('motorcycles', 'public');
+            // Simpan file. Laravel otomatis membuat folder 'motorcycles' jika belum ada
+            // store() akan mengembalikan path seperti: "motorcycles/AbCd123.jpg"
+            $data['image_path'] = $request->file('image')->store('motorcycles', 'public');
         }
 
         $motorcycle->update($data);

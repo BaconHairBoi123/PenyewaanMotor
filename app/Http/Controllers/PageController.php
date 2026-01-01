@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Motorcycle;
+use App\Models\MotorcycleService;
+use App\Models\AdditionalAccessories;
 
 
 use Illuminate\Http\Request;
+use illuminate\Support\Facades\Auth;
 
 class PageController extends Controller
 {
@@ -35,34 +38,32 @@ class PageController extends Controller
     }
 
     // Halaman Services
-    // Halaman Services
     public function services(Request $request)
     {
-        // 1. Static/Company Services (General Offerings)
-        $companyServices = \App\Models\Service::all();
-        
-        // 2. Search for Motorcycle Service History by License Plate
-        $serviceHistory = null;
-        $motorcycle = null;
-        $searchPerformed = false;
+        $query = Motorcycle::query();
 
         if ($request->filled('license_plate')) {
-            $searchPerformed = true;
-            $plate = $request->input('license_plate');
-            // Remove spaces for loose matching
-            $cleanPlate = str_replace(' ', '', $plate); // e.g., B1234CD
-            
-            $motorcycle = \App\Models\Motorcycle::whereRaw("REPLACE(license_plate, ' ', '') LIKE ?", ['%' . $cleanPlate . '%'])
-                ->first();
-
-            if ($motorcycle) {
-                $serviceHistory = \App\Models\MotorcycleService::where('motorcycle_id', $motorcycle->id)
-                    ->orderBy('service_date', 'desc')
-                    ->get();
-            }
+            $query->where('license_plate', 'like', '%' . $request->license_plate . '%');
         }
 
-        return view('user.services', compact('companyServices', 'serviceHistory', 'motorcycle', 'searchPerformed'));
+        $motorcycles = $query->get();
+
+        // AJAX request untuk pencarian real-time
+        if ($request->ajax()) {
+            // Perbaikan: sesuaikan path ke folder 'partials' (bukan user.partials)
+            return view('partials.service_list', compact('motorcycles'))->render();
+        }
+
+        return view('user.services', compact('motorcycles'));
+    }
+
+    public function serviceDetail($id)
+    {
+        // Mengambil data motor beserta relasi riwayat servisnya
+        $motor = Motorcycle::with('services')->findOrFail($id);
+
+        // Perbaikan: sesuaikan path ke folder 'partials' (bukan user.partials)
+        return view('partials.service_detail', compact('motor'))->render();
     }
 
     // Halaman FAQs
@@ -81,10 +82,16 @@ class PageController extends Controller
 
     public function motorcycles(Request $request)
     {
-        // Gunakan query agar bisa difilter
+        // 1. Ambil data unik untuk kebutuhan filter (checkbox / dropdown)
+        $brands = Motorcycle::distinct()->pluck('brand')->filter()->sort();
+        $types = Motorcycle::distinct()->pluck('type')->filter()->sort();
+        $transmissions = Motorcycle::distinct()->pluck('transmission')->filter()->sort();
+        $fuels = Motorcycle::distinct()->pluck('fuel_configuration')->filter()->sort();
+
+        // 2. Query utama
         $query = Motorcycle::query();
 
-        // Filter Category (teks)
+        // Filter Category (text)
         if ($request->filled('category')) {
             $query->where('category', 'like', '%' . $request->category . '%');
         }
@@ -116,10 +123,17 @@ class PageController extends Controller
             $query->whereIn('fuel_configuration', $request->fuel);
         }
 
-        // Pagination
+        // 3. Pagination
         $motorcycles = $query->paginate(9)->withQueryString();
 
-        return view('user.motorcycles', compact('motorcycles'));
+        // 4. Kirim ke view
+        return view('user.motorcycles', compact(
+            'motorcycles',
+            'brands',
+            'types',
+            'transmissions',
+            'fuels'
+        ));
     }
 
 
@@ -129,7 +143,7 @@ class PageController extends Controller
         $motorcycle = \App\Models\Motorcycle::with(['images', 'services'])->findOrFail($id);
         // Fetch Accessories for the calculator
         $accessories = \App\Models\AdditionalAccessories::all();
-        
+
         return view('user.motorcycle-single', compact('motorcycle', 'accessories'));
     }
 

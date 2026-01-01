@@ -237,13 +237,16 @@
                                     <div class="item">
                                         <div class="listing-one__single">
                                             <div class="listing-one__img">
-                                                @php $path = 'storage/motorcycles/' . $m->image_path; @endphp
-                                                @if ($m->image_path && file_exists(public_path($path)))
-                                                    <img src="{{ asset($path) }}" alt="{{ $m->category }}">
+                                                @if ($m->image_path && \Illuminate\Support\Facades\Storage::disk('public')->exists($m->image_path))
+                                                    {{-- Jika file benar-benar ada di storage/app/public --}}
+                                                    <img src="{{ asset('storage/' . $m->image_path) }}"
+                                                        alt="{{ $m->category }}">
                                                 @else
+                                                    {{-- Jika database kosong ATAU file fisik tidak ditemukan --}}
                                                     <img src="{{ asset('assets/images/resources/RIDEnotrasparan.png') }}"
-                                                        alt="No Image">
+                                                        alt="No Image Available">
                                                 @endif
+
                                                 <div class="listing-one__brand-name">
                                                     <p>{{ strtoupper($m->brand) }}</p>
                                                 </div>
@@ -316,13 +319,16 @@
                                         <div class="item">
                                             <div class="listing-one__single">
                                                 <div class="listing-one__img">
-                                                    @php $path = 'storage/motorcycles/' . $m->image_path; @endphp
-                                                    @if ($m->image_path && file_exists(public_path($path)))
-                                                        <img src="{{ asset($path) }}" alt="{{ $m->category }}">
+                                                    @if ($m->image_path && \Illuminate\Support\Facades\Storage::disk('public')->exists($m->image_path))
+                                                        {{-- Jika file benar-benar ada di storage/app/public --}}
+                                                        <img src="{{ asset('storage/' . $m->image_path) }}"
+                                                            alt="{{ $m->category }}">
                                                     @else
+                                                        {{-- Jika database kosong ATAU file fisik tidak ditemukan --}}
                                                         <img src="{{ asset('assets/images/resources/RIDEnotrasparan.png') }}"
-                                                            alt="No Image">
+                                                            alt="No Image Available">
                                                     @endif
+
                                                     <div class="listing-one__brand-name">
                                                         <p>{{ strtoupper($m->brand) }}</p>
                                                     </div>
@@ -606,8 +612,8 @@
 
     <!--Lets Talk Start -->
     <section class="lets-talk">
-        <div class="lets-talk__bg"
-            style="background-image: url('{{ asset('assets/images/backgrounds/bg-02.jpg') }}');"></div>
+        <div class="lets-talk__bg" style="background-image: url('{{ asset('assets/images/backgrounds/bg-02.jpg') }}');">
+        </div>
         <div class="container">
             <div class="lets-talk__inner">
                 <div class="lets-talk__title">
