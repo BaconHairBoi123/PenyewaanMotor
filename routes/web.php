@@ -61,42 +61,7 @@ Route::middleware('guest')->group(function () {
 });
 
 
-/*
-|--------------------------------------------------------------------------
-| B. PUBLIC STATIC PAGES (Ditangani oleh PageController)
-|--------------------------------------------------------------------------
-| Semua menu navbar publik (menggantikan semua fungsi anonymous/closure di bagian bawah)
-*/
 
-// Halaman Umum
-Route::get('/about', [PageController::class, 'about'])->name('about');
-Route::get('/services', [PageController::class, 'services'])->name('services');
-Route::get('/faq', [PageController::class, 'faq'])->name('faq');
-Route::get('/contact', [PageController::class, 'contact'])->name('contact');
-Route::get('/error-page', [PageController::class, 'errorPage'])->name('error-page');
-
-// Halaman Motorcycles
-// Halaman Motorcycles
-Route::get('/motorcycles', [PageController::class, 'motorcycles'])->name('motorcycles.index');
-Route::get('/motorcycles/{id}-{slug?}', [PageController::class, 'showMotorcycle'])->name('motorcycles.show');
-
-// Booking & Payment
-Route::post('/booking/checkout', [App\Http\Controllers\BookingController::class, 'checkout'])->name('booking.checkout');
-Route::get('/booking/success', [App\Http\Controllers\BookingController::class, 'success'])->name('booking.success'); // Optional success page
-
-// Halaman Shop
-Route::get('/products', [PageController::class, 'products'])->name('products.index');
-Route::get('/product-details', [PageController::class, 'productDetails'])->name('products.details');
-Route::get('/cart', [PageController::class, 'cart'])->name('cart');
-Route::get('/checkout', [PageController::class, 'checkout'])->name('checkout');
-Route::get('/wishlist', [PageController::class, 'wishlist'])->name('wishlist');
-
-// Halaman Blog
-Route::get('/blog', [PageController::class, 'blog'])->name('blog.index');
-Route::get('/blog-standard', [PageController::class, 'blogStandard'])->name('blog.standard');
-Route::get('/blog-left-sidebar', [PageController::class, 'blogLeftSidebar'])->name('blog.left-sidebar');
-Route::get('/blog-right-sidebar', [PageController::class, 'blogRightSidebar'])->name('blog.right-sidebar');
-Route::get('/blog-details', [PageController::class, 'blogDetails'])->name('blog.details');
 
 
 /*
@@ -106,9 +71,32 @@ Route::get('/blog-details', [PageController::class, 'blogDetails'])->name('blog.
 */
 
 // Gunakan group dengan nama 'user.' agar otomatis menjadi user.home dan user.profile
-Route::middleware('auth:web')->name('user.')->group(function () {
-    Route::get('/home', [PageController::class, 'home'])->name('home');
-    Route::get('/profile', [PageController::class, 'profile'])->name('profile');
+Route::middleware('auth:web')->group(function () {
+    // Dashboard & Profile
+    Route::name('user.')->group(function () {
+        Route::get('/home', [PageController::class, 'home'])->name('home');
+        Route::get('/profile', [PageController::class, 'profile'])->name('profile');
+    });
+
+    // --- HALAMAN YANG SEBELUMNYA PUBLIK (SEKARANG WAJIB LOGIN) ---
+    // Halaman Umum
+    Route::get('/about', [PageController::class, 'about'])->name('about');
+    Route::get('/services', [PageController::class, 'services'])->name('services');
+    Route::get('/service-detail/{id}', [PageController::class, 'serviceDetail'])->name('service.detail');
+    Route::get('/faq', [PageController::class, 'faq'])->name('faq');
+    Route::get('/contact', [PageController::class, 'contact'])->name('contact');
+
+    // Halaman Motorcycles
+    Route::get('/motorcycles', [PageController::class, 'motorcycles'])->name('motorcycles.index');
+    Route::get('/motorcycles/{id}-{slug?}', [PageController::class, 'showMotorcycle'])->name('motorcycles.show');
+
+    // Booking & Payment
+    Route::post('/booking/checkout', [App\Http\Controllers\BookingController::class, 'checkout'])->name('booking.checkout');
+    Route::get('/booking/success', [App\Http\Controllers\BookingController::class, 'success'])->name('booking.success');
+    Route::get('/booking/history', [App\Http\Controllers\BookingHistoryController::class, 'getHistory'])->name('booking.history');
+
+
+
 });
 
 // Group user lainnya (jika ada)    
@@ -138,6 +126,9 @@ Route::middleware('auth:admin')->prefix('admin')->name('admin.')->group(function
 
     Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
 
+    // Transactions
+    Route::resource('transaksi', TransaksiController::class);
+
     // Motorcycle (utama)
     Route::resource('motorcycles', MotorcycleController::class);
 
@@ -153,9 +144,6 @@ Route::middleware('auth:admin')->prefix('admin')->name('admin.')->group(function
     // Personal Account
     Route::get('/account', [AccountController::class, 'index'])->name('account');
     Route::post('/account', [AccountController::class, 'update'])->name('account.update');
-
-    // Transaksi
-    Route::get('/transaksi', [TransaksiController::class, 'index'])->name('transaksi.index');
 
     // User Verification
     Route::get('/user-verification', [App\Http\Controllers\Admin\UserVerificationController::class, 'index'])->name('user.verification');
@@ -192,6 +180,7 @@ Route::middleware('auth:admin')->prefix('admin')->name('admin.')->group(function
     // Accessories
     Route::get('/accessories', [App\Http\Controllers\Admin\AccessoryController::class, 'index'])->name('accessories');
     Route::post('/accessories/store', [App\Http\Controllers\Admin\AccessoryController::class, 'store'])->name('accessories.store');
+    Route::put('/accessories/{id}', [App\Http\Controllers\Admin\AccessoryController::class, 'update'])->name('accessories.update');
     Route::delete('/accessories/{id}', [App\Http\Controllers\Admin\AccessoryController::class, 'delete'])->name('accessories.delete');
 
     // Images Management

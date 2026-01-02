@@ -32,6 +32,7 @@ class Motorcycle extends Model
     {
         return $this->hasMany(MotorcycleService::class, 'motorcycle_id');
     }
+    
 
     /**
      * Relasi: ambil riwayat service terakhir (kilometer terbaru).

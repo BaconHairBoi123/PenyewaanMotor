@@ -1,303 +1,488 @@
 @extends('user.layouts.app')
 
 @section('content')
-<style>
-    .sticky-sidebar {
-        position: sticky;
-        top: 100px;
-    }
-    .total-price-box {
-        background: #f8f9fa;
-        padding: 20px;
-        border-radius: 10px;
-        border: 2px solid #e73a3e;
-    }
-    .midtrans-btn {
-        background: #e73a3e;
-        color: white;
-        width: 100%;
-        padding: 15px;
-        border: none;
-        border-radius: 5px;
-        font-weight: bold;
-        font-size: 18px;
-        transition: 0.3s;
-    }
-    .midtrans-btn:hover {
-        background: #ce2c30;
-    }
-    /* Simple spinner */
-    .spinner {
-        display: none;
-        width: 20px;
-        height: 20px;
-        border: 3px solid rgba(255,255,255,.3);
-        border-radius: 50%;
-        border-top-color: #fff;
-        animation: spin 1s ease-in-out infinite;
-    }
-    @keyframes spin { to { transform: rotate(360deg); } }
-</style>
 
 <!--Page Header Start-->
 <section class="page-header">
-    <div class="page-header__bg" style="background-image: url('{{ asset('assets/images/backgrounds/page-header-bg.jpg') }}');"></div>
+    <div class="page-header__bg" style="background-image: url('{{ $motorcycle->image_path ? asset('storage/motorcycles/' . $motorcycle->image_path) : asset('assets/images/backgrounds/page-header-bg.jpg') }}');">
+    </div>
+    <div class="page-header__shape-1" style="background-image: url('{{ asset('assets/images/shapes/page-header-shape-1.png') }}');"></div>
     <div class="container">
         <div class="page-header__inner">
-            <h3>{{ $motorcycle->brand }} {{ $motorcycle->type }}</h3>
-            <ul class="thm-breadcrumb list-unstyled">
-                <li><a href="{{ route('welcome') }}">Home</a></li>
-                <li><a href="{{ route('motorcycles.index') }}">Motorcycles</a></li>
-                <li>Details</li>
-            </ul>
+            <h3>{{ $motorcycle->brand }} {{ str_replace('_', ' ', ucfirst($motorcycle->type)) }}</h3>
+            <div class="thm-breadcrumb__inner">
+                <ul class="thm-breadcrumb list-unstyled">
+                    <li><a href="{{ route('welcome') }}">Home</a></li>
+                    <li><span class="icon-arrow-left"></span></li>
+                    <li><a href="{{ route('motorcycles.index') }}">Motorcycles</a></li>
+                    <li><span class="icon-arrow-left"></span></li>
+                    <li>{{ $motorcycle->brand }} {{ str_replace('_', ' ', ucfirst($motorcycle->type)) }}</li>
+                </ul>
+            </div>
         </div>
     </div>
 </section>
+<!--Page Header End-->
 
-<section class="listing-details">
+<!--Listing Single Start-->
+<section class="listing-single">
     <div class="container">
-        <div class="row">
-            <!-- Left: Details -->
-            <div class="col-xl-8 col-lg-7">
-                <div class="listing-details__img">
-                    <img src="{{ asset('storage/' . $motorcycle->image_path) }}" alt="{{ $motorcycle->type }}" onerror="this.onerror=null; this.src='{{ asset('assets/images/resources/listing-details-img-1.jpg') }}';">
-                </div>
-                
-                <div class="listing-details__content">
-                    <h3 class="listing-details__title">{{ $motorcycle->brand }} {{ $motorcycle->type }}</h3>
-                    <p class="listing-details__text">{{ $motorcycle->description ?? 'No description available for this awesome motorbike.' }}</p>
-                    
-                    <ul class="list-unstyled listing-details__features-list">
+        <div class="listing-single__top">
+            <div class="listing-single__top-left">
+                <h3 class="listing-single__title">{{ $motorcycle->brand }} {{ str_replace('_', ' ', ucfirst($motorcycle->type)) }}</h3>
+                <p class="listing-single__sub-title">{{ $motorcycle->category }}</p>
+                <div class="listing-single__car-details-box">
+                    <ul class="list-unstyled listing-single__car-details">
                         <li>
-                            <div class="icon"><span class="icon-fast-food"></span></div>
-                            <div class="text"><h5>Fuel</h5><p>{{ $motorcycle->fuel_configuration ?? 'Petrol' }}</p></div>
+                            <span class="icon-date"></span>
+                            <p>{{ \Carbon\Carbon::parse($motorcycle->created_at)->year }}</p>
                         </li>
                         <li>
-                            <div class="icon"><span class="icon-speedometer"></span></div>
-                            <div class="text"><h5>Engine</h5><p>{{ $motorcycle->cc ?? 'N/A' }} CC</p></div>
+                            <span class="icon-fuel-type"></span>
+                            <p>{{ $motorcycle->fuel_configuration }}</p>
                         </li>
                         <li>
-                            <div class="icon"><span class="icon-transmission"></span></div>
-                            <div class="text"><h5>Trans</h5><p>{{ $motorcycle->transmission ?? 'Automatic' }}</p></div>
+                            <span class="icon-Carrier"></span>
+                            <p>{{ $motorcycle->transmission }}</p>
                         </li>
-                         <li>
-                            <div class="icon"><span class="icon-wallet"></span></div>
-                            <div class="text"><h5>Price</h5><p>Rp {{ number_format($motorcycle->price, 0, ',', '.') }} / day</p></div>
+                        <li>
+                            <span class="icon-engine"></span>
+                            <p>{{ $motorcycle->cc }} CC</p>
                         </li>
                     </ul>
                 </div>
             </div>
+            <div class="listing-single__top-right">
+                <h2 class="listing-single__price">Rp {{ number_format($motorcycle->price, 0, ',', '.') }}<span>/ Day</span></h2>
+            </div>
+        </div>
+        <div class="listing-single__inner">
+            <div class="listing-single__main-content">
+                <div class="swiper-container" id="listing-single__carousel">
+                    <div class="swiper-wrapper">
+                        <!-- Main Image -->
+                        <div class="swiper-slide">
+                            <div class="listing-single__main-content-inner">
+                                <div class="listing-single__left">
+                                    <div class="listing-single__img">
+                                        @if($motorcycle->image_path)
+                                            <img src="{{ asset('storage/motorcycles/' . $motorcycle->image_path) }}" alt="{{ $motorcycle->brand }}">
+                                        @else
+                                            <img src="{{ asset('assets/images/backgrounds/page-header-bg.jpg') }}" alt="Placeholder">
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Additional Images -->
+                        @foreach($motorcycle->images as $img)
+                        <div class="swiper-slide">
+                            <div class="listing-single__main-content-inner">
+                                <div class="listing-single__left">
+                                    <div class="listing-single__img">
+                                        <img src="{{ asset('storage/motorcycles/' . $img->image_path) }}" alt="{{ $motorcycle->brand }}">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        @endforeach
+                    </div>
+                </div>
+                
+                <div class="listing-single__nav">
+                    <div class="swiper-button-next" id="listing-single__swiper-button-prev">
+                        <i class="far fa-long-arrow-left"></i>
+                    </div>
+                    <div class="swiper-button-prev" id="listing-single__swiper-button-next">
+                        <i class="far fa-long-arrow-right"></i>
+                    </div>
+                </div>
+            </div>
 
-            <!-- Right: Booking Form -->
-            <div class="col-xl-4 col-lg-5">
-                <div class="sticky-sidebar">
-                    <div class="total-price-box">
-                        <h4 class="mb-4">Book This Bike</h4>
-                        <form id="booking-form">
-                            @csrf
-                            <input type="hidden" name="motorcycle_id" value="{{ $motorcycle->id }}">
-                            <input type="hidden" id="base_price" value="{{ $motorcycle->price }}">
+            <!-- Thumbs -->
+            <div class="listing-single__thumb-box">
+                <div class="swiper-container" id="listing-single__thumb">
+                    <div class="swiper-wrapper">
+                        <!-- Main Image Thumb -->
+                        <div class="swiper-slide">
+                            <div class="listing-single__img-holder-box">
+                                <div class="listing-single__img-holder">
+                                    @if($motorcycle->image_path)
+                                        <img src="{{ asset('storage/motorcycles/' . $motorcycle->image_path) }}" alt="{{ $motorcycle->brand }}">
+                                    @else
+                                        <img src="{{ asset('assets/images/backgrounds/page-header-bg.jpg') }}" alt="Placeholder">
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Additional Images Thumbs -->
+                        @foreach($motorcycle->images as $img)
+                        <div class="swiper-slide">
+                            <div class="listing-single__img-holder-box">
+                                <div class="listing-single__img-holder">
+                                    <img src="{{ asset('storage/motorcycles/' . $img->image_path) }}" alt="{{ $motorcycle->brand }}">
+                                </div>
+                            </div>
+                        </div>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+
+        <div class="listing-single__bottom">
+            <div class="row">
+                <div class="col-xl-8 col-lg-7">
+                    <div class="listing-single__bottom-left">
+                        <div class="listing-single__car-overview">
+                            <h3 class="listing-single__car-overview-title">Motorcycle Overview</h3>
+                            <p class="listing-single__text">
+                                {{ $motorcycle->description ?? 'No description available for this motorcycle.' }}
+                            </p>
                             
-                            <!-- Date Range -->
-                            <div class="form-group mb-3">
-                                <label>Start Date</label>
-                                <input type="date" name="start_date" id="start_date" class="form-control" required min="{{ date('Y-m-d') }}">
+                            <h3 class="listing-single__car-overview-title mt-5">Features</h3>
+                             <div class="listing-single__car-overview-points-box">
+                                <ul class="list-unstyled listing-single__car-overview-point">
+                                    <li>
+                                        <div class="listing-single__car-overview-point-left">
+                                            <i class="icon-car1"></i>
+                                            <p>Type</p>
+                                        </div>
+                                        <div class="listing-single__car-overview-point-right">
+                                            <p>{{ str_replace('_', ' ', ucfirst($motorcycle->type)) }}</p>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="listing-single__car-overview-point-left">
+                                            <i class="icon-fuel-type"></i>
+                                            <p>Fuel</p>
+                                        </div>
+                                        <div class="listing-single__car-overview-point-right">
+                                            <p>{{ $motorcycle->fuel_configuration }}</p>
+                                        </div>
+                                    </li>
+                                     <li>
+                                        <div class="listing-single__car-overview-point-left">
+                                            <i class="icon-Carrier"></i>
+                                            <p>Transmission</p>
+                                        </div>
+                                        <div class="listing-single__car-overview-point-right">
+                                            <p>{{ $motorcycle->transmission }}</p>
+                                        </div>
+                                    </li>
+                                </ul>
                             </div>
-                            <div class="form-group mb-3">
-                                <label>End Date</label>
-                                <input type="date" name="end_date" id="end_date" class="form-control" required min="{{ date('Y-m-d') }}">
-                            </div>
-
-                            <!-- Duration Display -->
-                            <div class="d-flex justify-content-between mb-3">
-                                <span>Duration:</span>
-                                <span id="duration_display">0 Days</span>
-                            </div>
-
-                            <!-- Accessories -->
-                            @if($accessories->count() > 0)
-                            <div class="form-group mb-3">
-                                <label class="mb-2"><strong>Add Accessories:</strong></label>
-                                @foreach($accessories as $acc)
-                                <div class="form-check">
-                                    <input class="form-check-input accessory-check" type="checkbox" name="accessories[]" value="{{ $acc->id }}" data-price="{{ $acc->daily_price }}">
-                                    <label class="form-check-label">
-                                        {{ $acc->accessory_name }} (+Rp {{ number_format($acc->daily_price, 0, ',', '.') }}/day)
-                                    </label>
-                                </div>
-                                @endforeach
-                            </div>
-                            @endif
-
-                            <!-- Delivery -->
-                            <div class="form-group mb-3">
-                                <label><strong>Delivery Method:</strong></label>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="delivery_type" id="pickup" value="pickup" checked>
-                                    <label class="form-check-label" for="pickup">Pick up at Store (Free)</label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="delivery_type" id="delivery" value="delivery">
-                                    <label class="form-check-label" for="delivery">Delivery to Location</label>
-                                </div>
-                            </div>
-
-                            <div class="form-group mb-3" id="distance_group" style="display: none;">
-                                <label>Distance to your location (km)</label>
-                                <input type="number" name="distance" id="distance" class="form-control" value="0" min="0">
-                                <small class="text-muted">Est. delivery fee: Rp 5.000/km</small>
-                            </div>
-
-                            <hr>
-
-                            <div class="d-flex justify-content-between mb-2">
-                                <span>Rental Cost:</span>
-                                <span id="rental_cost">Rp 0</span>
-                            </div>
-                            <div class="d-flex justify-content-between mb-2">
-                                <span>Accessories:</span>
-                                <span id="accessories_cost">Rp 0</span>
-                            </div>
-                            <div class="d-flex justify-content-between mb-3">
-                                <span>Delivery Fee:</span>
-                                <span id="delivery_cost">Rp 0</span>
-                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- BOOKING SIDEBAR -->
+                <div class="col-xl-4 col-lg-5">
+                    <div class="listing-single__sidebar">
                             
-                            <div class="d-flex justify-content-between mb-4">
-                                <h5><strong>Total:</strong></h5>
-                                <h5 id="total_display" style="color: #e73a3e;">Rp 0</h5>
-                            </div>
+                        <div class="listing-single__rent-car listing-single__single-box">
+                            <h3 class="listing-single__rent-car-title">Book This Motorcycle</h3>
+                            <div class="listing-single__rent-car-content">
+                                <form id="booking-form">
+                                    @csrf
+                                    <input type="hidden" name="motorcycle_id" value="{{ $motorcycle->id }}" id="motorcycle_id">
+                                    
+                                    <div class="listing-single__rent-car-content-form">
+                                        <!-- Date Selection -->
+                                        <div class="listing-single__rent-car-date-box">
+                                            <p class="listing-single__rent-car-date-title">Start Date</p>
+                                            <div class="listing-single__rent-car-date-time-box">
+                                                <input type="date" name="start_date" id="start_date" class="form-control" required>
+                                            </div>
+                                        </div>
+                                        <div class="listing-single__rent-car-date-box">
+                                            <p class="listing-single__rent-car-date-title">End Date</p>
+                                            <div class="listing-single__rent-car-date-time-box">
+                                                <input type="date" name="end_date" id="end_date" class="form-control" required>
+                                            </div>
+                                        </div>
 
-                            <button type="submit" class="midtrans-btn" id="pay-button">
-                                Rent Now <div class="spinner ms-2"></div>
-                            </button>
-                        </form>
+                                        <!-- Delivery Options -->
+                                        <div class="listing-single__rent-car-extra">
+                                            <h3 class="listing-single__rent-car-extra-title">Delivery Option:</h3>
+                                            <div class="form-group">
+                                                <select name="delivery_type" id="delivery_type" class="form-control" style="background:none; border: 1px solid #ddd; padding: 10px; width: 100%;">
+                                                    <option value="pickup">Pickup at Store (Free)</option>
+                                                    <option value="delivery">Delivery to Location (Rp 20.000)</option>
+                                                </select>
+                                            </div>
+                                            <div id="delivery-distance-group" class="form-group mt-3" style="display: none;">
+                                                <p class="text-info"><small><i class="fas fa-info-circle"></i> Flat delivery fee: Rp 20.000</small></p>
+                                                <!-- Hidden distance input if backend still needs it temporarily -->
+                                                <input type="hidden" name="distance" id="distance" value="1"> 
+                                            </div>
+                                        </div>
+
+                                        <!-- Accessories -->
+                                        <div class="listing-single__rent-car-extra">
+                                            <h3 class="listing-single__rent-car-extra-title">Add Extra (Accessories):</h3>
+                                            <ul class="list-unstyled">
+                                                @foreach($accessories as $acc)
+                                                <li>
+                                                    <div class="checked-box">
+                                                        <input type="checkbox" name="accessories[]" id="acc_{{ $acc->id }}" value="{{ $acc->id }}" data-price="{{ $acc->daily_price }}" {{ $acc->stock <= 0 ? 'disabled' : '' }}>
+                                                        <label for="acc_{{ $acc->id }}" style="{{ $acc->stock <= 0 ? 'opacity: 0.5; cursor: not-allowed;' : '' }}">
+                                                            <span></span>{{ $acc->accessory_name }}
+                                                        </label>
+                                                    </div>
+                                                    <!-- Quantity Box -->
+                                                    <div class="quantity-box mt-1" id="qty_box_{{ $acc->id }}" style="display: none; padding-left: 30px;">
+                                                        <label><small>Qty (Max 2):</small></label>
+                                                        <input type="number" name="accessory_qty[{{ $acc->id }}]" id="qty_input_{{ $acc->id }}" class="form-control d-inline-block" value="1" min="1" max="2" style="width: 70px; height: 30px; font-size: 14px; padding: 2px 5px;" disabled>
+                                                    </div>
+
+                                                    <div class="counts-box">
+                                                        <p>Rp {{ number_format($acc->daily_price, 0, ',', '.') }}</p>
+                                                        @if(isset($acc->stock))
+                                                            <small class="{{ $acc->stock > 0 ? 'text-muted' : 'text-danger' }}">
+                                                                (Stock: {{ $acc->stock }}{{ $acc->stock <= 0 ? ' - Out of Stock' : '' }})
+                                                            </small>
+                                                        @endif
+                                                    </div>
+                                                </li>
+                                                @endforeach
+                                            </ul>
+                                            <p class="text-danger mt-2" id="accessory-error" style="display:none;"></p>
+                                        </div>
+
+                                        <!-- Price Breakdown -->
+                                        <div class="listing-single__rent-car-price-box">
+                                            <ul class="list-unstyled">
+                                                <li>
+                                                    <div class="title"><p>Base Price (<span id="total-days">0</span> days)</p></div>
+                                                    <div class="price"><p id="base-price-display">Rp 0</p></div>
+                                                </li>
+                                                <li>
+                                                    <div class="title"><p>Accessories</p></div>
+                                                    <div class="price"><p id="accessories-price-display">Rp 0</p></div>
+                                                </li>
+                                                <li>
+                                                    <div class="title"><p>Delivery Fee</p></div>
+                                                    <div class="price"><p id="delivery-price-display">Rp 0</p></div>
+                                                </li>
+                                                <li class="total-line">
+                                                    <div class="title"><p>Total Payable</p></div>
+                                                    <div class="price"><p id="total-payable-display">Rp 0</p></div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="listing-single__btn-box-2">
+                                        <button type="button" id="pay-button" class="thm-btn w-100">Rent Now <span class="fas fa-arrow-right"></span></button>
+                                    </div>
+                                    <div id="error-message" class="text-danger mt-2"></div>
+                                </form>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</section>
+</section> -->
+<!--Listing Single End-->
 
 <!-- Midtrans Snap Script -->
-<script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="Mid-client-XXXXX"></script> 
-<!-- Note: In production use correct Client Key env -->
-
+<script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="{{ config('services.midtrans.client_key') }}"></script>
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const startDate = document.getElementById('start_date');
-        const endDate = document.getElementById('end_date');
-        const basePrice = parseFloat(document.getElementById('base_price').value);
-        const distanceInput = document.getElementById('distance');
-        const deliveryRadios = document.getElementsByName('delivery_type');
-        const distanceGroup = document.getElementById('distance_group');
-        
-        function calculateTotal() {
-            // 1. Duration
-            const start = new Date(startDate.value);
-            const end = new Date(endDate.value);
-            let days = 0;
-            
-            if (startDate.value && endDate.value && end >= start) {
-                const diffTime = Math.abs(end - start);
-                days = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) + 1; 
-            }
-            document.getElementById('duration_display').innerText = days + ' Days';
-            
-            // 2. Base Rental
-            const rentalCost = basePrice * days;
-            document.getElementById('rental_cost').innerText = 'Rp ' + rentalCost.toLocaleString('id-ID');
+document.addEventListener('DOMContentLoaded', function() {
+    const startDateInput = document.getElementById('start_date');
+    const endDateInput = document.getElementById('end_date');
+    const deliveryTypeSelect = document.getElementById('delivery_type');
+    const distanceInput = document.getElementById('distance');
+    const distanceGroup = document.getElementById('delivery-distance-group');
+    const motorcyclePrice = {{ $motorcycle->price }};
+    const payButton = document.getElementById('pay-button');
+    
+    // Toggle Distance Input (Use jQuery to catch nice-select change event)
+    $('#delivery_type').on('change', function() {
+        if($(this).val() === 'delivery') {
+            distanceGroup.style.display = 'block';
+        } else {
+            distanceGroup.style.display = 'none';
+            distanceInput.value = 0;
+        }
+        calculateTotal();
+    });
 
-            // 3. Accessories
-            let accCost = 0;
-            document.querySelectorAll('.accessory-check:checked').forEach(acc => {
-                accCost += parseFloat(acc.getAttribute('data-price')) * days;
-            });
-            document.getElementById('accessories_cost').innerText = 'Rp ' + accCost.toLocaleString('id-ID');
+    // Event Listeners for Calculation
+    [startDateInput, endDateInput].forEach(el => {
+        el.addEventListener('change', calculateTotal);
+        el.addEventListener('input', calculateTotal);
+    });
 
-            // 4. Delivery
-            let deliveryCost = 0;
-            let isDelivery = document.getElementById('delivery').checked;
-            if (isDelivery) {
-                distanceGroup.style.display = 'block';
-                const dist = parseFloat(distanceInput.value) || 0;
-                deliveryCost = dist * 5000;
+    // Accessory Logic
+    const accessoryCheckboxes = document.querySelectorAll('input[name="accessories[]"]');
+    accessoryCheckboxes.forEach(el => {
+        el.addEventListener('change', function() {
+            const qtyBox = document.getElementById('qty_box_' + this.value);
+            const qtyInput = document.getElementById('qty_input_' + this.value);
+            
+            if(this.checked) {
+                qtyBox.style.display = 'block';
+                qtyInput.disabled = false;
             } else {
-                distanceGroup.style.display = 'none';
+                qtyBox.style.display = 'none';
+                qtyInput.disabled = true;
+                qtyInput.value = 1; // Reset to 1
             }
-            document.getElementById('delivery_cost').innerText = 'Rp ' + deliveryCost.toLocaleString('id-ID');
+            calculateTotal();
+        });
+    });
 
-            // Total
-            const total = rentalCost + accCost + deliveryCost;
-            document.getElementById('total_display').innerText = 'Rp ' + total.toLocaleString('id-ID');
+    // Quantity Input Listeners
+    document.querySelectorAll('input[name^="accessory_qty"]').forEach(el => {
+        el.addEventListener('change', function() {
+            if(this.value > 2) this.value = 2;
+            if(this.value < 1) this.value = 1;
+            calculateTotal();
+        });
+        el.addEventListener('input', function() {
+            if(this.value > 2) this.value = 2;
+            if(this.value < 1) this.value = 1;
+            calculateTotal();
+        });
+    });
+
+    function calculateTotal() {
+        const start = new Date(startDateInput.value);
+        const end = new Date(endDateInput.value);
+        const hasDates = startDateInput.value && endDateInput.value && end >= start;
+        
+        // 1. Delivery Fee (Independent)
+        let deliveryFee = 0;
+        if(deliveryTypeSelect.value === 'delivery') {
+             deliveryFee = 20000;
+        }
+        document.getElementById('delivery-price-display').innerText = formatRupiah(deliveryFee);
+
+        // 2. Accessories (Independent - Flat Fee)
+        let accessoriesTotal = 0;
+        document.querySelectorAll('input[name="accessories[]"]:checked').forEach(acc => {
+             const id = acc.value;
+             const qtyInput = document.getElementById('qty_input_' + id);
+             const qty = parseInt(qtyInput.value) || 1;
+             
+             accessoriesTotal += (parseInt(acc.dataset.price) * qty); // Flat fee
+        });
+        document.getElementById('accessories-price-display').innerText = formatRupiah(accessoriesTotal);
+
+        // 3. Base Price (Dependent on Dates)
+        let basePrice = 0;
+        let diffDays = 0;
+        
+        if (hasDates) {
+             const diffTime = Math.abs(end - start);
+             diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) + 1; 
+             basePrice = motorcyclePrice * diffDays;
         }
 
-        // Attach Events
-        startDate.addEventListener('change', calculateTotal);
-        endDate.addEventListener('change', calculateTotal);
-        distanceInput.addEventListener('input', calculateTotal);
-        document.querySelectorAll('.accessory-check').forEach(el => el.addEventListener('change', calculateTotal));
-        deliveryRadios.forEach(el => el.addEventListener('change', calculateTotal));
+        // Update Displays
+        document.getElementById('total-days').innerText = diffDays;
+        document.getElementById('base-price-display').innerText = formatRupiah(basePrice);
+        
+        // 4. Total Payable
+        const total = basePrice + accessoriesTotal + deliveryFee;
+        document.getElementById('total-payable-display').innerText = formatRupiah(total);
+        
+        return total;
+    }
+    
+    function formatRupiah(amount) {
+        return 'Rp ' + new Intl.NumberFormat('id-ID').format(amount);
+    }
 
-        // Submit Booking
-        const form = document.getElementById('booking-form');
-        form.addEventListener('submit', function(e) {
-            e.preventDefault();
+    // Payment Button Logic
+    payButton.addEventListener('click', async function() {
+        // Simple Validation
+        if(!startDateInput.value || !endDateInput.value) {
+            alert("Please select dates correctly.");
+            return;
+        }
+        
+        // Validate Accessories (Min 1)
+        const checkedAccessories = document.querySelectorAll('input[name="accessories[]"]:checked').length;
+        if(checkedAccessories < 1) {
+            alert("Please select at least 1 accessory.");
+            return;
+        }
+
+        // Prepare Data
+        const formData = new FormData(document.getElementById('booking-form'));
+        
+        try {
+            payButton.disabled = true;
+            payButton.innerText = 'Processing...';
             
-            // Validate dates
-            if(!startDate.value || !endDate.value) {
-                alert('Please select valid dates');
-                return;
-            }
-
-            const btn = document.getElementById('pay-button');
-            const spinner = btn.querySelector('.spinner');
-            btn.disabled = true;
-            spinner.style.display = 'inline-block';
-
-            const formData = new FormData(form);
-
-            fetch("{{ route('booking.checkout') }}", {
+            const response = await fetch("{{ route('booking.checkout') }}", {
                 method: "POST",
                 headers: {
                     "X-CSRF-TOKEN": "{{ csrf_token() }}",
                     "Accept": "application/json"
                 },
                 body: formData
-            })
-            .then(response => response.json())
-            .then(data => {
-                btn.disabled = false;
-                spinner.style.display = 'none';
-
-                if(data.error) {
-                    alert('Error: ' + data.error);
-                } else if (data.snap_token) {
-                    // Trigger Snap Popup
-                    window.snap.pay(data.snap_token, {
-                        onSuccess: function(result){
-                            alert("Payment Successful!");
-                            window.location.href = "{{ route('booking.success') }}";
-                        },
-                        onPending: function(result){
-                            alert("Waiting for payment!");
-                        },
-                        onError: function(result){
-                            alert("Payment failed!");
-                        },
-                        onClose: function(){
-                            alert('You closed the popup without finishing the payment');
-                        }
-                    });
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                btn.disabled = false;
-                spinner.style.display = 'none';
-                alert('Something went wrong. Please try again.');
             });
-        });
+            
+            const data = await response.json();
+            console.log("Server Response:", data); // DEBUG
+
+            if(data.snap_token) {
+                if (typeof window.snap === 'undefined') {
+                    console.error("Midtrans Snap.js is not loaded!");
+                    alert("Payment gateway failed to load. Please refresh and try again.");
+                    return;
+                }
+                
+                window.snap.pay(data.snap_token, {
+                    onSuccess: function(result){
+                        alert("Payment Success!");
+                        window.location.href = "{{ route('booking.success') }}";
+                    },
+                    onPending: function(result){
+                        alert("Waiting for payment!");
+                        console.log(result);
+                    },
+                    onError: function(result){
+                        alert("Payment failed!");
+                        console.log(result);
+                    },
+                    onClose: function(){
+                        alert('You closed the popup without finishing the payment');
+                        payButton.disabled = false;
+                        payButton.innerText = 'Rent Now';
+                    }
+                });
+            } else {
+                alert("Failed to get payment token: " + (data.error || 'Unknown error'));
+                payButton.disabled = false;
+                payButton.innerText = 'Rent Now';
+            }
+            
+        } catch (error) {
+            console.error("Catch Error:", error); // DEBUG
+            alert("An error occurred: " + error.message);
+            payButton.disabled = false;
+            payButton.innerText = 'Rent Now';
+        }
     });
+});
 </script>
+
 @endsection
+
+<!--Listing Single End-->
+
+
+
+
+
+
+
+</div><!-- /.page-wrapper -->

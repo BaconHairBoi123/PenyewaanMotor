@@ -11,15 +11,16 @@
                             <div class="footer-widget__about-logo">
                                 <a href="index.html"><img style="width: 200px;" src="{{ asset('assets/images/shapes/logo_ridenusa_white_BTG.png') }}" alt=""></a>
                             </div>
-                            <p class="footer-widget__about-text">Car Is Where Early Adopters And Innovation Seekers Find Lively Imaginative Tech.</p>
+                            <p class="footer-widget__about-text">Ride Nusa: Your Trusted Motorcycle Rental Partner.</p>
                         </div>
                     </div>
                     <div class="col-xl-2 col-lg-6 col-md-6">
                         <div class="footer-widget__links">
                             <h4 class="footer-widget__title">Quick links</h4>
                             <ul class="footer-widget__links-list list-unstyled">
-                                <li><a href="about.html">About Us</a></li>
-                                <li><a href="services.html">Our Services</a></li>
+                                <li><a href="{{ route('welcome') }}">Home</a></li>
+                                <li><a href="{{ route('about') }}">About Us</a></li>
+                                <li><a href="{{ route('services') }}">Our Services</a></li>
                             </ul>
                         </div>
                     </div>

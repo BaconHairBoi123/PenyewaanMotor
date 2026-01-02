@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\HasFactory;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class AdditionalAccessories extends Model
@@ -14,5 +14,6 @@ class AdditionalAccessories extends Model
     protected $fillable = [
         'accessory_name',
         'daily_price',
+        'stock',
     ];
 }

@@ -21,7 +21,8 @@
                         <p class="main-slider__sub-title-two">Experience</p>
                         <div class="main-slider__btn-and-video-box">
                             <div class="main-slider__btn-box">
-                                <a href="about.html" class="thm-btn">Read More<span class="fas fa-arrow-right"></span></a>
+                                <a href="{{ route('about') }}" class="thm-btn">Read More<span
+                                        class="fas fa-arrow-right"></span></a>
                             </div>
                             <div class="main-slider__video-link">
                                 <a href="https://www.youtube.com/watch?v=Get7rqXYrbQ" class="video-popup">
@@ -124,9 +125,11 @@
                         <div class="services-one__icon">
                             <!-- <span class="icon-car"></span> -->
                         </div>
-                        <h3 class="services-one__title"><a href="services.html">Ride Nusa’s Most Luxurious Motorcycles</a>
+                        <h3 class="services-one__title"><a href="{{ route('services') }}">Ride Nusa’s Most Luxurious
+                                Motorcycles</a>
                         </h3>
-                        <p class="services-one__text">We offer exclusive motorcycles that you can rent during your holiday or stay in Bali.</p>
+                        <p class="services-one__text">We offer exclusive motorcycles that you can rent during your holiday
+                            or stay in Bali.</p>
                     </div>
                 </div>
                 <!--Services One Single End-->
@@ -140,9 +143,10 @@
                         <div class="services-one__icon">
                             <!-- <span class="icon-taxi"></span> -->
                         </div>
-                        <h3 class="services-one__title"><a href="services.html">Free Unit Delivery</a>
+                        <h3 class="services-one__title"><a href="{{ route('services') }}">Free Unit Delivery</a>
                         </h3>
-                        <p class="services-one__text">We provide free delivery of the motorcycle directly to the renter’s location.</p>
+                        <p class="services-one__text">We provide free delivery of the motorcycle directly to the renter’s
+                            location.</p>
                     </div>
                 </div>
                 <!--Services One Single End-->
@@ -157,8 +161,9 @@
                         <div class="services-one__icon">
                             <!-- <span class="icon-sport-car-1"></span> -->
                         </div>
-                        <h3 class="services-one__title"><a href="services.html">Riding Class</a></h3>
-                        <p class="services-one__text">We offer riding classes for travelers who are not yet confident or experienced in riding motorcycles.</p>
+                        <h3 class="services-one__title"><a href="{{ route('services') }}">Riding Class</a></h3>
+                        <p class="services-one__text">We offer riding classes for travelers who are not yet confident or
+                            experienced in riding motorcycles.</p>
                     </div>
                 </div>
                 <!--Services One Single End-->
@@ -173,8 +178,9 @@
                         <div class="services-one__icon">
                             <!-- <span class="icon-car-insurance"></span> -->
                         </div>
-                        <h3 class="services-one__title"><a href="services.html">Additional Accessories</a></h3>
-                        <p class="services-one__text">We provide additional riding accessories to ensure a safe and comfortable riding experience.</p>
+                        <h3 class="services-one__title"><a href="{{ route('services') }}">Additional Accessories</a></h3>
+                        <p class="services-one__text">We provide additional riding accessories to ensure a safe and
+                            comfortable riding experience.</p>
                     </div>
                 </div>
                 <!--Services One Single End-->
@@ -228,31 +234,28 @@
                                 </div>
                                 <span class="section-title__tagline">About Ride Nusa</span>
                             </div>
-                            <h2 class="section-title__title title-animation">Welcome to Ride Nusa
-                                Motorcycle booking company</h2>
+                            <h2 class="section-title__title title-animation">Premier Motorcycle Rentals for Your Island Adventure</h2>
                         </div>
-                        <p class="about-one__text-1">Committed to providing our customers with<br> ultimate service.
+                        <p class="about-one__text-1">Experience the ultimate freedom on two wheels. <br> We provide top-quality bikes and 24/7 support to ensure your journey is safe and unforgettable.
                         </p>
-                        <p class="about-one__text-2">Lorem ipsum is simply ipun txns mane so dummy text of free
-                            available in market the printing and typesetting industry has been the industry's
-                            standard dummy text ever.</p>
+                        <p class="about-one__text-2">Ride Nusa is your trusted partner for premium transportation. We pride ourselves on delivering ultimate service through a well-maintained fleet, transparent pricing, and a seamless booking process designed for modern travelers.</p>
                         <ul class="about-one__progress-box list-unstyled">
                             <li>
                                 <div class="about-one__progress">
-                                    <h4 class="about-one__progress-title">Time Awareness</h4>
+                                    <h4 class="about-one__progress-title">On-Time Delivery</h4>
                                     <div class="bar">
-                                        <div class="bar-inner count-bar" data-percent="90%">
-                                            <div class="count-text">90%</div>
+                                        <div class="bar-inner count-bar" data-percent="98%">
+                                            <div class="count-text">98%</div>
                                         </div>
                                     </div>
                                 </div>
                             </li>
                             <li>
                                 <div class="about-one__progress">
-                                    <h4 class="about-one__progress-title">Driver Experience</h4>
+                                    <h4 class="about-one__progress-title">Bike Maintenance</h4>
                                     <div class="bar">
-                                        <div class="bar-inner count-bar" data-percent="70%">
-                                            <div class="count-text">70%</div>
+                                        <div class="bar-inner count-bar" data-percent="100%">
+                                            <div class="count-text">100%</div>
                                         </div>
                                     </div>
                                 </div>
@@ -260,7 +263,7 @@
                         </ul>
                         <div class="about-one__btn-box-and-call-box">
                             <div class="about-one__btn-box">
-                                <a href="about.html" class="about-one__btn thm-btn">Read More<span
+                                <a href="{{ route('about') }}" class="about-one__btn thm-btn">Read More<span
                                         class="fas fa-arrow-right"></span></a>
                             </div>
                             <div class="about-one__call-box">
@@ -405,11 +408,12 @@
                         </div>
                         <div class="why-choose-one__single-inner">
                             <h3 class="why-choose-one__title">Easy & Fast Booking</h3>
-                            <p class="why-choose-one__text">Our booking process is simple and efficient, allowing you to reserve your motorbike in just a few steps—quick, hassle-free, and convenient.
+                            <p class="why-choose-one__text">Our booking process is simple and efficient, allowing you to
+                                reserve your motorbike in just a few steps—quick, hassle-free, and convenient.
                             </p>
                         </div>
                         <div class="why-choose-one__btn-box">
-                            <a href="listing-single.html" class="thm-btn">Rent Now<span
+                            <a href="{{ route('motorcycles.index') }}" class="thm-btn">Rent Now<span
                                     class="fas fa-arrow-right"></span></a>
                         </div>
                     </div>
@@ -424,11 +428,12 @@
                         </div>
                         <div class="why-choose-one__single-inner">
                             <h3 class="why-choose-one__title">Many Pickup Location</h3>
-                            <p class="why-choose-one__text">We offer multiple pickup and delivery locations across Bali, giving you flexibility and convenience wherever you stay.
+                            <p class="why-choose-one__text">We offer multiple pickup and delivery locations across Bali,
+                                giving you flexibility and convenience wherever you stay.
                             </p>
                         </div>
                         <div class="why-choose-one__btn-box">
-                            <a href="listing-single.html" class="thm-btn">Rent Now<span
+                            <a href="{{ route('motorcycles.index') }}" class="thm-btn">Rent Now<span
                                     class="fas fa-arrow-right"></span></a>
                         </div>
                     </div>
@@ -443,11 +448,13 @@
                         </div>
                         <div class="why-choose-one__single-inner">
                             <h3 class="why-choose-one__title">Customer Satisfaction</h3>
-                            <p class="why-choose-one__text">Your satisfaction is our priority. We provide well-maintained motorcycles, responsive support, and reliable service to ensure a comfortable and worry-free ride.
+                            <p class="why-choose-one__text">Your satisfaction is our priority. We provide well-maintained
+                                motorcycles, responsive support, and reliable service to ensure a comfortable and worry-free
+                                ride.
                             </p>
                         </div>
                         <div class="why-choose-one__btn-box">
-                            <a href="listing-single.html" class="thm-btn">Rent Now<span
+                            <a href="{{ route('motorcycles.index') }}" class="thm-btn">Rent Now<span
                                     class="fas fa-arrow-right"></span></a>
                         </div>
                     </div>
@@ -586,27 +593,25 @@
                         <div class="item">
                             <div class="listing-one__single">
                                 <div class="listing-one__img">
-                                    @php
-                                        $path = 'storage/motorcycles/' . $m->image_path;
-                                    @endphp
-
-                                    @if ($m->image_path && file_exists(public_path($path)))
-                                        <img src="{{ asset($path) }}" alt="{{ $m->category }}">
+                                    @if ($m->image_path && \Illuminate\Support\Facades\Storage::disk('public')->exists($m->image_path))
+                                        {{-- Jika file benar-benar ada di storage/app/public --}}
+                                        <img src="{{ asset('storage/' . $m->image_path) }}" alt="{{ $m->category }}">
                                     @else
-                                        {{-- Placeholder jika gambar tidak ada --}}
+                                        {{-- Jika database kosong ATAU file fisik tidak ditemukan --}}
                                         <img src="{{ asset('assets/images/resources/RIDEnotrasparan.png') }}"
-                                            alt="No Image">
+                                            alt="No Image Available">
                                     @endif
 
                                     <div class="listing-one__brand-name">
                                         <p>{{ strtoupper($m->brand) }}</p>
                                     </div>
-                                </div>
+                                </div>a
 
                                 <div class="listing-one__content">
 
                                     <h3 class="listing-one__title">
-                                        <a href="{{ route('motorcycles.show', ['id' => $m->id, 'slug' => \Illuminate\Support\Str::slug($m->brand . '-' . $m->type)]) }}">{{ $m->category }}</a>
+                                        <a
+                                            href="{{ route('motorcycles.show', ['id' => $m->id, 'slug' => \Illuminate\Support\Str::slug($m->brand . '-' . $m->type)]) }}">{{ $m->category }}</a>
                                     </h3>
 
                                     <div class="listing-one__meta-box-info">
@@ -650,7 +655,8 @@
 
                                     <div class="listing-one__btn-box">
                                         {{-- Perbaikan variabel: dari $mo ke $m --}}
-                                        <a href="{{ route('motorcycles.show', ['id' => $m->id, 'slug' => \Illuminate\Support\Str::slug($m->brand . '-' . $m->type)]) }}" class="thm-btn">
+                                        <a href="{{ route('motorcycles.show', ['id' => $m->id, 'slug' => \Illuminate\Support\Str::slug($m->brand . '-' . $m->type)]) }}"
+                                            class="thm-btn">
                                             Details Now <span class="fas fa-arrow-right"></span>
                                         </a>
 
@@ -692,7 +698,8 @@
                         </div>
                     </div>
                     <div class="call-one__btn-box">
-                        <a href="car-list-v-1.html" class="thm-btn">Rent Now<span class="fas fa-arrow-right"></span></a>
+                        <a href="{{ route('motorcycles.index') }}" class="thm-btn">Rent Now<span
+                                class="fas fa-arrow-right"></span></a>
                     </div>
                 </div>
             </div>
@@ -700,7 +707,7 @@
     </section>
     <!--Call One End -->
 
-   
+
 
     <!--Faq One Start -->
     <section class="faq-one">
@@ -741,7 +748,8 @@
                                 </div>
                                 <div class="accrodion-content">
                                     <div class="inner">
-                                        <p>You must be at least 18 years old to rent a motorbike. Some premium or high-capacity models may require a higher minimum age and riding experience.
+                                        <p>You must be at least 18 years old to rent a motorbike. Some premium or
+                                            high-capacity models may require a higher minimum age and riding experience.
                                         </p>
                                     </div><!-- /.inner -->
                                 </div>
@@ -772,10 +780,11 @@
                                         <ul style="list-style-type: disc; margin-left: 20px; color: var(--thm-gray);">
                                             <li>Small Automatic Scooters – ideal for city rides and beginners</li>
                                             <li>Large Automatic Scooters – comfortable and powerful for longer trips</li>
-                                            <li>Sport Motorbikes – designed for experienced riders seeking performance and style</li>
+                                            <li>Sport Motorbikes – designed for experienced riders seeking performance and
+                                                style</li>
                                         </ul>
                                     </div><!-- /.inner
-                                    </div><!-- /.inner -->
+                                        </div><!-- /.inner -->
                                 </div>
                             </div>
                             <div class="accrodion wow fadeInRight" data-wow-delay="300ms" data-wow-duration="1500ms">
@@ -784,7 +793,8 @@
                                 </div>
                                 <div class="accrodion-content">
                                     <div class="inner">
-                                        <p>For safety and legal reasons, a valid driving license is required. However, we also offer riding classes for beginners who want to improve their riding skills.
+                                        <p>For safety and legal reasons, a valid driving license is required. However, we
+                                            also offer riding classes for beginners who want to improve their riding skills.
                                         </p>
                                     </div><!-- /.inner -->
                                 </div>
@@ -795,7 +805,9 @@
                                 </div>
                                 <div class="accrodion-content">
                                     <div class="inner">
-                                        <p>Motorbikes are delivered with a certain fuel level and should be returned at the same fuel level. Fuel costs during the rental period are the renter’s responsibility.
+                                        <p>Motorbikes are delivered with a certain fuel level and should be returned at the
+                                            same fuel level. Fuel costs during the rental period are the renter’s
+                                            responsibility.
                                         </p>
                                     </div><!-- /.inner -->
                                 </div>
@@ -810,14 +822,15 @@
 
     <!--Lets Talk Start -->
     <section class="lets-talk">
-        <div class="lets-talk__bg" style="background-image: url('{{ asset('/assets/images/backgrounds/1680x550_booking-one-bg.jpg') }}');"></div>
+        <div class="lets-talk__bg"
+            style="background-image: url('{{ asset('/assets/images/backgrounds/1680x550_booking-one-bg.jpg') }}');"></div>
         <div class="container">
             <div class="lets-talk__inner">
                 <div class="lets-talk__title">
                     <p>Rent Your Motorcycle</p>
                     <h2>Interested in Renting?</h2>
                 </div>
-               
+
             </div>
         </div>
     </section>
