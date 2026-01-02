@@ -23,12 +23,6 @@
     </section>
     <!--Page Header End -->
 
-    <!--Motorcycle Listing page One Start -->
-    <!--Motorcycle Listing page One End -->
-    <!--Motorcycle Listing page One End -->
-    <!--Motorcycle Listing page baru Start -->
-
-
     <section class="car-listing-page-one">
         <div class="container">
             <div class="row">

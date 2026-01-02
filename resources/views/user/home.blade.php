@@ -234,31 +234,28 @@
                                 </div>
                                 <span class="section-title__tagline">About Ride Nusa</span>
                             </div>
-                            <h2 class="section-title__title title-animation">Welcome to Ride Nusa
-                                Motorcycle booking company</h2>
+                            <h2 class="section-title__title title-animation">Premier Motorcycle Rentals for Your Island Adventure</h2>
                         </div>
-                        <p class="about-one__text-1">Committed to providing our customers with<br> ultimate service.
+                        <p class="about-one__text-1">Experience the ultimate freedom on two wheels. <br> We provide top-quality bikes and 24/7 support to ensure your journey is safe and unforgettable.
                         </p>
-                        <p class="about-one__text-2">Lorem ipsum is simply ipun txns mane so dummy text of free
-                            available in market the printing and typesetting industry has been the industry's
-                            standard dummy text ever.</p>
+                        <p class="about-one__text-2">Ride Nusa is your trusted partner for premium transportation. We pride ourselves on delivering ultimate service through a well-maintained fleet, transparent pricing, and a seamless booking process designed for modern travelers.</p>
                         <ul class="about-one__progress-box list-unstyled">
                             <li>
                                 <div class="about-one__progress">
-                                    <h4 class="about-one__progress-title">Time Awareness</h4>
+                                    <h4 class="about-one__progress-title">On-Time Delivery</h4>
                                     <div class="bar">
-                                        <div class="bar-inner count-bar" data-percent="90%">
-                                            <div class="count-text">90%</div>
+                                        <div class="bar-inner count-bar" data-percent="98%">
+                                            <div class="count-text">98%</div>
                                         </div>
                                     </div>
                                 </div>
                             </li>
                             <li>
                                 <div class="about-one__progress">
-                                    <h4 class="about-one__progress-title">Driver Experience</h4>
+                                    <h4 class="about-one__progress-title">Bike Maintenance</h4>
                                     <div class="bar">
-                                        <div class="bar-inner count-bar" data-percent="70%">
-                                            <div class="count-text">70%</div>
+                                        <div class="bar-inner count-bar" data-percent="100%">
+                                            <div class="count-text">100%</div>
                                         </div>
                                     </div>
                                 </div>
