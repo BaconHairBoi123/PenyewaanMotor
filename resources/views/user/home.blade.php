@@ -151,8 +151,7 @@
                 </div>
                 <!--Services One Single End-->
                 <!--Services One Single Start-->
-                <div class="col-xl-3 col-lg-6 col-md-6 wow fadeInRight" data-wow-delay="500ms"
-                    data-wow-duration="1500ms">
+                <div class="col-xl-3 col-lg-6 col-md-6 wow fadeInRight" data-wow-delay="500ms" data-wow-duration="1500ms">
                     <div class="services-one__single" style="height: 100%;">
                         <div class="services-one__single-shape-1"></div>
                         <div class="services-one__single-shape-2"></div>
@@ -161,15 +160,13 @@
                         <div class="services-one__icon">
                             <!-- <span class="icon-sport-car-1"></span> -->
                         </div>
-                        <h3 class="services-one__title"><a href="{{ route('services') }}">Riding Class</a></h3>
-                        <p class="services-one__text">We offer riding classes for travelers who are not yet confident or
-                            experienced in riding motorcycles.</p>
+                        <h3 class="services-one__title"><a href="services.html">Riding Class</a></h3>
+                        <p class="services-one__text">We offer riding classes for travelers who are not yet confident or experienced in riding motorcycles.</p>
                     </div>
                 </div>
                 <!--Services One Single End-->
                 <!--Services One Single Start-->
-                <div class="col-xl-3 col-lg-6 col-md-6 wow fadeInRight" data-wow-delay="700ms"
-                    data-wow-duration="1500ms">
+                <div class="col-xl-3 col-lg-6 col-md-6 wow fadeInRight" data-wow-delay="700ms" data-wow-duration="1500ms">
                     <div class="services-one__single" style="height: 100%;">
                         <div class="services-one__single-shape-1"></div>
                         <div class="services-one__single-shape-2"></div>
@@ -178,9 +175,8 @@
                         <div class="services-one__icon">
                             <!-- <span class="icon-car-insurance"></span> -->
                         </div>
-                        <h3 class="services-one__title"><a href="{{ route('services') }}">Additional Accessories</a></h3>
-                        <p class="services-one__text">We provide additional riding accessories to ensure a safe and
-                            comfortable riding experience.</p>
+                        <h3 class="services-one__title"><a href="services.html">Additional Accessories</a></h3>
+                        <p class="services-one__text">We provide additional riding accessories to ensure a safe and comfortable riding experience.</p>
                     </div>
                 </div>
                 <!--Services One Single End-->
@@ -335,8 +331,7 @@
                 </div>
                 <!-- Process One Single End -->
                 <!-- Process One Single Start -->
-                <div class="col-xl-3 col-lg-6 col-md-6 wow fadeInRight" data-wow-delay="500ms"
-                    data-wow-duration="1500ms">
+                <div class="col-xl-3 col-lg-6 col-md-6 wow fadeInRight" data-wow-delay="500ms" data-wow-duration="1500ms">
                     <div class="process-one__single" style="height: 100%;">
                         <div class="process-one__single-bg"
                             style="background-image: url('/assets/images/backgrounds/300x268_process-single-bg3yangbaruu.jpeg');">
@@ -357,8 +352,7 @@
                 </div>
                 <!-- Process One Single End -->
                 <!-- Process One Single Start -->
-                <div class="col-xl-3 col-lg-6 col-md-6 wow fadeInRight" data-wow-delay="700ms"
-                    data-wow-duration="1500ms">
+                <div class="col-xl-3 col-lg-6 col-md-6 wow fadeInRight" data-wow-delay="700ms" data-wow-duration="1500ms">
                     <div class="process-one__single" style="height: 100%;">
                         <div class="process-one__single-bg"
                             style="background-image: url('/assets/images/backgrounds/300x268_process-single-bg4yangbaru.jpg');">
@@ -440,8 +434,7 @@
                 </div>
                 <!-- Why Choose One Single End -->
                 <!-- Why Choose One Single Start -->
-                <div class="col-xl-4 col-lg-6 col-md-6 wow fadeInRight" data-wow-delay="500ms"
-                    data-wow-duration="1500ms">
+                <div class="col-xl-4 col-lg-6 col-md-6 wow fadeInRight" data-wow-delay="500ms" data-wow-duration="1500ms">
                     <div class="why-choose-one__single" style="height: 100%;">
                         <div class="why-choose-one__icon">
                             <span class="icon-rating"></span>
@@ -557,11 +550,13 @@
                     <div class="counter-one__right">
                         <div class="counter-one__img-box">
                             <div class="counter-one__img reveal">
-                                <img src="/assets/images/resources/counter-one-img-1.jpg" alt="">
+                                <img src="{{ asset('assets/images/gallery/forza.jpg') }}" alt="">
                             </div>
                             <div class="counter-one__img-two reveal">
-                                <img src="/assets/images/resources/counter-one-img-2.jpg" alt="">
+                                <img src="{{ asset('/assets/images/gallery/Tmax.jpg') }}" alt=""
+                                    style="width: 600px; height: auto;">
                             </div>
+
                             <div class="counter-one__dot-1">
                                 <img src="/assets/images/shapes/counter-one-dot-1.png" alt="">
                             </div>
@@ -597,9 +592,9 @@
                                         {{-- Jika file benar-benar ada di storage/app/public --}}
                                         <img src="{{ asset('storage/' . $m->image_path) }}" alt="{{ $m->category }}">
                                     @else
-                                        {{-- Jika database kosong ATAU file fisik tidak ditemukan --}}
+                                        {{-- Placeholder jika gambar tidak ada --}}
                                         <img src="{{ asset('assets/images/resources/RIDEnotrasparan.png') }}"
-                                            alt="No Image Available">
+                                            alt="No Image">
                                     @endif
 
                                     <div class="listing-one__brand-name">
@@ -728,7 +723,10 @@
                         </div>
                         <div class="faq-one__img-box">
                             <div class="faq-one__img reveal">
-                                <img src="/assets/images/resources/faq-one-img-1.jpg" alt="">
+                               <img src="{{ asset('/assets/images/gallery/vespa.jpg') }}" 
+     alt=""
+     style="width: 300px; height: 200px;">
+
                             </div>
                             <div class="faq-one__experience-box">
                                 <div class="faq-one__experience-year">
@@ -754,8 +752,7 @@
                                     </div><!-- /.inner -->
                                 </div>
                             </div>
-                            <div class="accrodion active wow fadeInRight" data-wow-delay="100ms"
-                                data-wow-duration="1500ms">
+                            <div class="accrodion active wow fadeInRight" data-wow-delay="100ms" data-wow-duration="1500ms">
                                 <div class="accrodion-title">
                                     <h4>What documents do I need to rent a motorbike?</h4>
                                 </div>
@@ -836,72 +833,7 @@
     </section>
     <!--Lets Talk End -->
 
-    <!--Gallery One Start -->
-    <section class="gallery-one">
-        <div class="gallery-one__carousel owl-theme owl-carousel">
-            <!--Gallery One Single Start-->
-            <div class="item">
-                <div class="gallery-one__single">
-                    <div class="gallery-one__img">
-                        <img src="/assets/images/gallery/gallery-1-1.jpg" alt="">
-                        <a href="cars.html"><span class="fab fa-instagram"></span></a>
-                    </div>
-                </div>
-            </div>
-            <!--Gallery One Single End-->
-            <!--Gallery One Single Start-->
-            <div class="item">
-                <div class="gallery-one__single">
-                    <div class="gallery-one__img">
-                        <img src="/assets/images/gallery/gallery-1-2.jpg" alt="">
-                        <a href="cars.html"><span class="fab fa-instagram"></span></a>
-                    </div>
-                </div>
-            </div>
-            <!--Gallery One Single End-->
-            <!--Gallery One Single Start-->
-            <div class="item">
-                <div class="gallery-one__single">
-                    <div class="gallery-one__img">
-                        <img src="/assets/images/gallery/gallery-1-3.jpg" alt="">
-                        <a href="cart.html"><span class="fab fa-instagram"></span></a>
-                    </div>
-                </div>
-            </div>
-            <!--Gallery One Single End-->
-            <!--Gallery One Single Start-->
-            <div class="item">
-                <div class="gallery-one__single">
-                    <div class="gallery-one__img">
-                        <img src="/assets/images/gallery/gallery-1-4.jpg" alt="">
-                        <a href="cart.html"><span class="fab fa-instagram"></span></a>
-                    </div>
-                </div>
-            </div>
-            <!--Gallery One Single End-->
-            <!--Gallery One Single Start-->
-            <div class="item">
-                <div class="gallery-one__single">
-                    <div class="gallery-one__img">
-                        <img src="/assets/images/gallery/gallery-1-5.jpg" alt="">
-                        <a href="cart.html"><span class="fab fa-instagram"></span></a>
-                    </div>
-                </div>
-            </div>
-            <!--Gallery One Single End-->
-            <!--Gallery One Single Start-->
-            <div class="item">
-                <div class="gallery-one__single">
-                    <div class="gallery-one__img">
-                        <img src="/assets/images/gallery/gallery-1-6.jpg" alt="">
-                        <a href="cart.html"><span class="fab fa-instagram"></span></a>
-                    </div>
-                </div>
-            </div>
-            <!--Gallery One Single End-->
-        </div>
-    </section>
-    <!--Gallery One End -->
+    
 
     </div><!-- /.page-wrapper -->
 @endsection
