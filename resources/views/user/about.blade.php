@@ -11,7 +11,7 @@
                 <h3>About Us</h3>
                 <div class="thm-breadcrumb__inner">
                     <ul class="thm-breadcrumb list-unstyled">
-                        <li><a href="index.html">Home</a></li>
+                        <li><a href="{{ route('welcome') }}">Home</a></li>
                         <li><span class="icon-arrow-left"></span></li>
                         <li>About Us</li>
                     </ul>
@@ -70,9 +70,7 @@
                         </div>
                         <p class="about-one__text-1">Committed to providing our customers with<br> ultimate service.
                         </p>
-                        <p class="about-one__text-2">Lorem ipsum is simply ipun txns mane so dummy text of free
-                            available in market the printing and typesetting industry has been the industry's
-                            standard dummy text ever.</p>
+                        <p class="about-one__text-2">Ride Nusa is your trusted partner for motorcycle rentals in Bali. We focus on quality service, well-maintained vehicles, and customer satisfaction to ensure every journey is smooth, safe, and memorable. Whether you are traveling or exploring the island, Ride Nusa is ready to serve you.</p>
                         <ul class="about-one__progress-box list-unstyled">
                             <li>
                                 <div class="about-one__progress">
@@ -97,7 +95,7 @@
                         </ul>
                         <div class="about-one__btn-box-and-call-box">
                             <div class="about-one__btn-box">
-                                <a href="about.html" class="about-one__btn thm-btn">Read More<span
+                                <a href="{{ route('about') }}" class="about-one__btn thm-btn">Read More<span
                                         class="fas fa-arrow-right"></span></a>
                             </div>
                             <div class="about-one__call-box">
@@ -134,7 +132,7 @@
             <div class="row">
                 <!--Services One Single Start-->
                 <div class="col-xl-3 col-lg-6 col-md-6 wow fadeInLeft" data-wow-delay="100ms" data-wow-duration="1500ms">
-                    <div class="services-one__single">
+                    <div class="services-one__single" style="height: 100%;">
                         <div class="services-one__single-shape-1"></div>
                         <div class="services-one__single-shape-2"></div>
                         <div class="services-one__single-shape-3"></div>
@@ -142,16 +140,16 @@
                         <div class="services-one__icon">
                             <!-- <span class="icon-car"></span> -->
                         </div>
-                        <h3 class="services-one__title"><a href="services.html">motor termewah Ride Nusa</a>
+                        <h3 class="services-one__title"><a href="{{ route('services') }}">Ride Nusa’s Most Luxurious 
+                            Motorcycles</a>
                         </h3>
-                        <p class="services-one__text">kita memiliki motor yang exclusive yang bisa anda sewa selama anda
-                            liburan atau tinggal di bali</p>
+                        <p class="services-one__text">We offer exclusive motorcycles that you can rent during your holiday or stay in Bali.</p>
                     </div>
                 </div>
                 <!--Services One Single End-->
                 <!--Services One Single Start-->
                 <div class="col-xl-3 col-lg-6 col-md-6 wow fadeInLeft" data-wow-delay="300ms" data-wow-duration="1500ms">
-                    <div class="services-one__single">
+                    <div class="services-one__single" style="height: 100%;">
                         <div class="services-one__single-shape-1"></div>
                         <div class="services-one__single-shape-2"></div>
                         <div class="services-one__single-shape-3"></div>
@@ -159,16 +157,16 @@
                         <div class="services-one__icon">
                             <!-- <span class="icon-taxi"></span> -->
                         </div>
-                        <h3 class="services-one__title"><a href="services.html">Antar unit ke tempat penyewa</a>
+                        <h3 class="services-one__title"><a href="{{ route('services') }}">Well-Maintained Motorcycles</a>
                         </h3>
-                        <p class="services-one__text">kita dengan gratis meghantarkan unit ke pengunna atau penyewa</p>
+                        <p class="services-one__text">We provide well-maintained and regularly serviced motorcycles to ensure safety and comfort during your ride.</p>
                     </div>
                 </div>
                 <!--Services One Single End-->
                 <!--Services One Single Start-->
                 <div class="col-xl-3 col-lg-6 col-md-6 wow fadeInRight" data-wow-delay="500ms"
                     data-wow-duration="1500ms">
-                    <div class="services-one__single">
+                    <div class="services-one__single" style="height: 100%;">
                         <div class="services-one__single-shape-1"></div>
                         <div class="services-one__single-shape-2"></div>
                         <div class="services-one__single-shape-3"></div>
@@ -176,16 +174,16 @@
                         <div class="services-one__icon">
                             <!-- <span class="icon-sport-car-1"></span> -->
                         </div>
-                        <h3 class="services-one__title"><a href="services.html">Riding Class</a></h3>
-                        <p class="services-one__text">kita memberikan kelas untuk wisatawan yang belum lihay menggunakan
-                            motor</p>
+                        <h3 class="services-one__title"><a href="{{ route('services') }}">Riding Class</a></h3>
+                        <p class="services-one__text">We offer riding classes for travelers who are not yet 
+                            confident or experienced in riding motorcycles.</p>
                     </div>
                 </div>
                 <!--Services One Single End-->
                 <!--Services One Single Start-->
                 <div class="col-xl-3 col-lg-6 col-md-6 wow fadeInRight" data-wow-delay="700ms"
                     data-wow-duration="1500ms">
-                    <div class="services-one__single">
+                    <div class="services-one__single"style="height: 100%;">
                         <div class="services-one__single-shape-1"></div>
                         <div class="services-one__single-shape-2"></div>
                         <div class="services-one__single-shape-3"></div>
@@ -193,9 +191,8 @@
                         <div class="services-one__icon">
                             <!-- <span class="icon-car-insurance"></span> -->
                         </div>
-                        <h3 class="services-one__title"><a href="services.html">Aksesoris Tambahan</a></h3>
-                        <p class="services-one__text">kita menyediakan aksesoris tambahan untuk kelengkapan berkendara si
-                            pengguna</p>
+                        <h3 class="services-one__title"><a href="{{ route('services') }}">Additional Accessories</a></h3>
+                        <p class="services-one__text">We provide additional riding accessories to ensure a safe and comfortable riding experience.</p>
                     </div>
                 </div>
                 <!--Services One Single End-->
@@ -418,10 +415,10 @@
                 </div>
                 <div class="lets-talk__btn-boxes">
                     <div class="lets-talk__btn-1">
-                        <a href="contact.html" class="thm-btn">Contact Us<span class="fas fa-arrow-right"></span></a>
+                        <a href="{{ route('contact') }}" class="thm-btn">Contact Us<span class="fas fa-arrow-right"></span></a>
                     </div>
                     <div class="lets-talk__btn-2">
-                        <a href="car-list-v-1.html" class="thm-btn">Rent Now<span class="fas fa-arrow-right"></span></a>
+                        <a href="{{ route('motorcycles.index') }}" class="thm-btn">Rent Now<span class="fas fa-arrow-right"></span></a>
                     </div>
                 </div>
             </div>

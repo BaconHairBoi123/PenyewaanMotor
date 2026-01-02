@@ -50,7 +50,7 @@
                         <p class="main-slider__sub-title-two">Experience</p>
                         <div class="main-slider__btn-and-video-box">
                             <div class="main-slider__btn-box">
-                                <a href="about.html" class="thm-btn">Read More<span class="fas fa-arrow-right"></span></a>
+                                <a href="{{ route('about') }}" class="thm-btn">Read More<span class="fas fa-arrow-right"></span></a>
                             </div>
                             <div class="main-slider__video-link">
                                 <a href="https://www.youtube.com/watch?v=Get7rqXYrbQ" class="video-popup">
@@ -78,7 +78,7 @@
                         <p class="main-slider__sub-title-two">Experience</p>
                         <div class="main-slider__btn-and-video-box">
                             <div class="main-slider__btn-box">
-                                <a href="about.html" class="thm-btn">Read More<span class="fas fa-arrow-right"></span></a>
+                                <a href="{{ route('about') }}" class="thm-btn">Read More<span class="fas fa-arrow-right"></span></a>
                             </div>
                             <div class="main-slider__video-link">
                                 <a href="https://www.youtube.com/watch?v=Get7rqXYrbQ" class="video-popup">
@@ -143,10 +143,9 @@
                         <div class="services-one__icon">
                             <!-- <span class="icon-taxi"></span> -->
                         </div>
-                        <h3 class="services-one__title"><a href="{{ route('services') }}">Free Unit Delivery</a>
+                        <h3 class="services-one__title"><a href="{{ route('services') }}">Well-Maintained Motorcycles</a>
                         </h3>
-                        <p class="services-one__text">We provide free delivery of the motorcycle directly to the renter’s
-                            location.</p>
+                        <p class="services-one__text">We provide well-maintained and regularly serviced motorcycles to ensure safety and comfort during your ride.</p>
                     </div>
                 </div>
                 <!--Services One Single End-->
@@ -160,7 +159,7 @@
                         <div class="services-one__icon">
                             <!-- <span class="icon-sport-car-1"></span> -->
                         </div>
-                        <h3 class="services-one__title"><a href="services.html">Riding Class</a></h3>
+                        <h3 class="services-one__title"><a href="{{ route('services') }}">Riding Class</a></h3>
                         <p class="services-one__text">We offer riding classes for travelers who are not yet confident or experienced in riding motorcycles.</p>
                     </div>
                 </div>
@@ -175,7 +174,7 @@
                         <div class="services-one__icon">
                             <!-- <span class="icon-car-insurance"></span> -->
                         </div>
-                        <h3 class="services-one__title"><a href="services.html">Additional Accessories</a></h3>
+                        <h3 class="services-one__title"><a href="{{ route('services') }}">Additional Accessories</a></h3>
                         <p class="services-one__text">We provide additional riding accessories to ensure a safe and comfortable riding experience.</p>
                     </div>
                 </div>
