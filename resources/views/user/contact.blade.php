@@ -9,10 +9,10 @@
     <!--Page Header Start -->
     <section class="page-header">
         <div class="page-header__bg"
-            style="background-image: url('{{ asset('assets/images/backgrounds/page-header-bg.jpg') }}');">
+            style="background-image: url('{{ asset('assets/images/backgrounds/roadglidemerah.jpg') }}');">
         </div>
         <div class="page-header__shape-1"
-            style="background-image: url('{{ asset('assets/images/shapes/page-header-shape-1.png') }}');"></div>
+            style=" background-image: url('{{ asset('assets/images/shapes/page-header-shape-1.png') }}');"></div>
         <div class="container">
             <div class="page-header__inner">
                 <h3>Get in Touch</h3>
@@ -79,7 +79,7 @@
                 <!-- Left: Placeholder Image -->
                 <div class="split-image-box">
                     <!-- Placeholder URL as requested for user to replace -->
-                    <img src="https://placehold.co/800x1000?text=Custom+Contact+Image" alt="Contact Visual">
+                    <img src="{{ asset('assets\images\backgrounds\perusahaan.jpg') }} " alt="Contact Visual">
                     <div class="image-overlay">
                         <h5>We're here for you</h5>
                         <p>Visit our office for a coffee and a chat about your next adventure.</p>
@@ -127,9 +127,10 @@
     <!-- Map Section -->
     <section id="map-section" style="height: 400px; width: 100%; margin-bottom: -10px;">
         <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15777.067307040443!2d115.17078860000001!3d-8.66752715!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd240971e4063c5%3A0x5a1835359dd3058f!2sSeminyak%2C%20Badung%20Regency%2C%20Bali!5e0!3m2!1sen!2sid!4v1700000000000!5m2!1sen!2sid"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3942.865627039906!2d115.15991207359943!3d-8.798692689953!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd244c13ee9d753%3A0x6c05042449b50f81!2sPoliteknik%20Negeri%20Bali!5e0!3m2!1sid!2sid!4v1766986688864!5m2!1sid!2sid"
             width="100%" height="100%" style="border:0; filter: grayscale(100%) invert(90%);" allowfullscreen=""
             loading="lazy" referrerpolicy="no-referrer-when-downgrade">
         </iframe>
+      
     </section>
 @endsection
