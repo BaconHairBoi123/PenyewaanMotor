@@ -28,9 +28,9 @@
                         <div class="footer-widget__contact">
                             <h3 class="footer-widget__title">Contact Us</h3>
                             <ul class="footer-widget__contact-list list-unstyled">
-                                <li><span class="icon-pin"></span>4140 Parker Rd. Allentown, New Mexico 31134</li>
+                                <li><span class="icon-pin"></span>Kampus Bukit, Jimbaran, South Kuta, Badung Regency, Bali</li>
                                 <li><span class="icon-call"></span><a href="tel:2195550114">(219) 555-0114</a></li>
-                                <li><span class="icon-envelope"></span><a href="mailto:gorent@gmail.com">gorent@gmail.com</a></li>
+                                <li><span class="icon-envelope"></span><a href="mailto:gorent@gmail.com">Ridenusaa@gmail.com</a></li>
                             </ul>
                         </div>
                     </div>

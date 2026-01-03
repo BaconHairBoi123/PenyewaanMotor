@@ -15,7 +15,7 @@
                     <i class="icon-envelope-2"></i>
                 </div>
                 <div class="text">
-                    <p><a href="mailto:support@gmail.com">support@gmail.com</a>
+                    <p><a href="mailto:support@gmail.com">Ridenusaa@gmail.com</a>
                     </p>
                 </div>
             </li>
@@ -24,7 +24,7 @@
                     <i class="icon-pin-2"></i>
                 </div>
                 <div class="text">
-                    <p>55 Main Street, 2nd block, Malborne ,Australia</p>
+                    <p>Kampus Bukit, Jimbaran, South Kuta, Badung Regency, Bali</p>
                 </div>
             </li>
         </ul>

@@ -599,7 +599,7 @@
                                     <div class="listing-one__brand-name">
                                         <p>{{ strtoupper($m->brand) }}</p>
                                     </div>
-                                </div>a
+                                </div>
 
                                 <div class="listing-one__content">
 
