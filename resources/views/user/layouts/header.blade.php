@@ -34,9 +34,8 @@
                         <div class="content-box">
                             <h4>About Us</h4>
                             <div class="inner-text">
-                                <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has
-                                    roots in a piece of classical Latin literature from 45 BC, making it over
-                                    2000 years old.
+                                <p>Make Your Holiday Easier with the Best Motorbike Rental
+Explore every corner of your destination with a comfortable and well-maintained motorbike. Easy booking, clear pricing, and hassle-free service.
                                 </p>
                             </div>
                         </div>
