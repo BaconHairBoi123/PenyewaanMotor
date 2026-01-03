@@ -473,8 +473,7 @@
                             <h2 class="section-title__title title-animation">experience freedom on
                                 our Motorcycle booking service</h2>
                         </div>
-                        <p class="counter-one__text">Dominion fowe there light she does lights begining subdue
-                            without run saying <br> moving winger Open multipy a green form lesser</p>
+                        <p class="counter-one__text">Enjoy the convenience of exploring every corner of the city with our top-tier motorcycle fleet. With a fast booking process, simple requirements, and friendly service, we are ready to accompany your journey in Bali.</p>
                         <div class="counter-one__main-content">
                             <ul class="list-unstyled counter-one__list">
                                 <li class="wow fadeInLeft" data-wow-delay="100ms" data-wow-duration="1500ms">

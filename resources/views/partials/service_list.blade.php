@@ -25,7 +25,7 @@
 
                         <div class="col-md-3 text-end">
                             <button class="thm-btn py-2 btn-telusuri" data-id="{{ $motor->id }}">
-                                Telusuri Servis Motor
+                                Detail Servis 
                             </button>
                         </div>
                     </div>
@@ -37,8 +37,8 @@
     <div class="row justify-content-center py-5">
         <div class="col-md-6 text-center">
             <h1 class="display-1 fw-bold text-muted" style="opacity: 0.1;">404</h1>
-            <h3 class="text-secondary">DATA TIDAK DITEMUKAN</h3>
-            <p class="text-muted">Maaf, motor dengan plat nomor tersebut tidak ditemukan.</p>
+            <h3 class="text-secondary">DATA NOT FOUND</h3>
+            <p class="text-muted">Sorry, the motorcycle with that license plate was not found.</p>
         </div>
     </div>
 @endif

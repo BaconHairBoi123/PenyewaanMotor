@@ -7,8 +7,8 @@
             <div class="col-md-8">
                 <form id="search-service-form" class="d-flex gap-2">
                     <input type="text" name="license_plate" id="license_plate" class="form-control"
-                        placeholder="Masukkan Plat Nomor Motor..." style="height: 50px;" autocomplete="off">
-                    <button type="submit" class="thm-btn" style="min-width: 150px;">Cari Data</button>
+                        placeholder="Insert license plate.." style="height: 50px;" autocomplete="off">
+                    <button type="submit" class="thm-btn" style="min-width: 150px;">Search</button>
                 </form>
             </div>
         </div>

@@ -1,6 +1,6 @@
 <!-- resources/views/user/layouts/footer.blade.php -->
 <footer class="site-footer">
-    <div class="site-footer__bg" style="background-image: url('{{ asset('assets/images/backgrounds/honda forza250.jpg') }}');">
+    <div class="site-footer__bg" style="background-image: url('{{ asset('assets/images/backgrounds/kawasapi.jpg') }}');">
     </div>
     <div class="site-footer__top">
         <div class="container">
