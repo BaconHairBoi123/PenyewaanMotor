@@ -10,13 +10,17 @@ class Rental extends Model
         'user_id',
         'motorcycle_id',
         'accessory_id',
+        'location_id',
         'start_date',
         'return_date',
         'rental_proof_path',
         'delivery_type',
         'delivery_address'
     ];
-
+    public function location()
+    {
+        return $this->belongsTo(Locations::class);
+    }
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -26,7 +30,7 @@ class Rental extends Model
     {
         return $this->belongsTo(Motorcycle::class);
     }
-    
+
     public function payments()
     {
         return $this->hasMany(Payment::class);

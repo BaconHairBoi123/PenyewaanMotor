@@ -203,7 +203,24 @@ Explore every corner of your destination with a comfortable and well-maintained 
         // Expose for global use
         window.paySnap = function(token) {
              window.snap.pay(token, {
-                onSuccess: function(result){ alert("Payment success!"); location.reload(); },
+                onSuccess: function(result){
+                    // Optimistically notify server that client completed payment, then reload
+                    fetch("{{ route('payment.client_confirm') }}", {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                            'Accept': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            order_id: result.order_id || result.orderId || null,
+                            transaction_status: result.transaction_status || result.transactionStatus || 'success'
+                        })
+                    }).finally(() => {
+                        alert('Payment success!');
+                        location.reload();
+                    });
+                },
                 onPending: function(result){ alert("Waiting for payment!"); console.log(result); },
                 onError: function(result){ alert("Payment failed!"); console.log(result); },
                 onClose: function(){ console.log('customer closed the popup without finishing the payment'); }

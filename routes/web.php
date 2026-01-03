@@ -94,6 +94,10 @@ Route::middleware('auth:web')->group(function () {
     Route::post('/booking/checkout', [App\Http\Controllers\BookingController::class, 'checkout'])->name('booking.checkout');
     Route::get('/booking/success', [App\Http\Controllers\BookingController::class, 'success'])->name('booking.success');
     Route::get('/booking/history', [App\Http\Controllers\BookingHistoryController::class, 'getHistory'])->name('booking.history');
+    
+    // Midtrans webhook (server-to-server) and client confirm endpoint
+    Route::post('/midtrans/notification', [App\Http\Controllers\MidtransController::class, 'notification'])->name('midtrans.notification');
+    Route::post('/payment/confirm-client', [App\Http\Controllers\MidtransController::class, 'clientCallback'])->name('payment.client_confirm');
 
 
 
