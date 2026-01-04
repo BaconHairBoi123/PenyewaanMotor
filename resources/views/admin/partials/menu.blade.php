@@ -57,6 +57,12 @@
 </li>
 
 <li>
+    <a href="{{ route('admin.maintenance.index') }}" class="sidebar-link">
+        Maintenance Due
+    </a>
+</li>
+
+<li>
     <a href="{{ route('admin.service.types.index') }}">
     Service Types
     </a>

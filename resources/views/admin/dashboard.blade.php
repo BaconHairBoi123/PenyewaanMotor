@@ -91,7 +91,7 @@
             Add Motorcycle
         </a>
 
-        <a href="{{ route('admin.transaksi.index') }}"
+        <a href="{{ route('admin.payments.index') }}"
             class="px-4 py-2 bg-green-600 text-white rounded shadow hover:bg-green-700">
             View Transactions
         </a>

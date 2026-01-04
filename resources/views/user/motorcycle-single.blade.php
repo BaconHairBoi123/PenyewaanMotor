@@ -195,9 +195,7 @@
         </div>
     </section>
 
-    <script src="https://app.sandbox.midtrans.com/snap/snap.js"
-        data-client-key="{{ config('services.midtrans.client_key') }}"></script>
-
+    <!-- Midtrans Snap is loaded globally in the header to avoid duplicate loads -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // 1. KONFIGURASI
@@ -393,6 +391,17 @@
                     return;
                 }
 
+                // If delivery is selected, ensure address and coordinates are present
+                if (deliveryTypeSelect.value === 'delivery') {
+                    const addr = document.getElementById('delivery_address') ? document.getElementById('delivery_address').value.trim() : '';
+                    const lat = document.getElementById('latitude') ? document.getElementById('latitude').value.trim() : '';
+                    const lng = document.getElementById('longitude') ? document.getElementById('longitude').value.trim() : '';
+                    if (!addr || !lat || !lng) {
+                        alert('Silakan pilih alamat pengantaran dari daftar suggestion agar koordinat tersimpan.');
+                        return;
+                    }
+                }
+
                 const token = document.querySelector('input[name="_token"]').value;
 
                 const payload = {
@@ -406,6 +415,9 @@
                     distance_km: document.getElementById('distance_km').value || 0,
                     accessories: Array.from(document.querySelectorAll('input[name="accessories[]"]:checked')).map(i => i.value)
                 };
+
+                // Debug: print payload to console to help trace missing fields
+                console.log('Checkout payload:', payload);
 
                 try {
                     const res = await fetch("{{ route('booking.checkout') }}", {

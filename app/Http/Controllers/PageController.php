@@ -8,7 +8,7 @@ use App\Models\AdditionalAccessories;
 
 
 use Illuminate\Http\Request;
-use illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Auth;
 
 class PageController extends Controller
 {
@@ -140,6 +140,13 @@ class PageController extends Controller
 
     public function showMotorcycle($id)
     {
+        // Cek status verifikasi user: hanya user yang `verified` boleh melihat halaman detail
+        $user = \Illuminate\Support\Facades\Auth::user();
+        if ($user && ($user->verification_status ?? 'unverified') !== 'verified') {
+            return redirect()->route('user.profile')
+                ->with('error', 'Akun Anda belum terverifikasi. Tunggu verifikasi admin untuk melihat detail motor.');
+        }
+
         $motorcycle = \App\Models\Motorcycle::with(['images', 'services'])->findOrFail($id);
         // Fetch Accessories for the calculator
         $accessories = \App\Models\AdditionalAccessories::all();

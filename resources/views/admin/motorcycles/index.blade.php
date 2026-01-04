@@ -35,42 +35,50 @@
                 @foreach ($motorcycles as $motor)
                     <tr class="border-b">
                         <td class="p-3">
-                        <td class="p-3">
-                            @if ($motor->image_path)
-                                {{-- Hapus '/motorcycles' karena sudah ada di dalam $motor->image_path --}}
+                            @if ($motor->image_path && file_exists(public_path('storage/motorcycles/' . $motor->image_path)))
+                                <img src="{{ asset('storage/motorcycles/' . $motor->image_path) }}"
+                                     class="h-16 w-20 object-cover rounded shadow-sm" alt="{{ $motor->category }}">
+                            @elseif ($motor->image_path && file_exists(public_path('storage/' . $motor->image_path)))
                                 <img src="{{ asset('storage/' . $motor->image_path) }}"
-                                    class="h-16 w-20 object-cover rounded shadow-sm">
+                                     class="h-16 w-20 object-cover rounded shadow-sm" alt="{{ $motor->category }}">
                             @else
-                                <span class="text-gray-400 italic text-sm">No Image</span>
+                                <div class="h-16 w-20 bg-gray-100 rounded flex items-center justify-center">
+                                    <span class="text-gray-400 italic text-sm">No Image</span>
+                                </div>
                             @endif
-                        </td>
                         </td>
                         <td class="p-3">{{ $motor->category }}</td>
                         <td class="p-3">{{ $motor->brand }}</td>
                         <td class="p-3">
-                            @switch($motor->type)
+                            @php
+                                $typeKey = strtolower(str_replace([' ', '-'], '_', $motor->type ?? ''));
+                            @endphp
+                            @switch($typeKey)
                                 @case('small_matic')
+                                @case('smallmatic')
                                     <span class="px-2 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-700">
                                         Small Automatic
                                     </span>
-                                @break
+                                    @break
 
                                 @case('big_matic')
+                                @case('bigmatic')
                                     <span class="px-2 py-1 text-xs font-semibold rounded-full bg-purple-100 text-purple-700">
                                         Big Automatic
                                     </span>
-                                @break
+                                    @break
 
                                 @default
                                     <span class="px-2 py-1 text-xs font-semibold rounded-full bg-gray-100 text-gray-700">
-                                        Manual
+                                        {{ $motor->type ? ucfirst(strtolower($motor->type)) : 'Manual' }}
                                     </span>
                             @endswitch
                         </td>
 
                         <td class="p-3">{{ $motor->license_plate }}</td>
                         <td class="p-3">
-                            @if ($motor->transmission === 'automatic')
+                            @php $trans = strtolower($motor->transmission ?? ''); @endphp
+                            @if ($trans === 'automatic' || $trans === 'automatic')
                                 <span class="px-2 py-1 text-xs font-semibold rounded-full bg-blue-100 text-blue-700">
                                     Automatic
                                 </span>

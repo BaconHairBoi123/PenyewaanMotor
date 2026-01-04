@@ -25,6 +25,7 @@ use App\Http\Controllers\Admin\AccountController;
 use App\Http\Controllers\Admin\TransaksiController;
 use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\ImageManagementController;
+use App\Http\Controllers\Admin\MaintenanceController;
 
 
 /*
@@ -201,4 +202,7 @@ Route::middleware('auth:admin')->prefix('admin')->name('admin.')->group(function
         ->name('images_management.delete');
     Route::post('/images-management/{id}/upload', [ImageManagementController::class, 'upload'])
         ->name('images_management.upload');
+
+    // Maintenance: daftar motor yang perlu servis (overdue > 2 bulan)
+    Route::get('/maintenance', [MaintenanceController::class, 'index'])->name('maintenance.index');
 });

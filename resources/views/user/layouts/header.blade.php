@@ -172,6 +172,8 @@ Explore every corner of your destination with a comfortable and well-maintained 
         </div>
     </div>
 
+    <script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="{{ config('services.midtrans.client_key') }}"></script>
+
     <script>
     document.addEventListener('DOMContentLoaded', function() {
         const drawer = document.getElementById('cart-drawer');

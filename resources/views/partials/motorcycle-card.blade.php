@@ -28,7 +28,17 @@
                 <p class="listing-one__car-rent">Starting From <span>Rp {{ number_format($motorcycle->price, 0, ',', '.') }}/</span> Day</p>
             </div>
             <div class="listing-one__btn-box">
-                <a href="{{ route('login') }}" class="thm-btn">Details Now<span class="fas fa-arrow-right"></span></a>
+                @php $user = \Illuminate\Support\Facades\Auth::user(); @endphp
+
+                @if(\Illuminate\Support\Facades\Auth::check())
+                    @if(($user->verification_status ?? 'unverified') === 'verified')
+                        <a href="{{ route('motorcycles.show', [$motorcycle->id, \Illuminate\Support\Str::slug($motorcycle->category)]) }}" class="thm-btn">Details Now <span class="fas fa-arrow-right"></span></a>
+                    @else
+                        <a href="{{ route('user.profile') }}" class="thm-btn" style="pointer-events: none; opacity: .6;">Details Now <span class="fas fa-arrow-right"></span></a>
+                    @endif
+                @else
+                    <a href="{{ route('login') }}" class="thm-btn">Details Now <span class="fas fa-arrow-right"></span></a>
+                @endif
             </div>
         </div>
     </div>

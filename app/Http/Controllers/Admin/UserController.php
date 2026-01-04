@@ -8,11 +8,23 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    public function index()
+    public function index(Request $request) // Tambahkan Request $request di sini
     {
-        return view('admin.users.index', [
-            'users' => User::latest()->paginate(10)
-        ]);
+        // 1. Ambil kata kunci pencarian dari input bernama 'search'
+        $search = $request->input('search');
+
+        // 2. Buat query
+        $users = User::query()
+            // Jika variabel $search ada isinya, jalankan filter di bawah
+            ->when($search, function ($query, $search) {
+                return $query->where('name', 'like', "%{$search}%")
+                             ->orWhere('email', 'like', "%{$search}%")
+                             ->orWhere('phone_number', 'like', "%{$search}%");
+            })
+            ->latest()
+            ->paginate(10);
+
+        return view('admin.users.index', compact('users'));
     }
 
     public function show(User $user)
@@ -29,7 +41,7 @@ class UserController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|email|max:255',
+            'email' => 'required|email|max:255|unique:users,email,' . $user->id,
             'phone_number' => 'nullable|string|max:20',
             'verification_status' => 'required|in:verified,unverified',
         ]);
