@@ -88,3 +88,8 @@
              class="h-24 mt-2 rounded">
     @endif
 </div>
+
+<div>
+    <label class="block">Description</label>
+    <textarea name="description" rows="4" class="w-full p-2 border rounded" placeholder="Short description about the motorcycle">{{ old('description', $motorcycle->description ?? '') }}</textarea>
+</div>
