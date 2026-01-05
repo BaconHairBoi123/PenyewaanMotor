@@ -38,6 +38,15 @@
 
     <!-- Template JS -->
     <script src="{{ asset('assets/js/script.js') }}"></script>
+    
+    <!-- SweetAlert2 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="{{ asset('assets/css/gorent.css') }}">
+    
+    <!-- SweetAlert2 CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
 </body>
 
 </html>

@@ -52,7 +52,8 @@ class BookingController extends Controller
 
         if ($hasActiveRental) {
             return response()->json([
-                'error' => 'User memiliki peminjaman aktif! Harap kembalikan motor sebelumnya.'
+                'error' => 'You currently have an active motorcycle rental.
+Please return the motorcycle before placing a new order.'
             ], 400);
         }
 
@@ -160,6 +161,12 @@ class BookingController extends Controller
                     'first_name' => Auth::user()->name,
                     'email' => Auth::user()->email,
                 ],
+                // Add callbacks to force redirect to custom page instead of default
+                'callbacks' => [
+                    'finish' => route('booking.success'),
+                    'unfinish' => route('booking.failed'), // Redirect to failed page if closed without payment
+                    'error' => route('booking.failed'), // Redirect to failed page on error
+                ],
             ];
 
             $snapToken = Snap::getSnapToken($params);
@@ -181,5 +188,61 @@ class BookingController extends Controller
     public function success(Request $request)
     {
         return view('user.booking_success');
+    }
+
+    public function failed(Request $request)
+    {
+        return view('user.booking_failed');
+    }
+
+    public function cancel(Request $request)
+    {
+        $request->validate([
+            'order_id' => 'required|string|exists:bookings,order_id',
+        ]);
+
+        $orderId = $request->order_id;
+        $user = Auth::user();
+
+        // Cari Booking milik user ini
+        $booking = Booking::where('order_id', $orderId)
+                          ->where('user_id', $user->id)
+                          ->firstOrFail();
+
+        // Pastikan hanya bisa cancel jika status pending
+        if ($booking->payment_status !== 'pending') {
+             return response()->json(['message' => 'Cannot cancel order that is not pending.'], 400);
+        }
+
+        DB::beginTransaction();
+        try {
+            // Update Booking Status
+            $booking->payment_status = 'cancelled'; // Double 'l' matches DB enum
+            $booking->save();
+
+            // Update Payment Status (jika ada record di tabel payments)
+            $payment = Payment::where('invoice_number', $orderId)->where('user_id', $user->id)->first();
+            if ($payment) {
+                // Pastikan migration sudah dijalankan untuk enum 'cancelled' di tabel payments
+                $payment->status = 'cancelled';
+                $payment->save();
+            }
+            
+            // Check if there is a legacy rental record??
+            // We usually want to delete it or mark it as canceled so it doesn't block future rentals.
+            // The active rental check looks for rental WITHOUT returns and PAYMENTS IN (pending, success).
+            // Since we updated payment status to 'canceled', the "active rental" check should now PASS automatically.
+            
+            // Optional: If you want to explicitly mark rental as canceled?
+            // Rental doesn't have a status column in standard schema shown but let's check.
+            // But since the check relies on payment status, we are good.
+
+            DB::commit();
+
+            return response()->json(['message' => 'Order has been canceled successfully.']);
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return response()->json(['message' => 'Failed to cancel order: ' . $e->getMessage()], 500);
+        }
     }
 }

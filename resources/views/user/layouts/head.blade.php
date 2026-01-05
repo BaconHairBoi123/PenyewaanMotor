@@ -71,6 +71,13 @@
     <link rel="stylesheet" href="{{ asset('assets/css/module-css/shop.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/module-css/contact.css') }}" />
 
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="{{ asset('assets/css/gorent.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/gorent-responsive.css') }}">
+    
+    <!-- SweetAlert2 CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+
     <!-- Template CSS -->
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/responsive.css') }}" />
@@ -78,4 +85,3 @@
     @stack('styles')
 
 </head>
-

@@ -9,100 +9,6 @@
 </div>
 <!--End Preloader-->
 
-
-
-
-
-
-
-<!-- Start sidebar widget content -->
-<div class="xs-sidebar-group info-group info-sidebar">
-    <div class="xs-overlay xs-bg-black"></div>
-    <div class="xs-sidebar-widget">
-        <div class="sidebar-widget-container">
-            <div class="widget-heading">
-                <a href="#" class="close-side-widget">X</a>
-            </div>
-            <div class="sidebar-textwidget">
-                <div class="sidebar-info-contents">
-                    <div class="content-inner">
-                        <div class="logo">
-                            <a href="{{ url('/') }}"><img
-                                    src="{{ asset('assets/images/resources/logo_ridenusa_head.png') }}" alt=""
-                                    style="width: 200px;" /></a>
-                        </div>
-                        <div class="content-box">
-                            <h4>About Us</h4>
-                            <div class="inner-text">
-                                <p>Make Your Holiday Easier with the Best Motorbike Rental
-Explore every corner of your destination with a comfortable and well-maintained motorbike. Easy booking, clear pricing, and hassle-free service.
-                                </p>
-                            </div>
-                        </div>
-
-                        <div class="form-inner">
-                            <h4>Get a free quote</h4>
-                            <form action="index.html" method="post">
-                                <div class="form-group">
-                                    <input type="text" name="name" placeholder="Name" required="">
-                                </div>
-                                <div class="form-group">
-                                    <input type="email" name="email" placeholder="Email" required="">
-                                </div>
-                                <div class="form-group">
-                                    <textarea name="message" placeholder="Message..."></textarea>
-                                </div>
-                                <div class="form-group message-btn">
-                                    <button type="submit" class="thm-btn form-inner__btn">Submit Now</button>
-                                </div>
-                            </form>
-                        </div>
-
-                        <div class="sidebar-contact-info">
-                            <h4>Contact Info</h4>
-                            <ul class="list-unstyled">
-                                <li>
-                                    <span class="icon-pin"></span> 88 broklyn street, New York
-                                </li>
-                                <li>
-                                    <span class="icon-call"></span>
-                                    <a href="tel:123456789">+1 555-9990-153</a>
-                                </li>
-                                <li>
-                                    <span class="icon-envelope"></span>
-                                    <a href="mailto:info@example.com">info@example.com</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="thm-social-link1">
-                            <ul class="social-box list-unstyled">
-                                <li>
-                                    <a href="#"><i class="icon-facebook" aria-hidden="true"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#"><i class="icon-twitter" aria-hidden="true"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#"><i class="icon-linkedin" aria-hidden="true"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#"><i class="icon-dribble-big-logo" aria-hidden="true"></i></a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- End sidebar widget content -->
-
-
-
-
-
-
 <div class="page-wrapper">
     <header class="main-header">
         @include('user.layouts.topbar')
@@ -146,15 +52,9 @@ Explore every corner of your destination with a comfortable and well-maintained 
                         </div>
                     </div>
                     <div class="main-menu__right">
-                        <div class="main-menu__right"> <a href="#" id="cart-drawer-toggle" style="display: flex; align-items: center;">
+                        <div class="main-menu__right"> <a href="#" class="cart-drawer-toggler" style="display: flex; align-items: center;">
                         <i class="ri-shopping-cart-2-fill" style="font-size: 30px;"></i></a></div>
-                        <div class="main-menu__nav-sidebar-icon">
-                            <a class="navSidebar-button" href="#">
-                                <span class="icon-dots-menu-one"></span>
-                                <span class="icon-dots-menu-two"></span>
-                                <span class="icon-dots-menu-three"></span>
-                            </a>
-                        </div>
+
                     </div>
                 </div>
             </div>
@@ -177,14 +77,16 @@ Explore every corner of your destination with a comfortable and well-maintained 
     <script>
     document.addEventListener('DOMContentLoaded', function() {
         const drawer = document.getElementById('cart-drawer');
-        const toggle = document.getElementById('cart-drawer-toggle');
+        const togglers = document.querySelectorAll('.cart-drawer-toggler');
         const close = document.getElementById('close-cart-drawer');
         const content = document.getElementById('cart-drawer-content');
 
-        toggle.addEventListener('click', function(e) {
-            e.preventDefault();
-            drawer.style.right = '0';
-            loadHistory();
+        togglers.forEach(toggle => {
+            toggle.addEventListener('click', function(e) {
+                e.preventDefault();
+                drawer.style.right = '0';
+                loadHistory();
+            });
         });
 
         close.addEventListener('click', function() {
@@ -193,12 +95,18 @@ Explore every corner of your destination with a comfortable and well-maintained 
 
         function loadHistory() {
             fetch("{{ route('booking.history') }}")
-                .then(response => response.json())
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok: ' + response.statusText + ' (' + response.status + ')');
+                    }
+                    return response.json();
+                })
                 .then(data => {
                     content.innerHTML = data.html;
                 })
                 .catch(err => {
-                    content.innerHTML = '<p class="text-danger text-center">Failed to load history.</p>';
+                    console.error('Failed to load history:', err);
+                    content.innerHTML = '<p class="text-danger text-center">Failed to load history. <br><small>Check console for details.</small></p>';
                 });
         }
         
@@ -219,14 +127,91 @@ Explore every corner of your destination with a comfortable and well-maintained 
                             transaction_status: result.transaction_status || result.transactionStatus || 'success'
                         })
                     }).finally(() => {
-                        alert('Payment success!');
-                        location.reload();
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Payment Successful!',
+                            text: 'Your payment has been processed successfully.',
+                            confirmButtonColor: '#28a745',
+                            timer: 2000,
+                            timerProgressBar: true
+                        }).then(() => {
+                            location.reload();
+                        });
                     });
                 },
-                onPending: function(result){ alert("Waiting for payment!"); console.log(result); },
-                onError: function(result){ alert("Payment failed!"); console.log(result); },
+                onPending: function(result){ 
+                    Swal.fire({
+                        icon: 'info',
+                        title: 'Payment Pending',
+                        text: 'Your payment is being processed. Please wait for confirmation.',
+                        confirmButtonColor: '#007bff'
+                    });
+                    console.log(result); 
+                },
+                onError: function(result){ 
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Payment Failed',
+                        text: 'An error occurred during payment processing. Please try again.',
+                        confirmButtonColor: '#d33'
+                    });
+                    console.log(result); 
+                },
                 onClose: function(){ console.log('customer closed the popup without finishing the payment'); }
             });
+        }
+
+        window.cancelBooking = function(orderId) {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "Do you really want to cancel this order? You can rent another motorcycle immediately after cancellation.",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Yes, cancel it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    fetch("{{ route('booking.cancel') }}", {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                            'Accept': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            order_id: orderId
+                        })
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.message && (data.message.includes('successfully') || data.message.includes('success'))) {
+                            Swal.fire(
+                                'Canceled!',
+                                'Your order has been canceled.',
+                                'success'
+                            ).then(() => {
+                                loadHistory(); // Reload the drawer content
+                                // Optionally reload page if needed, but loadHistory should suffice for the drawer
+                            });
+                        } else {
+                            Swal.fire(
+                                'Error!',
+                                data.message || 'Failed to cancel order.',
+                                'error'
+                            );
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                         Swal.fire(
+                            'Error!',
+                            'Something went wrong.',
+                            'error'
+                        );
+                    });
+                }
+            })
         }
     });
     </script>

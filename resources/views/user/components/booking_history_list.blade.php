@@ -45,7 +45,10 @@
                         $booking = \App\Models\Booking::where('order_id', $payment->invoice_number)->first();
                     @endphp
                     @if($booking && $booking->snap_token)
-                        <button onclick="paySnap('{{ $booking->snap_token }}')" class="btn btn-warning btn-sm text-white" style="box-shadow: 0 2px 5px rgba(0,0,0,0.1);">Pay Now</button>
+                        <div class="d-flex gap-2">
+                             <button onclick="cancelBooking('{{ $booking->order_id }}')" class="btn btn-danger btn-sm text-white" style="box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin-right: 5px;">Cancel</button>
+                             <button onclick="paySnap('{{ $booking->snap_token }}')" class="btn btn-warning btn-sm text-white" style="box-shadow: 0 2px 5px rgba(0,0,0,0.1);">Pay Now</button>
+                        </div>
                     @endif
                 @endif
             </div>

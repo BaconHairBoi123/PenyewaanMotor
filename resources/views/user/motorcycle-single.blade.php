@@ -1,6 +1,38 @@
 @extends('user.layouts.app')
 
 @section('content')
+    <style>
+        /* Fix Nice Select Option Hover Colors */
+        
+        /* 1. Base style for all options: Yellow BG, Black Text */
+        .nice-select .list .option {
+            background-color: var(--gorent-base) !important;
+            color: var(--gorent-black) !important;
+            transition: all 0.2s;
+        }
+
+        /* 2. Selected style (Normal): Black BG, Yellow Text */
+        .nice-select .list .option.selected {
+            background-color: var(--gorent-black) !important;
+            color: var(--gorent-base) !important;
+            font-weight: bold;
+        }
+
+        /* 3. Revert Selected style when List IS hovered (The "Switch" effect) */
+        .nice-select .list:hover .option.selected {
+            background-color: var(--gorent-base) !important; /* Back to Yellow */
+            color: var(--gorent-black) !important; /* Back to Black */
+        }
+
+        /* 4. Hover style for ANY option: Black BG, Yellow Text */
+        /* Must override rule #3, so we add specificity or target the selected state specifically when hovered */
+        .nice-select .list .option:hover,
+        .nice-select .list .option.focus,
+        .nice-select .list:hover .option.selected:hover {
+            background-color: var(--gorent-black) !important;
+            color: var(--gorent-white) !important; /* Use White text for high contrast on Black, as requested in previous step "Hover State: Black BG... White Text" */
+        }
+    </style>
     <section class="page-header">
         <div class="page-header__bg"
             style="background-image: url('{{ $motorcycle->image_path ? asset('storage/' . $motorcycle->image_path) : asset('assets/images/resources/RIDEnotrasparan.png') }}');">
@@ -93,12 +125,28 @@
                         <h3 class="listing-single__car-overview-title mt-5">Specifications</h3>
                         <ul class="list-unstyled listing-single__car-overview-point">
                             <li class="d-flex justify-content-between border-bottom py-2">
+                                <span><i class="icon-car1"></i> Brand</span>
+                                <strong>{{ $motorcycle->brand }}</strong>
+                            </li>
+                            <li class="d-flex justify-content-between border-bottom py-2">
                                 <span><i class="icon-car1"></i> Type</span>
                                 <strong>{{ str_replace('_', ' ', ucfirst($motorcycle->type)) }}</strong>
                             </li>
                             <li class="d-flex justify-content-between border-bottom py-2">
+                                <span><i class="icon-car-washing"></i> Category</span>
+                                <strong>{{ $motorcycle->category }}</strong>
+                            </li>
+                            <li class="d-flex justify-content-between border-bottom py-2">
                                 <span><i class="icon-fuel-type"></i> Fuel</span>
                                 <strong>{{ $motorcycle->fuel_configuration }}</strong>
+                            </li>
+                            <li class="d-flex justify-content-between border-bottom py-2">
+                                <span><i class="icon-gear"></i> Transmission</span>
+                                <strong>{{ $motorcycle->transmission }}</strong>
+                            </li>
+                             <li class="d-flex justify-content-between border-bottom py-2">
+                                <span><i class="icon-engine"></i> Engine (CC)</span>
+                                <strong>{{ $motorcycle->cc }} CC</strong>
                             </li>
                         </ul>
                     </div>
@@ -130,9 +178,9 @@
                                 </div>
 
                                 <div id="address-container" style="display: none; margin-top: 15px;">
-                                    <label for="delivery_address">Alamat Pengantaran</label>
+                                    <label for="delivery_address">Delivery Address</label>
                                     <input type="text" id="delivery_address" name="delivery_address" class="form-control"
-                                        placeholder="Ketik alamat atau nama jalan...">
+                                        placeholder="Type your address or street name...">
                                     <div id="address-results"
                                         style="background: white; border: 1px solid #ddd; display: none; position: absolute; z-index: 1000; width: 100%;">
                                     </div>
@@ -153,7 +201,7 @@
                                                     <input type="checkbox" class="custom-control-input"
                                                         name="accessories[]" id="acc_{{ $acc->id }}"
                                                         value="{{ $acc->id }}"
-                                                        data-price="{{ $acc->daily_price }}">
+                                                        data-price="{{ $acc->daily_price }}"> <!-- Pastikan ini integer di DB -->
                                                     <label class="custom-control-label small"
                                                         for="acc_{{ $acc->id }}">{{ $acc->accessory_name }}</label>
                                                 </div>
@@ -186,7 +234,7 @@
                                         <span id="total-payable-display">Rp 0</span>
                                     </div>
                                 </div>
-                                <button type="button" id="pay-button" class="thm-btn w-100 mt-4">Rent Now</button>
+                                    <button type="button" id="pay-button" class="thm-btn w-100 mt-4 d-flex justify-content-center align-items-center">Rent Now</button>
                             </form>
                         </div>
                     </div>
@@ -196,7 +244,28 @@
     </section>
 
     <!-- Midtrans Snap is loaded globally in the header to avoid duplicate loads -->
+    <script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="{{ config('services.midtrans.client_key') }}">
+    </script>
     <script>
+        // Gallery Image Switcher
+        function changeMainImage(src, element) {
+            // Update Main Image
+            document.getElementById('main-display-img').src = src;
+            
+            // Get all thumbnails
+            const thumbnails = document.querySelectorAll('.thumbnail-item img');
+            
+            // Reset styles for all
+            thumbnails.forEach(img => {
+                img.style.border = 'none';
+                img.style.opacity = '0.7';
+            });
+            
+            // Set style for active
+            element.style.border = '2px solid #e62e2d'; // Theme Red
+            element.style.opacity = '1';
+        }
+
         document.addEventListener('DOMContentLoaded', function() {
             // 1. KONFIGURASI
             const storeLoc = {
@@ -313,19 +382,28 @@
 
                 // Hitung total biaya aksesori
                 let accessoriesTotal = 0;
+                // Untuk display aksesori, jika user belum pilih tanggal (days=0), 
+                // kita anggap 1 hari agar user bisa lihat estimasi harga aksesori.
+                const calculationDays = days > 0 ? days : 1; 
+
                 accessoryCheckboxes.forEach(acc => {
                     if (acc.checked) {
-                        accessoriesTotal += parseFloat(acc.dataset.price) * days;
+                        accessoriesTotal += parseFloat(acc.dataset.price) * calculationDays;
                     }
                 });
+                
+                const displayAccessoriesTotal = accessoriesTotal; 
 
-                // Kalkulasi total akhir
-                const total = basePrice + accessoriesTotal + currentDeliveryFee;
+                // Kalkulasi total akhir untuk Payable.
+                // Jika user belum pilih hari (days=0), maka Total Payable hanya menampilkan:
+                // Base Price (0) + Accessories (1 day preview) + Delivery Fee.
+                // Ini memberikan feedback harga langsung ke user.
+                const total = basePrice + displayAccessoriesTotal + currentDeliveryFee;
 
                 // Update elemen display
                 document.getElementById('total-days').innerText = days;
                 document.getElementById('base-price-display').innerText = 'Rp ' + basePrice.toLocaleString('id-ID');
-                document.getElementById('accessories-price-display').innerText = 'Rp ' + accessoriesTotal.toLocaleString('id-ID');
+                document.getElementById('accessories-price-display').innerText = 'Rp ' + displayAccessoriesTotal.toLocaleString('id-ID');
                 document.getElementById('delivery-fee-display').innerText = 'Rp ' + currentDeliveryFee.toLocaleString('id-ID');
                 document.getElementById('total-payable-display').innerText = 'Rp ' + total.toLocaleString('id-ID');
             }
@@ -366,7 +444,12 @@
                     // Jika End Date yang sudah dipilih sebelumnya tidak valid (diluar range), reset
                     if (endDateElem.value && (endDateElem.value > maxDateString || endDateElem.value < this.value)) {
                         endDateElem.value = '';
-                        alert('Maksimal durasi sewa adalah 30 hari.');
+                        Swal.fire({
+                            icon: 'warning',
+                            title: 'Rental Duration Limit',
+                            text: 'Maximum rental period is 30 days.',
+                            confirmButtonColor: '#d33'
+                        });
                     }
                 }
                 calculateTotal();
@@ -387,7 +470,12 @@
                 const start = document.getElementById('start_date').value;
                 const end = document.getElementById('end_date').value;
                 if (!start || !end) {
-                    alert('Silakan pilih tanggal mulai dan akhir sewa.');
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Missing Rental Dates',
+                        text: 'Please select both start and end dates for your rental.',
+                        confirmButtonColor: '#d33'
+                    });
                     return;
                 }
 
@@ -397,7 +485,12 @@
                     const lat = document.getElementById('latitude') ? document.getElementById('latitude').value.trim() : '';
                     const lng = document.getElementById('longitude') ? document.getElementById('longitude').value.trim() : '';
                     if (!addr || !lat || !lng) {
-                        alert('Silakan pilih alamat pengantaran dari daftar suggestion agar koordinat tersimpan.');
+                        Swal.fire({
+                            icon: 'warning',
+                            title: 'Delivery Address Required',
+                            text: 'Please select a delivery address from the suggestions to save coordinates.',
+                            confirmButtonColor: '#f39c12'
+                        });
                         return;
                     }
                 }
@@ -432,29 +525,63 @@
 
                     const json = await res.json();
                     if (!res.ok) {
-                        alert(json.error || 'Kesalahan server saat membuat checkout.');
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Checkout Failed',
+                            text: json.error || 'A server error occurred during checkout. Please try again.',
+                            confirmButtonColor: '#d33'
+                        });
                         return;
                     }
 
                     if (json.snap_token) {
                         window.snap.pay(json.snap_token, {
                             onSuccess: function(result) {
-                                window.location = "{{ route('booking.success') }}";
+                                // Optimistically notify server that client completed payment, then redirect
+                                fetch("{{ route('payment.client_confirm') }}", {
+                                    method: 'POST',
+                                    headers: {
+                                        'Content-Type': 'application/json',
+                                        'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                                        'Accept': 'application/json'
+                                    },
+                                    body: JSON.stringify({
+                                        order_id: result.order_id || result.orderId || null,
+                                        transaction_status: result.transaction_status || result.transactionStatus || 'success'
+                                    })
+                                }).finally(() => {
+                                    window.location = "{{ route('booking.success') }}";
+                                });
                             },
                             onPending: function(result) {
                                 window.location = "{{ route('booking.success') }}";
                             },
                             onError: function(err) {
-                                alert('Terjadi kesalahan saat proses pembayaran.');
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Payment Error',
+                                    text: 'An error occurred during the payment process. Please try again.',
+                                    confirmButtonColor: '#d33'
+                                });
                                 console.error(err);
                             }
                         });
                     } else {
-                        alert('Token pembayaran tidak diterima.');
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Payment Token Missing',
+                            text: 'Payment authorization token was not received. Please try again.',
+                            confirmButtonColor: '#d33'
+                        });
                     }
                 } catch (err) {
                     console.error(err);
-                    alert('Gagal melakukan request. Cek console untuk detil.');
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Connection Error',
+                        text: 'Failed to connect to the server. Please check your internet connection and try again.',
+                        confirmButtonColor: '#d33'
+                    });
                 }
             });
         });
