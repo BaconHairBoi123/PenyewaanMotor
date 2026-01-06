@@ -10,12 +10,14 @@ class ReturnController extends Controller
 {
     public function index()
     {
-        // daftar rental yang BELUM dikembalikan
+        // daftar rental yang BELUM dikembalikan DAN status pembayaran SUKSES
         $rentals = DB::table('rentals')
             ->leftJoin('returns', 'rentals.id', '=', 'returns.rental_id')
             ->join('users', 'rentals.user_id', '=', 'users.id')
             ->join('motorcycles', 'rentals.motorcycle_id', '=', 'motorcycles.id')
+            ->join('payments', 'rentals.id', '=', 'payments.rental_id') // Join dengan payment
             ->whereNull('returns.id')
+            ->where('payments.status', 'success') // Hanya tampilkan yang sudah lunas/sukses
             ->select(
                 'rentals.*',
                 'users.name as user_name',
