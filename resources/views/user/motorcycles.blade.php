@@ -239,15 +239,5 @@
             </div>
         </div>
     </section>
-
-
-
-
-
-
-
-
-
-
     </div><!-- /.page-wrapper -->
 @endsection

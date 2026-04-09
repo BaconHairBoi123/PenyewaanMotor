@@ -89,8 +89,22 @@
                 <div class="col-md-10">
                     <div class="listing-single__main-content">
                         <div class="main-image-box">
+                            @php
+                                $mainImgUrl = asset('assets/images/resources/RIDEnotrasparan.png');
+                                if ($motorcycle->image_path) {
+                                    if (file_exists(public_path('storage/motorcycles/' . $motorcycle->image_path))) {
+                                        $mainImgUrl = asset('storage/motorcycles/' . $motorcycle->image_path);
+                                    } elseif (file_exists(public_path('storage/' . $motorcycle->image_path))) {
+                                        $mainImgUrl = asset('storage/' . $motorcycle->image_path);
+                                    } elseif (\Illuminate\Support\Facades\Storage::disk('public')->exists($motorcycle->image_path)) {
+                                         $mainImgUrl = asset('storage/' . $motorcycle->image_path);
+                                    } elseif (\Illuminate\Support\Facades\Storage::disk('public')->exists('motorcycles/' . $motorcycle->image_path)) {
+                                         $mainImgUrl = asset('storage/motorcycles/' . $motorcycle->image_path);
+                                    }
+                                }
+                            @endphp
                             <img id="main-display-img"
-                                src="{{ $motorcycle->image_path ? asset('storage/' . $motorcycle->image_path) : asset('assets/images/resources/RIDEnotrasparan.png') }}"
+                                src="{{ $mainImgUrl }}"
                                 style="width: 100%; height: 500px; object-fit: cover; border-radius: 15px 0 0 15px;">
                         </div>
                     </div>
@@ -100,13 +114,25 @@
                         style="height: 500px; overflow-y: auto; background: #f4f4f4; border-radius: 0 15px 15px 0; padding: 10px;">
                         <div class="d-flex flex-column gap-2">
                             <div class="thumbnail-item" style="cursor: pointer;">
-                                <img src="{{ $motorcycle->image_path ? asset('storage/' . $motorcycle->image_path) : asset('assets/images/resources/RIDEnotrasparan.png') }}"
+                                <img src="{{ $mainImgUrl }}"
                                     style="width: 100%; height: 80px; object-fit: cover; border-radius: 5px; border: 2px solid #e62e2d;"
                                     onclick="changeMainImage(this.src, this)">
                             </div>
                             @foreach ($motorcycle->images as $img)
+                                @php
+                                    $galImgUrl = asset('assets/images/resources/RIDEnotrasparan.png');
+                                    if ($img->image_path) {
+                                        if (file_exists(public_path('storage/motorcycles/gallery/' . $img->image_path))) {
+                                            $galImgUrl = asset('storage/motorcycles/gallery/' . $img->image_path);
+                                        } elseif (file_exists(public_path('storage/' . $img->image_path))) {
+                                            $galImgUrl = asset('storage/' . $img->image_path);
+                                        } elseif (\Illuminate\Support\Facades\Storage::disk('public')->exists($img->image_path)) {
+                                            $galImgUrl = asset('storage/' . $img->image_path);
+                                        }
+                                    }
+                                @endphp
                                 <div class="thumbnail-item" style="cursor: pointer;">
-                                    <img src="{{ asset('storage/' . $img->image_path) }}"
+                                    <img src="{{ $galImgUrl }}"
                                         style="width: 100%; height: 80px; object-fit: cover; border-radius: 5px; opacity: 0.7;"
                                         onclick="changeMainImage(this.src, this)">
                                 </div>

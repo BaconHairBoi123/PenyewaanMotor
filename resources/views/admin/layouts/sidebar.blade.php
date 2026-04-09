@@ -1,25 +1,41 @@
-<div class="w-64 fixed h-screen bg-[#0A244D] text-white p-6">
+<div class="fixed inset-y-0 left-0 bg-dark-card border-r border-gray-800 text-gray-300 w-64 h-screen flex flex-col transition-transform duration-300 z-50"
+     :class="sidebarOpen ? 'translate-x-0' : '-translate-x-full'">
+     
+    {{-- Logo Area --}}
+    <div class="h-20 flex items-center justify-center border-b border-gray-800 p-4">
+        <a href="{{ route('admin.dashboard') }}" class="block">
+            <img src="{{ asset('img/logo/logo_ridenusa_white_BTG.png') }}" alt="Ride Nusa" class="max-h-20 w-auto object-contain glow-effect hidden dark:block transition-all">
+            {{-- Fallback text or light mode version if needed --}}
+            <img src="{{ asset('img/logo/logo_ridenusa_white_BTG.png') }}" alt="Ride Nusa" class="max-h-20 w-auto object-contain block dark:hidden">
+        </a>
+    </div>
 
-    <h2 class="text-2xl font-bold mb-8">ADMIN PANEL</h2>
+    {{-- Main Menu --}}
+    <div class="flex-1 overflow-y-auto p-4 space-y-6">
+        <div>
+            <p class="px-2 text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Main Menu</p>
+            @include('admin.partials.menu')
+        </div>
 
-    {{-- Load menu --}}
-    @include('admin.partials.menu')
-
-    <p class="text-gray-400 text-xs mt-6">ACCOUNT</p>
-
-    <ul class="space-y-4">
-        <li>
-            <a href="{{ route('admin.account') }}" class="block p-2 hover:bg-blue-900 rounded">
-                Admin Account
-            </a>
-        </li>
-
-        <li class="mt-6">
-            <form action="{{ route('admin.logout') }}" method="POST">
-                @csrf
-                <button class="w-full bg-red-600 p-2 rounded">Logout</button>
-            </form>
-        </li>
-    </ul>
-
+        <div>
+            <p class="px-2 text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Account</p>
+            <ul class="space-y-1 text-sm font-medium">
+                <li>
+                    <a href="{{ route('admin.account') }}" class="flex items-center gap-3 px-3 py-2 rounded-lg text-gray-300 hover:text-brand hover:bg-dark-hover">
+                        <i class="ri-user-settings-line text-lg"></i>
+                        <span>Admin Account</span>
+                    </a>
+                </li>
+                <li class="pt-4">
+                    <form action="{{ route('admin.logout') }}" method="POST">
+                        @csrf
+                        <button type="submit" class="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-lg text-white bg-red-600/80 hover:bg-red-600 transition-colors shadow">
+                            <i class="ri-logout-circle-r-line"></i>
+                            <span>Logout</span>
+                        </button>
+                    </form>
+                </li>
+            </ul>
+        </div>
+    </div>
 </div>

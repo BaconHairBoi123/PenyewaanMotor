@@ -17,7 +17,7 @@
 
                         <div class="col-md-7">
                             <h4 class="mb-1 text-uppercase">{{ $motor->brand }} {{ $motor->category }}</h4>
-                            <p class="text-muted mb-1">Plat Nomor: <span
+                            <p class="text-muted mb-1">License Plate: <span
                                     class="badge bg-dark">{{ $motor->license_plate }}</span></p>
                             <p class="mb-0 text-muted">Status: {{ strtoupper($motor->status) }} | {{ $motor->cc }} CC
                             </p>
@@ -25,7 +25,7 @@
 
                         <div class="col-md-3 text-end">
                             <button class="thm-btn py-2 btn-telusuri" data-id="{{ $motor->id }}">
-                                Detail Servis 
+                                Detail Service 
                             </button>
                         </div>
                     </div>

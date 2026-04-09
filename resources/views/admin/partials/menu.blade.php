@@ -2,89 +2,102 @@
 
 <li>
     <a href="{{ route('admin.dashboard') }}"
-       class="sidebar-link">
-       Dashboard
+       class="flex items-center gap-3 px-3 py-2 rounded-lg text-gray-300 hover:text-brand hover:bg-dark-hover">
+       <i class="ri-dashboard-line text-lg"></i>
+       <span>Dashboard</span>
     </a>
 </li>
 
 <li>
     <a href="{{ route('admin.motorcycles_Management.index') }}"
-       class="sidebar-link">
-       Motorcycles Management
+       class="flex items-center gap-3 px-3 py-2 rounded-lg text-gray-300 hover:text-brand hover:bg-dark-hover">
+       <i class="ri-motorbike-line text-lg"></i>
+       <span>Motorcycles Management</span>
     </a>
 </li>
 
 <li>
     <a href="{{ route('admin.users.index') }}"
-       class="sidebar-link">
-       User Management
+       class="flex items-center gap-3 px-3 py-2 rounded-lg text-gray-300 hover:text-brand hover:bg-dark-hover">
+       <i class="ri-group-line text-lg"></i>
+       <span>User Management</span>
     </a>
 </li>
 
 <li>
     <a href="{{ route('admin.payments.index') }}"
-       class="sidebar-link">
-       Transaction List
+       class="flex items-center gap-3 px-3 py-2 rounded-lg text-gray-300 hover:text-brand hover:bg-dark-hover">
+       <i class="ri-money-dollar-circle-line text-lg"></i>
+       <span>Transaction List</span>
     </a>
 </li>
 
 <li>
     <a href="{{ route('admin.motorcycles.index') }}"
-       class="sidebar-link">
-       Motorcycles
+       class="flex items-center gap-3 px-3 py-2 rounded-lg text-gray-300 hover:text-brand hover:bg-dark-hover">
+       <i class="ri-riding-line text-lg"></i>
+       <span>Motorcycles</span>
     </a>
 </li>
 
 <li>
     <a href="{{ route('admin.user.verification') }}"
-       class="sidebar-link">
-       User Verification
+       class="flex items-center gap-3 px-3 py-2 rounded-lg text-gray-300 hover:text-brand hover:bg-dark-hover">
+       <i class="ri-user-follow-line text-lg"></i>
+       <span>User Verification</span>
     </a>
 </li>
 
 <li>
     <a href="{{ route('admin.returns.index') }}"
-       class="sidebar-link">
-       Returns
+       class="flex items-center gap-3 px-3 py-2 rounded-lg text-gray-300 hover:text-brand hover:bg-dark-hover">
+       <i class="ri-arrow-go-back-line text-lg"></i>
+       <span>Returns</span>
     </a>
 </li>
 
 <li>
     <a href="{{ route('admin.services.index') }}"
-       class="sidebar-link">
-       Service & Maintenance
+       class="flex items-center gap-3 px-3 py-2 rounded-lg text-gray-300 hover:text-brand hover:bg-dark-hover">
+       <i class="ri-tools-line text-lg"></i>
+       <span>Service & Maintenance</span>
     </a>
 </li>
 
 <li>
-    <a href="{{ route('admin.maintenance.index') }}" class="sidebar-link">
-        Maintenance Due
+    <a href="{{ route('admin.maintenance.index') }}" class="flex items-center gap-3 px-3 py-2 rounded-lg text-gray-300 hover:text-brand hover:bg-dark-hover">
+        <i class="ri-timer-line text-lg"></i>
+        <span>Maintenance Due</span>
     </a>
 </li>
 
 <li>
-    <a href="{{ route('admin.service.types.index') }}">
-    Service Types
+    <a href="{{ route('admin.service.types.index') }}" class="flex items-center gap-3 px-3 py-2 rounded-lg text-gray-300 hover:text-brand hover:bg-dark-hover">
+        <i class="ri-list-settings-line text-lg"></i>
+        <span>Service Types</span>
     </a>
-
 </li>
 
 <li>
     <a href="{{ route('admin.delivery.today') }}"
-       class="sidebar-link">
-       Delivery & Pickup Today
+       class="flex items-center gap-3 px-3 py-2 rounded-lg text-gray-300 hover:text-brand hover:bg-dark-hover">
+       <i class="ri-truck-line text-lg"></i>
+       <span>Delivery & Pickup</span>
     </a>
 </li>
 
 <li>
     <a href="{{ route('admin.accessories') }}"
-       class="sidebar-link">
-       Accessories Management
+       class="flex items-center gap-3 px-3 py-2 rounded-lg text-gray-300 hover:text-brand hover:bg-dark-hover">
+       <i class="ri-box-3-line text-lg"></i>
+       <span>Accessories Management</span>
     </a>
 </li>
+
 <li>
-    <a href="{{ route('admin.images_management') }}" class="sidebar-link">
-        IMG Management
+    <a href="{{ route('admin.images_management') }}" class="flex items-center gap-3 px-3 py-2 rounded-lg text-gray-300 hover:text-brand hover:bg-dark-hover">
+        <i class="ri-image-line text-lg"></i>
+        <span>Image Management</span>
     </a>
 </li>
 
