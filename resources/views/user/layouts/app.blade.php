@@ -47,6 +47,11 @@
     
     <!-- SweetAlert2 CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+
+    <!-- Chatbot Widget: Visible only to authenticated users -->
+    @auth('web')
+        @include('partials.chatbot')
+    @endauth
 </body>
 
 </html>

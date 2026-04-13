@@ -1,16 +1,14 @@
 <!-- resources/views/user/layouts/head.blade.php -->
+
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title', 'Ride Nusa')</title>
 
-    <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/favicons/apple-touch-icon.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicons/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicons/favicon-16x16.png" />
-    <link rel="manifest" href="/assets/images/favicons/site.webmanifest" />
+    <link rel="icon" type="image/png" href="{{ asset('img/logo/logo_web_ridenusa_transparan.png') }}" />
 
- <!-- fonts -->
+    <!-- fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -34,7 +32,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/jarallax.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/jquery.magnific-popup.css') }}" />
     <!-- Flaticon fonts missing, commenting out to prevent timeout -->
-    <link rel="stylesheet" href="{{ asset('assets/css/flaticon.css') }}" /> 
+    <link rel="stylesheet" href="{{ asset('assets/css/flaticon.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/owl.carousel.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/owl.theme.default.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/nice-select.css') }}" />
@@ -74,7 +72,7 @@
     <!-- Main CSS -->
     <link rel="stylesheet" href="{{ asset('assets/css/gorent.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/gorent-responsive.css') }}">
-    
+
     <!-- SweetAlert2 CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
 
@@ -84,4 +82,17 @@
 
     @stack('styles')
 
+    <style>
+        /* Fix spacing for motorcycle info items globally */
+        ul.listing-one__meta li {
+            display: flex !important;
+            align-items: center !important;
+            flex-wrap: nowrap !important;
+            gap: 5px !important;
+        }
+        ul.listing-one__meta li .text p {
+            margin: 0 !important;
+            white-space: nowrap !important;
+        }
+    </style>
 </head>

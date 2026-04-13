@@ -25,7 +25,7 @@
 
                         <div class="col-md-3 text-end">
                             <button class="thm-btn py-2 btn-telusuri" data-id="{{ $motor->id }}">
-                                Detail Service 
+                                Services Detail 
                             </button>
                         </div>
                     </div>

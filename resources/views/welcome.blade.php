@@ -5,10 +5,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title', 'Ride Nusa')</title>
 
-    <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/favicons/apple-touch-icon.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicons/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicons/favicon-16x16.png" />
-    <link rel="manifest" href="/assets/images/favicons/site.webmanifest" />
+    <link rel="icon" type="image/png" href="{{ asset('img/logo/logo_web_ridenusa_transparan.png') }}" />
 
     <!-- fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -71,8 +68,19 @@
     <link rel="stylesheet" href="/assets/css/style.css" />
     <link rel="stylesheet" href="/assets/css/responsive.css" />
 
-
-
+    <style>
+        /* Fix spacing for motorcycle info items */
+        .listing-one__meta li {
+            display: flex !important;
+            align-items: center !important;
+            flex-wrap: nowrap !important;
+            gap: 5px !important;
+        }
+        .listing-one__meta li .text p {
+            margin: 0 !important;
+            white-space: nowrap !important;
+        }
+    </style>
 </head>
 
 <body>
@@ -85,8 +93,8 @@
                         <div class="main-menu__left">
 
                             <a class="navbar-brand" href="{{ url('/') }}">
-                                <img src="/assets/images/resources/logo_ridenusa_head.png" alt="Ride Nusa"
-                                    style="height:40px;">
+                                <img src="{{ asset('img/logo/logo_ridenusa_white_BTG.png') }}" alt="Ride Nusa"
+                                    style="height:100px;">
                             </a>
                         </div>
                         <div class="main-menu__middle-box">
@@ -275,15 +283,6 @@
                                                             </div>
                                                         </li>
                                                         <li>
-                                                            <div class="icon"><span class="icon-test-drive"></span>
-                                                            </div>
-                                                            <div class="text">
-                                                                {{-- Mengubah 'big_matic' menjadi 'Big Matic' agar lebih rapi --}}
-                                                                <p>{{ str_replace('_', '', ucfirst($m->type)) }}
-                                                                </p>
-                                                            </div>
-                                                        </li>
-                                                        <li>
                                                             <div class="icon"><span class="icon-fuel-type"></span>
                                                             </div>
                                                             <div class="text">
@@ -294,18 +293,23 @@
                                                             <div class="icon"><span class="icon-mileage"></span>
                                                             </div>
                                                             <div class="text">
-                                                                {{-- Karena di tabel tidak ada kolom kilometer, kita tampilkan CC saja atau tgl service --}}
+                                                                {{-- Karena di tabel tidak ada kolom kilometer, kita
+                                                                tampilkan CC saja atau tgl service --}}
                                                                 <p>{{ $m->cc }} CC</p>
                                                             </div>
                                                         </li>
-                                                        <li>
-                                                            <div class="icon"><span class="icon-mileage"></span>
+                                                        <li style="flex-wrap: nowrap; gap: 5px;">
+                                                            <div class="icon"><span class="fas fa-motorcycle"></span>
                                                             </div>
                                                             <div class="text">
-                                                                {{-- Jika ada data service, tampilkan kilometernya. Jika tidak ada, tampilkan 0 --}}
-                                                                <p>{{ $m->lastService->kilometer ?? 0 }} KM</p>
+                                                                {{-- Mengubah 'big_matic' menjadi 'Big Matic' agar lebih
+                                                                rapi --}}
+                                                                <p style="white-space: nowrap;">
+                                                                    {{ str_replace('_', ' ', ucfirst($m->type)) }}
+                                                                </p>
                                                             </div>
                                                         </li>
+
                                                     </ul>
                                                 </div>
                                                 <div class="listing-one__car-rent-box">
@@ -335,8 +339,7 @@
                                             <div class="listing-one__single">
                                                 <div class="listing-one__img">
                                                     @if ($m->image_path && file_exists(public_path('storage/' . $m->image_path)))
-                                                        <img src="{{ asset('storage/' . $m->image_path) }}"
-                                                            alt="{{ $m->category }}"
+                                                        <img src="{{ asset('storage/' . $m->image_path) }}" alt="{{ $m->category }}"
                                                             style="width: 100%; height: 250px; object-fit: cover;">
                                                     @else
                                                         <img src="{{ asset('assets/images/resources/RIDEnotrasparan.png') }}"
@@ -367,20 +370,20 @@
                                                                 <div class="text">
                                                                     <p>{{ $m->lastService->kilometer ?? 0 }} KM</p>
                                                                 </div>
-                                                            <li>
-                                                                <div class="icon"><span
-                                                                        class="icon-test-drive"></span>
+                                                            <li style="flex-wrap: nowrap; gap: 5px;">
+                                                                <div class="icon"><span class="fas fa-motorcycle"></span>
                                                                 </div>
                                                                 <div class="text">
-                                                                    {{-- Mengubah 'big_matic' menjadi 'Big Matic' agar lebih rapi --}}
-                                                                    <p>{{ str_replace('_', ' ', ucfirst($m->type)) }}
+                                                                    {{-- Mengubah 'big_matic' menjadi 'Big Matic' agar lebih
+                                                                    rapi --}}
+                                                                    <p style="white-space: nowrap;">
+                                                                        {{ str_replace('_', ' ', ucfirst($m->type)) }}
                                                                     </p>
                                                                 </div>
                                                             </li>
                                                             </li>
                                                             <li>
-                                                                <div class="icon"><span
-                                                                        class="icon-fuel-type"></span>
+                                                                <div class="icon"><span class="icon-fuel-type"></span>
                                                                 </div>
                                                                 <div class="text">
                                                                     <p>{{ $m->fuel_configuration }}</p>
@@ -390,7 +393,8 @@
                                                                 <div class="icon"><span class="icon-mileage"></span>
                                                                 </div>
                                                                 <div class="text">
-                                                                    {{-- Karena di tabel tidak ada kolom kilometer, kita tampilkan CC saja atau tgl service --}}
+                                                                    {{-- Karena di tabel tidak ada kolom kilometer, kita
+                                                                    tampilkan CC saja atau tgl service --}}
                                                                     <p>{{ $m->cc }} CC</p>
                                                                 </div>
                                                             </li>
@@ -398,7 +402,8 @@
                                                                 <div class="icon"><span class="icon-mileage"></span>
                                                                 </div>
                                                                 <div class="text">
-                                                                    {{-- Jika ada data service, tampilkan kilometernya. Jika tidak ada, tampilkan 0 --}}
+                                                                    {{-- Jika ada data service, tampilkan kilometernya. Jika
+                                                                    tidak ada, tampilkan 0 --}}
                                                                     <p>{{ $m->lastService->kilometer ?? 0 }} KM</p>
                                                                 </div>
                                                             </li>

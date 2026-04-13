@@ -82,13 +82,13 @@
                                                             <p>{{ $m->cc }} CC</p>
                                                         </div>
                                                     </li>
-                                                    <li>
+                                                    <li style="flex-wrap: nowrap; gap: 5px;">
                                                         <div class="icon">
-                                                            {{-- <span class="icon-test-drive"></span> --}}
+                                                            <span class="fas fa-motorcycle"></span>
                                                         </div>
                                                         <div class="text">
                                                             {{-- Mengubah 'big_matic' menjadi 'Big Matic' agar lebih rapi --}}
-                                                            <p>{{ str_replace('_', '', ucfirst($m->type)) }}
+                                                            <p style="white-space: nowrap;">{{ str_replace('_', ' ', ucfirst($m->type)) }}
                                                             </p>
                                                         </div>
                                                     </li>
@@ -117,7 +117,7 @@
                         </div>
 
                         <div class="car-listing__pagination">
-                            {{ $motorcycles->links() }}
+                            {{ $motorcycles->links('partials.custom_pagination') }}
                         </div>
                     </div>
                 </div>

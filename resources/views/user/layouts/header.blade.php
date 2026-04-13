@@ -17,7 +17,9 @@
                 <div class="main-menu__wrapper-inner">
                     <div class="main-menu__left">
                         <div class="main-menu__logo">
-                            <a href="{{ url('/home') }}"><img src="{{ asset('assets/images/resources/logo_ridenusa_head.png') }}" alt=""style="width: 90px;"></a>
+                            <a href="{{ url('/home') }}"><img
+                                    src="{{ asset('img/logo/logo_ridenusa_white_BTG.png') }}" alt="Ride Nusa"
+                                    style="height: 90px;"></a>
                         </div>
                     </div>
                     <div class="main-menu__middle-box">
@@ -43,17 +45,20 @@
                                     <a href="{{ route('contact') }}">Contact</a>
                                 </li>
                                 <li>
-                                    <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
-                                    <form id="logout-form" method="POST" action="{{ route('logout') }}" style="display: none;">
+                                    <a href="#"
+                                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+                                    <form id="logout-form" method="POST" action="{{ route('logout') }}"
+                                        style="display: none;">
                                         @csrf
                                     </form>
-                                </li>     
+                                </li>
                             </ul>
                         </div>
                     </div>
                     <div class="main-menu__right">
-                        <div class="main-menu__right"> <a href="#" class="cart-drawer-toggler" style="display: flex; align-items: center;">
-                        <i class="ri-shopping-cart-2-fill" style="font-size: 30px;"></i></a></div>
+                        <div class="main-menu__right"> <a href="#" class="cart-drawer-toggler"
+                                style="display: flex; align-items: center;">
+                                <i class="ri-shopping-cart-2-fill" style="font-size: 30px;"></i></a></div>
 
                     </div>
                 </div>
@@ -62,158 +67,162 @@
     </header>
 
     <!-- Cart Drawer -->
-    <div id="cart-drawer" style="position: fixed; top: 0; right: -400px; width: 400px; height: 100vh; background: #fff; box-shadow: -2px 0 5px rgba(0,0,0,0.1); z-index: 9999; transition: 0.3s; display: flex; flex-direction: column;">
+    <div id="cart-drawer"
+        style="position: fixed; top: 0; right: -400px; width: 400px; height: 100vh; background: #fff; box-shadow: -2px 0 5px rgba(0,0,0,0.1); z-index: 9999; transition: 0.3s; display: flex; flex-direction: column;">
         <div class="p-3 border-bottom d-flex justify-content-between align-items-center">
             <h4 class="m-0">Your Rentals</h4>
             <button id="close-cart-drawer" class="btn btn-sm btn-light">&times;</button>
         </div>
         <div class="p-3 flex-grow-1" style="overflow-y: auto;" id="cart-drawer-content">
-            <div class="text-center mt-5"><div class="spinner-border text-primary" role="status"></div></div>
+            <div class="text-center mt-5">
+                <div class="spinner-border text-primary" role="status"></div>
+            </div>
         </div>
     </div>
 
-    <script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="{{ config('services.midtrans.client_key') }}"></script>
+    <script src="https://app.sandbox.midtrans.com/snap/snap.js"
+        data-client-key="{{ config('services.midtrans.client_key') }}"></script>
 
     <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const drawer = document.getElementById('cart-drawer');
-        const togglers = document.querySelectorAll('.cart-drawer-toggler');
-        const close = document.getElementById('close-cart-drawer');
-        const content = document.getElementById('cart-drawer-content');
+        document.addEventListener('DOMContentLoaded', function () {
+            const drawer = document.getElementById('cart-drawer');
+            const togglers = document.querySelectorAll('.cart-drawer-toggler');
+            const close = document.getElementById('close-cart-drawer');
+            const content = document.getElementById('cart-drawer-content');
 
-        togglers.forEach(toggle => {
-            toggle.addEventListener('click', function(e) {
-                e.preventDefault();
-                drawer.style.right = '0';
-                loadHistory();
-            });
-        });
-
-        close.addEventListener('click', function() {
-            drawer.style.right = '-400px';
-        });
-
-        function loadHistory() {
-            fetch("{{ route('booking.history') }}")
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok: ' + response.statusText + ' (' + response.status + ')');
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    content.innerHTML = data.html;
-                })
-                .catch(err => {
-                    console.error('Failed to load history:', err);
-                    content.innerHTML = '<p class="text-danger text-center">Failed to load history. <br><small>Check console for details.</small></p>';
+            togglers.forEach(toggle => {
+                toggle.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    drawer.style.right = '0';
+                    loadHistory();
                 });
-        }
-        
-        // Expose for global use
-        window.paySnap = function(token) {
-             window.snap.pay(token, {
-                onSuccess: function(result){
-                    // Optimistically notify server that client completed payment, then reload
-                    fetch("{{ route('payment.client_confirm') }}", {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'X-CSRF-TOKEN': '{{ csrf_token() }}',
-                            'Accept': 'application/json'
-                        },
-                        body: JSON.stringify({
-                            order_id: result.order_id || result.orderId || null,
-                            transaction_status: result.transaction_status || result.transactionStatus || 'success'
-                        })
-                    }).finally(() => {
-                        Swal.fire({
-                            icon: 'success',
-                            title: 'Payment Successful!',
-                            text: 'Your payment has been processed successfully.',
-                            confirmButtonColor: '#28a745',
-                            timer: 2000,
-                            timerProgressBar: true
-                        }).then(() => {
-                            location.reload();
-                        });
-                    });
-                },
-                onPending: function(result){ 
-                    Swal.fire({
-                        icon: 'info',
-                        title: 'Payment Pending',
-                        text: 'Your payment is being processed. Please wait for confirmation.',
-                        confirmButtonColor: '#007bff'
-                    });
-                    console.log(result); 
-                },
-                onError: function(result){ 
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Payment Failed',
-                        text: 'An error occurred during payment processing. Please try again.',
-                        confirmButtonColor: '#d33'
-                    });
-                    console.log(result); 
-                },
-                onClose: function(){ console.log('customer closed the popup without finishing the payment'); }
             });
-        }
 
-        window.cancelBooking = function(orderId) {
-            Swal.fire({
-                title: 'Are you sure?',
-                text: "Do you really want to cancel this order? You can rent another motorcycle immediately after cancellation.",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#d33',
-                cancelButtonColor: '#3085d6',
-                confirmButtonText: 'Yes, cancel it!'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    fetch("{{ route('booking.cancel') }}", {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'X-CSRF-TOKEN': '{{ csrf_token() }}',
-                            'Accept': 'application/json'
-                        },
-                        body: JSON.stringify({
-                            order_id: orderId
-                        })
-                    })
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.message && (data.message.includes('successfully') || data.message.includes('success'))) {
-                            Swal.fire(
-                                'Canceled!',
-                                'Your order has been canceled.',
-                                'success'
-                            ).then(() => {
-                                loadHistory(); // Reload the drawer content
-                                // Optionally reload page if needed, but loadHistory should suffice for the drawer
-                            });
-                        } else {
-                            Swal.fire(
-                                'Error!',
-                                data.message || 'Failed to cancel order.',
-                                'error'
-                            );
+            close.addEventListener('click', function () {
+                drawer.style.right = '-400px';
+            });
+
+            function loadHistory() {
+                fetch("{{ route('booking.history') }}")
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok: ' + response.statusText + ' (' + response.status + ')');
                         }
+                        return response.json();
                     })
-                    .catch(error => {
-                        console.error('Error:', error);
-                         Swal.fire(
-                            'Error!',
-                            'Something went wrong.',
-                            'error'
-                        );
+                    .then(data => {
+                        content.innerHTML = data.html;
+                    })
+                    .catch(err => {
+                        console.error('Failed to load history:', err);
+                        content.innerHTML = '<p class="text-danger text-center">Failed to load history. <br><small>Check console for details.</small></p>';
                     });
-                }
-            })
-        }
-    });
+            }
+
+            // Expose for global use
+            window.paySnap = function (token) {
+                window.snap.pay(token, {
+                    onSuccess: function (result) {
+                        // Optimistically notify server that client completed payment, then reload
+                        fetch("{{ route('payment.client_confirm') }}", {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                                'Accept': 'application/json'
+                            },
+                            body: JSON.stringify({
+                                order_id: result.order_id || result.orderId || null,
+                                transaction_status: result.transaction_status || result.transactionStatus || 'success'
+                            })
+                        }).finally(() => {
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Payment Successful!',
+                                text: 'Your payment has been processed successfully.',
+                                confirmButtonColor: '#28a745',
+                                timer: 2000,
+                                timerProgressBar: true
+                            }).then(() => {
+                                location.reload();
+                            });
+                        });
+                    },
+                    onPending: function (result) {
+                        Swal.fire({
+                            icon: 'info',
+                            title: 'Payment Pending',
+                            text: 'Your payment is being processed. Please wait for confirmation.',
+                            confirmButtonColor: '#007bff'
+                        });
+                        console.log(result);
+                    },
+                    onError: function (result) {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Payment Failed',
+                            text: 'An error occurred during payment processing. Please try again.',
+                            confirmButtonColor: '#d33'
+                        });
+                        console.log(result);
+                    },
+                    onClose: function () { console.log('customer closed the popup without finishing the payment'); }
+                });
+            }
+
+            window.cancelBooking = function (orderId) {
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "Do you really want to cancel this order? You can rent another motorcycle immediately after cancellation.",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#3085d6',
+                    confirmButtonText: 'Yes, cancel it!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        fetch("{{ route('booking.cancel') }}", {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                                'Accept': 'application/json'
+                            },
+                            body: JSON.stringify({
+                                order_id: orderId
+                            })
+                        })
+                            .then(response => response.json())
+                            .then(data => {
+                                if (data.message && (data.message.includes('successfully') || data.message.includes('success'))) {
+                                    Swal.fire(
+                                        'Canceled!',
+                                        'Your order has been canceled.',
+                                        'success'
+                                    ).then(() => {
+                                        loadHistory(); // Reload the drawer content
+                                        // Optionally reload page if needed, but loadHistory should suffice for the drawer
+                                    });
+                                } else {
+                                    Swal.fire(
+                                        'Error!',
+                                        data.message || 'Failed to cancel order.',
+                                        'error'
+                                    );
+                                }
+                            })
+                            .catch(error => {
+                                console.error('Error:', error);
+                                Swal.fire(
+                                    'Error!',
+                                    'Something went wrong.',
+                                    'error'
+                                );
+                            });
+                    }
+                })
+            }
+        });
     </script>
 
     <div class="stricky-header stricked-menu main-menu">
@@ -231,8 +240,7 @@
 
             <div class="logo-box">
                 <a href="{{ url('/') }}" aria-label="logo image"><img
-                        src="{{ asset('assets/images/resources/logo_ridenusa_head.png') }}" width="140"
-                        alt="" /></a>
+                        src="{{ asset('assets/images/resources/logo_ridenusa_head.png') }}" width="140" alt="" /></a>
             </div>
             <!-- /.logo-box -->
             <div class="mobile-nav__container"></div>

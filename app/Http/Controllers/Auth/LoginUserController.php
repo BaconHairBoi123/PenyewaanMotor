@@ -14,7 +14,14 @@ class LoginUserController extends Controller
      */
     public function showLoginForm()
     {
-        // Pastikan view login Anda bernama 'auth.login'
+        // Jika user biasa sudah login, redirect ke user home
+        if (Auth::guard('web')->check()) {
+            return redirect()->route('user.home');
+        }
+        // Jika admin sudah login, redirect ke admin dashboard
+        if (Auth::guard('admin')->check()) {
+            return redirect()->route('admin.dashboard');
+        }
         return view('auth.login');
     }
 
@@ -52,15 +59,14 @@ class LoginUserController extends Controller
 
             $request->session()->regenerate();
 
-            return redirect()->intended(route('user.home'))
+            // Selalu arahkan ke User Dashboard, jangan gunakan intended()
+            return redirect()->route('user.home')
                 ->with('success', 'Login Berhasil!');
         }
 
-
         // 5. Login Gagal
-        // Di LoginUserController.php bagian bawah (Login Gagal)
         throw ValidationException::withMessages([
-            'credential' => ['Email/Username atau password salah.'], // Sesuaikan nama fieldnya
+            'credential' => ['Email/Username atau password salah.'],
         ]);
     }
 

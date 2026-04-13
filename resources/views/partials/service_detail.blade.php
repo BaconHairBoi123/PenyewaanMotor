@@ -1,7 +1,7 @@
 <div class="container py-4">
     <div class="mb-4">
         <button id="btn-back-to-list" class="btn btn-outline-dark btn-sm shadow-sm px-3">
-            <i class="fas fa-undo-alt me-2"></i> Kembali ke Daftar
+            <i class="fas fa-undo-alt me-2"></i> Back to List
         </button>
     </div>
 
@@ -20,15 +20,15 @@
             <span class="badge bg-primary mb-2">{{ $motor->brand }}</span>
             <h2 class="fw-bold mb-3 text-uppercase">{{ $motor->brand }} {{ $motor->category }}</h2>
             <div class="p-3 border rounded bg-light">
-                <p class="mb-2"><strong>Plat Nomor:</strong> <span class="text-primary">{{ $motor->license_plate }}</span></p>
-                <p class="mb-2"><strong>Kapasitas Mesin:</strong> {{ $motor->cc }} CC</p>
-                <p class="mb-0"><strong>Status Kendaraan:</strong> <span class="text-success">{{ strtoupper($motor->status) }}</span></p>
+                <p class="mb-2"><strong>License Plate:</strong> <span class="text-primary">{{ $motor->license_plate }}</span></p>
+                <p class="mb-2"><strong>Engine Capacity:</strong> {{ $motor->cc }} CC</p>
+                <p class="mb-0"><strong>Vehicle Status:</strong> <span class="text-success">{{ strtoupper($motor->status) }}</span></p>
             </div>
         </div>
     </div>
 
     <div class="text-center mb-4">
-        <h4 class="fw-bold text-dark">RIWAYAT SERVIS</h4>
+        <h4 class="fw-bold text-dark">SERVICE HISTORY</h4>
         <div style="width: 50px; height: 3px; background: #ff5e14; margin: 10px auto;"></div>
     </div>
 
@@ -36,9 +36,9 @@
         <table class="table table-hover border">
             <thead class="bg-light">
                 <tr>
-                    <th>Tanggal Servis</th>
-                    <th>Kilometer Terakhir</th>
-                    <th>Keterangan / Deskripsi</th>
+                    <th>Service Date</th>
+                    <th>Last Kilometer</th>
+                    <th>Notes / Description</th>
                 </tr>
             </thead>
             <tbody>
@@ -46,12 +46,12 @@
                 <tr>
                     <td>{{ \Carbon\Carbon::parse($history->service_date)->format('d F Y') }}</td>
                     <td>{{ number_format($history->kilometer, 0, ',', '.') }} KM</td>
-                    <td>{{ $history->description ?? 'Pemeliharaan Rutin' }}</td>
+                    <td>{{ $history->description ?? 'Routine Maintenance' }}</td>
                 </tr>
                 @empty
                 <tr>
                     <td colspan="3" class="text-center py-5 text-muted">
-                        <i class="fas fa-info-circle me-2"></i> Belum ada catatan riwayat servis untuk motor ini.
+                        <i class="fas fa-info-circle me-2"></i> No service history records found for this motorcycle.
                     </td>
                 </tr>
                 @endforelse

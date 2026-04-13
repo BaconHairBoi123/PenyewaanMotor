@@ -14,11 +14,14 @@ class LoginAdminController extends Controller
      */
     public function showLoginForm()
     {
-        // Jika admin sudah login, redirect langsung ke dashboard
+        // Jika admin sudah login, redirect ke admin dashboard
         if (Auth::guard('admin')->check()) {
             return redirect()->route('admin.dashboard');
         }
-        // Panggilan View yang disesuaikan dengan nama file: 'auth.admin-login'
+        // Jika user biasa sudah login, redirect ke user home (bukan admin!)
+        if (Auth::guard('web')->check()) {
+            return redirect()->route('user.home');
+        }
         return view('auth.admin-login'); 
     }
 
@@ -49,13 +52,13 @@ class LoginAdminController extends Controller
             // Login Berhasil
             $request->session()->regenerate();
 
-            // Redirect ke rute bernama 'admin.dashboard'
-            return redirect()->intended(route('admin.dashboard'))->with('success', 'Login Admin Berhasil!');
+            // PENTING: Selalu paksa arahkan ke halaman utama Admin, jangan gunakan 'intended'
+            return redirect()->route('admin.dashboard')->with('success', 'Login Admin Berhasil!');
         }
 
         // 3. Login Gagal
         throw ValidationException::withMessages([
-            'credential' => [trans('auth.failed')],
+            'credential' => ['Incorrect Username, Email, or Password. Please try again.'],
         ]);
     }
 

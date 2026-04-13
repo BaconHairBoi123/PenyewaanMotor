@@ -11,8 +11,14 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
-        //
+        // Override 'guest' middleware alias agar user yang sudah login tidak bisa
+        // mengakses halaman login/register, dan diarahkan ke tempat yang tepat
+        // (Admin -> admin.dashboard, User -> user.home)
+        $middleware->alias([
+            'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //
     })->create();
+

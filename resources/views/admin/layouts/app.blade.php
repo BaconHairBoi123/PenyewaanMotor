@@ -1,23 +1,21 @@
 <!DOCTYPE html>
-<html lang="en" 
-    x-data="{ 
+<html lang="en" x-data="{ 
         darkMode: localStorage.getItem('darkMode') === 'true',
         sidebarOpen: true
-    }" 
-    x-init="$watch('darkMode', val => localStorage.setItem('darkMode', val))" 
-    x-bind:class="{ 'dark': darkMode }"
+    }" x-init="$watch('darkMode', val => localStorage.setItem('darkMode', val))" x-bind:class="{ 'dark': darkMode }"
     class="scroll-smooth">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ $title ?? 'Admin Panel | Ride Nusa' }}</title>
-    
+    <link rel="icon" type="image/png" href="{{ asset('img/logo/logo_web_ridenusa_transparan.png') }}" />
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
+
     <!-- Remix Icons -->
     <link href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css" rel="stylesheet">
 
@@ -63,31 +61,35 @@
             width: 8px;
             height: 8px;
         }
+
         ::-webkit-scrollbar-track {
-            background: transparent; 
+            background: transparent;
         }
+
         ::-webkit-scrollbar-thumb {
-            background-color: rgba(134, 134, 137, 0.4); 
+            background-color: rgba(134, 134, 137, 0.4);
             border-radius: 10px;
         }
+
         .dark ::-webkit-scrollbar-thumb {
             background-color: rgba(255, 181, 29, 0.3);
         }
+
         .dark ::-webkit-scrollbar-thumb:hover {
             background-color: rgba(255, 181, 29, 0.6);
         }
     </style>
 </head>
 
-<body class="bg-gray-50 text-gray-800 dark:bg-dark-base dark:text-gray-200 transition-colors duration-300 font-sans flex font-normal">
+<body
+    class="bg-gray-50 text-gray-800 dark:bg-dark-base dark:text-gray-200 transition-colors duration-300 font-sans flex font-normal">
 
     {{-- Sidebar --}}
     @include('admin.layouts.sidebar')
 
     {{-- Main Content Area --}}
-    <div class="flex-1 flex flex-col min-h-screen transition-all duration-300"
-         :class="sidebarOpen ? 'ml-64' : 'ml-0'">
-         
+    <div class="flex-1 flex flex-col min-h-screen transition-all duration-300" :class="sidebarOpen ? 'ml-64' : 'ml-0'">
+
         {{-- Navbar --}}
         @include('admin.layouts.navbar')
 
@@ -102,4 +104,5 @@
     </div>
 
 </body>
+
 </html>
