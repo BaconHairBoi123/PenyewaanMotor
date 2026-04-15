@@ -138,11 +138,9 @@ Route::middleware('auth:admin')->prefix('admin')->name('admin.')->group(function
     // Transactions
     Route::resource('transaksi', TransaksiController::class);
 
-    // Motorcycle (utama)
-    Route::resource('motorcycles', MotorcycleController::class);
-
-    // Motorcycle Management (dipakai sidebar kamu)
-    Route::resource('motorcycles_Management', MotorcycleController::class);
+    // Motorcycle Management
+    Route::resource('motorcycles_Management', MotorcycleController::class)
+        ->parameters(['motorcycles_Management' => 'motorcycle']);
 
     // Users
     Route::resource('users', UserController::class);

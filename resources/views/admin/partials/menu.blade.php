@@ -33,14 +33,6 @@
 </li>
 
 <li>
-    <a href="{{ route('admin.motorcycles.index') }}"
-       class="flex items-center gap-3 px-3 py-2 rounded-lg text-gray-300 hover:text-brand hover:bg-dark-hover">
-       <i class="ri-riding-line text-lg"></i>
-       <span>Motorcycles</span>
-    </a>
-</li>
-
-<li>
     <a href="{{ route('admin.user.verification') }}"
        class="flex items-center gap-3 px-3 py-2 rounded-lg text-gray-300 hover:text-brand hover:bg-dark-hover">
        <i class="ri-user-follow-line text-lg"></i>

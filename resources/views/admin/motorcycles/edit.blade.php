@@ -2,7 +2,7 @@
 
     <h1 class="text-2xl font-bold mb-6">Edit Motorcycle</h1>
 
-    <form action="{{ route('admin.motorcycles.update', $motorcycle->id) }}" method="POST" enctype="multipart/form-data" class="space-y-4">
+    <form action="{{ route('admin.motorcycles_Management.update', $motorcycle->id) }}" method="POST" enctype="multipart/form-data" class="space-y-4">
         @csrf
         @method('PUT')
 

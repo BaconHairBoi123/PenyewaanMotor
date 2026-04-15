@@ -174,7 +174,7 @@
             <h2 class="text-xl font-semibold text-gray-800 dark:text-gray-100 mb-4">Quick Actions</h2>
             
             <div class="grid grid-cols-1 gap-4">
-                <a href="{{ route('admin.motorcycles.create') }}"
+                <a href="{{ route('admin.motorcycles_Management.create') }}"
                    class="group flex items-center justify-between p-4 bg-white dark:bg-dark-card border border-gray-100 dark:border-gray-800 rounded-xl shadow-sm hover:border-brand dark:hover:border-brand transition-all">
                     <div class="flex items-center gap-3">
                         <div class="h-10 w-10 rounded-lg bg-brand/10 text-brand flex items-center justify-center transition-colors group-hover:bg-brand group-hover:text-white">

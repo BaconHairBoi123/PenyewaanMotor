@@ -3,7 +3,7 @@
     <div class="flex justify-between mb-6">
         <h1 class="text-2xl font-bold">Motorcycles</h1>
 
-        <a href="{{ route('admin.motorcycles.create') }}" class="px-4 py-2 bg-blue-600 text-white rounded">
+        <a href="{{ route('admin.motorcycles_Management.create') }}" class="px-4 py-2 bg-blue-600 text-white rounded">
             + Add Motorcycle
         </a>
     </div>
@@ -92,12 +92,12 @@
                         <td class="p-3">{{ $motor->status }}</td>
 
                         <td class="p-3 flex gap-2">
-                            <a href="{{ route('admin.motorcycles.edit', $motor->id) }}"
+                            <a href="{{ route('admin.motorcycles_Management.edit', $motor->id) }}"
                                 class="px-3 py-1 bg-yellow-500 text-white rounded">
                                 Edit
                             </a>
 
-                            <form action="{{ route('admin.motorcycles.destroy', $motor->id) }}" method="POST"
+                            <form action="{{ route('admin.motorcycles_Management.destroy', $motor->id) }}" method="POST"
                                 onsubmit="return confirm('Delete this motorcycle?');">
 
                                 @csrf

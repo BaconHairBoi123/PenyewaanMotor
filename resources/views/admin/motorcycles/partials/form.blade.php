@@ -1,3 +1,18 @@
+{{-- General Validation Error Summary --}}
+@if ($errors->any())
+    <div class="mb-4 p-4 bg-red-50 border border-red-200 rounded-lg">
+        <div class="flex items-center gap-2 mb-2 text-red-700 font-semibold">
+            <i class="ri-error-warning-line text-lg"></i>
+            <span>Terdapat kesalahan pada form:</span>
+        </div>
+        <ul class="list-disc list-inside text-sm text-red-600 space-y-1">
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
 <div>
     <label class="block">Name</label>
     <input type="text" name="category"
@@ -73,10 +88,21 @@
 </div>
 
 <div>
-    <label class="block">License Plate</label>
+    <label class="block font-medium mb-1">
+        License Plate
+        <span class="text-red-500">*</span>
+    </label>
     <input type="text" name="license_plate"
            value="{{ old('license_plate', $motorcycle->license_plate ?? '') }}"
-           class="w-full p-2 border rounded" required>
+           class="w-full p-2 border rounded @error('license_plate') border-red-500 bg-red-50 @enderror"
+           placeholder="Contoh: B 1234 XYZ"
+           required>
+    @error('license_plate')
+        <div class="flex items-center gap-1 mt-1 text-sm text-red-600">
+            <i class="ri-error-warning-fill"></i>
+            <span>{{ $message }}</span>
+        </div>
+    @enderror
 </div>
 
 <div>

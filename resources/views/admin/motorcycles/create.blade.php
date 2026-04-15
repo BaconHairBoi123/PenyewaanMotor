@@ -2,7 +2,7 @@
 
     <h1 class="text-2xl font-bold mb-6">Add Motorcycle</h1>
 
-    <form action="{{ route('admin.motorcycles.store') }}" method="POST" enctype="multipart/form-data" class="space-y-4">
+    <form action="{{ route('admin.motorcycles_Management.store') }}" method="POST" enctype="multipart/form-data" class="space-y-4">
         @csrf
 
         @include('admin.motorcycles.partials.form')

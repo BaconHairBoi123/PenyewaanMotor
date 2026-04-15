@@ -47,7 +47,7 @@ class MotorcycleController extends Controller
         Motorcycle::create($data);
 
         return redirect()
-            ->route('admin.motorcycles.index')
+            ->route('admin.motorcycles_Management.index')
             ->with('success', 'Motorcycle created successfully.');
     }
 
@@ -87,7 +87,7 @@ class MotorcycleController extends Controller
         $motorcycle->update($data);
 
         return redirect()
-            ->route('admin.motorcycles.index')
+            ->route('admin.motorcycles_Management.index')
             ->with('success', 'Motorcycle updated successfully.');
     }
 
