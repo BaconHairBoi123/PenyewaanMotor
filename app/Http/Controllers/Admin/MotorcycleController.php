@@ -34,6 +34,8 @@ class MotorcycleController extends Controller
             'price' => 'required|numeric',
             'license_plate' => 'required|unique:motorcycles,license_plate',
             'image' => 'nullable|image|max:2048'
+        ], [
+            'license_plate.unique' => 'Plat nomor ini sudah terdaftar di sistem! Silakan gunakan plat nomor lain.'
         ]);
 
         $data = $request->except('image');
@@ -69,6 +71,8 @@ class MotorcycleController extends Controller
             'price' => 'required|numeric',
             'license_plate' => 'required|unique:motorcycles,license_plate,' . $motorcycle->id,
             'image' => 'nullable|image|max:2048'
+        ], [
+            'license_plate.unique' => 'Plat nomor ini sudah terdaftar di sistem! Silakan gunakan plat nomor lain.'
         ]);
 
         $data = $request->except('image');
