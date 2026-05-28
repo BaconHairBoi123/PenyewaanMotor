@@ -23,6 +23,7 @@ class Motorcycle extends Model
         'price',
         'license_plate',
         'transmission',
+        'device_id',
     ];
 
     /**
@@ -45,5 +46,12 @@ class Motorcycle extends Model
     {
         return $this->hasMany(MotorcycleImage::class, 'motorcycle_id');
     }
-   
+
+    /**
+     * Relasi: satu motor punya satu device GPS
+     */
+    public function device()
+    {
+        return $this->belongsTo(Device::class, 'device_id');
+    }
 }

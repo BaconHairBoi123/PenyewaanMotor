@@ -9,12 +9,12 @@ class Locations extends Model
 {
     use HasFactory;
 
-    // Jika tabel `locations` tidak memiliki kolom `created_at`/`updated_at`,
-    // matikan fitur timestamps Eloquent agar tidak mencoba mengisi keduanya.
-    public $timestamps = false;
+    // Sekarang timestamps diaktifkan untuk mencatat KAPAN koordinat dikirim
+    public $timestamps = true;
 
     // Menentukan kolom mana saja yang boleh diisi secara massal
     protected $fillable = [
+        'device_id',
         'latitude',
         'longitude'
     ];
@@ -23,5 +23,13 @@ class Locations extends Model
     public function rentals()
     {
         return $this->hasMany(Rental::class);
+    }
+
+    /**
+     * Relasi: satu lokasi/koordinat dikirim oleh satu device
+     */
+    public function device()
+    {
+        return $this->belongsTo(Device::class, 'device_id');
     }
 }

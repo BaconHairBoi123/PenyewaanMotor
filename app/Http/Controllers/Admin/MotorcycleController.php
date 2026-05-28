@@ -21,6 +21,11 @@ class MotorcycleController extends Controller
         return view('admin.motorcycles.create');
     }
 
+    public function show(Motorcycle $motorcycle)
+    {
+        return view('admin.motorcycles.show', compact('motorcycle'));
+    }
+
     public function store(Request $request)
     {
         $request->validate([

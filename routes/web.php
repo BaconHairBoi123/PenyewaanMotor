@@ -26,6 +26,8 @@ use App\Http\Controllers\Admin\TransaksiController;
 use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\ImageManagementController;
 use App\Http\Controllers\Admin\MaintenanceController;
+use App\Http\Controllers\Admin\LocationController;
+use App\Http\Controllers\Admin\DeviceController;
 
 
 /*
@@ -207,4 +209,23 @@ Route::middleware('auth:admin')->prefix('admin')->name('admin.')->group(function
 
     // Maintenance: daftar motor yang perlu servis (overdue > 2 bulan)
     Route::get('/maintenance', [MaintenanceController::class, 'index'])->name('maintenance.index');
+
+    // Locations
+    Route::get('/locations', [LocationController::class, 'index'])->name('locations.index');
+    Route::post('/locations', [LocationController::class, 'store'])->name('locations.store');
+    Route::put('/locations/{id}', [LocationController::class, 'update'])->name('locations.update');
+    Route::delete('/locations/{id}', [LocationController::class, 'destroy'])->name('locations.destroy');
+
+    // Devices (GPS Management)
+    Route::get('/devices', [DeviceController::class, 'index'])->name('devices.index');
+    Route::post('/devices', [DeviceController::class, 'store'])->name('devices.store');
+    Route::put('/devices/{id}', [DeviceController::class, 'update'])->name('devices.update');
+    Route::delete('/devices/{id}', [DeviceController::class, 'destroy'])->name('devices.destroy');
+    Route::get('/devices/search-motorcycle', [DeviceController::class, 'searchMotorcycle'])->name('devices.search_motorcycle');
+    Route::get('/devices/pair', [DeviceController::class, 'chooseMotorcycle'])->name('devices.choose_motorcycle');
+    
+    // Pairing Device ke Motor
+    Route::get('/motorcycles/{motorcycle_id}/assign-device', [DeviceController::class, 'assignToMotorcycle'])->name('devices.assign');
+    Route::post('/motorcycles/{motorcycle_id}/assign-device', [DeviceController::class, 'saveAssignment'])->name('devices.save_assignment');
+    Route::post('/motorcycles/{motorcycle_id}/remove-device', [DeviceController::class, 'removeFromMotorcycle'])->name('devices.remove');
 });

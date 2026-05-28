@@ -8,6 +8,7 @@ use App\Http\Controllers\Api\MotorcycleController;
 use App\Http\Controllers\Api\AccessoryController;
 use App\Http\Controllers\Api\LocationController;
 use App\Http\Controllers\Api\BookingController;
+use App\Http\Controllers\Api\GpsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,6 +34,13 @@ Route::get('/motorcycles', [MotorcycleController::class, 'index']);
 Route::get('/motorcycles/{id}', [MotorcycleController::class, 'show']);
 Route::get('/accessories', [AccessoryController::class, 'index']);
 Route::get('/locations', [LocationController::class, 'index']);
+
+// GPS API (dari ESP32) - PUBLIC karena ESP32 tidak ada token
+Route::post('/gps/update', [GpsController::class, 'updateLocation']);
+Route::get('/gps/latest/{device_id}', [GpsController::class, 'getLatestLocation']);
+Route::get('/gps/history/{motorcycle_id}', [GpsController::class, 'getMotorcycleHistory']);
+Route::post('/gps/pair', [GpsController::class, 'pairDeviceToMotorcycle']);
+Route::post('/gps/unpair', [GpsController::class, 'unpairDeviceFromMotorcycle']);
 
 // ==========================================
 // PROTECTED ROUTES (WAJIB BAWA TOKEN)

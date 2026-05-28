@@ -1,0 +1,207 @@
+<?php
+
+namespace App\Http\Controllers\Api;
+
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use App\Models\Device;
+use App\Models\Locations;
+
+class GpsController extends Controller
+{
+    /**
+     * Endpoint untuk menerima update koordinat dari ESP32
+     * POST /api/gps/update
+     * * Menggunakan sistem UPDATE berdasarkan device_id agar database TIDAK membengkak.
+     */
+    public function updateLocation(Request $request)
+    {
+        // 1. Validasi data yang masuk dari ESP32
+        $request->validate([
+            'device_code' => 'required|string',
+            'latitude' => 'required|numeric',
+            'longitude' => 'required|numeric',
+        ]);
+
+        // 2. Cek apakah device_code sudah terdaftar di sistem
+        $device = Device::where('device_code', $request->device_code)->first();
+
+        if (!$device) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Device GPS tidak terdaftar di sistem Ride Nusa!'
+            ], 404);
+        }
+
+        // 3. OPTIMASI: Update lokasi terakhir, jangan buat baris baru terus-menerus
+        // Mencari apakah sudah ada baris lokasi untuk device ini sebelumnya
+        $location = Locations::where('device_id', $device->id)->first();
+
+        if ($location) {
+            // Jika sudah ada data lama, kita TIMPA / UPDATE dengan koordinat baru
+            $location->update([
+                'latitude' => $request->latitude,
+                'longitude' => $request->longitude,
+            ]);
+            $message = 'Koordinat berhasil diperbarui (Updated)';
+        } else {
+            // Jika benar-benar baru pertama kali mengirim data, kita BUAT baris pertamanya
+            $location = Locations::create([
+                'device_id' => $device->id,
+                'latitude' => $request->latitude,
+                'longitude' => $request->longitude,
+            ]);
+            $message = 'Koordinat awal berhasil dibuat (Created)';
+        }
+
+        return response()->json([
+            'status' => 'success',
+            'message' => $message,
+            'data' => $location
+        ], 200);
+    }
+
+    /**
+     * Endpoint untuk mendapatkan koordinat terbaru dari device tertentu
+     * GET /api/gps/latest/{device_id}
+     */
+    public function getLatestLocation($device_id)
+    {
+        $device = Device::find($device_id);
+
+        if (!$device) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Device tidak ditemukan'
+            ], 404);
+        }
+
+        // Karena kita menggunakan sistem update, data di tabel dipastikan adalah yang paling baru
+        $location = Locations::where('device_id', $device->id)->first();
+
+        if (!$location) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Belum ada data koordinat untuk device ini'
+            ], 404);
+        }
+
+        return response()->json([
+            'status' => 'success',
+            'data' => $location
+        ], 200);
+    }
+
+    /**
+     * Endpoint untuk mendapatkan riwayat perjalanan motor
+     * GET /api/gps/history/{motorcycle_id}
+     */
+    public function getMotorcycleHistory($motorcycle_id)
+    {
+        $motorcycle = \App\Models\Motorcycle::find($motorcycle_id);
+
+        if (!$motorcycle) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Motor tidak ditemukan'
+            ], 404);
+        }
+
+        if (!$motorcycle->device) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Motor belum dipasangi device GPS'
+            ], 404);
+        }
+
+        // CATATAN: Karena sistemnya UPDATE total, fungsi history ini hanya akan mengembalikan 1 titik lokasi terakhir saja.
+        $location = Locations::where('device_id', $motorcycle->device->id)->get();
+
+        return response()->json([
+            'status' => 'success',
+            'data' => [
+                'motorcycle_id' => $motorcycle->id,
+                'motorcycle_license_plate' => $motorcycle->license_plate,
+                'device_code' => $motorcycle->device->device_code,
+                'locations' => $location // Hanya berisi 1 record lokasi terbaru
+            ]
+        ], 200);
+    }
+
+    /**
+     * Endpoint untuk pairing device ke motor
+     * POST /api/gps/pair
+     */
+    public function pairDeviceToMotorcycle(Request $request)
+    {
+        $request->validate([
+            'device_code' => 'required|string',
+            'motorcycle_id' => 'required|integer|exists:motorcycles,id',
+        ]);
+
+        $device = Device::where('device_code', $request->device_code)->first();
+
+        if (!$device) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Device GPS tidak terdaftar!'
+            ], 404);
+        }
+
+        $motorcycleWithThisDevice = \App\Models\Motorcycle::where('device_id', $device->id)->first();
+        
+        if ($motorcycleWithThisDevice && $motorcycleWithThisDevice->id !== $request->motorcycle_id) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Device sudah terpasang ke motor lain (' . $motorcycleWithThisDevice->license_plate . ')'
+            ], 400);
+        }
+
+        $motorcycle = \App\Models\Motorcycle::findOrFail($request->motorcycle_id);
+        $motorcycle->update(['device_id' => $device->id]);
+        $device->update(['status' => 'active']);
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Device GPS berhasil dipasang ke motor',
+            'data' => [
+                'device_code' => $device->device_code,
+                'motorcycle_license_plate' => $motorcycle->license_plate,
+                'device_status' => 'active'
+            ]
+        ], 200);
+    }
+
+    /**
+     * Endpoint untuk lepas device dari motor
+     * POST /api/gps/unpair
+     */
+    public function unpairDeviceFromMotorcycle(Request $request)
+    {
+        $request->validate([
+            'motorcycle_id' => 'required|integer|exists:motorcycles,id',
+        ]);
+
+        $motorcycle = \App\Models\Motorcycle::findOrFail($request->motorcycle_id);
+
+        if (!$motorcycle->device) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Motor tidak memiliki device GPS'
+            ], 404);
+        }
+
+        $device = $motorcycle->device;
+        $motorcycle->update(['device_id' => null]);
+        $device->update(['status' => 'available']);
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Device GPS berhasil dilepas dari motor',
+            'data' => [
+                'device_code' => $device->device_code,
+                'device_status' => 'available'
+            ]
+        ], 200);
+    }
+}
