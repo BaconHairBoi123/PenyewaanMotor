@@ -31,7 +31,7 @@ class MotorcycleController extends Controller
         // Jika ada relasi image, misal dengan with('images')
         // Saat ini model Motorcycle memiliki 'image_path'
         $motorcycles = $query->latest()->get()->map(function ($motor) {
-            $motor->image_url = $motor->image_path ? asset('storage/motorcycles/' . $motor->image_path) : null;
+            $motor->image_url = $motor->image_path ? asset('storage/' . $motor->image_path) : null;
             return $motor;
         });
 
@@ -55,7 +55,7 @@ class MotorcycleController extends Controller
             ], 404);
         }
 
-        $motorcycle->image_url = $motorcycle->image_path ? asset('storage/motorcycles/' . $motorcycle->image_path) : null;
+        $motorcycle->image_url = $motorcycle->image_path ? asset('storage/' . $motorcycle->image_path) : null;
         
         // Ambil galeri gambar jika ada (Tabel motorcycle_images)
         // Kita asumsikan relasinya ada atau kita query manual

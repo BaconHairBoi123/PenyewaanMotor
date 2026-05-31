@@ -3,7 +3,8 @@
     #rns-chat-widget {
         position: fixed;
         bottom: 30px;
-        right: 80px; /* Geser ke kiri agar tidak menimpa tombol Go Back Top */
+        right: 80px;
+        /* Geser ke kiri agar tidak menimpa tombol Go Back Top */
         z-index: 9999;
         font-family: 'Inter', 'Outfit', sans-serif;
     }
@@ -17,7 +18,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
         cursor: pointer;
         transition: transform 0.3s ease;
     }
@@ -33,7 +34,8 @@
 
     /* Chat Window */
     #rns-chat-window {
-        display: none; /* hidden by default */
+        display: none;
+        /* hidden by default */
         position: absolute;
         bottom: 80px;
         right: 0;
@@ -41,9 +43,9 @@
         height: 500px;
         background: rgba(30, 30, 30, 0.95);
         backdrop-filter: blur(10px);
-        border: 1px solid rgba(255,255,255,0.1);
+        border: 1px solid rgba(255, 255, 255, 0.1);
         border-radius: 15px;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.7);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
         flex-direction: column;
         overflow: hidden;
     }
@@ -74,7 +76,7 @@
         font-size: 16px;
         font-weight: 600;
     }
-    
+
     #rns-chat-header p {
         margin: 0;
         color: #aaa;
@@ -96,13 +98,14 @@
         flex-direction: column;
         gap: 10px;
     }
-    
+
     /* Scrollbar style inside chat */
     #rns-chat-body::-webkit-scrollbar {
         width: 5px;
     }
+
     #rns-chat-body::-webkit-scrollbar-thumb {
-        background: #FFB51D; 
+        background: #FFB51D;
         border-radius: 5px;
     }
 
@@ -127,7 +130,7 @@
         color: #fff;
         align-self: flex-start;
         border-bottom-left-radius: 0;
-        border: 1px solid rgba(255,255,255,0.05);
+        border: 1px solid rgba(255, 255, 255, 0.05);
     }
 
     /* Typing Indicator */
@@ -148,7 +151,7 @@
         display: flex;
         padding: 15px;
         background: #1a1a1a;
-        border-top: 1px solid rgba(255,255,255,0.1);
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
         gap: 10px;
     }
 
@@ -200,10 +203,11 @@
             </div>
             <i class="fas fa-times" id="rns-chat-close"></i>
         </div>
-        
+
         <div id="rns-chat-body">
             <div class="msg-bubble msg-bot">
-                Halo! Saya asisten AI Ride Nusa yang berjalan di server lokal Anda. Ada yang bisa saya bantu hari ini terkait sewa motor?
+                Halo! Saya asisten AI Ride Nusa yang berjalan di server lokal Anda. Ada yang bisa saya bantu hari ini
+                terkait sewa motor?
             </div>
             <!-- Pesan akan ditambahkan di sini oleh JavaScript -->
         </div>
@@ -221,7 +225,7 @@
 </div>
 
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
         const chatWidget = document.getElementById('rns-chat-widget');
         const chatBtn = document.getElementById('rns-chat-btn');
         const chatWindow = document.getElementById('rns-chat-window');
@@ -235,8 +239,9 @@
         // ============================================
         // Ganti URL ini dengan URL Webhook n8n Anda yang berjalan di Cloudflare Tunnel
         // Harus menggunakan method POST!
-        const WEBHOOK_URL = 'https://nancy-rated-swing-investigate.trycloudflare.com/webhook/214733d5-35b7-45dc-8b1b-5e7f3fe1e7ad'; 
-        
+        const WEBHOOK_URL = 'https://squatter-revert-levitate.ngrok-free.dev/webhook/214733d5-35b7-45dc-8b1b-5e7f3fe1e7ad';
+
+
         // ============================================
 
         // Toggle opened/closed window
@@ -260,7 +265,7 @@
             const div = document.createElement('div');
             div.className = `msg-bubble msg-${sender}`;
             // Mencegah script injection basic
-            div.textContent = text; 
+            div.textContent = text;
             chatBody.appendChild(div);
             // Scroll to bottom
             chatBody.scrollTop = chatBody.scrollHeight;
@@ -292,7 +297,7 @@
 
             // Tampilkan pesan user
             appendMessage(message, 'user');
-            
+
             // Tampilkan indikator ngetik
             appendTypingIndicator();
 
@@ -318,14 +323,14 @@
                 }
 
                 const data = await response.json();
-                
+
                 // Mendukung format Object {reply:...} maupun Array [{reply:...}]
                 const result = Array.isArray(data) ? data[0] : data;
                 let botReply = result.reply || result.output || result.message || "Terkoneksi, tapi format respons bot tidak cocok.";
-                
+
                 // Menghapus tanda = di awal jika ada (bug dari settingan n8n expression)
                 botReply = botReply.replace(/^=/, '');
-                
+
                 appendMessage(botReply, 'bot');
 
             } catch (error) {
@@ -337,7 +342,7 @@
 
         // Event listeners untuk tombol kirim
         chatSendBtn.addEventListener('click', sendMessage);
-        chatInput.addEventListener('keypress', function(e) {
+        chatInput.addEventListener('keypress', function (e) {
             if (e.key === 'Enter') {
                 sendMessage();
             }
