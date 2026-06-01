@@ -24,4 +24,24 @@ class MotorcycleService {
       throw Exception('Network error: $e');
     }
   }
+
+  Future<List<dynamic>> getMotorcycleServices({String? licensePlate}) async {
+    try {
+      String url = '${ApiConfig.baseUrl}/motorcycles/services';
+      if (licensePlate != null && licensePlate.trim().isNotEmpty) {
+        url += '?license_plate=${Uri.encodeComponent(licensePlate.trim())}';
+      }
+      final response = await http.get(Uri.parse(url));
+
+      if (response.statusCode == 200) {
+        final Map<String, dynamic> responseData = json.decode(response.body);
+        if (responseData['status'] == 'success') {
+          return responseData['data'] as List<dynamic>;
+        }
+      }
+      return [];
+    } catch (e) {
+      return [];
+    }
+  }
 }

@@ -28,9 +28,11 @@ use App\Http\Controllers\Api\GpsController;
 // Autentikasi
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
+Route::post('/forgot-password', [AuthController::class, 'forgotPassword']);
 
 // Master Data Katalog
 Route::get('/motorcycles', [MotorcycleController::class, 'index']);
+Route::get('/motorcycles/services', [MotorcycleController::class, 'services']);
 Route::get('/motorcycles/{id}', [MotorcycleController::class, 'show']);
 Route::get('/accessories', [AccessoryController::class, 'index']);
 Route::get('/locations', [LocationController::class, 'index']);

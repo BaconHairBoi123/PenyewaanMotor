@@ -312,7 +312,8 @@
                     body: JSON.stringify({
                         message: message,
                         user_id: "{{ Auth::id() }}",
-                        user_name: "{{ Auth::user()->name ?? 'Guest' }}"
+                        user_name: "{{ Auth::user()->name ?? 'Guest' }}",
+                        platform: "web"
                     })
                 });
 

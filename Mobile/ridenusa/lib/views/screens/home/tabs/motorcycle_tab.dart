@@ -37,6 +37,8 @@ class MotorcycleTab extends StatefulWidget {
 class _MotorcycleTabState extends State<MotorcycleTab> {
   String _selectedCategory = 'All';
   FilterCriteria _filterCriteria = FilterCriteria();
+  int _promoIndex = 0;
+  String _searchQuery = '';
 
   void _showFilterDrawer(BuildContext context, List<Motorcycle> motors) {
     final brands = motors.map((m) => m.brand).where((b) => b.isNotEmpty).toSet().toList();
@@ -90,12 +92,174 @@ class _MotorcycleTabState extends State<MotorcycleTab> {
     );
   }
 
+  Widget _buildPromoBanners() {
+    final List<Widget> promoPages = [
+      // Banner 1
+      Container(
+        margin: const EdgeInsets.symmetric(horizontal: 16),
+        decoration: BoxDecoration(
+          color: AppTheme.primaryColor.withOpacity(0.15),
+          borderRadius: BorderRadius.circular(16),
+          image: DecorationImage(
+            image: const AssetImage('assets/images/promo_banner_1.png'), // Place your first promo banner here
+            fit: BoxFit.cover,
+            onError: (err, stack) {},
+          ),
+        ),
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(16),
+            gradient: LinearGradient(
+              begin: Alignment.bottomCenter,
+              end: Alignment.topCenter,
+              colors: [
+                Colors.black.withOpacity(0.6),
+                Colors.transparent,
+              ],
+            ),
+          ),
+          padding: const EdgeInsets.all(16),
+          alignment: Alignment.bottomLeft,
+          child: const Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                'CHIPELAGO',
+                style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
+              ),
+              Text(
+                'RIDE FREELY WITH RIDENUSA',
+                style: TextStyle(color: AppTheme.primaryColor, fontSize: 13, fontWeight: FontWeight.bold),
+              ),
+            ],
+          ),
+        ),
+      ),
+      // Banner 2
+      Container(
+        margin: const EdgeInsets.symmetric(horizontal: 16),
+        decoration: BoxDecoration(
+          color: AppTheme.primaryColor.withOpacity(0.15),
+          borderRadius: BorderRadius.circular(16),
+          image: DecorationImage(
+            image: const AssetImage('assets/images/promo_banner_2.png'), // Place your second promo banner here
+            fit: BoxFit.cover,
+            onError: (err, stack) {},
+          ),
+        ),
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(16),
+            gradient: LinearGradient(
+              begin: Alignment.bottomCenter,
+              end: Alignment.topCenter,
+              colors: [
+                Colors.black.withOpacity(0.6),
+                Colors.transparent,
+              ],
+            ),
+          ),
+          padding: const EdgeInsets.all(16),
+          alignment: Alignment.bottomLeft,
+          child: const Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                'EXPLORE PARADISE',
+                style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
+              ),
+              Text(
+                'Comfortable scooters ready for every journey',
+                style: TextStyle(color: Colors.white70, fontSize: 12),
+              ),
+            ],
+          ),
+        ),
+      ),
+    ];
+
+    return Column(
+      children: [
+        SizedBox(
+          height: 180,
+          child: PageView.builder(
+            itemCount: promoPages.length,
+            onPageChanged: (int index) {
+              setState(() {
+                _promoIndex = index;
+              });
+            },
+            itemBuilder: (context, index) {
+              return promoPages[index];
+            },
+          ),
+        ),
+        const SizedBox(height: 12),
+        // Dots Indicator
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: List.generate(
+            promoPages.length,
+            (index) => AnimatedContainer(
+              duration: const Duration(milliseconds: 200),
+              margin: const EdgeInsets.symmetric(horizontal: 4),
+              height: 8,
+              width: _promoIndex == index ? 32 : 8,
+              decoration: BoxDecoration(
+                color: _promoIndex == index ? AppTheme.primaryColor : Colors.grey.shade400,
+                borderRadius: BorderRadius.circular(4),
+              ),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          // Header Row with Centered Logo and Cart Icon
+          Padding(
+            padding: const EdgeInsets.only(top: 12.0, bottom: 8.0, left: 8.0, right: 8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const SizedBox(width: 56, height: 56), // Spacer to balance the cart icon
+                Expanded(
+                  child: Center(
+                    child: Image.asset(
+                      'assets/images/logo_ridenusa_white.png',
+                      height: 75, // Enlarged from 50 to 75
+                      fit: BoxFit.contain,
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  width: 56,
+                  height: 56,
+                  child: IconButton(
+                    icon: const Icon(
+                      Icons.shopping_cart_outlined,
+                      color: AppTheme.darkColor,
+                      size: 32, // Enlarged size
+                    ),
+                    onPressed: () {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text('Keranjang Belanja sedang disiapkan...')),
+                      );
+                    },
+                  ),
+                ),
+              ],
+            ),
+          ),
+
           FutureBuilder<List<Motorcycle>>(
             future: widget.futureMotorcycles,
             builder: (context, snapshot) {
@@ -118,27 +282,57 @@ class _MotorcycleTabState extends State<MotorcycleTab> {
 
               final allMotors = snapshot.data!;
               
-              // Search Bar with Filter Icon
+              // Custom Search Bar exactly matching screenshot design
               Widget searchBar = Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Container(
-                  height: 44,
-                  decoration: BoxDecoration(
-                    color: Colors.grey.shade200,
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  child: TextField(
-                    decoration: InputDecoration(
-                      hintText: 'Search your dream bike...',
-                      prefixIcon: const Icon(Icons.search, color: Colors.grey),
-                      suffixIcon: IconButton(
-                        icon: Icon(Icons.tune, color: _filterCriteria.isEmpty ? Colors.grey : AppTheme.primaryColor),
-                        onPressed: () => _showFilterDrawer(context, allMotors),
+                padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Container(
+                        height: 44,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: const BorderRadius.only(
+                            topLeft: Radius.circular(8),
+                            bottomLeft: Radius.circular(8),
+                          ),
+                          border: Border.all(color: Colors.grey.shade300),
+                        ),
+                        child: TextField(
+                          onChanged: (val) {
+                            setState(() {
+                              _searchQuery = val;
+                            });
+                          },
+                          decoration: InputDecoration(
+                            hintText: 'Search',
+                            border: InputBorder.none,
+                            contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                            suffixIcon: IconButton(
+                              icon: Icon(
+                                Icons.tune,
+                                size: 20,
+                                color: _filterCriteria.isEmpty ? Colors.grey : AppTheme.primaryColor,
+                              ),
+                              onPressed: () => _showFilterDrawer(context, allMotors),
+                            ),
+                          ),
+                        ),
                       ),
-                      border: InputBorder.none,
-                      contentPadding: const EdgeInsets.symmetric(vertical: 12),
                     ),
-                  ),
+                    Container(
+                      height: 44,
+                      width: 48,
+                      decoration: const BoxDecoration(
+                        color: AppTheme.primaryColor,
+                        borderRadius: BorderRadius.only(
+                          topRight: Radius.circular(8),
+                          bottomRight: Radius.circular(8),
+                        ),
+                      ),
+                      child: const Icon(Icons.search, color: Colors.white, size: 20),
+                    ),
+                  ],
                 ),
               );
 
@@ -157,6 +351,14 @@ class _MotorcycleTabState extends State<MotorcycleTab> {
                 if (_filterCriteria.fuelConfig != null && m.fuelConfiguration != _filterCriteria.fuelConfig) return false;
                 if (_filterCriteria.minPrice != null && m.price < _filterCriteria.minPrice!) return false;
                 if (_filterCriteria.maxPrice != null && m.price > _filterCriteria.maxPrice!) return false;
+                
+                // Text search query filter
+                if (_searchQuery.isNotEmpty &&
+                    !m.brand.toLowerCase().contains(_searchQuery.toLowerCase()) &&
+                    !m.type.toLowerCase().contains(_searchQuery.toLowerCase())) {
+                  return false;
+                }
+                
                 return true;
               }).toList();
 
@@ -164,6 +366,9 @@ class _MotorcycleTabState extends State<MotorcycleTab> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   searchBar,
+                  const SizedBox(height: 8),
+                  _buildPromoBanners(),
+                  const SizedBox(height: 24),
                   const Padding(
                     padding: EdgeInsets.symmetric(horizontal: 16.0),
                     child: Text(

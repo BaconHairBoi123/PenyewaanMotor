@@ -19,6 +19,9 @@ class AuthController extends Controller
             'password' => 'required|string|min:8|confirmed',
             'phone_number' => 'required|string|max:20',
             'address' => 'required|string',
+            'verification_type' => 'required|in:sim,course',
+            'license_photo' => 'required_if:verification_type,sim|image|max:4096',
+            'face_photo' => 'nullable|image|max:4096',
         ]);
 
         if ($validator->fails()) {
@@ -38,6 +41,29 @@ class AuthController extends Controller
             'address' => $request->address,
             'verification_status' => 'unverified',
         ]);
+
+        // Handle Verification Data
+        $verificationData = [
+            'user_id' => $user->id,
+            'verification_type' => $request->verification_type,
+            'verification_date' => now(),
+        ];
+
+        if ($request->verification_type === 'sim') {
+            if ($request->hasFile('face_photo')) {
+                $path = $request->file('face_photo')->store('verifications/faces', 'public');
+                $verificationData['face_photo_path'] = 'storage/' . $path;
+            }
+            if ($request->hasFile('license_photo')) {
+                $path = $request->file('license_photo')->store('verifications/licenses', 'public');
+                $verificationData['license_photo_path'] = 'storage/' . $path;
+            }
+            $verificationData['status'] = 'pending';
+        } else {
+            $verificationData['status'] = 'class_required';
+        }
+
+        \Illuminate\Support\Facades\DB::table('user_verifications')->insert($verificationData);
 
         $token = $user->createToken('auth_token')->plainTextToken;
 
@@ -80,6 +106,26 @@ class AuthController extends Controller
                 'access_token' => $token,
                 'token_type' => 'Bearer',
             ]
+        ]);
+    }
+
+    public function forgotPassword(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|string|email|exists:users,email',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Email is not registered.',
+                'errors' => $validator->errors()
+            ], 422);
+        }
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Password reset link has been sent to your email.'
         ]);
     }
 

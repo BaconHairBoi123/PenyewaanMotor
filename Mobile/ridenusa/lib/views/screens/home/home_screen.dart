@@ -5,10 +5,11 @@ import '../../../REST-API/Models/motorcycle.dart';
 import '../../../REST-API/Services/motorcycle_service.dart';
 import '../../../REST-API/Services/auth_service.dart';
 
-import 'tabs/home_tab.dart';
 import 'tabs/motorcycle_tab.dart';
-import 'tabs/account_tab.dart';
+import 'tabs/service_tab.dart';
 import 'tabs/gps_tab.dart';
+import 'tabs/account_tab.dart';
+import 'chatbot_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -74,7 +75,7 @@ class _HomeScreenState extends State<HomeScreen> {
               onPressed: () {
                 Navigator.pop(context);
               },
-              child: const Text('Register'),
+              child: const Text('Cancel'),
             ),
           ],
         );
@@ -93,9 +94,12 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   void _onTabTapped(int index) {
-    // If guest clicks GPS (2) or Account (3), show popup
-    if (isGuest && (index == 2 || index == 3)) {
-      String action = index == 2 ? 'view GPS & Power' : 'view your Account';
+    // If guest clicks Service (1), GPS (2) or Account (3), show popup
+    if (isGuest && (index == 1 || index == 2 || index == 3)) {
+      String action = 'view this menu';
+      if (index == 1) action = 'check service records';
+      if (index == 2) action = 'view GPS & Power';
+      if (index == 3) action = 'view your Account';
       _showGuestPopup(action);
       return;
     }
@@ -105,53 +109,113 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
+  Widget _buildTabItem({
+    required int index,
+    required IconData icon,
+    required String label,
+  }) {
+    final isSelected = _currentIndex == index;
+    return Expanded(
+      child: InkWell(
+        onTap: () => _onTabTapped(index),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(
+              icon,
+              color: isSelected ? AppTheme.primaryColor : Colors.grey.shade500,
+              size: 24,
+            ),
+            const SizedBox(height: 2),
+            Text(
+              label,
+              style: TextStyle(
+                color: isSelected ? AppTheme.primaryColor : Colors.grey.shade500,
+                fontSize: 10,
+                fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  PreferredSizeWidget? _buildAppBar() {
+    if (_currentIndex == 0) {
+      return null; // Let MotorcycleTab render its own logo at the top
+    }
+
+    String title = '';
+    if (_currentIndex == 1) title = 'Service & Maintenance';
+    if (_currentIndex == 2) title = 'GPS & Power';
+    if (_currentIndex == 3) title = 'My Profile';
+
+    return AppBar(
+      automaticallyImplyLeading: false,
+      backgroundColor: Colors.white,
+      elevation: 0.5,
+      title: Text(
+        title,
+        style: const TextStyle(color: AppTheme.darkColor, fontWeight: FontWeight.bold, fontSize: 18),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    // Determine title based on tab
-    String appBarTitle = 'RideNusa';
-    if (_currentIndex == 1) appBarTitle = 'Motorcycles';
-    if (_currentIndex == 2) appBarTitle = 'GPS & Power';
-    if (_currentIndex == 3) appBarTitle = 'Account';
-
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: AppTheme.surfaceColor,
-        elevation: 0,
-        title: Text(
-          appBarTitle,
-          style: const TextStyle(color: Colors.black87, fontWeight: FontWeight.bold),
+      appBar: _buildAppBar(),
+      body: SafeArea(
+        top: true,
+        child: IndexedStack(
+          index: _currentIndex,
+          children: [
+            MotorcycleTab(
+              futureMotorcycles: futureMotorcycles,
+              onMotorTapped: _onMotorTapped,
+            ),
+            const ServiceTab(),
+            const GpsTab(),
+            const AccountTab(),
+          ],
         ),
-        actions: [
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.shopping_cart_outlined, color: Colors.black87),
-          ),
-        ],
       ),
-      body: IndexedStack(
-        index: _currentIndex,
-        children: [
-          HomeTab(isGuest: isGuest),
-          MotorcycleTab(
-            futureMotorcycles: futureMotorcycles,
-            onMotorTapped: _onMotorTapped,
-          ),
-          const GpsTab(),
-          const AccountTab(),
-        ],
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const ChatbotScreen()),
+          );
+        },
+        backgroundColor: AppTheme.primaryColor,
+        elevation: 4,
+        shape: const CircleBorder(),
+        child: const Icon(
+          Icons.smart_toy_outlined,
+          color: AppTheme.darkColor,
+          size: 28,
+        ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        selectedItemColor: AppTheme.primaryColor,
-        unselectedItemColor: Colors.grey,
-        currentIndex: _currentIndex,
-        onTap: _onTabTapped,
-        type: BottomNavigationBarType.fixed,
-        items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-          BottomNavigationBarItem(icon: Icon(Icons.motorcycle), label: 'Motorcycles'),
-          BottomNavigationBarItem(icon: Icon(Icons.battery_charging_full), label: 'GPS & Power'),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Account'),
-        ],
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      bottomNavigationBar: BottomAppBar(
+        shape: const CircularNotchedRectangle(),
+        notchMargin: 8.0,
+        color: Colors.white,
+        elevation: 10,
+        child: SizedBox(
+          height: 56,
+          child: Row(
+            children: [
+              _buildTabItem(index: 0, icon: Icons.motorcycle, label: 'Motorcycles'),
+              _buildTabItem(index: 1, icon: Icons.build_circle_outlined, label: 'Service'),
+              const SizedBox(width: 60), // Space for centered FAB
+              _buildTabItem(index: 2, icon: Icons.battery_charging_full, label: 'GPS & Power'),
+              _buildTabItem(index: 3, icon: Icons.person, label: 'Account'),
+            ],
+          ),
+        ),
       ),
     );
   }

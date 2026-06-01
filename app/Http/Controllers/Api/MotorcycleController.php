@@ -71,4 +71,26 @@ class MotorcycleController extends Controller
             'data' => $motorcycle
         ]);
     }
+
+    /**
+     * Tampilkan info service motor
+     */
+    public function services(Request $request)
+    {
+        $query = Motorcycle::query();
+
+        if ($request->has('license_plate')) {
+            $query->where('license_plate', 'like', '%' . $request->license_plate . '%');
+        }
+
+        $motorcycles = $query->with(['services'])->latest()->get()->map(function ($motor) {
+            $motor->image_url = $motor->image_path ? asset('storage/' . $motor->image_path) : null;
+            return $motor;
+        });
+
+        return response()->json([
+            'status' => 'success',
+            'data' => $motorcycles
+        ]);
+    }
 }

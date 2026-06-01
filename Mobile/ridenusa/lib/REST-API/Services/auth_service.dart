@@ -36,21 +36,47 @@ class AuthService {
     required String passwordConfirmation,
     required String phoneNumber,
     required String address,
+    required String verificationType,
+    String? licensePhotoPath,
+    String? facePhotoPath,
   }) async {
     try {
-      final response = await http.post(
+      final request = http.MultipartRequest(
+        'POST',
         Uri.parse('${ApiConfig.baseUrl}/register'),
-        headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
-        body: json.encode({
-          'name': name,
-          'username': username,
-          'email': email,
-          'password': password,
-          'password_confirmation': passwordConfirmation,
-          'phone_number': phoneNumber,
-          'address': address,
-        }),
       );
+
+      // Add Headers
+      request.headers.addAll({
+        'Accept': 'application/json',
+      });
+
+      // Add text fields
+      request.fields['name'] = name;
+      request.fields['username'] = username;
+      request.fields['email'] = email;
+      request.fields['password'] = password;
+      request.fields['password_confirmation'] = passwordConfirmation;
+      request.fields['phone_number'] = phoneNumber;
+      request.fields['address'] = address;
+      request.fields['verification_type'] = verificationType;
+
+      // Add file fields if available and verification type is 'sim'
+      if (verificationType == 'sim') {
+        if (licensePhotoPath != null && licensePhotoPath.isNotEmpty) {
+          request.files.add(
+            await http.MultipartFile.fromPath('license_photo', licensePhotoPath),
+          );
+        }
+        if (facePhotoPath != null && facePhotoPath.isNotEmpty) {
+          request.files.add(
+            await http.MultipartFile.fromPath('face_photo', facePhotoPath),
+          );
+        }
+      }
+
+      final streamedResponse = await request.send();
+      final response = await http.Response.fromStream(streamedResponse);
 
       final Map<String, dynamic> responseData = json.decode(response.body);
       if (response.statusCode == 201 && responseData['status'] == 'success') {
@@ -71,8 +97,54 @@ class AuthService {
     await prefs.remove('auth_token');
   }
 
+  Future<Map<String, dynamic>?> getProfile() async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      final token = prefs.getString('auth_token');
+      if (token == null) return null;
+
+      final response = await http.get(
+        Uri.parse('${ApiConfig.baseUrl}/user'),
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          'Authorization': 'Bearer $token',
+        },
+      );
+
+      if (response.statusCode == 200) {
+        final Map<String, dynamic> responseData = json.decode(response.body);
+        if (responseData['status'] == 'success') {
+          return responseData['data'];
+        }
+      }
+      return null;
+    } catch (_) {
+      return null;
+    }
+  }
+
   Future<bool> isLoggedIn() async {
     final prefs = await SharedPreferences.getInstance();
     return prefs.containsKey('auth_token');
+  }
+
+  Future<Map<String, dynamic>> forgotPassword(String email) async {
+    try {
+      final response = await http.post(
+        Uri.parse('${ApiConfig.baseUrl}/forgot-password'),
+        headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
+        body: json.encode({'email': email}),
+      );
+
+      final Map<String, dynamic> responseData = json.decode(response.body);
+      if (response.statusCode == 200 && responseData['status'] == 'success') {
+        return {'success': true, 'message': responseData['message']};
+      } else {
+        return {'success': false, 'message': responseData['message'] ?? 'Failed to send reset link.'};
+      }
+    } catch (e) {
+      return {'success': false, 'message': 'An error occurred. Please check your connection.'};
+    }
   }
 }

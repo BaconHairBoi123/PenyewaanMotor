@@ -1,4 +1,6 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import '../../../core/app_theme.dart';
 import '../../../REST-API/Services/auth_service.dart';
 
@@ -11,10 +13,17 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  bool _isLogin = true;
+  String _authMode = 'login'; // 'login', 'register', 'forgot_password'
   bool _isLoading = false;
   bool _obscurePassword = true;
   bool _obscureConfirmPassword = true;
+
+  // Multi-step Registration and Verification state
+  int _registerStep = 1;
+  String _verificationType = 'sim'; // 'sim' or 'course'
+  String? _licensePhotoPath;
+  String? _facePhotoPath;
+  final ImagePicker _imagePicker = ImagePicker();
 
   // Controllers for Login
   final _loginController = TextEditingController(); // email or username
@@ -29,12 +38,19 @@ class _LoginScreenState extends State<LoginScreen> {
   final _registerPasswordController = TextEditingController();
   final _registerConfirmPasswordController = TextEditingController();
 
+  // Controllers and Keys for Forgot Password
+  final _forgotEmailController = TextEditingController();
+  final _forgotFormKey = GlobalKey<FormState>();
+
   // Global Keys for Forms
   final _loginFormKey = GlobalKey<FormState>();
   final _registerFormKey = GlobalKey<FormState>();
 
   void _submitLogin() async {
     if (!_loginFormKey.currentState!.validate()) return;
+
+    // Close keyboard automatically
+    FocusScope.of(context).unfocus();
 
     setState(() => _isLoading = true);
 
@@ -70,7 +86,27 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   void _submitRegister() async {
-    if (!_registerFormKey.currentState!.validate()) return;
+    if (_registerStep == 1) {
+      if (!_registerFormKey.currentState!.validate()) return;
+      setState(() {
+        _registerStep = 2;
+      });
+      return;
+    }
+
+    // Validation for SIM upload
+    if (_verificationType == 'sim' && (_licensePhotoPath == null || _licensePhotoPath!.isEmpty)) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text("Please upload your Driver's License (SIM) photo to proceed."),
+          backgroundColor: Colors.redAccent,
+        ),
+      );
+      return;
+    }
+
+    // Close keyboard automatically
+    FocusScope.of(context).unfocus();
 
     setState(() => _isLoading = true);
 
@@ -82,6 +118,9 @@ class _LoginScreenState extends State<LoginScreen> {
       passwordConfirmation: _registerConfirmPasswordController.text,
       phoneNumber: _registerPhoneController.text.trim(),
       address: _registerAddressController.text.trim(),
+      verificationType: _verificationType,
+      licensePhotoPath: _licensePhotoPath,
+      facePhotoPath: _facePhotoPath,
     );
 
     setState(() => _isLoading = false);
@@ -118,6 +157,40 @@ class _LoginScreenState extends State<LoginScreen> {
     }
   }
 
+  void _submitForgotPassword() async {
+    if (!_forgotFormKey.currentState!.validate()) return;
+
+    // Close keyboard automatically
+    FocusScope.of(context).unfocus();
+
+    setState(() => _isLoading = true);
+
+    final result = await AuthService().forgotPassword(_forgotEmailController.text.trim());
+
+    setState(() => _isLoading = false);
+
+    if (mounted) {
+      if (result['success'] == true) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(result['message'] ?? 'Reset link has been sent to your email.'),
+            backgroundColor: Colors.green,
+          ),
+        );
+        setState(() {
+          _authMode = 'login';
+        });
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(result['message'] ?? 'Failed to send reset link.'),
+            backgroundColor: Colors.redAccent,
+          ),
+        );
+      }
+    }
+  }
+
   @override
   void dispose() {
     _loginController.dispose();
@@ -129,6 +202,7 @@ class _LoginScreenState extends State<LoginScreen> {
     _registerAddressController.dispose();
     _registerPasswordController.dispose();
     _registerConfirmPasswordController.dispose();
+    _forgotEmailController.dispose();
     super.dispose();
   }
 
@@ -189,40 +263,13 @@ class _LoginScreenState extends State<LoginScreen> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         // ==========================================
-                        // TODO: REPLACE LOGO IMAGE HERE
-                        // You can swap the custom icon placeholder below with your assets
-                        // Example: Image.asset('assets/images/logo_ridenusa_white.png', height: 100)
+                        // RIDE NUSA BRAND LOGO IMAGE
+                        // Displays the white logo asset on the branded background
                         // ==========================================
-                        Container(
-                          padding: const EdgeInsets.all(16),
-                          decoration: BoxDecoration(
-                            color: Colors.white.withOpacity(0.2),
-                            shape: BoxShape.circle,
-                          ),
-                          child: const Icon(
-                            Icons.motorcycle,
-                            size: 72,
-                            color: Colors.white,
-                          ),
-                        ),
-                        const SizedBox(height: 12),
-                        const Text(
-                          'RideNusa',
-                          style: TextStyle(
-                            fontSize: 32,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                            letterSpacing: 1.2,
-                          ),
-                        ),
-                        const SizedBox(height: 6),
-                        Text(
-                          'Explore Nusa Penida Easily',
-                          style: TextStyle(
-                            fontSize: 14,
-                            color: Colors.white.withOpacity(0.9),
-                            fontWeight: FontWeight.w500,
-                          ),
+                        Image.asset(
+                          'assets/images/logo_ridenusa_white.png',
+                          height: 140,
+                          fit: BoxFit.contain,
                         ),
                       ],
                     ),
@@ -307,57 +354,41 @@ class _LoginScreenState extends State<LoginScreen> {
                                   ),
                                 );
                               },
-                              child: _isLogin ? _buildLoginForm() : _buildRegisterForm(),
+                              child: _authMode == 'login'
+                                  ? _buildLoginForm()
+                                  : _authMode == 'register'
+                                      ? _buildRegisterForm()
+                                      : _buildForgotPasswordForm(),
                             ),
                           ),
 
-                          const SizedBox(height: 24),
-                          
-                          // Social Login Divider
-                          Row(
-                            children: [
-                              const Expanded(child: Divider(color: Colors.black12, thickness: 1)),
-                              Padding(
-                                padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                                child: Text(
-                                  _isLogin ? 'or Log In with' : 'or Sign Up with',
-                                  style: const TextStyle(color: Colors.grey, fontSize: 12),
-                                ),
-                              ),
-                              const Expanded(child: Divider(color: Colors.black12, thickness: 1)),
-                            ],
-                          ),
-                          const SizedBox(height: 18),
-
-                          // Social Icons
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              _buildSocialButton(Icons.g_mobiledata, Colors.red, () {}),
-                              const SizedBox(width: 20),
-                              _buildSocialButton(Icons.apple, Colors.black87, () {}),
-                              const SizedBox(width: 20),
-                              _buildSocialButton(Icons.facebook, Colors.blueAccent, () {}),
-                            ],
-                          ),
-                          const SizedBox(height: 24),
+                           const SizedBox(height: 12),
 
                           // Toggle Auth Screen Mode
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                                _isLogin ? "Don't have an account yet?" : "Already have an account?",
+                                _authMode == 'forgot_password'
+                                    ? "Remembered your password? "
+                                    : _authMode == 'login'
+                                        ? "Don't have an account yet? "
+                                        : "Already have an account? ",
                                 style: const TextStyle(color: Colors.grey, fontSize: 13),
                               ),
                               TextButton(
                                 onPressed: () {
                                   setState(() {
-                                    _isLogin = !_isLogin;
+                                    if (_authMode == 'forgot_password' || _authMode == 'register') {
+                                      _authMode = 'login';
+                                    } else {
+                                      _authMode = 'register';
+                                    }
+                                    _registerStep = 1;
                                   });
                                 },
                                 child: Text(
-                                  _isLogin ? 'Sign Up' : 'Log In',
+                                  _authMode == 'login' ? 'Sign Up' : 'Log In',
                                   style: const TextStyle(
                                     color: AppTheme.primaryColor,
                                     fontWeight: FontWeight.bold,
@@ -469,7 +500,11 @@ class _LoginScreenState extends State<LoginScreen> {
           Align(
             alignment: Alignment.centerRight,
             child: TextButton(
-              onPressed: () {},
+              onPressed: () {
+                setState(() {
+                  _authMode = 'forgot_password';
+                });
+              },
               child: const Text(
                 'Forgot Password?',
                 style: TextStyle(color: Colors.grey, fontSize: 12),
@@ -490,7 +525,16 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ),
               child: _isLoading
-                  ? const CircularProgressIndicator(color: AppTheme.darkColor, strokeWidth: 2)
+                  ? const Center(
+                      child: SizedBox(
+                        height: 24,
+                        width: 24,
+                        child: CircularProgressIndicator(
+                          color: AppTheme.darkColor,
+                          strokeWidth: 2.5,
+                        ),
+                      ),
+                    )
                   : const Text(
                       'Log In',
                       style: TextStyle(
@@ -506,165 +550,99 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  // --- REGISTER FORM WIDGET ---
-  Widget _buildRegisterForm() {
+  // --- FORGOT PASSWORD FORM WIDGET ---
+  Widget _buildForgotPasswordForm() {
     return Form(
-      key: _registerFormKey,
+      key: _forgotFormKey,
       child: Column(
-        key: const ValueKey('register_form'),
+        key: const ValueKey('forgot_password_form'),
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           const Text(
-            'Create Account',
+            'Reset Password',
             style: TextStyle(
               fontSize: 24,
               fontWeight: FontWeight.bold,
               color: AppTheme.darkColor,
             ),
           ),
-          const SizedBox(height: 6),
+          const SizedBox(height: 8),
           const Text(
-            'Register now to explore and book bikes',
-            style: TextStyle(fontSize: 13, color: Colors.grey),
+            'Enter your registered email address and we will send you instructions to reset your password.',
+            style: TextStyle(
+              fontSize: 14,
+              color: Colors.grey,
+              height: 1.3,
+            ),
+          ),
+          const SizedBox(height: 20),
+
+          // ==========================================
+          // TODO: PLACE YOUR PASSWORD RESET SCREEN IMAGE HERE
+          // Swap or replace this Container with your illustration Image asset.
+          // Example:
+          // Image.asset(
+          //   'assets/images/forgot_password_illustration.png',
+          //   height: 160,
+          //   fit: BoxFit.contain,
+          // )
+          // ==========================================
+          Container(
+            height: 140,
+            decoration: BoxDecoration(
+              color: AppTheme.primaryColor.withOpacity(0.1),
+              borderRadius: BorderRadius.circular(16),
+              border: Border.all(
+                color: AppTheme.primaryColor.withOpacity(0.3),
+                width: 1.5,
+              ),
+            ),
+            child: const Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(
+                    Icons.lock_reset_outlined,
+                    size: 48,
+                    color: AppTheme.primaryColor,
+                  ),
+                  SizedBox(height: 8),
+                  Text(
+                    'Forgot Password Illustration Placeholder',
+                    style: TextStyle(
+                      color: AppTheme.darkColor,
+                      fontSize: 13,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ],
+              ),
+            ),
           ),
           const SizedBox(height: 24),
-
-          // Full Name Input
-          TextFormField(
-            controller: _registerNameController,
-            decoration: _getInputDecoration('Full Name', Icons.badge_outlined),
-            validator: (value) {
-              if (value == null || value.trim().isEmpty) return 'Full Name is required';
-              return null;
-            },
-          ),
-          const SizedBox(height: 14),
-
-          // Username Input
-          TextFormField(
-            controller: _registerUsernameController,
-            decoration: _getInputDecoration('Username', Icons.alternate_email),
-            validator: (value) {
-              if (value == null || value.trim().isEmpty) return 'Username is required';
-              return null;
-            },
-          ),
-          const SizedBox(height: 14),
 
           // Email Input
           TextFormField(
-            controller: _registerEmailController,
+            controller: _forgotEmailController,
             keyboardType: TextInputType.emailAddress,
             decoration: _getInputDecoration('Email Address', Icons.email_outlined),
             validator: (value) {
-              if (value == null || value.trim().isEmpty) return 'Email is required';
-              if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(value.trim())) {
-                return 'Enter a valid email address';
+              if (value == null || value.trim().isEmpty) {
+                return 'Please enter your email';
               }
-              return null;
-            },
-          ),
-          const SizedBox(height: 14),
-
-          // Phone Number Input
-          TextFormField(
-            controller: _registerPhoneController,
-            keyboardType: TextInputType.phone,
-            decoration: _getInputDecoration('Phone Number', Icons.phone_outlined),
-            validator: (value) {
-              if (value == null || value.trim().isEmpty) return 'Phone number is required';
-              return null;
-            },
-          ),
-          const SizedBox(height: 14),
-
-          // Address Input
-          TextFormField(
-            controller: _registerAddressController,
-            maxLines: 2,
-            decoration: _getInputDecoration('Address', Icons.home_outlined),
-            validator: (value) {
-              if (value == null || value.trim().isEmpty) return 'Address is required';
-              return null;
-            },
-          ),
-          const SizedBox(height: 14),
-
-          // Password Input
-          TextFormField(
-            controller: _registerPasswordController,
-            obscureText: _obscurePassword,
-            decoration: InputDecoration(
-              hintText: 'Password',
-              prefixIcon: const Icon(Icons.lock_outline, size: 20),
-              suffixIcon: IconButton(
-                icon: Icon(
-                  _obscurePassword ? Icons.visibility_off_outlined : Icons.visibility_outlined,
-                  size: 20,
-                ),
-                onPressed: () => setState(() => _obscurePassword = !_obscurePassword),
-              ),
-              filled: true,
-              fillColor: Colors.grey.shade50,
-              contentPadding: const EdgeInsets.symmetric(vertical: 16),
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(12),
-                borderSide: BorderSide(color: Colors.grey.shade200),
-              ),
-              enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(12),
-                borderSide: BorderSide(color: Colors.grey.shade200),
-              ),
-            ),
-            validator: (value) {
-              if (value == null || value.isEmpty) return 'Password is required';
-              if (value.length < 8) return 'Password must be at least 8 characters';
-              return null;
-            },
-          ),
-          const SizedBox(height: 14),
-
-          // Confirm Password Input
-          TextFormField(
-            controller: _registerConfirmPasswordController,
-            obscureText: _obscureConfirmPassword,
-            decoration: InputDecoration(
-              hintText: 'Confirm Password',
-              prefixIcon: const Icon(Icons.lock_outline, size: 20),
-              suffixIcon: IconButton(
-                icon: Icon(
-                  _obscureConfirmPassword ? Icons.visibility_off_outlined : Icons.visibility_outlined,
-                  size: 20,
-                ),
-                onPressed: () => setState(() => _obscureConfirmPassword = !_obscureConfirmPassword),
-              ),
-              filled: true,
-              fillColor: Colors.grey.shade50,
-              contentPadding: const EdgeInsets.symmetric(vertical: 16),
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(12),
-                borderSide: BorderSide(color: Colors.grey.shade200),
-              ),
-              enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(12),
-                borderSide: BorderSide(color: Colors.grey.shade200),
-              ),
-            ),
-            validator: (value) {
-              if (value == null || value.isEmpty) return 'Confirm password is required';
-              if (value != _registerPasswordController.text) {
-                return 'Passwords do not match';
+              if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(value.trim())) {
+                return 'Please enter a valid email address';
               }
               return null;
             },
           ),
           const SizedBox(height: 24),
 
-          // Sign Up Button
+          // Submit Reset Button
           SizedBox(
             height: 50,
             child: ElevatedButton(
-              onPressed: _isLoading ? null : _submitRegister,
+              onPressed: _isLoading ? null : _submitForgotPassword,
               style: ElevatedButton.styleFrom(
                 backgroundColor: AppTheme.primaryColor,
                 shape: RoundedRectangleBorder(
@@ -672,9 +650,18 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ),
               child: _isLoading
-                  ? const CircularProgressIndicator(color: AppTheme.darkColor, strokeWidth: 2)
+                  ? const Center(
+                      child: SizedBox(
+                        height: 24,
+                        width: 24,
+                        child: CircularProgressIndicator(
+                          color: AppTheme.darkColor,
+                          strokeWidth: 2.5,
+                        ),
+                      ),
+                    )
                   : const Text(
-                      'Sign Up',
+                      'Send Reset Link',
                       style: TextStyle(
                         color: AppTheme.darkColor,
                         fontSize: 16,
@@ -685,6 +672,538 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
         ],
       ),
+    );
+  }
+
+  // Helper to pick images
+  Future<void> _pickImage(String type) async {
+    try {
+      final XFile? image = await _imagePicker.pickImage(
+        source: ImageSource.gallery,
+        imageQuality: 85,
+      );
+      if (image != null) {
+        setState(() {
+          if (type == 'license') {
+            _licensePhotoPath = image.path;
+          } else if (type == 'face') {
+            _facePhotoPath = image.path;
+          }
+        });
+      }
+    } catch (e) {
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Failed to pick image: $e')),
+      );
+    }
+  }
+
+  // --- REGISTER FORM WIDGET ---
+  Widget _buildRegisterForm() {
+    return Form(
+      key: _registerFormKey,
+      child: Column(
+        key: const ValueKey('register_form'),
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Row(
+            children: [
+              if (_registerStep == 2)
+                IconButton(
+                  icon: const Icon(Icons.arrow_back, color: AppTheme.darkColor),
+                  onPressed: () {
+                    setState(() {
+                      _registerStep = 1;
+                    });
+                  },
+                ),
+              Expanded(
+                child: Text(
+                  _registerStep == 1 ? 'Create Account' : 'Verification',
+                  style: const TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                    color: AppTheme.darkColor,
+                  ),
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 6),
+          Text(
+            _registerStep == 1
+                ? 'Step 1: Fill in your account details'
+                : 'Step 2: Upload Driver\'s License or choose Course',
+            style: const TextStyle(fontSize: 13, color: Colors.grey),
+          ),
+          const SizedBox(height: 12),
+          
+          // Step progress indicator
+          Row(
+            children: [
+              Expanded(
+                child: Container(
+                  height: 4,
+                  decoration: BoxDecoration(
+                    color: AppTheme.primaryColor,
+                    borderRadius: BorderRadius.circular(2),
+                  ),
+                ),
+              ),
+              const SizedBox(width: 8),
+              Expanded(
+                child: Container(
+                  height: 4,
+                  decoration: BoxDecoration(
+                    color: _registerStep == 2 ? AppTheme.primaryColor : Colors.grey.shade200,
+                    borderRadius: BorderRadius.circular(2),
+                  ),
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 24),
+
+          // Render Step 1 or Step 2
+          _registerStep == 1 ? _buildStep1Fields() : _buildStep2Fields(),
+        ],
+      ),
+    );
+  }
+
+  // STEP 1 Fields (Basic Information)
+  Widget _buildStep1Fields() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        // Full Name Input
+        TextFormField(
+          controller: _registerNameController,
+          decoration: _getInputDecoration('Full Name', Icons.badge_outlined),
+          validator: (value) {
+            if (value == null || value.trim().isEmpty) return 'Full Name is required';
+            return null;
+          },
+        ),
+        const SizedBox(height: 14),
+
+        // Username Input
+        TextFormField(
+          controller: _registerUsernameController,
+          decoration: _getInputDecoration('Username', Icons.alternate_email),
+          validator: (value) {
+            if (value == null || value.trim().isEmpty) return 'Username is required';
+            return null;
+          },
+        ),
+        const SizedBox(height: 14),
+
+        // Email Input
+        TextFormField(
+          controller: _registerEmailController,
+          keyboardType: TextInputType.emailAddress,
+          decoration: _getInputDecoration('Email Address', Icons.email_outlined),
+          validator: (value) {
+            if (value == null || value.trim().isEmpty) return 'Email is required';
+            if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(value.trim())) {
+              return 'Enter a valid email address';
+            }
+            return null;
+          },
+        ),
+        const SizedBox(height: 14),
+
+        // Phone Number Input
+        TextFormField(
+          controller: _registerPhoneController,
+          keyboardType: TextInputType.phone,
+          decoration: _getInputDecoration('Phone Number', Icons.phone_outlined),
+          validator: (value) {
+            if (value == null || value.trim().isEmpty) return 'Phone number is required';
+            return null;
+          },
+        ),
+        const SizedBox(height: 14),
+
+        // Address Input
+        TextFormField(
+          controller: _registerAddressController,
+          maxLines: 2,
+          decoration: _getInputDecoration('Address', Icons.home_outlined),
+          validator: (value) {
+            if (value == null || value.trim().isEmpty) return 'Address is required';
+            return null;
+          },
+        ),
+        const SizedBox(height: 14),
+
+        // Password Input
+        TextFormField(
+          controller: _registerPasswordController,
+          obscureText: _obscurePassword,
+          decoration: InputDecoration(
+            hintText: 'Password',
+            prefixIcon: const Icon(Icons.lock_outline, size: 20),
+            suffixIcon: IconButton(
+              icon: Icon(
+                _obscurePassword ? Icons.visibility_off_outlined : Icons.visibility_outlined,
+                size: 20,
+              ),
+              onPressed: () => setState(() => _obscurePassword = !_obscurePassword),
+            ),
+            filled: true,
+            fillColor: Colors.grey.shade50,
+            contentPadding: const EdgeInsets.symmetric(vertical: 16),
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(12),
+              borderSide: BorderSide(color: Colors.grey.shade200),
+            ),
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(12),
+              borderSide: BorderSide(color: Colors.grey.shade200),
+            ),
+          ),
+          validator: (value) {
+            if (value == null || value.isEmpty) return 'Password is required';
+            if (value.length < 8) return 'Password must be at least 8 characters';
+            return null;
+          },
+        ),
+        const SizedBox(height: 14),
+
+        // Confirm Password Input
+        TextFormField(
+          controller: _registerConfirmPasswordController,
+          obscureText: _obscureConfirmPassword,
+          decoration: InputDecoration(
+            hintText: 'Confirm Password',
+            prefixIcon: const Icon(Icons.lock_outline, size: 20),
+            suffixIcon: IconButton(
+              icon: Icon(
+                _obscureConfirmPassword ? Icons.visibility_off_outlined : Icons.visibility_outlined,
+                size: 20,
+              ),
+              onPressed: () => setState(() => _obscureConfirmPassword = !_obscureConfirmPassword),
+            ),
+            filled: true,
+            fillColor: Colors.grey.shade50,
+            contentPadding: const EdgeInsets.symmetric(vertical: 16),
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(12),
+              borderSide: BorderSide(color: Colors.grey.shade200),
+            ),
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(12),
+              borderSide: BorderSide(color: Colors.grey.shade200),
+            ),
+          ),
+          validator: (value) {
+            if (value == null || value.isEmpty) return 'Confirm password is required';
+            if (value != _registerPasswordController.text) {
+              return 'Passwords do not match';
+            }
+            return null;
+          },
+        ),
+        const SizedBox(height: 24),
+
+        // Next Button
+        SizedBox(
+          height: 50,
+          child: ElevatedButton(
+            onPressed: _submitRegister,
+            style: ElevatedButton.styleFrom(
+              backgroundColor: AppTheme.primaryColor,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12),
+              ),
+            ),
+            child: const Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  'Continue to Verification',
+                  style: TextStyle(
+                    color: AppTheme.darkColor,
+                    fontSize: 15,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                SizedBox(width: 8),
+                Icon(Icons.arrow_forward, color: AppTheme.darkColor, size: 18),
+              ],
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  // STEP 2 Fields (Verification Upload SIM / Option Riding Course)
+  Widget _buildStep2Fields() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        const Text(
+          'Verification Method',
+          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15, color: AppTheme.darkColor),
+        ),
+        const SizedBox(height: 12),
+
+        // Method Choice Chips / Cards
+        _buildSelectionCard(
+          type: 'sim',
+          title: 'I have a Driver\'s License (SIM)',
+          subtitle: 'Upload a picture of your SIM C card for instant verification.',
+          icon: Icons.badge_outlined,
+        ),
+        const SizedBox(height: 12),
+        _buildSelectionCard(
+          type: 'course',
+          title: 'No SIM? Join Riding Course',
+          subtitle: 'Enroll in RideNusa local riding class to get safe certified.',
+          icon: Icons.school_outlined,
+        ),
+        const SizedBox(height: 24),
+
+        // Conditional Verification Form Fields
+        if (_verificationType == 'sim') ...[
+          // SIM Upload Box
+          _buildImageUploadBox(
+            title: 'Driver\'s License (SIM C) Photo *',
+            imagePath: _licensePhotoPath,
+            onTap: () => _pickImage('license'),
+            onClear: () => setState(() => _licensePhotoPath = null),
+          ),
+          const SizedBox(height: 16),
+
+          // Face Upload Box (Optional but helpful)
+          _buildImageUploadBox(
+            title: 'Face Selfie Photo (Optional)',
+            imagePath: _facePhotoPath,
+            onTap: () => _pickImage('face'),
+            onClear: () => setState(() => _facePhotoPath = null),
+          ),
+        ] else ...[
+          // Riding Course Friendly Alert
+          Container(
+            padding: const EdgeInsets.all(16),
+            decoration: BoxDecoration(
+              color: Colors.amber.shade50,
+              borderRadius: BorderRadius.circular(12),
+              border: Border.all(color: Colors.amber.shade200),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Row(
+                  children: [
+                    Icon(Icons.info_outline, color: Colors.orange),
+                    SizedBox(width: 8),
+                    Text(
+                      'Riding Course Program',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: AppTheme.darkColor,
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 8),
+                Text(
+                  'No motorcycle license? No worries! Choose this and our RideNusa trainer team will schedule a short driving class in Nusa Penida before handing you the keys.',
+                  style: TextStyle(
+                    fontSize: 12,
+                    color: Colors.grey.shade800,
+                    height: 1.4,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+
+        const SizedBox(height: 32),
+
+        // Submit Sign Up Button
+        SizedBox(
+          height: 50,
+          child: ElevatedButton(
+            onPressed: _isLoading ? null : _submitRegister,
+            style: ElevatedButton.styleFrom(
+              backgroundColor: AppTheme.primaryColor,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12),
+              ),
+            ),
+            child: _isLoading
+                ? const Center(
+                    child: SizedBox(
+                      height: 24,
+                      width: 24,
+                      child: CircularProgressIndicator(
+                        color: AppTheme.darkColor,
+                        strokeWidth: 2.5,
+                      ),
+                    ),
+                  )
+                : const Text(
+                    'Complete Sign Up',
+                    style: TextStyle(
+                      color: AppTheme.darkColor,
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  // Helper Custom Selection Card
+  Widget _buildSelectionCard({
+    required String type,
+    required String title,
+    required String subtitle,
+    required IconData icon,
+  }) {
+    final isSelected = _verificationType == type;
+    return GestureDetector(
+      onTap: () {
+        setState(() {
+          _verificationType = type;
+        });
+      },
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 200),
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          color: isSelected ? AppTheme.primaryColor.withOpacity(0.05) : Colors.grey.shade50,
+          borderRadius: BorderRadius.circular(16),
+          border: Border.all(
+            color: isSelected ? AppTheme.primaryColor : Colors.grey.shade200,
+            width: isSelected ? 2 : 1,
+          ),
+        ),
+        child: Row(
+          children: [
+            Container(
+              padding: const EdgeInsets.all(12),
+              decoration: BoxDecoration(
+                color: isSelected ? AppTheme.primaryColor.withOpacity(0.1) : Colors.grey.shade100,
+                shape: BoxShape.circle,
+              ),
+              child: Icon(
+                icon,
+                color: isSelected ? AppTheme.primaryColor : Colors.grey,
+                size: 24,
+              ),
+            ),
+            const SizedBox(width: 16),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    title,
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 13,
+                      color: isSelected ? AppTheme.darkColor : Colors.black87,
+                    ),
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    subtitle,
+                    style: TextStyle(
+                      fontSize: 11,
+                      color: Colors.grey.shade600,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Icon(
+              isSelected ? Icons.radio_button_checked : Icons.radio_button_off,
+              color: isSelected ? AppTheme.primaryColor : Colors.grey,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  // Helper Image Box Upload Widget
+  Widget _buildImageUploadBox({
+    required String title,
+    required String? imagePath,
+    required VoidCallback onTap,
+    required VoidCallback onClear,
+  }) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          title,
+          style: const TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 13,
+            color: AppTheme.darkColor,
+          ),
+        ),
+        const SizedBox(height: 8),
+        GestureDetector(
+          onTap: imagePath == null ? onTap : null,
+          child: Container(
+            height: 120,
+            decoration: BoxDecoration(
+              color: Colors.grey.shade50,
+              borderRadius: BorderRadius.circular(12),
+              border: Border.all(color: Colors.grey.shade200),
+            ),
+            child: imagePath == null
+                ? Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(Icons.camera_alt_outlined, color: Colors.grey.shade400, size: 32),
+                        const SizedBox(height: 6),
+                        Text(
+                          'Tap to upload image',
+                          style: TextStyle(color: Colors.grey.shade500, fontSize: 12),
+                        ),
+                      ],
+                    ),
+                  )
+                : ClipRRect(
+                    borderRadius: BorderRadius.circular(12),
+                    child: Stack(
+                      fit: StackFit.expand,
+                      children: [
+                        Image.file(
+                          File(imagePath),
+                          fit: BoxFit.cover,
+                        ),
+                        Positioned(
+                          right: 8,
+                          top: 8,
+                          child: CircleAvatar(
+                            radius: 16,
+                            backgroundColor: Colors.black54,
+                            child: IconButton(
+                              icon: const Icon(Icons.close, size: 16, color: Colors.white),
+                              onPressed: onClear,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+          ),
+        ),
+      ],
     );
   }
 
@@ -703,24 +1222,6 @@ class _LoginScreenState extends State<LoginScreen> {
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(12),
         borderSide: BorderSide(color: Colors.grey.shade200),
-      ),
-    );
-  }
-
-  // Social Icon Button Builder
-  Widget _buildSocialButton(IconData icon, Color color, VoidCallback onTap) {
-    return InkWell(
-      onTap: onTap,
-      borderRadius: BorderRadius.circular(12),
-      child: Container(
-        height: 48,
-        width: 64,
-        decoration: BoxDecoration(
-          color: Colors.grey.shade50,
-          border: Border.all(color: Colors.grey.shade200),
-          borderRadius: BorderRadius.circular(12),
-        ),
-        child: Icon(icon, size: 28, color: color),
       ),
     );
   }
