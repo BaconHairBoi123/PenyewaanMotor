@@ -1,3 +1,5 @@
+rootProject.name = "ridenusa_android"
+
 pluginManagement {
     val flutterSdkPath =
         run {
@@ -24,3 +26,4 @@ plugins {
 }
 
 include(":app")
+
