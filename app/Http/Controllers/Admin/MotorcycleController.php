@@ -38,6 +38,7 @@ class MotorcycleController extends Controller
             'transmission' => 'required|in:manual,automatic',
             'price' => 'required|numeric',
             'license_plate' => 'required|unique:motorcycles,license_plate',
+            'status' => 'required|in:available,service',
             'image' => 'nullable|image|max:2048'
         ], [
             'license_plate.unique' => 'Plat nomor ini sudah terdaftar di sistem! Silakan gunakan plat nomor lain.'
@@ -75,10 +76,21 @@ class MotorcycleController extends Controller
             'transmission' => 'required|in:manual,automatic',
             'price' => 'required|numeric',
             'license_plate' => 'required|unique:motorcycles,license_plate,' . $motorcycle->id,
+            'status' => 'required|in:available,rented,service',
             'image' => 'nullable|image|max:2048'
         ], [
             'license_plate.unique' => 'Plat nomor ini sudah terdaftar di sistem! Silakan gunakan plat nomor lain.'
         ]);
+
+        // Prevent editing rented motorcycle status manually to something else
+        if ($motorcycle->status === 'rented' && $request->status !== 'rented') {
+            return back()->withErrors(['status' => 'Status of a rented motorcycle cannot be changed manually.']);
+        }
+        
+        // Prevent manually setting a non-rented motorcycle to rented
+        if ($motorcycle->status !== 'rented' && $request->status === 'rented') {
+            return back()->withErrors(['status' => 'You cannot change the motorcycle status to Rented manually.']);
+        }
 
         $data = $request->except('image');
 
@@ -109,5 +121,22 @@ class MotorcycleController extends Controller
         $motorcycle->delete();
 
         return back()->with('success', 'Motorcycle deleted.');
+    }
+
+    public function toggleStatus(Request $request, Motorcycle $motorcycle)
+    {
+        if ($motorcycle->status === 'rented') {
+            return back()->with('error', 'Cannot change the status of a rented motorcycle.');
+        }
+
+        if ($request->has('status') && in_array($request->status, ['available', 'service'])) {
+            $motorcycle->status = $request->status;
+        } else {
+            $motorcycle->status = ($motorcycle->status === 'available') ? 'service' : 'available';
+        }
+        
+        $motorcycle->save();
+
+        return back()->with('success', 'Motorcycle status updated to ' . ucfirst($motorcycle->status) . ' successfully.');
     }
 }

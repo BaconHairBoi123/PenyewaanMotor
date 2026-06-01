@@ -14,6 +14,12 @@
         </div>
     @endif
 
+    @if (session('error'))
+        <div class="bg-red-100 text-red-800 p-3 rounded mb-4">
+            {{ session('error') }}
+        </div>
+    @endif
+
     <div class="bg-white rounded-lg shadow p-6">
         <table class="w-full">
             <thead>
@@ -89,7 +95,27 @@
                             @endif
                         </td>
                         <td class="p-3">Rp {{ number_format($motor->price) }}</td>
-                        <td class="p-3">{{ $motor->status }}</td>
+                        <td class="p-3">
+                            @if(strtolower($motor->status ?? '') === 'rented')
+                                <span class="px-2 py-1 text-xs font-semibold rounded-full bg-blue-100 text-blue-700" title="Locked: active rental">
+                                    Rented
+                                </span>
+                            @else
+                                <form action="{{ route('admin.motorcycles_Management.toggleStatus', $motor->id) }}" method="POST" class="inline">
+                                    @csrf
+                                    <select name="status" onchange="this.form.submit()" 
+                                            class="text-xs font-semibold rounded-full px-3 py-1 border cursor-pointer focus:outline-none transition-colors duration-150
+                                            {{ strtolower($motor->status ?? '') === 'available' ? 'bg-green-100 border-green-200 text-green-700' : 'bg-yellow-100 border-yellow-200 text-yellow-700' }}">
+                                        <option value="available" {{ strtolower($motor->status ?? '') === 'available' ? 'selected' : '' }}>
+                                            Available
+                                        </option>
+                                        <option value="service" {{ strtolower($motor->status ?? '') === 'service' ? 'selected' : '' }}>
+                                            Service
+                                        </option>
+                                    </select>
+                                </form>
+                            @endif
+                        </td>
 
                         <td class="p-3 flex gap-2">
                             <a href="{{ route('admin.motorcycles_Management.edit', $motor->id) }}"

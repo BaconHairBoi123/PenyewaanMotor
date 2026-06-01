@@ -141,6 +141,8 @@ Route::middleware('auth:admin')->prefix('admin')->name('admin.')->group(function
     Route::resource('transaksi', TransaksiController::class);
 
     // Motorcycle Management
+    Route::post('/motorcycles_Management/{motorcycle}/toggle-status', [MotorcycleController::class, 'toggleStatus'])
+        ->name('motorcycles_Management.toggleStatus');
     Route::resource('motorcycles_Management', MotorcycleController::class)
         ->parameters(['motorcycles_Management' => 'motorcycle']);
 

@@ -39,7 +39,6 @@
                 <select name="status" class="border p-2 rounded w-full">
                     <option value="available">Available</option>
                     <option value="active">Active</option>
-                    <option value="maintenance">Maintenance</option>
                 </select>
             </div>
             

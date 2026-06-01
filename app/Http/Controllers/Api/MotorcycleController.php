@@ -15,6 +15,9 @@ class MotorcycleController extends Controller
     {
         $query = Motorcycle::query();
 
+        // Hanya tampilkan motor dengan status 'available'
+        $query->where('status', 'available');
+
         // Fitur pencarian dan filter sederhana
         if ($request->has('brand')) {
             $query->where('brand', 'like', '%' . $request->brand . '%');
@@ -27,11 +30,13 @@ class MotorcycleController extends Controller
                   ->orWhere('description', 'like', '%' . $request->search . '%');
         }
 
-        // Include gambar utama untuk list
-        // Jika ada relasi image, misal dengan with('images')
-        // Saat ini model Motorcycle memiliki 'image_path'
-        $motorcycles = $query->latest()->get()->map(function ($motor) {
+        $motorcycles = $query->with('images')->latest()->get()->map(function ($motor) {
             $motor->image_url = $motor->image_path ? asset('storage/' . $motor->image_path) : null;
+            if ($motor->images) {
+                foreach ($motor->images as $img) {
+                    $img->image_url = $img->image_path ? asset('storage/' . $img->image_path) : null;
+                }
+            }
             return $motor;
         });
 
@@ -57,10 +62,8 @@ class MotorcycleController extends Controller
 
         $motorcycle->image_url = $motorcycle->image_path ? asset('storage/' . $motorcycle->image_path) : null;
         
-        // Ambil galeri gambar jika ada (Tabel motorcycle_images)
-        // Kita asumsikan relasinya ada atau kita query manual
         $gallery = \App\Models\MotorcycleImage::where('motorcycle_id', $id)->get()->map(function ($img) {
-            $img->image_url = asset('storage/motorcycle_galleries/' . $img->image_path);
+            $img->image_url = $img->image_path ? asset('storage/' . $img->image_path) : null;
             return $img;
         });
         

@@ -64,6 +64,13 @@ class BookingController extends Controller
 
         $motorcycle = Motorcycle::findOrFail($request->motorcycle_id);
 
+        if ($motorcycle->status !== 'available') {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'This motorcycle is currently not available for booking.'
+            ], 400);
+        }
+
         // 2. Hitung Durasi & Harga
         $start = \Carbon\Carbon::parse($request->start_date);
         $end = \Carbon\Carbon::parse($request->end_date);
@@ -203,8 +210,28 @@ class BookingController extends Controller
      */
     public function history(Request $request)
     {
+        $today = now()->toDateString();
+        
+        // Auto-expire pending bookings whose start_date is in the past
+        Booking::where('user_id', $request->user()->id)
+            ->where('payment_status', 'pending')
+            ->where('start_date', '<', $today)
+            ->update(['payment_status' => 'failed']);
+            
+        // Sync matching payments to failed
+        $expiredBookings = Booking::where('user_id', $request->user()->id)
+            ->where('payment_status', 'failed')
+            ->get();
+        foreach ($expiredBookings as $eb) {
+            $payment = \App\Models\Payment::where('invoice_number', $eb->order_id)->first();
+            if ($payment && $payment->status === 'pending') {
+                $payment->status = 'failed';
+                $payment->save();
+            }
+        }
+
         $bookings = Booking::with(['motorcycle' => function($q) {
-            $q->select('id', 'brand', 'category', 'image_path');
+            $q->select('id', 'brand', 'category', 'image_path', 'license_plate');
         }])
         ->where('user_id', $request->user()->id)
         ->latest()
@@ -213,6 +240,18 @@ class BookingController extends Controller
             if ($booking->motorcycle) {
                  $booking->motorcycle->image_url = $booking->motorcycle->image_path ? asset('storage/motorcycles/' . $booking->motorcycle->image_path) : null;
             }
+            
+            // Check return status of matching rental
+            $payment = \App\Models\Payment::where('invoice_number', $booking->order_id)->first();
+            $hasReturn = false;
+            if ($payment && $payment->rental_id) {
+                $rental = \App\Models\Rental::with('returns')->find($payment->rental_id);
+                if ($rental && $rental->returns) {
+                    $hasReturn = true;
+                }
+            }
+            $booking->has_return = $hasReturn;
+            
             return $booking;
         });
 
@@ -247,6 +286,12 @@ class BookingController extends Controller
         try {
             $booking->payment_status = 'cancelled';
             $booking->save();
+
+            // Set motorcycle status back to available
+            if ($booking->motorcycle) {
+                $booking->motorcycle->status = 'available';
+                $booking->motorcycle->save();
+            }
 
             $payment = Payment::where('invoice_number', $booking->order_id)->where('user_id', $user->id)->first();
             if ($payment) {

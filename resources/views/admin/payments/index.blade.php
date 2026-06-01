@@ -41,7 +41,7 @@
     <td class="p-2">
         <span class="px-2 py-1 rounded text-sm
             {{ $p->status == 'success' ? 'bg-green-200 text-green-700' : 
-               ($p->status == 'failed' ? 'bg-red-200 text-red-700' : 'bg-yellow-200 text-yellow-700') }}">
+               (in_array($p->status, ['failed', 'cancelled', 'cancel']) ? 'bg-red-200 text-red-700' : 'bg-yellow-200 text-yellow-700') }}">
             {{ ucfirst($p->status) }}
         </span>
     </td>

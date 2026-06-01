@@ -56,7 +56,7 @@
                         </div>
                         <div>
                             <p class="text-sm text-gray-600">Last Updated</p>
-                            <p class="font-semibold text-sm" x-text="selectedDevice.latest_location ? new Date(selectedDevice.latest_location.created_at).toLocaleString() : 'No data'"></p>
+                            <p class="font-semibold text-sm" x-text="selectedDevice.latest_location ? new Date(selectedDevice.latest_location.updated_at).toLocaleString() : 'No data'"></p>
                         </div>
                     </div>
                     
@@ -127,7 +127,7 @@
                     <th class="p-3 text-sm font-semibold">Latitude</th>
                     <th class="p-3 text-sm font-semibold">Longitude</th>
                     <th class="p-3 text-sm font-semibold">Device</th>
-                    <th class="p-3 text-sm font-semibold">Created</th>
+                    <th class="p-3 text-sm font-semibold">Created At</th>
                     <th class="p-3 text-sm font-semibold">Actions</th>
                 </tr>
             </thead>
@@ -144,7 +144,7 @@
                             <span class="text-gray-500">Manual</span>
                         @endif
                     </td>
-                    <td class="p-3 text-sm text-gray-600">{{ $location->created_at->format('M d, Y H:i') }}</td>
+                    <td class="p-3 text-sm text-gray-600">{{ $location->created_at ? $location->created_at->format('M d, Y H:i') : 'N/A' }}</td>
                     <td class="p-3">
                         <form action="{{ route('admin.locations.destroy', $location->id) }}" method="POST" onsubmit="return confirm('Are you sure?');" class="inline">
                             @csrf
@@ -182,6 +182,33 @@
                 map: null,
                 marker: null,
 
+                init() {
+                    // Poll for new location updates every 3 seconds for the selected device
+                    setInterval(() => {
+                        this.fetchLatestLocation();
+                    }, 3000);
+                },
+
+                async fetchLatestLocation() {
+                    if (!this.selectedDevice) return;
+
+                    try {
+                        const response = await fetch(`/api/gps/latest/${this.selectedDevice.id}`);
+                        if (!response.ok) return;
+
+                        const result = await response.json();
+                        if (result.status === 'success' && result.data) {
+                            // Update the selected device's latest_location object
+                            this.selectedDevice.latest_location = result.data;
+                            
+                            // Re-render map and marker
+                            this.initializeMap();
+                        }
+                    } catch (error) {
+                        console.error('Failed to fetch latest GPS coordinates:', error);
+                    }
+                },
+
                 filterDevices() {
                     const query = this.searchQuery.toLowerCase();
                     if (!query) {
@@ -209,35 +236,41 @@
                     });
                 },
 
-                initializeMap() {
+                 initializeMap() {
                     if (!this.selectedDevice || !this.selectedDevice.latest_location) return;
 
                     const lat = parseFloat(this.selectedDevice.latest_location.latitude);
                     const lng = parseFloat(this.selectedDevice.latest_location.longitude);
 
                     if (!this.map) {
-                        this.map = L.map('map').setView([lat, lng], 13);
+                        // First initialization
+                        this.map = L.map('map').setView([lat, lng], 15);
                         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                             attribution: '© OpenStreetMap contributors',
                             maxZoom: 19,
                         }).addTo(this.map);
                     } else {
-                        this.map.setView([lat, lng], 13);
+                        // Preserve the zoom level set by the user
+                        const currentZoom = this.map.getZoom();
+                        this.map.setView([lat, lng], currentZoom);
                     }
 
-                    // Remove old marker if exists
+                    const popupContent = `<div class="text-sm"><strong>${this.selectedDevice.device_code}</strong><br>
+                        Plate: ${this.selectedDevice.motorcycle_plate}<br>
+                        Lat: ${lat.toFixed(6)}<br>
+                        Lng: ${lng.toFixed(6)}</div>`;
+
+                    // Update existing marker instead of recreating it (keeps popup open if selected)
                     if (this.marker) {
-                        this.map.removeLayer(this.marker);
+                        this.marker.setLatLng([lat, lng]);
+                        this.marker.setPopupContent(popupContent);
+                    } else {
+                        // Create new marker
+                        this.marker = L.marker([lat, lng])
+                            .addTo(this.map)
+                            .bindPopup(popupContent)
+                            .openPopup();
                     }
-
-                    // Add new marker
-                    this.marker = L.marker([lat, lng])
-                        .addTo(this.map)
-                        .bindPopup(`<div class="text-sm"><strong>${this.selectedDevice.device_code}</strong><br>
-                            Plate: ${this.selectedDevice.motorcycle_plate}<br>
-                            Lat: ${lat.toFixed(6)}<br>
-                            Lng: ${lng.toFixed(6)}</div>`)
-                        .openPopup();
                 }
             };
         }

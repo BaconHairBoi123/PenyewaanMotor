@@ -28,18 +28,41 @@ class PaymentController extends Controller
 
     public function success($id)
     {
-        DB::table('payments')
-            ->where('id', $id)
-            ->update(['status' => 'success']);
+        $payment = \App\Models\Payment::find($id);
+        if ($payment) {
+            $payment->status = 'success';
+            $payment->save();
+
+            // Sync with Booking
+            $booking = \App\Models\Booking::where('order_id', $payment->invoice_number)->first();
+            if ($booking) {
+                $booking->payment_status = 'paid';
+                $booking->save();
+
+                if ($booking->motorcycle) {
+                    $booking->motorcycle->status = 'rented';
+                    $booking->motorcycle->save();
+                }
+            }
+        }
 
         return back()->with('success', 'Pembayaran berhasil dikonfirmasi.');
     }
 
     public function failed($id)
     {
-        DB::table('payments')
-            ->where('id', $id)
-            ->update(['status' => 'failed']);
+        $payment = \App\Models\Payment::find($id);
+        if ($payment) {
+            $payment->status = 'failed';
+            $payment->save();
+
+            // Sync with Booking
+            $booking = \App\Models\Booking::where('order_id', $payment->invoice_number)->first();
+            if ($booking) {
+                $booking->payment_status = 'failed';
+                $booking->save();
+            }
+        }
 
         return back()->with('error', 'Pembayaran ditandai gagal.');
     }

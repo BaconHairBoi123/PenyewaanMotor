@@ -106,6 +106,31 @@
 </div>
 
 <div>
+    <label class="block font-medium mb-1">
+        Status
+        <span class="text-red-500">*</span>
+    </label>
+    @if(isset($motorcycle) && $motorcycle->status === 'rented')
+        <select class="w-full p-2 border rounded bg-gray-100 cursor-not-allowed text-gray-500" disabled>
+            <option value="rented" selected>Rented (Currently Hired)</option>
+        </select>
+        <input type="hidden" name="status" value="rented">
+        <p class="text-xs text-red-500 mt-1">Status 'Rented' cannot be changed manually while the motorcycle is active on hire.</p>
+    @else
+        <select name="status" class="w-full p-2 border rounded" required>
+            <option value="available"
+                {{ old('status', $motorcycle->status ?? 'available') === 'available' ? 'selected' : '' }}>
+                Available
+            </option>
+            <option value="service"
+                {{ old('status', $motorcycle->status ?? '') === 'service' ? 'selected' : '' }}>
+                Service
+            </option>
+        </select>
+    @endif
+</div>
+
+<div>
     <label class="block">Image</label>
     <input type="file" name="image" class="w-full p-2 border rounded">
 
