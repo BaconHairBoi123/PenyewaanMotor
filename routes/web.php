@@ -230,4 +230,5 @@ Route::middleware('auth:admin')->prefix('admin')->name('admin.')->group(function
     Route::get('/motorcycles/{motorcycle_id}/assign-device', [DeviceController::class, 'assignToMotorcycle'])->name('devices.assign');
     Route::post('/motorcycles/{motorcycle_id}/assign-device', [DeviceController::class, 'saveAssignment'])->name('devices.save_assignment');
     Route::post('/motorcycles/{motorcycle_id}/remove-device', [DeviceController::class, 'removeFromMotorcycle'])->name('devices.remove');
+    Route::post('/devices/{device}/relay', [DeviceController::class, 'setRelayStatus'])->name('devices.set_relay_status');
 });

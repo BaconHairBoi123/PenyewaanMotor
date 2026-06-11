@@ -65,6 +65,31 @@ class GpsController extends Controller
      * Endpoint untuk mendapatkan koordinat terbaru dari device tertentu
      * GET /api/gps/latest/{device_id}
      */
+    public function statusRelay(Request $request)
+    {
+        $request->validate([
+            'device_code' => 'required|string',
+        ]);
+
+        $device = Device::where('device_code', $request->device_code)->first();
+
+        if (!$device) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Device GPS tidak terdaftar'
+            ], 404);
+        }
+
+        return response()->json([
+            'status' => 'success',
+            'data' => [
+                'device_code' => $device->device_code,
+                'relay_status' => $device->relay_status ?? 'ON',
+                'motorcycle_plate' => $device->motorcycle?->license_plate,
+            ]
+        ], 200);
+    }
+
     public function getLatestLocation($device_id)
     {
         $device = Device::find($device_id);

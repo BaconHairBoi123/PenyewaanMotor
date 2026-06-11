@@ -21,6 +21,7 @@ class LocationController extends Controller
                     'device_code' => $device->device_code,
                     'device_name' => $device->device_name,
                     'motorcycle_plate' => $device->motorcycle?->license_plate ?? 'N/A',
+                    'relay_status' => $device->relay_status ?? 'ON',
                     'latest_location' => $device->locations->sortByDesc('created_at')->first()
                 ];
             });

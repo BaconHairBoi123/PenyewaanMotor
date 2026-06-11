@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Api\AuthController;
@@ -39,6 +38,7 @@ Route::get('/locations', [LocationController::class, 'index']);
 
 // GPS API (dari ESP32) - PUBLIC karena ESP32 tidak ada token
 Route::post('/gps/update', [GpsController::class, 'updateLocation']);
+Route::get('/gps/status-relay', [GpsController::class, 'statusRelay']);
 Route::get('/gps/latest/{device_id}', [GpsController::class, 'getLatestLocation']);
 Route::get('/gps/history/{motorcycle_id}', [GpsController::class, 'getMotorcycleHistory']);
 Route::post('/gps/pair', [GpsController::class, 'pairDeviceToMotorcycle']);

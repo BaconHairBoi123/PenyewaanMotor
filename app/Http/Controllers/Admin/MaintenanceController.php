@@ -19,6 +19,8 @@ class MaintenanceController extends Controller
             ->orderBy('last_service_date', 'asc') // yang paling lama servisnya paling atas
             ->get();
 
-        return view('admin.maintenance.index', compact('motorcycles'));
+        $gpsDevices = \App\Models\Device::with('motorcycle')->get();
+
+        return view('admin.maintenance.index', compact('motorcycles', 'gpsDevices'));
     }
 }

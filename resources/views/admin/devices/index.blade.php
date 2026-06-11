@@ -76,6 +76,11 @@
                         </span>
                     </td>
                     <td class="border p-3">
+                        <span class="px-2 py-1 rounded text-sm font-semibold {{ $device->relay_status === 'OFF' ? 'bg-red-100 text-red-800' : 'bg-green-100 text-green-800' }}">
+                            {{ $device->relay_status ?? 'ON' }}
+                        </span>
+                    </td>
+                    <td class="border p-3">
                         @if($device->motorcycle)
                             <div class="flex items-center justify-between gap-2 bg-blue-50 p-2 rounded border border-blue-100">
                                 <div>

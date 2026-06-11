@@ -59,6 +59,20 @@
                             <p class="font-semibold text-sm" x-text="selectedDevice.latest_location ? new Date(selectedDevice.latest_location.updated_at).toLocaleString() : 'No data'"></p>
                         </div>
                     </div>
+                    <div class="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
+                        <div class="bg-white border border-gray-200 rounded p-4">
+                            <p class="text-sm text-gray-600 mb-1">Relay Status</p>
+                            <p class="font-semibold text-lg" x-text="selectedDevice.relay_status || 'ON'"></p>
+                        </div>
+                        <div class="flex items-center">
+                            <button type="button"
+                                class="w-full px-4 py-2 rounded text-white font-semibold transition-colors duration-200"
+                                :class="selectedDevice.relay_status === 'OFF' ? 'bg-green-600 hover:bg-green-700' : 'bg-red-600 hover:bg-red-700'"
+                                x-text="selectedDevice.relay_status === 'OFF' ? 'Nyalakan Motor' : 'Matikan Motor'"
+                                @click="toggleRelay()"
+                            ></button>
+                        </div>
+                    </div>
                     
                     <!-- Location Info -->
                     <template x-if="selectedDevice.latest_location">
@@ -99,12 +113,12 @@
         <h2 class="font-bold text-lg mb-4 text-gray-800">Add Manual Location</h2>
         <form method="POST" action="{{ route('admin.locations.store') }}" class="flex flex-wrap gap-4 items-end">
             @csrf
-            <div class="flex-1 min-w-[200px]">
+            <div class="flex-1 min-w-50">
                 <label class="block text-sm font-medium text-gray-700 mb-1">Latitude</label>
                 <input type="number" name="latitude" placeholder="e.g., -6.2088" step="any" 
                     class="border border-gray-300 p-2 rounded w-full focus:ring-2 focus:ring-blue-500" required>
             </div>
-            <div class="flex-1 min-w-[200px]">
+            <div class="flex-1 min-w-50">
                 <label class="block text-sm font-medium text-gray-700 mb-1">Longitude</label>
                 <input type="number" name="longitude" placeholder="e.g., 106.8456" step="any" 
                     class="border border-gray-300 p-2 rounded w-full focus:ring-2 focus:ring-blue-500" required>
@@ -181,12 +195,70 @@
                 showDropdown: false,
                 map: null,
                 marker: null,
+                csrfToken: document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || '',
 
                 init() {
-                    // Poll for new location updates every 3 seconds for the selected device
+                    // Poll for new location updates and relay status every 3 seconds for the selected device
                     setInterval(() => {
                         this.fetchLatestLocation();
+                        this.fetchRelayStatus();
                     }, 3000);
+                },
+
+                async fetchRelayStatus() {
+                    if (!this.selectedDevice) return;
+
+                    try {
+                        const params = new URLSearchParams({ device_code: this.selectedDevice.device_code });
+                        const response = await fetch(`/api/gps/status-relay?${params.toString()}`);
+                        if (!response.ok) return;
+
+                        const result = await response.json();
+                        if (result.status === 'success' && result.data) {
+                            this.selectedDevice.relay_status = result.data.relay_status || 'ON';
+                        }
+                    } catch (error) {
+                        console.error('Failed to fetch relay status:', error);
+                    }
+                },
+
+                async toggleRelay() {
+                    if (!this.selectedDevice) return;
+
+                    const nextStatus = this.selectedDevice.relay_status === 'OFF' ? 'ON' : 'OFF';
+
+                    try {
+                        const response = await fetch(`/admin/devices/${this.selectedDevice.id}/relay`, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'Accept': 'application/json',
+                                'X-CSRF-TOKEN': this.csrfToken,
+                            },
+                            body: JSON.stringify({ relay_status: nextStatus }),
+                        });
+
+                        const result = await response.json();
+                        if (response.ok && result.status === 'success') {
+                            this.selectedDevice.relay_status = result.data.relay_status;
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Relay updated',
+                                text: `Perintah berhasil disimpan: ${result.data.relay_status}`,
+                                timer: 1500,
+                                showConfirmButton: false,
+                            });
+                        } else {
+                            throw new Error(result.message || 'Gagal memperbarui relay');
+                        }
+                    } catch (error) {
+                        console.error('Failed to toggle relay status:', error);
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error',
+                            text: 'Tidak dapat mengubah status relay saat ini.',
+                        });
+                    }
                 },
 
                 async fetchLatestLocation() {

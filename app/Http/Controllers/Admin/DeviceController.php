@@ -192,4 +192,26 @@ class DeviceController extends Controller
         return redirect()->route('admin.devices.index')
             ->with('success', 'Device GPS berhasil dilepas dari motor.');
     }
+
+    public function setRelayStatus(Request $request, Device $device)
+    {
+        $request->validate([
+            'relay_status' => 'required|in:ON,OFF',
+        ]);
+
+        $device->update(['relay_status' => $request->relay_status]);
+
+        if ($request->wantsJson() || $request->ajax()) {
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Relay status updated successfully.',
+                'data' => [
+                    'device_code' => $device->device_code,
+                    'relay_status' => $device->relay_status,
+                ]
+            ]);
+        }
+
+        return back()->with('success', 'Relay status updated to ' . $device->relay_status . '.');
+    }
 }

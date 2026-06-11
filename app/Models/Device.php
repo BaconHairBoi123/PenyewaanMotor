@@ -15,6 +15,7 @@ class Device extends Model
         'device_code',
         'device_name',
         'status',
+        'relay_status',
     ];
 
     /**
