@@ -109,6 +109,18 @@ class _CartScreenState extends State<CartScreen> {
     final isPending = status == 'pending';
     final snapToken = booking['snap_token'];
 
+    bool isOverdue = false;
+    if (endDateStr.isNotEmpty) {
+      try {
+        final endDate = DateTime.parse(endDateStr);
+        final now = DateTime.now();
+        final today = DateTime(now.year, now.month, now.day);
+        if (endDate.isBefore(today)) {
+          isOverdue = true;
+        }
+      } catch (_) {}
+    }
+
     return Card(
       elevation: 0,
       shape: RoundedRectangleBorder(
@@ -158,13 +170,19 @@ class _CartScreenState extends State<CartScreen> {
                           Container(
                             padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                             decoration: BoxDecoration(
-                              color: isPending ? Colors.amber.shade50 : Colors.green.shade50,
+                              color: isPending 
+                                  ? Colors.amber.shade50 
+                                  : (isOverdue ? Colors.red.shade50 : Colors.green.shade50),
                               borderRadius: BorderRadius.circular(12),
                             ),
                             child: Text(
-                              isPending ? 'Pending Payment' : 'Active',
+                              isPending 
+                                  ? 'Pending Payment' 
+                                  : (isOverdue ? 'Overdue' : 'Active'),
                               style: TextStyle(
-                                color: isPending ? Colors.amber.shade800 : Colors.green,
+                                color: isPending 
+                                    ? Colors.amber.shade800 
+                                    : (isOverdue ? Colors.red.shade700 : Colors.green),
                                 fontSize: 11,
                                 fontWeight: FontWeight.bold,
                               ),

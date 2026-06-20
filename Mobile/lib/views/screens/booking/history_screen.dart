@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import '../../../core/app_theme.dart';
 import '../../../REST-API/api_config.dart';
 import '../../../REST-API/Services/booking_service.dart';
@@ -155,12 +156,18 @@ class _HistoryScreenState extends State<HistoryScreen> {
                     height: 70,
                     color: AppTheme.backgroundColor,
                     child: imageUrl.isNotEmpty
-                        ? Image.network(
-                            imageUrl,
+                        ? CachedNetworkImage(
+                            imageUrl: imageUrl,
                             fit: BoxFit.cover,
-                            errorBuilder: (context, error, stackTrace) {
-                              return const Center(child: Icon(Icons.two_wheeler, color: Colors.grey));
-                            },
+                            placeholder: (context, url) => const Center(
+                              child: CircularProgressIndicator(
+                                strokeWidth: 2,
+                                color: Colors.amber,
+                              ),
+                            ),
+                            errorWidget: (context, url, error) => const Center(
+                              child: Icon(Icons.two_wheeler, color: Colors.grey),
+                            ),
                           )
                         : const Center(child: Icon(Icons.two_wheeler, color: Colors.grey)),
                   ),

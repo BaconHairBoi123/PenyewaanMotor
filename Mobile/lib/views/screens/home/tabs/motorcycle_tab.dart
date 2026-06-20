@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import '../../../../core/app_theme.dart';
 import '../../../../REST-API/Models/motorcycle.dart';
 import '../../../../REST-API/Services/auth_service.dart';
@@ -608,24 +609,18 @@ class MotorCard extends StatelessWidget {
               child: ClipRRect(
                 borderRadius: const BorderRadius.vertical(top: Radius.circular(12)),
                 child: motor.imageUrl != null
-                    ? Image.network(
-                        motor.imageUrl!,
+                    ? CachedNetworkImage(
+                        imageUrl: motor.imageUrl!,
                         fit: BoxFit.cover,
-                        loadingBuilder: (context, child, loadingProgress) {
-                          if (loadingProgress == null) return child;
-                          return Center(
-                            child: CircularProgressIndicator(
-                              value: loadingProgress.expectedTotalBytes != null
-                                  ? loadingProgress.cumulativeBytesLoaded / loadingProgress.expectedTotalBytes!
-                                  : null,
-                              strokeWidth: 2,
-                              color: Colors.amber,
-                            ),
-                          );
-                        },
-                        errorBuilder: (context, error, stackTrace) {
-                          return const Center(child: Icon(Icons.two_wheeler, size: 60, color: Colors.grey));
-                        },
+                        placeholder: (context, url) => const Center(
+                          child: CircularProgressIndicator(
+                            strokeWidth: 2,
+                            color: Colors.amber,
+                          ),
+                        ),
+                        errorWidget: (context, url, error) => const Center(
+                          child: Icon(Icons.two_wheeler, size: 60, color: Colors.grey),
+                        ),
                       )
                     : const Center(child: Icon(Icons.two_wheeler, size: 60, color: Colors.grey)),
               ),

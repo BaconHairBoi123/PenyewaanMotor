@@ -59,4 +59,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/bookings/history', [BookingController::class, 'history']);
     Route::post('/bookings/cancel', [BookingController::class, 'cancel']);
 
+    // GPS Relay Control
+    Route::post('/gps/relay', [GpsController::class, 'updateRelayStatus']);
+
 });

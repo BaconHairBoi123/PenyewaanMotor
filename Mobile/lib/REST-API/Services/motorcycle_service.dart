@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 import '../api_config.dart';
 import '../Models/motorcycle.dart';
 
@@ -58,6 +59,48 @@ class MotorcycleService {
       return null;
     } catch (e) {
       return null;
+    }
+  }
+
+  Future<Map<String, dynamic>> updateMotorcycleRelay(int motorcycleId, String relayStatus) async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      final token = prefs.getString('auth_token');
+      if (token == null) {
+        return {'success': false, 'message': 'You must be logged in.'};
+      }
+
+      final response = await http.post(
+        Uri.parse('${ApiConfig.baseUrl}/gps/relay'),
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          'Authorization': 'Bearer $token',
+        },
+        body: json.encode({
+          'motorcycle_id': motorcycleId,
+          'relay_status': relayStatus,
+        }),
+      );
+
+      final Map<String, dynamic> responseData = json.decode(response.body);
+      if (response.statusCode == 200 && responseData['status'] == 'success') {
+        return {
+          'success': true,
+          'message': responseData['message'] ?? 'Relay status updated successfully.',
+          'data': responseData['data'],
+        };
+      } else {
+        return {
+          'success': false,
+          'message': responseData['message'] ?? 'Failed to update relay status.',
+        };
+      }
+    } catch (e) {
+      return {
+        'success': false,
+        'message': 'Connection error occurred.',
+      };
     }
   }
 }

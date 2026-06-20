@@ -148,6 +148,7 @@ class GpsController extends Controller
                 'motorcycle_id' => $motorcycle->id,
                 'motorcycle_license_plate' => $motorcycle->license_plate,
                 'device_code' => $motorcycle->device->device_code,
+                'relay_status' => $motorcycle->device->relay_status ?? 'ON',
                 'locations' => $location // Hanya berisi 1 record lokasi terbaru
             ]
         ], 200);
@@ -226,6 +227,76 @@ class GpsController extends Controller
             'data' => [
                 'device_code' => $device->device_code,
                 'device_status' => 'available'
+            ]
+        ], 200);
+    }
+
+    /**
+     * Endpoint untuk mengontrol relay (engine ignition) dari aplikasi mobile
+     * POST /api/gps/relay
+     */
+    public function updateRelayStatus(Request $request)
+    {
+        $request->validate([
+            'motorcycle_id' => 'required|integer|exists:motorcycles,id',
+            'relay_status' => 'required|in:ON,OFF',
+        ]);
+
+        $motorcycle = \App\Models\Motorcycle::find($request->motorcycle_id);
+
+        if (!$motorcycle || !$motorcycle->device) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Motor atau device GPS tidak ditemukan!'
+            ], 404);
+        }
+
+        // Validasi: Pastikan user login yang merequest memiliki penyewaan aktif untuk motor ini
+        $user = $request->user();
+        if (!$user) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Unauthorized'
+            ], 401);
+        }
+
+        $bookings = \App\Models\Booking::where('user_id', $user->id)
+            ->where('motorcycle_id', $motorcycle->id)
+            ->whereIn('payment_status', ['paid', 'settlement'])
+            ->get();
+
+        $hasActiveBooking = false;
+        foreach ($bookings as $booking) {
+            $payment = \App\Models\Payment::where('invoice_number', $booking->order_id)->first();
+            $hasReturn = false;
+            if ($payment && $payment->rental_id) {
+                $rental = \App\Models\Rental::with('returns')->find($payment->rental_id);
+                if ($rental && $rental->returns) {
+                    $hasReturn = true;
+                }
+            }
+            if (!$hasReturn) {
+                $hasActiveBooking = true;
+                break;
+            }
+        }
+
+        if (!$hasActiveBooking) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Anda tidak memiliki penyewaan aktif untuk motor ini!'
+            ], 403);
+        }
+
+        $device = $motorcycle->device;
+        $device->update(['relay_status' => $request->relay_status]);
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Status relay berhasil diperbarui.',
+            'data' => [
+                'device_code' => $device->device_code,
+                'relay_status' => $device->relay_status,
             ]
         ], 200);
     }

@@ -16,12 +16,14 @@
                 $rentalStatus = ucfirst($paymentStatus); // Pending/Failed
             } elseif ($rental->returns) {
                 $rentalStatus = 'Returned';
+            } elseif (\Carbon\Carbon::parse($rental->return_date)->endOfDay()->isPast()) {
+                $rentalStatus = 'Overdue';
             }
         @endphp
         <li class="mb-4 p-3 border rounded shadow-sm">
             <div class="d-flex justify-content-between align-items-center mb-2">
                 <h5 class="m-0">{{ $rental->motorcycle->category ?? 'Unknown Motorcycle' }}</h5>
-                <span class="badge {{ $rentalStatus == 'Returned' ? 'bg-secondary' : ($paymentStatus == 'success' ? 'bg-success' : ($paymentStatus == 'pending' ? 'bg-warning' : 'bg-danger')) }}">
+                <span class="badge {{ $rentalStatus == 'Returned' ? 'bg-secondary' : ($rentalStatus == 'Overdue' ? 'bg-danger' : ($paymentStatus == 'success' ? 'bg-success' : ($paymentStatus == 'pending' ? 'bg-warning' : 'bg-danger'))) }}">
                     {{ $rentalStatus }}
                 </span>
             </div>

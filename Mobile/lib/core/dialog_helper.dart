@@ -53,4 +53,31 @@ class DialogHelper {
       ),
     );
   }
+
+  static void showLoading({
+    required BuildContext context,
+    required String message,
+  }) {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (ctx) => AlertDialog(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+        content: Row(
+          children: [
+            const CircularProgressIndicator(
+              valueColor: AlwaysStoppedAnimation<Color>(AppTheme.primaryColor),
+            ),
+            const SizedBox(width: 20),
+            Expanded(
+              child: Text(
+                message,
+                style: const TextStyle(color: AppTheme.darkColor, fontSize: 14),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 }

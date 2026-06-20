@@ -94,6 +94,9 @@ class _GpsTabState extends State<GpsTab> with SingleTickerProviderStateMixin {
       if (mounted && gps != null) {
         setState(() {
           _gpsData = gps;
+          if (gps['relay_status'] != null) {
+            _engineOn = gps['relay_status'] == 'ON';
+          }
         });
         _updateCameraPosition();
       }
@@ -124,6 +127,9 @@ class _GpsTabState extends State<GpsTab> with SingleTickerProviderStateMixin {
         setState(() {
           _activeBooking = active;
           _gpsData = gps;
+          if (gps != null && gps['relay_status'] != null) {
+            _engineOn = gps['relay_status'] == 'ON';
+          }
           _isLoading = false;
         });
         WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -180,19 +186,7 @@ class _GpsTabState extends State<GpsTab> with SingleTickerProviderStateMixin {
     }
   }
 
-  void _toggleEngineState(bool val) {
-    setState(() {
-      _engineOn = val;
-    });
 
-    DialogHelper.showMessage(
-      context: context,
-      message: val 
-          ? 'Engine starting command sent successfully.' 
-          : 'Engine cutoff command sent successfully.',
-      isError: false,
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -582,7 +576,7 @@ class _GpsTabState extends State<GpsTab> with SingleTickerProviderStateMixin {
               ),
               const SizedBox(height: 16),
 
-              // 3. Power Control Card (Ignition Switch)
+              // 3. Power Control Card (Read-only status)
               Card(
                 elevation: 0,
                 shape: RoundedRectangleBorder(
@@ -600,14 +594,14 @@ class _GpsTabState extends State<GpsTab> with SingleTickerProviderStateMixin {
                           Icon(Icons.power_settings_new, color: AppTheme.primaryColor),
                           SizedBox(width: 8),
                           Text(
-                            'Power Control (Ignition Relay)',
+                            'Engine Ignition Status',
                             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: AppTheme.darkColor),
                           ),
                         ],
                       ),
                       const SizedBox(height: 12),
                       Text(
-                        'Remotely switch the engine ignition status of your rental motorcycle.',
+                        'Real-time status of your rental motorcycle\'s engine ignition system.',
                         style: TextStyle(color: Colors.grey.shade600, fontSize: 13),
                       ),
                       const SizedBox(height: 24),
@@ -635,10 +629,24 @@ class _GpsTabState extends State<GpsTab> with SingleTickerProviderStateMixin {
                               ),
                             ],
                           ),
-                          Switch.adaptive(
-                            value: _engineOn,
-                            activeColor: AppTheme.primaryColor,
-                            onChanged: _toggleEngineState,
+                          Container(
+                            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                            decoration: BoxDecoration(
+                              color: _engineOn ? Colors.green.shade50 : Colors.red.shade50,
+                              borderRadius: BorderRadius.circular(20),
+                              border: Border.all(
+                                color: _engineOn ? Colors.green.shade300 : Colors.red.shade300,
+                              ),
+                            ),
+                            child: Text(
+                              _engineOn ? 'ACTIVE' : 'CUTOFF',
+                              style: TextStyle(
+                                color: _engineOn ? Colors.green.shade700 : Colors.red.shade700,
+                                fontSize: 11,
+                                fontWeight: FontWeight.bold,
+                                letterSpacing: 0.5,
+                              ),
+                            ),
                           ),
                         ],
                       ),
