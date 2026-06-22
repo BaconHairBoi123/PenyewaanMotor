@@ -230,6 +230,54 @@ class BookingController extends Controller
             }
         }
 
+        // Real-time Sync with Midtrans Status API for remaining pending bookings
+        $pendingBookings = Booking::where('user_id', $request->user()->id)
+            ->where('payment_status', 'pending')
+            ->get();
+
+        foreach ($pendingBookings as $pb) {
+            try {
+                $statusResponse = \Midtrans\Transaction::status($pb->order_id);
+                $transactionStatus = $statusResponse->transaction_status ?? null;
+
+                if ($transactionStatus) {
+                    $successStates = ['capture', 'settlement'];
+                    $failedStates = ['deny', 'expire', 'cancel', 'failure'];
+
+                    if (in_array($transactionStatus, $successStates)) {
+                        DB::transaction(function () use ($pb) {
+                            $pb->payment_status = 'paid';
+                            $pb->save();
+
+                            $payment = \App\Models\Payment::where('invoice_number', $pb->order_id)->first();
+                            if ($payment) {
+                                $payment->status = 'success';
+                                $payment->save();
+                            }
+
+                            if ($pb->motorcycle) {
+                                $pb->motorcycle->status = 'rented';
+                                $pb->motorcycle->save();
+                            }
+                        });
+                    } elseif (in_array($transactionStatus, $failedStates)) {
+                        DB::transaction(function () use ($pb) {
+                            $pb->payment_status = 'failed';
+                            $pb->save();
+
+                            $payment = \App\Models\Payment::where('invoice_number', $pb->order_id)->first();
+                            if ($payment) {
+                                $payment->status = 'failed';
+                                $payment->save();
+                            }
+                        });
+                    }
+                }
+            } catch (\Exception $e) {
+                \Illuminate\Support\Facades\Log::warning('Failed to sync Midtrans status for ' . $pb->order_id . ': ' . $e->getMessage());
+            }
+        }
+
         $bookings = Booking::with(['motorcycle' => function($q) {
             $q->select('id', 'brand', 'category', 'image_path', 'license_plate');
         }])

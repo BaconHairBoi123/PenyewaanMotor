@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:http/http.dart' as http;
+import 'package:cached_network_image/cached_network_image.dart';
 import '../../../core/app_theme.dart';
 import '../../../core/dialog_helper.dart';
 import '../../../REST-API/Models/motorcycle.dart';
@@ -285,6 +286,55 @@ class _BookingScreenState extends State<BookingScreen> {
     }
   }
 
+  void _showImagePreview(String imageUrl) {
+    showDialog(
+      context: context,
+      barrierDismissible: true,
+      builder: (BuildContext context) {
+        return Dialog(
+          backgroundColor: Colors.transparent,
+          insetPadding: const EdgeInsets.all(12),
+          child: Stack(
+            alignment: Alignment.center,
+            children: [
+              InteractiveViewer(
+                minScale: 0.5,
+                maxScale: 4.0,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(16),
+                  child: imageUrl.isNotEmpty
+                      ? CachedNetworkImage(
+                          imageUrl: imageUrl,
+                          fit: BoxFit.contain,
+                          placeholder: (context, url) => const Center(
+                            child: CircularProgressIndicator(
+                              valueColor: AlwaysStoppedAnimation<Color>(AppTheme.primaryColor),
+                            ),
+                          ),
+                          errorWidget: (context, url, error) =>
+                              const Icon(Icons.two_wheeler, size: 120, color: Colors.white),
+                        )
+                      : const Icon(Icons.two_wheeler, size: 120, color: Colors.white),
+                ),
+              ),
+              Positioned(
+                top: 8,
+                right: 8,
+                child: CircleAvatar(
+                  backgroundColor: Colors.black.withOpacity(0.5),
+                  child: IconButton(
+                    icon: const Icon(Icons.close, color: Colors.white),
+                    onPressed: () => Navigator.pop(context),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final currencyFormat = NumberFormat.decimalPattern('id');
@@ -340,18 +390,26 @@ class _BookingScreenState extends State<BookingScreen> {
                                   },
                                   itemBuilder: (context, index) {
                                     final imgUrl = widget.motorcycle.gallery[index];
-                                    return ClipRRect(
-                                      borderRadius: BorderRadius.circular(12),
-                                      child: Container(
-                                        color: AppTheme.backgroundColor,
-                                        child: imgUrl.isNotEmpty
-                                            ? Image.network(
-                                                imgUrl,
-                                                fit: BoxFit.cover,
-                                                errorBuilder: (context, error, stackTrace) =>
-                                                    const Icon(Icons.two_wheeler, size: 64, color: Colors.grey),
-                                              )
-                                            : const Icon(Icons.two_wheeler, size: 64, color: Colors.grey),
+                                    return GestureDetector(
+                                      onTap: () => _showImagePreview(imgUrl),
+                                      child: ClipRRect(
+                                        borderRadius: BorderRadius.circular(12),
+                                        child: Container(
+                                          color: AppTheme.backgroundColor,
+                                          child: imgUrl.isNotEmpty
+                                              ? CachedNetworkImage(
+                                                  imageUrl: imgUrl,
+                                                  fit: BoxFit.cover,
+                                                  placeholder: (context, url) => const Center(
+                                                    child: CircularProgressIndicator(
+                                                      valueColor: AlwaysStoppedAnimation<Color>(AppTheme.primaryColor),
+                                                    ),
+                                                  ),
+                                                  errorWidget: (context, url, error) =>
+                                                      const Icon(Icons.two_wheeler, size: 64, color: Colors.grey),
+                                                )
+                                              : const Icon(Icons.two_wheeler, size: 64, color: Colors.grey),
+                                        ),
                                       ),
                                     );
                                   },
@@ -405,20 +463,32 @@ class _BookingScreenState extends State<BookingScreen> {
                         padding: const EdgeInsets.all(12.0),
                         child: Row(
                           children: [
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(12),
-                              child: Container(
-                                color: AppTheme.backgroundColor,
-                                width: 90,
-                                height: 90,
-                                child: widget.motorcycle.imageUrl != null
-                                    ? Image.network(
-                                        widget.motorcycle.imageUrl!,
-                                        fit: BoxFit.contain,
-                                        errorBuilder: (context, error, stackTrace) =>
-                                            const Icon(Icons.motorcycle, size: 40, color: Colors.grey),
-                                      )
-                                    : const Icon(Icons.motorcycle, size: 40, color: Colors.grey),
+                            GestureDetector(
+                              onTap: () {
+                                if (widget.motorcycle.imageUrl != null) {
+                                  _showImagePreview(widget.motorcycle.imageUrl!);
+                                }
+                              },
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(12),
+                                child: Container(
+                                  color: AppTheme.backgroundColor,
+                                  width: 90,
+                                  height: 90,
+                                  child: widget.motorcycle.imageUrl != null
+                                      ? CachedNetworkImage(
+                                          imageUrl: widget.motorcycle.imageUrl!,
+                                          fit: BoxFit.contain,
+                                          placeholder: (context, url) => const Center(
+                                            child: CircularProgressIndicator(
+                                              valueColor: AlwaysStoppedAnimation<Color>(AppTheme.primaryColor),
+                                            ),
+                                          ),
+                                          errorWidget: (context, url, error) =>
+                                              const Icon(Icons.motorcycle, size: 40, color: Colors.grey),
+                                        )
+                                      : const Icon(Icons.motorcycle, size: 40, color: Colors.grey),
+                                ),
                               ),
                             ),
                             const SizedBox(width: 16),

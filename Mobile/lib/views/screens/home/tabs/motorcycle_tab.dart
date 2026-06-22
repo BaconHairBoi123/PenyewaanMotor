@@ -166,38 +166,9 @@ class _MotorcycleTabState extends State<MotorcycleTab> {
           color: AppTheme.primaryColor.withOpacity(0.15),
           borderRadius: BorderRadius.circular(16),
           image: DecorationImage(
-            image: const AssetImage('assets/images/promo_banner_1.png'), // Place your first promo banner here
+            image: const AssetImage('assets/images/banner1.jpeg'),
             fit: BoxFit.cover,
             onError: (err, stack) {},
-          ),
-        ),
-        child: Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(16),
-            gradient: LinearGradient(
-              begin: Alignment.bottomCenter,
-              end: Alignment.topCenter,
-              colors: [
-                Colors.black.withOpacity(0.6),
-                Colors.transparent,
-              ],
-            ),
-          ),
-          padding: const EdgeInsets.all(16),
-          alignment: Alignment.bottomLeft,
-          child: const Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text(
-                'CHIPELAGO',
-                style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
-              ),
-              Text(
-                'RIDE FREELY WITH RIDENUSA',
-                style: TextStyle(color: AppTheme.primaryColor, fontSize: 13, fontWeight: FontWeight.bold),
-              ),
-            ],
           ),
         ),
       ),
@@ -208,38 +179,9 @@ class _MotorcycleTabState extends State<MotorcycleTab> {
           color: AppTheme.primaryColor.withOpacity(0.15),
           borderRadius: BorderRadius.circular(16),
           image: DecorationImage(
-            image: const AssetImage('assets/images/promo_banner_2.png'), // Place your second promo banner here
+            image: const AssetImage('assets/images/banner2.jpeg'),
             fit: BoxFit.cover,
             onError: (err, stack) {},
-          ),
-        ),
-        child: Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(16),
-            gradient: LinearGradient(
-              begin: Alignment.bottomCenter,
-              end: Alignment.topCenter,
-              colors: [
-                Colors.black.withOpacity(0.6),
-                Colors.transparent,
-              ],
-            ),
-          ),
-          padding: const EdgeInsets.all(16),
-          alignment: Alignment.bottomLeft,
-          child: const Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text(
-                'EXPLORE PARADISE',
-                style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
-              ),
-              Text(
-                'Comfortable scooters ready for every journey',
-                style: TextStyle(color: Colors.white70, fontSize: 12),
-              ),
-            ],
           ),
         ),
       ),
