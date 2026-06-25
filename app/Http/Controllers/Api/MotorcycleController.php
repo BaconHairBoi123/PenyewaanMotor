@@ -13,10 +13,21 @@ class MotorcycleController extends Controller
      */
     public function index(Request $request)
     {
+        // Jika request khusus dari chatbot, kembalikan data ringkas agar AI tidak kelebihan beban token (Context Bloat)
+        if ($request->query('chatbot') === 'true') {
+            $motorcycles = Motorcycle::select('brand', 'category as name', 'cc', 'price', 'status')->get();
+            return response()->json([
+                'status' => 'success',
+                'data' => $motorcycles
+            ]);
+        }
+
         $query = Motorcycle::query();
 
-        // Hanya tampilkan motor dengan status 'available'
-        $query->where('status', 'available');
+        // Hanya tampilkan motor dengan status 'available', kecuali ada parameter all=true
+        if ($request->query('all') !== 'true') {
+            $query->where('status', 'available');
+        }
 
         // Fitur pencarian dan filter sederhana
         if ($request->has('brand')) {
