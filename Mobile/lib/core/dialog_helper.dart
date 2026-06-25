@@ -8,48 +8,48 @@ class DialogHelper {
     String? title,
     bool isError = false,
   }) {
-    showDialog(
-      context: context,
-      barrierDismissible: true,
-      builder: (ctx) => AlertDialog(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-        title: Row(
+    ScaffoldMessenger.of(context).hideCurrentSnackBar();
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Icon(
               isError ? Icons.error_outline : Icons.check_circle_outline,
-              color: isError ? Colors.red : AppTheme.primaryColor,
-              size: 28,
+              color: isError ? Colors.white : AppTheme.darkColor,
+              size: 22,
             ),
-            const SizedBox(width: 10),
-            Text(
-              title ?? (isError ? 'Error' : 'Notification'),
-              style: const TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 18,
-                color: AppTheme.darkColor,
+            const SizedBox(width: 12),
+            Expanded(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    title ?? (isError ? 'Error' : 'Notification'),
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: isError ? Colors.white : AppTheme.darkColor,
+                      fontSize: 14,
+                    ),
+                  ),
+                  const SizedBox(height: 2),
+                  Text(
+                    message,
+                    style: TextStyle(
+                      color: isError ? Colors.white.withOpacity(0.9) : AppTheme.darkColor.withOpacity(0.9),
+                      fontSize: 12,
+                    ),
+                  ),
+                ],
               ),
             ),
           ],
         ),
-        content: Text(
-          message,
-          style: const TextStyle(color: AppTheme.darkColor, fontSize: 14),
-        ),
-        actions: [
-          ElevatedButton(
-            onPressed: () => Navigator.pop(ctx),
-            style: ElevatedButton.styleFrom(
-              backgroundColor: isError ? Colors.red : AppTheme.primaryColor,
-              foregroundColor: isError ? Colors.white : AppTheme.darkColor,
-              elevation: 0,
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(8),
-              ),
-            ),
-            child: const Text('OK', style: TextStyle(fontWeight: FontWeight.bold)),
-          ),
-        ],
+        backgroundColor: isError ? Colors.red.shade800 : AppTheme.primaryColor,
+        behavior: SnackBarBehavior.floating,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+        duration: const Duration(seconds: 3),
       ),
     );
   }

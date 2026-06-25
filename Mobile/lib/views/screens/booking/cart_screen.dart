@@ -293,14 +293,14 @@ class _CartScreenState extends State<CartScreen> {
                                 }
                               }
                             },
-                            icon: const Icon(Icons.cancel_outlined, size: 16, color: Colors.white),
-                            label: const Text('Cancel', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+                            icon: const Icon(Icons.cancel_outlined, size: 14, color: Colors.white),
+                            label: const Text('Cancel', style: TextStyle(color: Colors.white, fontSize: 12, fontWeight: FontWeight.bold)),
                             style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.red,
                               foregroundColor: Colors.white,
                               elevation: 0,
-                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-                              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+                              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
                             ),
                           ),
                           const SizedBox(width: 8),
@@ -314,14 +314,14 @@ class _CartScreenState extends State<CartScreen> {
                                 }
                               }
                             },
-                            icon: const Icon(Icons.payment, size: 16),
-                            label: const Text('Pay Now'),
+                            icon: const Icon(Icons.payment, size: 14),
+                            label: const Text('Pay Now', style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold)),
                             style: ElevatedButton.styleFrom(
                               backgroundColor: AppTheme.primaryColor,
                               foregroundColor: AppTheme.darkColor,
                               elevation: 0,
-                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-                              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+                              padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
                             ),
                           ),
                         ],
@@ -330,14 +330,14 @@ class _CartScreenState extends State<CartScreen> {
                         onPressed: () {
                           Navigator.pop(context, 2); 
                         },
-                        icon: const Icon(Icons.my_location, size: 16),
-                        label: const Text('Track GPS'),
+                        icon: const Icon(Icons.my_location, size: 14),
+                        label: const Text('Track GPS', style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold)),
                         style: ElevatedButton.styleFrom(
                           backgroundColor: AppTheme.primaryColor,
                           foregroundColor: AppTheme.darkColor,
                           elevation: 0,
-                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-                          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+                          padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
                         ),
                       ),
               ],

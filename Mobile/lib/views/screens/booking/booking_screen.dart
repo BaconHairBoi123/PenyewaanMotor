@@ -11,6 +11,7 @@ import '../../../core/dialog_helper.dart';
 import '../../../REST-API/Models/motorcycle.dart';
 import '../../../REST-API/Models/accessory.dart';
 import '../../../REST-API/Services/booking_service.dart';
+import 'cart_screen.dart';
 
 class BookingScreen extends StatefulWidget {
   final Motorcycle motorcycle;
@@ -255,11 +256,13 @@ class _BookingScreenState extends State<BookingScreen> {
           DialogHelper.showMessage(
             context: context,
             message: 'Motorcycle added to cart successfully. You can pay later.',
-            isError: false,
           );
         }
         if (mounted) {
-          Navigator.pop(context); // Go back to Home
+          Navigator.pushReplacement(
+            context,
+            AppTheme.animatedRoute(const CartScreen()),
+          );
         }
       } else {
         showDialog(
