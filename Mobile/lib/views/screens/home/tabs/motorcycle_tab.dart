@@ -65,7 +65,7 @@ class _MotorcycleTabState extends State<MotorcycleTab> {
     _promoTimer = Timer.periodic(const Duration(seconds: 4), (timer) {
       if (_promoController.hasClients) {
         int nextPage = _promoIndex + 1;
-        if (nextPage >= 2) {
+        if (nextPage >= 3) {
           nextPage = 0;
         }
         _promoController.animateToPage(
@@ -166,8 +166,8 @@ class _MotorcycleTabState extends State<MotorcycleTab> {
           color: AppTheme.primaryColor.withOpacity(0.15),
           borderRadius: BorderRadius.circular(16),
           image: DecorationImage(
-            image: const AssetImage('assets/images/banner1.jpeg'),
-            fit: BoxFit.cover,
+            image: const AssetImage('assets/images/banner1.png'),
+            fit: BoxFit.fill,
             onError: (err, stack) {},
           ),
         ),
@@ -179,8 +179,21 @@ class _MotorcycleTabState extends State<MotorcycleTab> {
           color: AppTheme.primaryColor.withOpacity(0.15),
           borderRadius: BorderRadius.circular(16),
           image: DecorationImage(
-            image: const AssetImage('assets/images/banner2.jpeg'),
-            fit: BoxFit.cover,
+            image: const AssetImage('assets/images/banner2.png'),
+            fit: BoxFit.fill,
+            onError: (err, stack) {},
+          ),
+        ),
+      ),
+      // Banner 3
+      Container(
+        margin: const EdgeInsets.symmetric(horizontal: 16),
+        decoration: BoxDecoration(
+          color: AppTheme.primaryColor.withOpacity(0.15),
+          borderRadius: BorderRadius.circular(16),
+          image: DecorationImage(
+            image: const AssetImage('assets/images/banner3.png'),
+            fit: BoxFit.contain,
             onError: (err, stack) {},
           ),
         ),
@@ -189,8 +202,8 @@ class _MotorcycleTabState extends State<MotorcycleTab> {
 
     return Column(
       children: [
-        SizedBox(
-          height: 180,
+        AspectRatio(
+          aspectRatio: 1536 / 520, // Responsive aspect ratio matching the dimensions of the banner images (approx. 2.95:1)
           child: PageView.builder(
             controller: _promoController,
             itemCount: promoPages.length,
