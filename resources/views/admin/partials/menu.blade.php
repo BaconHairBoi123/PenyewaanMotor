@@ -102,7 +102,7 @@
 
 <li>
     <a href="{{ route('admin.devices.index') }}" class="flex items-center gap-3 px-3 py-2 rounded-lg text-gray-300 hover:text-brand hover:bg-dark-hover">
-        <i class="ri-satellite-line text-lg"></i>
+        <i class="ri-gps-line text-lg"></i>
         <span>GPS Device Management</span>
     </a>
 </li>

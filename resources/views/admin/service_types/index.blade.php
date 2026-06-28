@@ -32,7 +32,7 @@
             <tr>
                 <th class="border p-2 w-16">No</th>
                 <th class="border p-2">Nama Service</th>
-                <th class="border p-2 w-24">Aksi</th>
+                <th class="border p-2 w-24 text-center">Aksi</th>
             </tr>
         </thead>
 
@@ -42,17 +42,19 @@
                     <td class="border p-2 text-center">{{ $i + 1 }}</td>
                     <td class="border p-2">{{ $type->service_name }}</td>
                     <td class="border p-2 text-center">
-                        <form method="POST"
-                              action="{{ route('admin.service.types.destroy', $type->id) }}"
-                              onsubmit="return confirm('Hapus jenis servis ini?')">
-                            @csrf
-                            @method('DELETE')
+                        <div class="flex justify-center items-center">
+                            <form method="POST"
+                                  action="{{ route('admin.service.types.destroy', $type->id) }}"
+                                  onsubmit="return confirm('Hapus jenis servis ini?')">
+                                @csrf
+                                @method('DELETE')
 
-                            <button
-                                class="bg-red-600 text-white px-2 py-1 rounded hover:bg-red-700">
-                                Hapus
-                            </button>
-                        </form>
+                                <button
+                                    class="px-4 py-1.5 bg-red-600 text-white rounded text-sm hover:bg-red-700 transition shadow-sm font-medium">
+                                    Hapus
+                                </button>
+                            </form>
+                        </div>
                     </td>
                 </tr>
             @empty

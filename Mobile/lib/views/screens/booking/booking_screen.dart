@@ -500,7 +500,7 @@ class _BookingScreenState extends State<BookingScreen> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    '${widget.motorcycle.brand} ${widget.motorcycle.type}',
+                                    '${widget.motorcycle.brand} - ${widget.motorcycle.type}',
                                     style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: AppTheme.darkColor),
                                   ),
                                   const SizedBox(height: 4),
@@ -521,6 +521,126 @@ class _BookingScreenState extends State<BookingScreen> {
                               ),
                             ),
                           ],
+                        ),
+                      ),
+                    ),
+                    
+                    // Motorcycle Specifications / Info Row
+                    const SizedBox(height: 12),
+                    Row(
+                      children: [
+                        // CC Specification
+                        Expanded(
+                          child: Container(
+                            padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 8),
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(12),
+                              border: Border.all(color: Colors.grey.shade200),
+                            ),
+                            child: Column(
+                              children: [
+                                const Icon(Icons.speed, color: AppTheme.primaryColor, size: 20),
+                                const SizedBox(height: 6),
+                                Text(
+                                  'Engine',
+                                  style: TextStyle(fontSize: 10, color: Colors.grey.shade500, fontWeight: FontWeight.w500),
+                                ),
+                                const SizedBox(height: 2),
+                                Text(
+                                  '${widget.motorcycle.cc} cc',
+                                  style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: AppTheme.darkColor),
+                                  textAlign: TextAlign.center,
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        const SizedBox(width: 8),
+                        // Transmission Specification
+                        Expanded(
+                          child: Container(
+                            padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 8),
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(12),
+                              border: Border.all(color: Colors.grey.shade200),
+                            ),
+                            child: Column(
+                              children: [
+                                const Icon(Icons.settings_input_component, color: AppTheme.primaryColor, size: 20),
+                                const SizedBox(height: 6),
+                                Text(
+                                  'Transmission',
+                                  style: TextStyle(fontSize: 10, color: Colors.grey.shade500, fontWeight: FontWeight.w500),
+                                ),
+                                const SizedBox(height: 2),
+                                Text(
+                                  widget.motorcycle.transmission,
+                                  style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: AppTheme.darkColor),
+                                  textAlign: TextAlign.center,
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        const SizedBox(width: 8),
+                        // Fuel Specification
+                        Expanded(
+                          child: Container(
+                            padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 8),
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(12),
+                              border: Border.all(color: Colors.grey.shade200),
+                            ),
+                            child: Column(
+                              children: [
+                                const Icon(Icons.local_gas_station, color: AppTheme.primaryColor, size: 20),
+                                const SizedBox(height: 6),
+                                Text(
+                                  'Fuel',
+                                  style: TextStyle(fontSize: 10, color: Colors.grey.shade500, fontWeight: FontWeight.w500),
+                                ),
+                                const SizedBox(height: 2),
+                                Text(
+                                  widget.motorcycle.fuelConfiguration.isNotEmpty 
+                                      ? widget.motorcycle.fuelConfiguration
+                                      : 'Petrol',
+                                  style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: AppTheme.darkColor),
+                                  textAlign: TextAlign.center,
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+
+                    // Motorcycle Description Section
+                    const SizedBox(height: 16),
+                    const Text('Motorcycle Description', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15, color: AppTheme.darkColor)),
+                    const SizedBox(height: 8),
+                    Card(
+                      elevation: 0,
+                      color: Colors.white,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(16),
+                        side: BorderSide(color: Colors.grey.shade200),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Text(
+                          (widget.motorcycle.description != null && widget.motorcycle.description!.isNotEmpty)
+                              ? widget.motorcycle.description!
+                              : 'This premium ${widget.motorcycle.brand} ${widget.motorcycle.type} has been fully serviced and is ready for your ride. Features advanced handling, excellent fuel efficiency, and a comfortable ride posture.',
+                          style: TextStyle(color: Colors.grey.shade700, fontSize: 13, height: 1.5),
                         ),
                       ),
                     ),
@@ -843,14 +963,24 @@ class _BookingScreenState extends State<BookingScreen> {
                               ],
                             ),
                             if (_selectedAccessoryIds.isNotEmpty) ...[
-                              const SizedBox(height: 8),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text('Accessories Daily Fee', style: TextStyle(color: Colors.grey.shade700, fontSize: 13)),
-                                  Text('Rp ${currencyFormat.format(_accessoriesPriceTotal)}', style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 13)),
-                                ],
-                              ),
+                              ..._allAccessories.where((acc) => _selectedAccessoryIds.contains(acc.id)).map((acc) {
+                                return Padding(
+                                  padding: const EdgeInsets.only(top: 8.0),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(
+                                        'Accessory: ${acc.name} (x $_rentalDays days)',
+                                        style: TextStyle(color: Colors.grey.shade700, fontSize: 13),
+                                      ),
+                                      Text(
+                                        'Rp ${currencyFormat.format(acc.dailyPrice * _rentalDays)}',
+                                        style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 13),
+                                      ),
+                                    ],
+                                  ),
+                                );
+                              }).toList(),
                             ],
                             if (_deliveryType == 'delivery') ...[
                               const SizedBox(height: 8),

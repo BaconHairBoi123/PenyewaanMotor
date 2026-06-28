@@ -34,7 +34,7 @@
             <th class="border p-3">Name</th>
             <th class="border p-3">Price / Day</th>
             <th class="border p-3">Stock</th>
-            <th class="border p-3">Actions</th>
+            <th class="border p-3 text-center">Actions</th>
         </tr>
 
         @forelse($accessories as $a)
@@ -51,15 +51,17 @@
                 <td class="border p-3">
                     <input type="number" name="stock" value="{{ $a->stock }}" class="border p-1 rounded w-20">
                 </td>
-                <td class="border p-3 flex gap-2">
-                    <button type="submit" class="text-blue-600 hover:text-blue-800 font-bold">Update</button>
+                <td class="border p-3 text-center">
+                    <div class="flex justify-center items-center gap-2">
+                        <button type="submit" class="px-4 py-1.5 bg-blue-600 text-white rounded text-sm hover:bg-blue-700 transition shadow-sm font-medium">Update</button>
             </form>
             <form action="{{ route('admin.accessories.delete', $a->id) }}" method="POST" onsubmit="return confirm('Are you sure?');" class="inline">
                 @csrf
                 @method('DELETE')
-                <button class="text-red-500 hover:text-red-700">Delete</button>
+                <button class="px-4 py-1.5 bg-red-600 text-white rounded text-sm hover:bg-red-700 transition shadow-sm font-medium">Delete</button>
             </form>
-            </td>
+                    </div>
+                </td>
         </tr>
         @empty
         <tr>

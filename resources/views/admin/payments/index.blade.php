@@ -21,7 +21,7 @@
     <th class="p-3">Total</th>
     <th class="p-3">Date</th>
     <th class="p-3">Status</th>
-    <th class="p-3">Action</th>
+    <th class="p-3 text-center">Action</th>
 </tr>
 </thead>
 <tbody>
@@ -46,24 +46,26 @@
         </span>
     </td>
 
-    <td class="p-2">
-        @if($p->status == 'pending')
-        <form action="{{ route('admin.payments.success', $p->id) }}" method="POST" class="inline">
-            @csrf
-            <button class="bg-green-600 text-white px-2 py-1 rounded">
-                Confirm
-            </button>
-        </form>
+    <td class="p-2 text-center">
+        <div class="flex justify-center items-center gap-2">
+            @if($p->status == 'pending')
+            <form action="{{ route('admin.payments.success', $p->id) }}" method="POST" class="inline">
+                @csrf
+                <button class="px-4 py-1.5 bg-green-600 text-white rounded text-sm hover:bg-green-700 transition shadow-sm font-medium">
+                    Confirm
+                </button>
+            </form>
 
-        <form action="{{ route('admin.payments.failed', $p->id) }}" method="POST" class="inline">
-            @csrf
-            <button class="bg-red-600 text-white px-2 py-1 rounded">
-                Reject
-            </button>
-        </form>
-        @else
-            <span class="text-gray-500">Done</span>
-        @endif
+            <form action="{{ route('admin.payments.failed', $p->id) }}" method="POST" class="inline">
+                @csrf
+                <button class="px-4 py-1.5 bg-red-600 text-white rounded text-sm hover:bg-red-700 transition shadow-sm font-medium">
+                    Reject
+                </button>
+            </form>
+            @else
+                <span class="text-gray-500 text-sm font-medium">Done</span>
+            @endif
+        </div>
     </td>
 </tr>
 @empty

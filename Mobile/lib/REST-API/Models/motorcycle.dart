@@ -12,6 +12,7 @@ class Motorcycle {
   final String status;
   final String fuelConfiguration;
   final List<String> gallery;
+  final String? description;
 
   Motorcycle({
     required this.id,
@@ -25,6 +26,7 @@ class Motorcycle {
     required this.status,
     required this.fuelConfiguration,
     required this.gallery,
+    this.description,
   });
 
   factory Motorcycle.fromJson(Map<String, dynamic> json) {
@@ -72,6 +74,7 @@ class Motorcycle {
       status: json['status'] ?? 'Available',
       fuelConfiguration: json['fuel_configuration'] ?? '',
       gallery: galleryList,
+      description: json['description'],
     );
   }
 }

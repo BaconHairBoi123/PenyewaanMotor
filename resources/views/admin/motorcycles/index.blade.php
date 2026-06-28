@@ -32,7 +32,7 @@
                     <th class="p-3">Transmission</th>
                     <th class="p-3">Price</th>
                     <th class="p-3">Status</th>
-                    <th class="p-3">Action</th>
+                    <th class="p-3 text-center">Action</th>
                 </tr>
             </thead>
 
@@ -117,23 +117,24 @@
                             @endif
                         </td>
 
-                        <td class="p-3 flex gap-2">
-                            <a href="{{ route('admin.motorcycles_Management.edit', $motor->id) }}"
-                                class="px-3 py-1 bg-yellow-500 text-white rounded">
-                                Edit
-                            </a>
+                        <td class="p-3 text-center">
+                            <div class="flex justify-center items-center gap-2">
+                                <a href="{{ route('admin.motorcycles_Management.edit', $motor->id) }}"
+                                    class="px-4 py-1.5 bg-yellow-500 text-white rounded text-sm hover:bg-yellow-600 transition shadow-sm font-medium">
+                                    Edit
+                                </a>
 
-                            <form action="{{ route('admin.motorcycles_Management.destroy', $motor->id) }}" method="POST"
-                                onsubmit="return confirm('Delete this motorcycle?');">
+                                <form action="{{ route('admin.motorcycles_Management.destroy', $motor->id) }}" method="POST"
+                                    onsubmit="return confirm('Delete this motorcycle?');" class="inline">
 
-                                @csrf
-                                @method('DELETE')
+                                    @csrf
+                                    @method('DELETE')
 
-                                <button class="px-3 py-1 bg-red-600 text-white rounded">
-                                    Delete
-                                </button>
-                            </form>
-
+                                    <button class="px-4 py-1.5 bg-red-600 text-white rounded text-sm hover:bg-red-700 transition shadow-sm font-medium">
+                                        Delete
+                                    </button>
+                                </form>
+                            </div>
                         </td>
 
                     </tr>

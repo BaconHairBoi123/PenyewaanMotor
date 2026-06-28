@@ -25,7 +25,7 @@
                     <th class="p-3 text-left">Name</th>
                     <th class="p-3 text-left">Username</th>
                     <th class="p-3 text-left">Email</th>
-                    <th class="p-3 text-left w-32">Actions</th>
+                    <th class="p-3 text-center w-32">Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -34,17 +34,19 @@
                     <td class="p-3">{{ $admin->name }}</td>
                     <td class="p-3">{{ $admin->username }}</td>
                     <td class="p-3">{{ $admin->email }}</td>
-                    <td class="p-3 flex gap-2">
-                        <a href="{{ route('admin.admins.edit', $admin->id) }}" 
-                           class="text-blue-600 hover:underline">Edit</a>
+                    <td class="p-3">
+                        <div class="flex justify-center items-center gap-2">
+                            <a href="{{ route('admin.admins.edit', $admin->id) }}" 
+                               class="px-4 py-1.5 bg-yellow-500 text-white rounded text-sm hover:bg-yellow-600 transition shadow-sm font-medium">Edit</a>
 
-                        <form action="{{ route('admin.admins.destroy', $admin->id) }}" 
-                              method="POST"
-                              onsubmit="return confirm('Delete this admin?')">
-                            @csrf
-                            @method('DELETE')
-                            <button class="text-red-600 hover:underline">Delete</button>
-                        </form>
+                            <form action="{{ route('admin.admins.destroy', $admin->id) }}" 
+                                  method="POST"
+                                  onsubmit="return confirm('Delete this admin?')" class="inline">
+                                @csrf
+                                @method('DELETE')
+                                <button class="px-4 py-1.5 bg-red-600 text-white rounded text-sm hover:bg-red-700 transition shadow-sm font-medium">Delete</button>
+                            </form>
+                        </div>
                     </td>
                 </tr>
                 @endforeach

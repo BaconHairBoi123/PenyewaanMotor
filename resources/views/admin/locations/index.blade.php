@@ -142,7 +142,7 @@
                     <th class="p-3 text-sm font-semibold">Longitude</th>
                     <th class="p-3 text-sm font-semibold">Device</th>
                     <th class="p-3 text-sm font-semibold">Created At</th>
-                    <th class="p-3 text-sm font-semibold">Actions</th>
+                    <th class="p-3 text-sm font-semibold text-center">Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -159,12 +159,14 @@
                         @endif
                     </td>
                     <td class="p-3 text-sm text-gray-600">{{ $location->created_at ? $location->created_at->format('M d, Y H:i') : 'N/A' }}</td>
-                    <td class="p-3">
-                        <form action="{{ route('admin.locations.destroy', $location->id) }}" method="POST" onsubmit="return confirm('Are you sure?');" class="inline">
-                            @csrf
-                            @method('DELETE')
-                            <button class="text-red-500 hover:text-red-700 text-sm font-medium">Delete</button>
-                        </form>
+                    <td class="p-3 text-center">
+                        <div class="flex justify-center items-center">
+                            <form action="{{ route('admin.locations.destroy', $location->id) }}" method="POST" onsubmit="return confirm('Are you sure?');" class="inline">
+                                @csrf
+                                @method('DELETE')
+                                <button class="px-4 py-1.5 bg-red-600 text-white rounded text-sm hover:bg-red-700 transition shadow-sm font-medium">Delete</button>
+                            </form>
+                        </div>
                     </td>
                 </tr>
                 @empty

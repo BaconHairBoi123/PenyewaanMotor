@@ -46,7 +46,7 @@
                             <th class="px-4 py-3">Device Code</th>
                             <th class="px-4 py-3">Motor</th>
                             <th class="px-4 py-3">Relay Status</th>
-                            <th class="px-4 py-3">Action</th>
+                            <th class="px-4 py-3 text-center">Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -66,18 +66,20 @@
                                         {{ $device->relay_status ?? 'ON' }}
                                     </span>
                                 </td>
-                                <td class="px-4 py-3">
-                                    @if($device->motorcycle)
-                                        <form method="POST" action="{{ route('admin.devices.set_relay_status', $device->id) }}">
-                                            @csrf
-                                            <input type="hidden" name="relay_status" value="{{ $device->relay_status === 'OFF' ? 'ON' : 'OFF' }}">
-                                            <button type="submit" class="px-3 py-2 rounded text-white font-semibold {{ $device->relay_status === 'OFF' ? 'bg-green-600 hover:bg-green-700' : 'bg-red-600 hover:bg-red-700' }}">
-                                                {{ $device->relay_status === 'OFF' ? 'Nyalakan Motor' : 'Matikan Motor' }}
-                                            </button>
-                                        </form>
-                                    @else
-                                        <span class="text-gray-500 text-sm">Tidak ada motor</span>
-                                    @endif
+                                <td class="px-4 py-3 text-center">
+                                    <div class="flex justify-center items-center">
+                                        @if($device->motorcycle)
+                                            <form method="POST" action="{{ route('admin.devices.set_relay_status', $device->id) }}">
+                                                @csrf
+                                                <input type="hidden" name="relay_status" value="{{ $device->relay_status === 'OFF' ? 'ON' : 'OFF' }}">
+                                                <button type="submit" class="px-4 py-1.5 rounded text-white text-sm font-semibold {{ $device->relay_status === 'OFF' ? 'bg-green-600 hover:bg-green-700' : 'bg-red-600 hover:bg-red-700' }}">
+                                                    {{ $device->relay_status === 'OFF' ? 'Nyalakan Motor' : 'Matikan Motor' }}
+                                                </button>
+                                            </form>
+                                        @else
+                                            <span class="text-gray-500 text-sm">Tidak ada motor</span>
+                                        @endif
+                                    </div>
                                 </td>
                             </tr>
                         @endforeach

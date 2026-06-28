@@ -1,12 +1,18 @@
+<style>
+    .sidebar-logo-img {
+        filter: drop-shadow(0px 0px 5px rgba(255, 255, 255, 0.85)) !important;
+    }
+</style>
+
 <div class="fixed inset-y-0 left-0 bg-dark-card border-r border-gray-800 text-gray-300 w-64 h-screen flex flex-col transition-transform duration-300 z-50"
      :class="sidebarOpen ? 'translate-x-0' : '-translate-x-full'">
-     
+      
     {{-- Logo Area --}}
     <div class="h-20 flex items-center justify-center border-b border-gray-800 p-4">
         <a href="{{ route('admin.dashboard') }}" class="block">
-            <img src="{{ asset('img/logo/logo_ridenusa_white_BTG.png') }}" alt="Ride Nusa" class="max-h-20 w-auto object-contain glow-effect hidden dark:block transition-all">
+            <img src="{{ asset('img/logo/logo_ridenusa_white_BTG.png') }}" alt="Ride Nusa" class="max-h-20 w-auto object-contain glow-effect hidden dark:block transition-all sidebar-logo-img">
             {{-- Fallback text or light mode version if needed --}}
-            <img src="{{ asset('img/logo/logo_ridenusa_white_BTG.png') }}" alt="Ride Nusa" class="max-h-20 w-auto object-contain block dark:hidden">
+            <img src="{{ asset('img/logo/logo_ridenusa_white_BTG.png') }}" alt="Ride Nusa" class="max-h-20 w-auto object-contain block dark:hidden sidebar-logo-img">
         </a>
     </div>
 

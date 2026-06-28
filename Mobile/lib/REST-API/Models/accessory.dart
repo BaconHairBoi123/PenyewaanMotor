@@ -30,7 +30,7 @@ class Accessory {
 
     return Accessory(
       id: json['id'],
-      name: json['name'] ?? '',
+      name: json['accessory_name'] ?? json['name'] ?? '',
       dailyPrice: priceInt,
       description: json['description'],
       imageUrl: imgUrl,

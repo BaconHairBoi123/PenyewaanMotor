@@ -18,7 +18,7 @@
     <th class="p-3">Condition</th>
     <th class="p-3">Damage Fee</th>
     <th class="p-3">Notes</th>
-    <th class="p-3">Action</th>
+    <th class="p-3 text-center">Action</th>
 </tr>
 </thead>
 <tbody>
@@ -52,10 +52,12 @@
         <input type="text" name="notes" class="border rounded p-1">
     </td>
 
-    <td class="p-2">
-        <button class="bg-blue-600 text-white px-3 py-1 rounded">
-            Submit
-        </button>
+    <td class="p-2 text-center">
+        <div class="flex justify-center items-center">
+            <button class="px-4 py-1.5 bg-blue-600 text-white rounded text-sm hover:bg-blue-700 transition shadow-sm font-medium">
+                Submit
+            </button>
+        </div>
     </td>
 
     </form>

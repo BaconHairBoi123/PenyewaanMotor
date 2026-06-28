@@ -39,7 +39,7 @@
                     <th>Email</th>
                     <th>Phone</th>
                     <th>Status</th>
-                    <th class="text-right">Actions</th>
+                    <th class="py-2 text-center">Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -55,13 +55,15 @@
                             <span class="px-2 py-1 text-xs font-semibold rounded-full bg-red-100 text-red-700">Unverified</span>
                         @endif
                     </td>
-                    <td class="text-right">
-                        <a href="{{ route('admin.users.show', $user->id) }}" class="text-blue-600 hover:underline">View</a>
-                        <a href="{{ route('admin.users.edit', $user->id) }}" class="text-yellow-600 hover:underline mx-2">Edit</a>
-                        <form action="{{ route('admin.users.destroy', $user->id) }}" method="POST" class="inline">
-                            @csrf @method('DELETE')
-                            <button class="text-red-600 hover:underline" onclick="return confirm('Delete?')">Delete</button>
-                        </form>
+                    <td class="p-3 text-center">
+                        <div class="flex justify-center items-center gap-2">
+                            <a href="{{ route('admin.users.show', $user->id) }}" class="px-4 py-1.5 bg-blue-600 text-white rounded text-sm hover:bg-blue-700 transition shadow-sm font-medium">View</a>
+                            <a href="{{ route('admin.users.edit', $user->id) }}" class="px-4 py-1.5 bg-yellow-500 text-white rounded text-sm hover:bg-yellow-600 transition shadow-sm font-medium">Edit</a>
+                            <form action="{{ route('admin.users.destroy', $user->id) }}" method="POST" class="inline">
+                                @csrf @method('DELETE')
+                                <button class="px-4 py-1.5 bg-red-600 text-white rounded text-sm hover:bg-red-700 transition shadow-sm font-medium" onclick="return confirm('Delete?')">Delete</button>
+                            </form>
+                        </div>
                     </td>
                 </tr>
                 @empty

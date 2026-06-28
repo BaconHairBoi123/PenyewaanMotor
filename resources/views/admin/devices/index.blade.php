@@ -57,7 +57,7 @@
                     <th class="border p-3">Status</th>
                     <th class="border p-3">Paired Motor</th>
                     <th class="border p-3">Location Count</th>
-                    <th class="border p-3">Actions</th>
+                    <th class="border p-3 text-center">Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -104,28 +104,28 @@
                     <td class="border p-3 text-center">
                         <span class="bg-gray-100 px-2 py-1 rounded">{{ $device->locations->count() }}</span>
                     </td>
-                    <td class="border p-3 flex gap-2 items-center">
-                        <form id="edit-form-{{ $device->id }}" action="{{ route('admin.devices.update', $device->id) }}" method="POST" class="inline">
-                            @csrf
-                            @method('PUT')
-                            <input type="hidden" name="device_code" value="{{ $device->device_code }}">
-                            <input type="hidden" name="status" value="{{ $device->status }}">
-                            <input type="hidden" name="device_name" id="device_name_input_{{ $device->id }}" value="{{ $device->device_name }}">
+                    <td class="border p-3 text-center">
+                        <div class="flex justify-center items-center gap-2">
+                            <form id="edit-form-{{ $device->id }}" action="{{ route('admin.devices.update', $device->id) }}" method="POST" class="inline">
+                                @csrf
+                                @method('PUT')
+                                <input type="hidden" name="device_code" value="{{ $device->device_code }}">
+                                <input type="hidden" name="status" value="{{ $device->status }}">
+                                <input type="hidden" name="device_name" id="device_name_input_{{ $device->id }}" value="{{ $device->device_name }}">
+                                
+                                <button type="button" onclick="editDeviceName('{{ $device->id }}', '{{ $device->device_name }}')" class="px-4 py-1.5 bg-yellow-500 text-white rounded text-sm hover:bg-yellow-600 transition shadow-sm font-medium">
+                                    Edit Nama
+                                </button>
+                            </form>
                             
-                            <button type="button" onclick="editDeviceName('{{ $device->id }}', '{{ $device->device_name }}')" class="text-blue-600 hover:text-blue-800 text-sm font-semibold bg-blue-50 px-2 py-1 rounded border border-blue-200">
-                                ✏️ Edit Nama
-                            </button>
-                        </form>
-                        
-                        <span class="text-gray-300">|</span>
-                        
-                        <form action="{{ route('admin.devices.destroy', $device->id) }}" method="POST" onsubmit="return confirm('Delete device?');" class="inline">
-                            @csrf
-                            @method('DELETE')
-                            <button class="text-red-500 hover:text-red-700 text-sm bg-red-50 px-2 py-1 rounded border border-red-200">
-                                🗑️ Delete
-                            </button>
-                        </form>
+                            <form action="{{ route('admin.devices.destroy', $device->id) }}" method="POST" onsubmit="return confirm('Delete device?');" class="inline">
+                                @csrf
+                                @method('DELETE')
+                                <button class="px-4 py-1.5 bg-red-600 text-white rounded text-sm hover:bg-red-700 transition shadow-sm font-medium">
+                                    Delete
+                                </button>
+                            </form>
+                        </div>
                     </td>
                 </tr>
                 @empty
