@@ -244,10 +244,23 @@
 
         // ============================================
 
+        // Dynamic Session ID generator
+        function generateSessionId() {
+            return 'session_web_' + "{{ Auth::id() ?? 'guest' }}" + '_' + Date.now() + '_' + Math.random().toString(36).substring(2, 9);
+        }
+        let currentSessionId = generateSessionId();
+
         // Toggle opened/closed window
         chatBtn.addEventListener('click', () => {
             if (chatWindow.style.display === 'flex') {
                 chatWindow.style.display = 'none';
+                // Reset chat messages view
+                chatBody.innerHTML = `
+                    <div class="msg-bubble msg-bot">
+                        Halo! Saya asisten AI Ride Nusa yang berjalan di server lokal Anda. Ada yang bisa saya bantu hari ini terkait sewa motor?
+                    </div>
+                `;
+                currentSessionId = generateSessionId();
             } else {
                 chatWindow.style.display = 'flex';
                 // Focus on input when opened
@@ -258,6 +271,13 @@
         // Close button
         chatClose.addEventListener('click', () => {
             chatWindow.style.display = 'none';
+            // Reset chat messages view
+            chatBody.innerHTML = `
+                <div class="msg-bubble msg-bot">
+                    Halo! Saya asisten AI Ride Nusa yang berjalan di server lokal Anda. Ada yang bisa saya bantu hari ini terkait sewa motor?
+                </div>
+            `;
+            currentSessionId = generateSessionId();
         });
 
         // Helper to append messages
@@ -313,6 +333,7 @@
                         message: message,
                         user_id: "{{ Auth::id() }}",
                         user_name: "{{ Auth::user()->name ?? 'Guest' }}",
+                        session_id: currentSessionId,
                         platform: "web"
                     })
                 });

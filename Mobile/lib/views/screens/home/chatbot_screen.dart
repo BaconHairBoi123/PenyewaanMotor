@@ -31,6 +31,7 @@ class _ChatbotScreenState extends State<ChatbotScreen> {
   bool _isTyping = false;
   String _userName = 'Guest';
   String _userId = 'guest_id';
+  String _sessionId = '';
   bool _isOnline = true;
   bool _isCheckingStatus = true;
 
@@ -73,6 +74,7 @@ class _ChatbotScreenState extends State<ChatbotScreen> {
     setState(() {
       _userName = prefs.getString('user_name') ?? 'Guest';
       _userId = prefs.getString('user_id') ?? 'guest';
+      _sessionId = 'session_${_userId}_${DateTime.now().millisecondsSinceEpoch}';
     });
   }
 
@@ -114,6 +116,7 @@ class _ChatbotScreenState extends State<ChatbotScreen> {
           'message': text,
           'user_id': _userId,
           'user_name': _userName,
+          'session_id': _sessionId,
           'platform': 'mobile',
         }),
       );
