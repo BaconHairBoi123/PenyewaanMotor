@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import '../../../core/app_theme.dart';
+import '../../../core/dialog_helper.dart';
 import '../auth/login_screen.dart';
 import '../../../REST-API/Models/motorcycle.dart';
 import '../../../REST-API/Services/motorcycle_service.dart';
 import '../../../REST-API/Services/auth_service.dart';
-
 import 'tabs/motorcycle_tab.dart';
 import 'tabs/service_tab.dart';
 import 'tabs/gps_tab.dart';
@@ -96,13 +96,86 @@ class _HomeScreenState extends State<HomeScreen> {
     if (isGuest) {
       _showGuestPopup('rent a motorcycle', redirectTo: '${motor.brand} ${motor.type}');
     } else {
-      await Navigator.push(
-        context,
-        AppTheme.animatedRoute(BookingScreen(motorcycle: motor)),
+      // Tampilkan loading indicator saat memvalidasi profil
+      showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (context) => const Center(
+          child: CircularProgressIndicator(
+            color: AppTheme.primaryColor,
+          ),
+        ),
       );
-      setState(() {
-        futureMotorcycles = MotorcycleService().getMotorcycles();
-      });
+
+      final profile = await AuthService().getProfile();
+
+      if (context.mounted) {
+        Navigator.pop(context); // Tutup loading dialog
+      }
+
+      if (profile == null) {
+        if (context.mounted) {
+          DialogHelper.showMessage(
+            context: context,
+            message: 'Failed to retrieve your profile details. Please try again.',
+            isError: true,
+          );
+        }
+        return;
+      }
+
+      final status = profile['verification_status'] ?? 'unverified';
+      if (status != 'verified') {
+        if (context.mounted) {
+          showDialog(
+            context: context,
+            builder: (context) => AlertDialog(
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+              title: const Row(
+                children: [
+                  Icon(Icons.gpp_maybe_outlined, color: Colors.orange, size: 28),
+                  SizedBox(width: 10),
+                  Text(
+                    'Unverified Account',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16,
+                      color: AppTheme.darkColor,
+                    ),
+                  ),
+                ],
+              ),
+              content: const Text(
+                'Your account has not been verified by the Admin yet. Please wait for the verification process to complete or contact our support for further information.',
+                style: TextStyle(color: AppTheme.darkColor, fontSize: 14, height: 1.4),
+              ),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.pop(context),
+                  child: const Text(
+                    'OK',
+                    style: TextStyle(
+                      color: AppTheme.primaryColor,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          );
+        }
+        return;
+      }
+
+      if (context.mounted) {
+        await Navigator.push(
+          context,
+          AppTheme.animatedRoute(BookingScreen(motorcycle: motor)),
+        );
+        setState(() {
+          futureMotorcycles = MotorcycleService().getMotorcycles();
+        });
+      }
     }
   }
 

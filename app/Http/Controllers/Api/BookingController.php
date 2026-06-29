@@ -47,6 +47,14 @@ class BookingController extends Controller
 
         $user = $request->user();
 
+        // 0. Cek apakah akun user sudah terverifikasi
+        if (($user->verification_status ?? 'unverified') !== 'verified') {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Your account is not verified by Admin yet. Please wait for the verification process to complete.'
+            ], 403);
+        }
+
         // 1. Cek apakah user punya rental aktif
         $hasActiveRental = Rental::where('user_id', $user->id)
             ->whereDoesntHave('returns')

@@ -959,7 +959,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  'No motorcycle license? No worries! Choose this and our RideNusa trainer team will schedule a short driving class in Nusa Penida before handing you the keys.',
+                  'No motorcycle license? No worries! Choose this and our RideNusa trainer team will schedule a short driving class before handing you the keys.',
                   style: TextStyle(
                     fontSize: 12,
                     color: Colors.grey.shade800,

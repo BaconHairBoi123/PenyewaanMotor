@@ -44,7 +44,7 @@ class MotorcycleTab extends StatefulWidget {
 
 class _MotorcycleTabState extends State<MotorcycleTab> {
   late Future<List<Motorcycle>> _future;
-  String _selectedCategory = 'All';
+  String _selectedBrand = 'All';
   FilterCriteria _filterCriteria = FilterCriteria();
   int _promoIndex = 0;
   String _searchQuery = '';
@@ -258,15 +258,15 @@ class _MotorcycleTabState extends State<MotorcycleTab> {
 
         final allMotors = snapshot.data ?? _cachedMotorcycles!;
 
-        final categories = ['All'];
+        final brands = ['All'];
         for (var motor in allMotors) {
-          if (motor.category.isNotEmpty && !categories.contains(motor.category)) {
-            categories.add(motor.category);
+          if (motor.brand.isNotEmpty && !brands.contains(motor.brand)) {
+            brands.add(motor.brand);
           }
         }
 
         final filteredMotors = allMotors.where((m) {
-          if (_selectedCategory != 'All' && m.category != _selectedCategory) return false;
+          if (_selectedBrand != 'All' && m.brand != _selectedBrand) return false;
           if (_filterCriteria.brand != null && m.brand != _filterCriteria.brand) return false;
           if (_filterCriteria.type != null && m.type != _filterCriteria.type) return false;
           if (_filterCriteria.transmission != null && m.transmission != _filterCriteria.transmission) return false;
@@ -431,7 +431,7 @@ class _MotorcycleTabState extends State<MotorcycleTab> {
                       const Padding(
                         padding: EdgeInsets.symmetric(horizontal: 16.0),
                         child: Text(
-                          'Categories',
+                          'Brands',
                           style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                         ),
                       ),
@@ -441,18 +441,18 @@ class _MotorcycleTabState extends State<MotorcycleTab> {
                         child: ListView.builder(
                           scrollDirection: Axis.horizontal,
                           padding: const EdgeInsets.symmetric(horizontal: 16),
-                          itemCount: categories.length,
+                          itemCount: brands.length,
                           itemBuilder: (context, index) {
-                            final cat = categories[index];
+                            final brandItem = brands[index];
                             return GestureDetector(
                               onTap: () {
                                 setState(() {
-                                  _selectedCategory = cat;
+                                  _selectedBrand = brandItem;
                                 });
                               },
                               child: CategoryChip(
-                                label: cat,
-                                isActive: _selectedCategory == cat,
+                                label: brandItem,
+                                isActive: _selectedBrand == brandItem,
                               ),
                             );
                           },
