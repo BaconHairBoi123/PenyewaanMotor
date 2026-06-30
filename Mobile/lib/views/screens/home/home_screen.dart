@@ -50,19 +50,35 @@ class _HomeScreenState extends State<HomeScreen> {
   void _showGuestPopup(String actionText, {String? redirectTo}) {
     showDialog(
       context: context,
-      builder: (context) {
+      builder: (ctx) {
         return AlertDialog(
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-          title: const Text('Attention', textAlign: TextAlign.center),
-          content: Text(
-            'You must sign in or register to $actionText.',
-            textAlign: TextAlign.center,
+          title: const Row(
+            children: [
+              Icon(Icons.login_outlined, color: AppTheme.primaryColor, size: 28),
+              SizedBox(width: 10),
+              Text(
+                'Login Required',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18,
+                  color: AppTheme.darkColor,
+                ),
+              ),
+            ],
           ),
-          actionsAlignment: MainAxisAlignment.center,
+          content: Text(
+            'Please login first to $actionText.',
+            style: const TextStyle(color: AppTheme.darkColor, fontSize: 14),
+          ),
           actions: [
-            OutlinedButton(
+            TextButton(
+              onPressed: () => Navigator.pop(ctx),
+              child: const Text('Cancel', style: TextStyle(color: Colors.grey)),
+            ),
+            ElevatedButton(
               onPressed: () {
-                Navigator.pop(context);
+                Navigator.pop(ctx);
                 Navigator.push(
                   context,
                   AppTheme.animatedRoute(
@@ -78,13 +94,13 @@ class _HomeScreenState extends State<HomeScreen> {
                   }
                 });
               },
-              child: const Text('Login'),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              child: const Text('Cancel'),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: AppTheme.primaryColor,
+                foregroundColor: AppTheme.darkColor,
+                elevation: 0,
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+              ),
+              child: const Text('Login / Register', style: TextStyle(fontWeight: FontWeight.bold)),
             ),
           ],
         );
