@@ -4,6 +4,7 @@ import '../../../../core/app_theme.dart';
 import '../../../../core/dialog_helper.dart';
 import '../../../../REST-API/Services/auth_service.dart';
 import '../../booking/history_screen.dart';
+import '../../auth/update_verification_screen.dart';
 
 class AccountTab extends StatefulWidget {
   final Function(int)? onTabSwitch;
@@ -314,6 +315,34 @@ class _AccountTabState extends State<AccountTab> {
                         }
                       },
                     ),
+                    if (!isGuest) ...[
+                      const Divider(height: 1),
+                      ListTile(
+                        leading: Icon(
+                          _userProfile?['verification_status'] == 'verified' ? Icons.verified_user : Icons.gpp_maybe_outlined,
+                          color: _userProfile?['verification_status'] == 'verified' ? Colors.green : Colors.orange,
+                        ),
+                        title: const Text('Account Verification', style: TextStyle(fontWeight: FontWeight.w600)),
+                        subtitle: Text(
+                          _userProfile?['verification_status'] == 'verified'
+                              ? 'Your account is verified and ready for rental.'
+                              : 'Verification pending or incomplete. Tap to update SIM & Selfie.',
+                          style: TextStyle(fontSize: 12, color: Colors.grey.shade600),
+                        ),
+                        trailing: _userProfile?['verification_status'] == 'verified' ? null : const Icon(Icons.chevron_right),
+                        onTap: _userProfile?['verification_status'] == 'verified'
+                            ? null
+                            : () async {
+                                final navigator = Navigator.of(context);
+                                final result = await navigator.push(
+                                  AppTheme.animatedRoute(const UpdateVerificationScreen()),
+                                );
+                                if (result == true && mounted) {
+                                  _loadProfile();
+                                }
+                              },
+                      ),
+                    ],
                     const SizedBox(height: 40),
                     SizedBox(
                       width: double.infinity,

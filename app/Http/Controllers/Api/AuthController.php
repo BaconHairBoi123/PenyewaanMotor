@@ -146,4 +146,60 @@ class AuthController extends Controller
             'data' => $request->user()
         ]);
     }
+
+    public function updateVerification(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'license_photo' => 'required|image|max:4096',
+            'face_photo' => 'nullable|image|max:4096',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Validation failed',
+                'errors' => $validator->errors()
+            ], 422);
+        }
+
+        $user = $request->user();
+
+        // Handle Verification Data
+        $verificationData = [
+            'user_id' => $user->id,
+            'verification_type' => 'sim',
+            'verification_date' => now(),
+            'status' => 'pending',
+        ];
+
+        if ($request->hasFile('face_photo')) {
+            $path = $request->file('face_photo')->store('verifications/faces', 'public');
+            $verificationData['face_photo_path'] = 'storage/' . $path;
+        }
+        if ($request->hasFile('license_photo')) {
+            $path = $request->file('license_photo')->store('verifications/licenses', 'public');
+            $verificationData['license_photo_path'] = 'storage/' . $path;
+        }
+
+        // Check if verification record already exists
+        $existing = \Illuminate\Support\Facades\DB::table('user_verifications')
+            ->where('user_id', $user->id)
+            ->first();
+
+        if ($existing) {
+            \Illuminate\Support\Facades\DB::table('user_verifications')
+                ->where('user_id', $user->id)
+                ->update($verificationData);
+        } else {
+            \Illuminate\Support\Facades\DB::table('user_verifications')->insert($verificationData);
+        }
+
+        // Set user verification status back to unverified
+        $user->update(['verification_status' => 'unverified']);
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Verification data updated successfully. Please wait for admin approval.',
+        ]);
+    }
 }

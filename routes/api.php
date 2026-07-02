@@ -52,6 +52,7 @@ Route::middleware('auth:sanctum')->group(function () {
     
     // Profil & Logout
     Route::get('/user', [AuthController::class, 'profile']);
+    Route::post('/user/update-verification', [AuthController::class, 'updateVerification']);
     Route::post('/logout', [AuthController::class, 'logout']);
 
     // Transaksi / Pemesanan

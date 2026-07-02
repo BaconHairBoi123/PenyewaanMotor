@@ -147,4 +147,51 @@ class AuthService {
       return {'success': false, 'message': 'An error occurred. Please check your connection.'};
     }
   }
+
+  Future<Map<String, dynamic>> updateVerification({
+    required String licensePhotoPath,
+    String? facePhotoPath,
+  }) async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      final token = prefs.getString('auth_token');
+      if (token == null) {
+        return {'success': false, 'message': 'No authentication token found.'};
+      }
+
+      final request = http.MultipartRequest(
+        'POST',
+        Uri.parse('${ApiConfig.baseUrl}/user/update-verification'),
+      );
+
+      // Add Headers
+      request.headers.addAll({
+        'Accept': 'application/json',
+        'Authorization': 'Bearer $token',
+      });
+
+      // Add file fields
+      request.files.add(
+        await http.MultipartFile.fromPath('license_photo', licensePhotoPath),
+      );
+
+      if (facePhotoPath != null && facePhotoPath.isNotEmpty) {
+        request.files.add(
+          await http.MultipartFile.fromPath('face_photo', facePhotoPath),
+        );
+      }
+
+      final streamedResponse = await request.send();
+      final response = await http.Response.fromStream(streamedResponse);
+
+      final Map<String, dynamic> responseData = json.decode(response.body);
+      if (response.statusCode == 200 && responseData['status'] == 'success') {
+        return {'success': true, 'message': responseData['message'] ?? 'Verification updated successfully'};
+      } else {
+        return {'success': false, 'message': responseData['message'] ?? 'Failed to update verification', 'errors': responseData['errors']};
+      }
+    } catch (e) {
+      return {'success': false, 'message': 'An error occurred during verification update.'};
+    }
+  }
 }
